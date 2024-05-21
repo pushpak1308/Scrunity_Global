@@ -2,13 +2,15 @@ import {
   Button,
   Card,
   CardContent,
+  CardMedia,
   Grid,
   InputLabel,
   TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "../logo_sg.png";
 import backgroundImage from "../background.jpg";
 
 const Login = () => {
@@ -34,21 +36,53 @@ const Login = () => {
   return (
     <Grid
       container
-      justifyContent="center"
+      justifyContent="right"
       alignItems="center"
       style={{
         height: "100vh",
-        backgroundImage: "url(" + backgroundImage + ")",
+        // backgroundImage: "url(" + backgroundImage + ")",
+        backgroundColor: "black",
       }}
     >
-      <Grid item xs={10} sm={6} md={4}>
-        <Card sx={{ px: 2, backgroundColor: "#161616", opacity: 0.9 }}>
-          <CardContent>
+      <Grid
+        item
+        xs={12}
+        sm={8}
+        md={7}
+        style={{
+          height: "100vh",
+          backgroundImage: "url(" + backgroundImage + ")",
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPositionY: "center",
+          // backgroundPositionX: "left",
+        }}
+      ></Grid>
+      <Grid item xs={12} sm={6} md={5}>
+        <Card
+          sx={{
+            px: 2,
+            backgroundColor: "#161616",
+            opacity: 0.9,
+            height: "100vh",
+          }}
+        >
+          <Fragment
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <CardMedia component="img" image={logo} sx={{ width: "20vh" }} />
             <Typography
-              sx={{ fontSize: "20px", textAlign: "center", color: "white" }}
+              sx={{ fontSize: "34px", textAlign: "center", color: "#1EBBD7" }}
             >
-              User Login
+              {/* <img src={logo} alt="logo" /> */}
+              SCRUNITY GLOBAL
             </Typography>
+          </Fragment>
+          <CardContent>
             <form onSubmit={handleSubmit}>
               <InputLabel htmlFor="username" sx={{ color: "#FFFFFF" }}>
                 Username
@@ -94,7 +128,7 @@ const Login = () => {
                 fullWidth
                 sx={{ mt: 1 }}
               >
-                Login
+                Sign In
               </Button>
             </form>
           </CardContent>
