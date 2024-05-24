@@ -1,19 +1,23 @@
 import {
   Button,
   Card,
+  CardActions,
   CardContent,
   CardMedia,
+  Divider,
+  FormHelperText,
   Grid,
   InputLabel,
   TextField,
   Typography,
+  styled,
 } from "@mui/material";
 import { useState, Fragment } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../logo_sg.png";
 import backgroundImage from "../background.jpg";
 
-const Login = () => {
+const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -33,6 +37,7 @@ const Login = () => {
     event.preventDefault();
     navigate("/home");
   };
+
   return (
     <Grid
       container
@@ -58,7 +63,14 @@ const Login = () => {
           // backgroundPositionX: "left",
         }}
       ></Grid>
-      <Grid item xs={12} sm={6} md={5}>
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        md={5}
+        alignItems="center"
+        justifyContent="center"
+      >
         <Card
           sx={{
             px: 2,
@@ -121,6 +133,10 @@ const Login = () => {
                 }}
                 required
               />
+              <FormHelperText sx={{ color: "white" }}>
+                forgot password?
+              </FormHelperText>
+
               <Button
                 type="submit"
                 variant="contained"
@@ -132,6 +148,17 @@ const Login = () => {
               </Button>
             </form>
           </CardContent>
+
+          <Divider sx={{ color: "white", borderColor: "white" }}>Or</Divider>
+          <Grid>
+            <Button>Sign In with Google</Button>
+            <Button>Sign In with Apple</Button>
+          </Grid>
+          <Grid justifyContent="center" alignItems="center">
+            <CardActions sx={{ color: "white" }}>
+              Are you new? <Link to="/register">Sign up here</Link>
+            </CardActions>
+          </Grid>
         </Card>
       </Grid>
     </Grid>
