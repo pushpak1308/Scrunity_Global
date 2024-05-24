@@ -133,7 +133,7 @@ const Login = (props) => {
                 }}
                 required
               />
-              <FormHelperText sx={{ color: "white" }}>
+              <FormHelperText sx={{ color: "white", mb: 2 }}>
                 forgot password?
               </FormHelperText>
 
@@ -149,7 +149,9 @@ const Login = (props) => {
             </form>
           </CardContent>
 
-          <Divider sx={{ color: "white", borderColor: "white" }}>Or</Divider>
+          <Divider sx={{ color: "white", borderColor: "white", m: 2 }}>
+            Or
+          </Divider>
           <Grid>
             <Button>Sign In with Google</Button>
             <Button>Sign In with Apple</Button>
