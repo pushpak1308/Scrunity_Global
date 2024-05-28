@@ -72,12 +72,12 @@ const Login = (props) => {
             background: "rgb(83,89,231)",
             background:
               "linear-gradient(0deg, rgba(83,89,231,1) 0%, rgba(12,218,255,1) 100%)",
-            display: 'flex',
-            justifyContent: 'center',
-            flexDirection:'column'
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
           }}
         >
-          <CardContent sx={{ color: "white",mb:2}}>
+          <CardContent sx={{ color: "white", mb: 2 }}>
             <div className="vollkorn-hello">Hello !Welcome to </div>
             <div className="vollkorn-scrutiny">Srunity Global</div>
           </CardContent>
@@ -93,17 +93,14 @@ const Login = (props) => {
               height: "42vh",
               borderRadius: "50%",
               backgroundColor: "#0cdaff",
-              ml:6,
+              ml: 6,
               boxShadow: "10px 12px 10px 0px rgba(0,0,0,0.25)",
             }}
           />
 
-          <CardContent sx={{ color: "white" ,mt:2}} >
-            <div className="vollkorn-body" >
-              A CRM for CAWI project </div>
-              <div className="vollkorn-body">
-                management
-            </div>
+          <CardContent sx={{ color: "white", mt: 2 }}>
+            <div className="vollkorn-body">A CRM for CAWI project </div>
+            <div className="vollkorn-body">management</div>
           </CardContent>
         </Card>
       </Grid>
@@ -138,7 +135,7 @@ const Login = (props) => {
               <InputLabel
                 htmlFor="emailOrNumber"
                 className="arimo-input-label"
-                sx={{ mt: 3 ,fontWeight: 550,fontSize: '2.5vh'}}
+                sx={{ mt: 3, fontWeight: 550, fontSize: "2.5vh" }}
               >
                 Email or Number
               </InputLabel>
@@ -149,7 +146,7 @@ const Login = (props) => {
                 variant="standard"
                 value={username}
                 onChange={onChangeUsername}
-                sx={{my:3}}
+                sx={{ my: 3 }}
                 size="small"
                 fullWidth
                 required
@@ -157,7 +154,7 @@ const Login = (props) => {
               <InputLabel
                 htmlFor="password"
                 className="arimo-input-label"
-                sx={{ mt: 3 ,fontWeight: 550,fontSize: '2.5vh'}}
+                sx={{ mt: 3, fontWeight: 550, fontSize: "2.5vh" }}
               >
                 Password
               </InputLabel>
@@ -169,16 +166,19 @@ const Login = (props) => {
                 variant="standard"
                 value={password}
                 onChange={onChangePassword}
-                sx={{mt:3}}
+                sx={{ mt: 3 }}
                 size="small"
                 fullWidth
                 required
               />
-              <FormHelperText sx={{ color: "#175f93", mt: 2,mb:5 ,fontSize: '1.5vh'}} className="arimo-input-label">
+              <FormHelperText
+                sx={{ color: "#175f93", mt: 2, mb: 5, fontSize: "1.5vh" }}
+                className="arimo-input-label"
+              >
                 forgot password?
               </FormHelperText>
 
-              <Box display="flex" justifyContent="center" alignItems="center" >
+              <Box display="flex" justifyContent="center" alignItems="center">
                 <Button
                   type="submit"
                   variant="contained"
@@ -187,21 +187,19 @@ const Login = (props) => {
                     width: "40%",
                     borderRadius: "10px",
                     boxShadow: "3px 3px 6px 0px #1abfb5",
-                    '&:hover': {
+                    "&:hover": {
                       boxShadow: "4px 4px 9px 0px #06746e",
                     },
-                    border:"1px solid white",
+                    border: "1px solid white",
                     background: "rgb(83,89,231)",
                     background:
                       "linear-gradient(274deg, rgba(83,89,231,1) 0%, rgba(12,218,255,1) 100%)",
                   }}
-                  
                 >
                   <Typography
                     variant="body"
                     fontWeight="bold"
-                
-                style={{ fontSize: "20px" }}
+                    style={{ fontSize: "20px" }}
                   >
                     Sign In
                   </Typography>
@@ -210,23 +208,26 @@ const Login = (props) => {
             </form>
           </CardContent>
 
-          <Divider sx={{ p: 1 , mx: 13,mb:5 }} style={{fontWeight: 'bold'}}>Or</Divider>
+          <Divider sx={{ p: 1, mx: 13, mb: 5 }} style={{ fontWeight: "bold" }}>
+            Or
+          </Divider>
           <Stack
             direction="row"
             display="flex"
             justifyContent="center"
             alignItems="center"
             spacing={9}
-            
           >
             <Button
-              startIcon={<img src={Google} alt="Google" style={{ height: "4vh" }}/>}
+              startIcon={
+                <img src={Google} alt="Google" style={{ height: "4vh" }} />
+              }
               variant="contained"
               sx={{
                 backgroundColor: "#efefef",
                 color: "black",
                 boxShadow: "3px 3px 4px 0px rgba(0,0,0,0.25)",
-                '&:hover': {
+                "&:hover": {
                   backgroundColor: "#efefef",
                 },
               }}
@@ -242,7 +243,7 @@ const Login = (props) => {
                 backgroundColor: "#efefef",
                 color: "black",
                 boxShadow: "3px 3px 4px 0px rgba(0,0,0,0.25)",
-                '&:hover': {
+                "&:hover": {
                   backgroundColor: "#efefef",
                 },
               }}
@@ -255,9 +256,12 @@ const Login = (props) => {
             container
             justifyContent="center"
             alignItems="center"
-            sx={{ mt: 5 }}
+            sx={{ mt: 3 }}
           >
-            <CardActions className="arimo-input-label" style={{fontSize:"2vh"}}>
+            <CardActions
+              className="arimo-input-label"
+              style={{ fontSize: "2vh" }}
+            >
               {"Are you new?"}
               <Link
                 to="/register"
@@ -267,7 +271,8 @@ const Login = (props) => {
                   color: "#0cdaff",
                 }}
               >
-                {" "}Sign up here
+                {" "}
+                Sign up here
               </Link>
             </CardActions>
           </Grid>
