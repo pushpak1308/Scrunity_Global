@@ -72,9 +72,12 @@ const Login = (props) => {
             background: "rgb(83,89,231)",
             background:
               "linear-gradient(0deg, rgba(83,89,231,1) 0%, rgba(12,218,255,1) 100%)",
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection:'column'
           }}
         >
-          <CardContent sx={{ color: "white", m: 4 }}>
+          <CardContent sx={{ color: "white",mb:2}}>
             <div className="vollkorn-hello">Hello !Welcome to </div>
             <div className="vollkorn-scrutiny">Srunity Global</div>
           </CardContent>
@@ -90,12 +93,16 @@ const Login = (props) => {
               height: "42vh",
               borderRadius: "50%",
               backgroundColor: "#0cdaff",
+              ml:6,
+              boxShadow: "10px 12px 10px 0px rgba(0,0,0,0.25)",
             }}
           />
 
-          <CardContent sx={{ color: "white" }}>
-            <div className="vollkorn-body">
-              A CRM for CAWI project management
+          <CardContent sx={{ color: "white" ,mt:2}} >
+            <div className="vollkorn-body" >
+              A CRM for CAWI project </div>
+              <div className="vollkorn-body">
+                management
             </div>
           </CardContent>
         </Card>
@@ -112,10 +119,6 @@ const Login = (props) => {
           sx={{
             px: 2,
             height: "100vh",
-            // display: "flex",
-            // flexDirection: "column",
-            // justifyContent: "center",
-            // alignItems: "center",
           }}
         >
           <CardMedia
@@ -129,18 +132,13 @@ const Login = (props) => {
               margin: 1,
             }}
           />
-          {/* <Typography
-            sx={{ fontSize: "34px", textAlign: "center", color: "#1EBBD7" }}
-          >
-            SCRUNITY GLOBAL
-          </Typography> */}
 
-          <CardContent sx={{ mt: 9, mx: 9, mb: 3 }}>
+          <CardContent sx={{ mt: 13, mx: 13, mb: 4 }}>
             <form onSubmit={handleSubmit}>
               <InputLabel
                 htmlFor="emailOrNumber"
-                className="arimo-font"
-                sx={{ mt: 3 }}
+                className="arimo-input-label"
+                sx={{ mt: 3 ,fontWeight: 550,fontSize: '2.5vh'}}
               >
                 Email or Number
               </InputLabel>
@@ -151,15 +149,15 @@ const Login = (props) => {
                 variant="standard"
                 value={username}
                 onChange={onChangeUsername}
-                margin="normal"
+                sx={{my:3}}
                 size="small"
                 fullWidth
                 required
               />
               <InputLabel
                 htmlFor="password"
-                className="arimo-font"
-                sx={{ mt: 3 }}
+                className="arimo-input-label"
+                sx={{ mt: 3 ,fontWeight: 550,fontSize: '2.5vh'}}
               >
                 Password
               </InputLabel>
@@ -171,32 +169,39 @@ const Login = (props) => {
                 variant="standard"
                 value={password}
                 onChange={onChangePassword}
-                margin="normal"
+                sx={{mt:3}}
                 size="small"
                 fullWidth
                 required
               />
-              <FormHelperText sx={{ color: "#175f93", mb: 2 }}>
+              <FormHelperText sx={{ color: "#175f93", mt: 2,mb:5 ,fontSize: '1.5vh'}} className="arimo-input-label">
                 forgot password?
               </FormHelperText>
 
-              <Box display="flex" justifyContent="center" alignItems="center">
+              <Box display="flex" justifyContent="center" alignItems="center" >
                 <Button
                   type="submit"
                   variant="contained"
                   color="primary"
                   sx={{
                     width: "40%",
-                    mt: 1,
+                    borderRadius: "10px",
+                    boxShadow: "3px 3px 6px 0px #1abfb5",
+                    '&:hover': {
+                      boxShadow: "4px 4px 9px 0px #06746e",
+                    },
+                    border:"1px solid white",
                     background: "rgb(83,89,231)",
                     background:
                       "linear-gradient(274deg, rgba(83,89,231,1) 0%, rgba(12,218,255,1) 100%)",
                   }}
+                  
                 >
                   <Typography
                     variant="body"
                     fontWeight="bold"
-                    style={{ fontSize: "20px" }}
+                
+                style={{ fontSize: "20px" }}
                   >
                     Sign In
                   </Typography>
@@ -205,35 +210,41 @@ const Login = (props) => {
             </form>
           </CardContent>
 
-          <Divider sx={{ p: 1 }}>Or</Divider>
+          <Divider sx={{ p: 1 , mx: 13,mb:5 }} style={{fontWeight: 'bold'}}>Or</Divider>
           <Stack
             direction="row"
             display="flex"
             justifyContent="center"
             alignItems="center"
             spacing={9}
-            sx={{ my: 4 }}
+            
           >
             <Button
-              startIcon={<img src={Google} alt="Google" />}
+              startIcon={<img src={Google} alt="Google" style={{ height: "4vh" }}/>}
               variant="contained"
               sx={{
-                backgroundColor: "#d8d5d5",
+                backgroundColor: "#efefef",
                 color: "black",
                 boxShadow: "3px 3px 4px 0px rgba(0,0,0,0.25)",
+                '&:hover': {
+                  backgroundColor: "#efefef",
+                },
               }}
             >
               Sign In with Google
             </Button>
             <Button
               startIcon={
-                <img src={AppleIcon} alt="Apple" style={{ height: "5vh" }} />
+                <img src={AppleIcon} alt="Apple" style={{ height: "4vh" }} />
               }
               variant="contained"
               sx={{
-                backgroundColor: "#d8d5d5",
+                backgroundColor: "#efefef",
                 color: "black",
                 boxShadow: "3px 3px 4px 0px rgba(0,0,0,0.25)",
+                '&:hover': {
+                  backgroundColor: "#efefef",
+                },
               }}
             >
               {" "}
@@ -244,10 +255,10 @@ const Login = (props) => {
             container
             justifyContent="center"
             alignItems="center"
-            // sx={{ m: 1 }}
+            sx={{ mt: 5 }}
           >
-            <CardActions>
-              {"Are you new?   "}
+            <CardActions className="arimo-input-label" style={{fontSize:"2vh"}}>
+              {"Are you new?"}
               <Link
                 to="/register"
                 style={{
@@ -256,7 +267,7 @@ const Login = (props) => {
                   color: "#0cdaff",
                 }}
               >
-                Sign up here
+                {" "}Sign up here
               </Link>
             </CardActions>
           </Grid>
