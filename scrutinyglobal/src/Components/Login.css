@@ -1,8 +1,7 @@
-.arimo-font {
+  .arimo-input-label {
     font-family: "Arimo", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 700;
-    font-style: normal;
+    font-style: bold;
     color: black;
   }
 
@@ -12,6 +11,8 @@
     font-weight:600;
     font-style: normal;
     font-size:4vh;
+    /* text-align: center; */
+    
   }
   .vollkorn-scrutiny {
     font-family: "Vollkorn", serif;
@@ -19,6 +20,7 @@
     font-weight:900;
     font-style: normal;
     font-size:7vh;
+    text-align: center;
 
   }
   .vollkorn-body {
@@ -27,5 +29,7 @@
     font-weight:500;
     font-style: normal;
     font-size:3vh;
+    text-align: center;
+    /* text-justify: inter-word; */
 
   }
