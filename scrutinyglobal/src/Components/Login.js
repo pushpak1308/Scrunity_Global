@@ -61,9 +61,11 @@ const Login = (props) => {
             background: "rgb(83,89,231)",
             background:
               "linear-gradient(0deg, rgba(83,89,231,1) 0%, rgba(12,218,255,1) 100%)",
+
             display: 'flex',
             justifyContent: 'center',
             flexDirection: 'column'
+
           }}
         >
           <CardContent sx={{ color: "white", mb: 2 }}>
@@ -87,12 +89,14 @@ const Login = (props) => {
             }}
           />
 
+
           <CardContent sx={{ color: "white", mt: 2 }} >
             <div className="vollkorn-body" >
               A CRM for CAWI project </div>
             <div className="vollkorn-body">
               management
             </div>
+
           </CardContent>
         </Card>
       </Grid>
@@ -156,10 +160,11 @@ const Login = (props) => {
               />
              
               <FormHelperText sx={{ color: "#175f93", mt: 2, mb: 5, fontSize: '1.5vh' }} className="arimo-input-label">
+
                 forgot password?
               </FormHelperText>
 
-              <Box display="flex" justifyContent="center" alignItems="center" >
+              <Box display="flex" justifyContent="center" alignItems="center">
                 <Button
                   type="submit"
                   variant="contained"
@@ -167,21 +172,21 @@ const Login = (props) => {
                   sx={{
                     width: "40%",
                     borderRadius: "10px",
+
                     boxShadow: "3px 3px 6px 0px #0cdaff",
                     '&:hover': {
                       boxShadow: "4px 4px 9px 0px #1976d2",
+
                     },
                     border: "1px solid white",
                     background: "rgb(83,89,231)",
                     background:
                       "linear-gradient(274deg, rgba(83,89,231,1) 0%, rgba(12,218,255,1) 100%)",
                   }}
-
                 >
                   <Typography
                     variant="body"
                     fontWeight="bold"
-
                     style={{ fontSize: "20px" }}
                   >
                     Sign In
@@ -194,9 +199,11 @@ const Login = (props) => {
             container
             justifyContent="center"
             alignItems="center"
-            sx={{ mt: 5 }}
+            sx={{ mt: 3 }}
           >
+
             <CardActions className="arimo-input-label" style={{ fontSize: "2vh" }}>
+
               {"Are you new?"}
               <Link
                 to="/register"
@@ -206,7 +213,8 @@ const Login = (props) => {
                   color: "#0cdaff",
                 }}
               >
-                {" "}Sign up here
+                {" "}
+                Sign up here
               </Link>
             </CardActions>
           </Grid>
