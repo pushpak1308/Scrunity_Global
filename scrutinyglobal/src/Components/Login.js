@@ -4,24 +4,17 @@ import {
   Card,
   CardActions,
   CardContent,
-  CardHeader,
   CardMedia,
-  Divider,
   FormHelperText,
   Grid,
-  InputLabel,
-  Stack,
-  TextField,
   Typography,
-  styled,
 } from "@mui/material";
-import { useState, Fragment } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../logo_sg.png";
-import Google from "../Google.svg";
-import AppleIcon from "../AppleIcon.svg";
 import backgroundImage from "../background.png";
 import "./Login.css";
+import { CustomInputLabel, CustomTextField } from "./Parts/CustomTextField";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
@@ -47,10 +40,8 @@ const Login = (props) => {
   return (
     <Grid
       container
-      justifyContent="right"
-      alignItems="center"
       style={{
-        height: "100vh",
+        border:"2px solid black",
         background: "rgb(83,89,231)",
         background:
           "linear-gradient(0deg, rgba(83,89,231,1) 0%, rgba(12,218,255,1) 100%)",
@@ -63,21 +54,19 @@ const Login = (props) => {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        style={{ backgroundColor: "inherit" }}
       >
         <Card
           elevation="0"
           style={{
-            height: "100vh",
             background: "rgb(83,89,231)",
             background:
               "linear-gradient(0deg, rgba(83,89,231,1) 0%, rgba(12,218,255,1) 100%)",
             display: 'flex',
             justifyContent: 'center',
-            flexDirection:'column'
+            flexDirection: 'column'
           }}
         >
-          <CardContent sx={{ color: "white",mb:2}}>
+          <CardContent sx={{ color: "white", mb: 2 }}>
             <div className="vollkorn-hello">Hello !Welcome to </div>
             <div className="vollkorn-scrutiny">Srunity Global</div>
           </CardContent>
@@ -93,16 +82,16 @@ const Login = (props) => {
               height: "42vh",
               borderRadius: "50%",
               backgroundColor: "#0cdaff",
-              ml:6,
+              ml: 6,
               boxShadow: "10px 12px 10px 0px rgba(0,0,0,0.25)",
             }}
           />
 
-          <CardContent sx={{ color: "white" ,mt:2}} >
+          <CardContent sx={{ color: "white", mt: 2 }} >
             <div className="vollkorn-body" >
               A CRM for CAWI project </div>
-              <div className="vollkorn-body">
-                management
+            <div className="vollkorn-body">
+              management
             </div>
           </CardContent>
         </Card>
@@ -118,7 +107,7 @@ const Login = (props) => {
           }}
           sx={{
             px: 2,
-            height: "100vh",
+            height: "100%",
           }}
         >
           <CardMedia
@@ -129,52 +118,44 @@ const Login = (props) => {
               position: "absolute",
               right: "1vh",
               top: "1vh",
-              margin: 1,
+              // margin: 1,
             }}
           />
 
           <CardContent sx={{ mt: 13, mx: 13, mb: 4 }}>
             <form onSubmit={handleSubmit}>
-              <InputLabel
+              <CustomInputLabel
                 htmlFor="emailOrNumber"
                 className="arimo-input-label"
-                sx={{ mt: 3 ,fontWeight: 550,fontSize: '2.5vh'}}
-              >
-                Email or Number
-              </InputLabel>
-              <TextField
+                label="Email or Number"
+                sx={{ mt: 3, fontWeight: 550, fontSize: '2.5vh' }}
+              />
+
+              <CustomTextField
                 name="username"
+                type='text'
                 placeholder="Email or Number"
-                id="standard-basic"
-                variant="standard"
                 value={username}
                 onChange={onChangeUsername}
-                sx={{my:3}}
-                size="small"
-                fullWidth
                 required
               />
-              <InputLabel
+
+              <CustomInputLabel
                 htmlFor="password"
                 className="arimo-input-label"
-                sx={{ mt: 3 ,fontWeight: 550,fontSize: '2.5vh'}}
-              >
-                Password
-              </InputLabel>
-              <TextField
+                label="Password"
+                sx={{ mt: 3, fontWeight: 550, fontSize: '2.5vh' }}
+              />
+              <CustomTextField
                 name="password"
                 type="password"
                 placeholder="Password"
-                id="standard-basic"
-                variant="standard"
                 value={password}
                 onChange={onChangePassword}
-                sx={{mt:3}}
-                size="small"
-                fullWidth
                 required
               />
-              <FormHelperText sx={{ color: "#175f93", mt: 2,mb:5 ,fontSize: '1.5vh'}} className="arimo-input-label">
+             
+              <FormHelperText sx={{ color: "#175f93", mt: 2, mb: 5, fontSize: '1.5vh' }} className="arimo-input-label">
                 forgot password?
               </FormHelperText>
 
@@ -186,22 +167,22 @@ const Login = (props) => {
                   sx={{
                     width: "40%",
                     borderRadius: "10px",
-                    boxShadow: "3px 3px 6px 0px #1abfb5",
+                    boxShadow: "3px 3px 6px 0px #0cdaff",
                     '&:hover': {
-                      boxShadow: "4px 4px 9px 0px #06746e",
+                      boxShadow: "4px 4px 9px 0px #1976d2",
                     },
-                    border:"1px solid white",
+                    border: "1px solid white",
                     background: "rgb(83,89,231)",
                     background:
                       "linear-gradient(274deg, rgba(83,89,231,1) 0%, rgba(12,218,255,1) 100%)",
                   }}
-                  
+
                 >
                   <Typography
                     variant="body"
                     fontWeight="bold"
-                
-                style={{ fontSize: "20px" }}
+
+                    style={{ fontSize: "20px" }}
                   >
                     Sign In
                   </Typography>
@@ -209,55 +190,13 @@ const Login = (props) => {
               </Box>
             </form>
           </CardContent>
-
-          <Divider sx={{ p: 1 , mx: 13,mb:5 }} style={{fontWeight: 'bold'}}>Or</Divider>
-          <Stack
-            direction="row"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            spacing={9}
-            
-          >
-            <Button
-              startIcon={<img src={Google} alt="Google" style={{ height: "4vh" }}/>}
-              variant="contained"
-              sx={{
-                backgroundColor: "#efefef",
-                color: "black",
-                boxShadow: "3px 3px 4px 0px rgba(0,0,0,0.25)",
-                '&:hover': {
-                  backgroundColor: "#efefef",
-                },
-              }}
-            >
-              Sign In with Google
-            </Button>
-            <Button
-              startIcon={
-                <img src={AppleIcon} alt="Apple" style={{ height: "4vh" }} />
-              }
-              variant="contained"
-              sx={{
-                backgroundColor: "#efefef",
-                color: "black",
-                boxShadow: "3px 3px 4px 0px rgba(0,0,0,0.25)",
-                '&:hover': {
-                  backgroundColor: "#efefef",
-                },
-              }}
-            >
-              {" "}
-              Sign In with Apple
-            </Button>
-          </Stack>
           <Grid
             container
             justifyContent="center"
             alignItems="center"
             sx={{ mt: 5 }}
           >
-            <CardActions className="arimo-input-label" style={{fontSize:"2vh"}}>
+            <CardActions className="arimo-input-label" style={{ fontSize: "2vh" }}>
               {"Are you new?"}
               <Link
                 to="/register"
