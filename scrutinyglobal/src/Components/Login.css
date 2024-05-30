@@ -23,6 +23,15 @@
     text-align: center;
 
   }
+  .vollkorn-Login{
+    font-family: "Vollkorn", serif;
+    font-optical-sizing: auto;
+    font-weight:700;
+    font-style: normal;
+    font-size:5vh;
+    text-align: center;
+
+  }
   .vollkorn-body {
     font-family: "Vollkorn", serif;
     font-optical-sizing: auto;
