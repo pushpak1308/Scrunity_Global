@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import backgroundImage from "../background.png";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../logo_sg.png";
-// import { uuid } from "uuidv4";
 import {
   Card,
   CardContent,
@@ -13,11 +11,16 @@ import {
   Grid,
   InputLabel,
   CardMedia,
+  CardActions,
+  Box,
 } from "@mui/material";
+import "./Login.css";
+import AuthPage from "./AuthPage";
+import { CustomTextField } from "./Parts/CustomTextField";
 
 const Register = () => {
   const navigate = useNavigate();
-
+  const [formStep, setFormStep] = useState(0);
   const [id, setId] = useState(0);
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
@@ -31,6 +34,7 @@ const Register = () => {
     setName(event.target.value);
     setId(13);
   };
+  console.log("formStep :>> ", formStep);
 
   const onChangeNumber = (event) => {
     event.preventDefault();
@@ -109,154 +113,234 @@ const Register = () => {
   //     .catch(error => console.error('Error creating user:', error));
   // }
 
-  return (
-    <Grid
-      container
-      justifyContent="center"
-      alignItems="center"
-      style={{
-        height: "100vh",
-        backgroundImage: "url(" + backgroundImage + ")",
-      }}
-    >
-      <Grid item xs={10} sm={6} md={4}>
-        <Card sx={{ px: 2, backgroundColor: "#161616", opacity: 0.9 }}>
-          <CardMedia image={require("../logo_sg.png")} style={{ height: 0 }} />
-          <CardContent>
-            <Typography sx={{ fontSize: "20px", textAlign: "center" }}>
-              Sign In
-            </Typography>
-            <form onSubmit={handleSubmit}>
-              <InputLabel
-                htmlFor="name"
-                sx={{ fontSize: "18px", color: "#FFFFFF", fontFamily: "Arimo" }}
-              >
-                Name*
-              </InputLabel>
-              <TextField
-                name="name"
-                value={name}
-                onChange={onChangeName}
-                fullWidth
-                margin="normal"
-                size="small"
-                InputProps={{
-                  style: {
-                    backgroundColor: "#D6E6EF",
-                    borderRadius: "10px",
-                  },
-                }}
-                sx={{ color: "#DDDCDC", opacity: 0.11 }}
-                required
-              />
-              <InputLabel
-                htmlFor="username"
-                sx={{ fontSize: "18px", color: "#FFFFFF" }}
-              >
-                Email*
-              </InputLabel>
-              <TextField
-                type="email"
-                name="username"
-                value={username}
-                onChange={onChangeUsername}
-                margin="normal"
-                size="small"
-                InputProps={{
-                  style: {
-                    backgroundColor: "#D6E6EF",
-                    borderRadius: "10px",
-                  },
-                }}
-                sx={{ color: "#DDDCDC", opacity: 0.11 }}
-                required
-              />
-              <Button>Verify</Button>
-              <InputLabel
-                htmlFor="number"
-                sx={{ fontSize: "18px", color: "#FFFFFF" }}
-              >
-                Number
-              </InputLabel>
-              <TextField
-                name="number"
-                value={number}
-                onChange={onChangeNumber}
-                margin="normal"
-                size="small"
-                InputProps={{
-                  style: {
-                    backgroundColor: "#D6E6EF",
-                    borderRadius: "10px",
-                  },
-                }}
-                sx={{ color: "#DDDCDC", opacity: 0.11 }}
-                required
-              />
-              <Button>Verify</Button>
-
-              <InputLabel
-                htmlFor="password"
-                sx={{ fontSize: "18px", color: "#FFFFFF" }}
-              >
-                Password*
-              </InputLabel>
-              <TextField
-                type="password"
+  const renderFormContent = () => {
+    switch (formStep) {
+      case 0:
+        return (
+          <>
+            <CustomTextField
+              name="name"
+              type="text"
+              value={name}
+              className="arimo-input-label"
+              label="Name"
+              sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
+              onChange={onChangeName}
+              required
+            />
+            <CustomTextField
+              name="number"
+              type="text"
+              value={number}
+              className="arimo-input-label"
+              label="Number"
+              sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
+              onChange={onChangeNumber}
+              required
+            />
+            <CustomTextField
+              name="email"
+              type="text"
+              value={username}
+              className="arimo-input-label"
+              label="Email"
+              sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
+              onChange={onChangeUsername}
+              required
+            />
+            <Grid>
+              <CustomTextField
                 name="password"
-                value={password}
-                onChange={onChangePassword}
-                fullWidth
-                margin="normal"
-                size="small"
-                InputProps={{
-                  style: {
-                    backgroundColor: "#D6E6EF",
-                    borderRadius: "10px",
-                  },
-                }}
-                sx={{ color: "#DDDCDC", opacity: 0.11 }}
-                required
-              />
-              <InputLabel
-                htmlFor="confirmPassword"
-                sx={{ fontSize: "18px", color: "#FFFFFF" }}
-              >
-                Confirm Password*
-              </InputLabel>
-              <TextField
                 type="password"
-                name="confirmPassword"
-                value={confirmPassword}
-                onChange={onChangeConfirmPassword}
-                fullWidth
-                margin="normal"
-                size="small"
-                InputProps={{
-                  style: {
-                    backgroundColor: "#D6E6EF",
-                    borderRadius: "10px",
-                  },
-                }}
-                sx={{ color: "#DDDCDC", opacity: 0.11 }}
+                value={password}
+                className="arimo-input-label"
+                label="Password"
+                sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
+                onChange={onChangePassword}
                 required
               />
+              <CustomTextField
+                name="confirmPassword"
+                type="password"
+                value={confirmPassword}
+                className="arimo-input-label"
+                label="Confirm Password"
+                sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
+                onChange={onChangeConfirmPassword}
+                required
+              />
+            </Grid>
+            <Box display="flex" justifyContent="right" alignItems="center">
               <Button
                 type="submit"
-                margin="1px"
-                justifyContent="center"
-                alignItems="center"
                 variant="contained"
-                sx={{ mt: 1 }}
+                color="primary"
+                onClick={setFormStep(formStep + 1)}
+                sx={{
+                  // Responsive width
+                  width: { xs: "80%", sm: "60%", md: "40%" },
+                  borderRadius: "10px",
+                  boxShadow: "3px 3px 6px 0px #0cdaff",
+                  "&:hover": {
+                    boxShadow: "4px 4px 9px 0px #1976d2",
+                  },
+                  border: "1px solid white",
+                  background: "rgb(83,89,231)",
+                  background:
+                    "linear-gradient(274deg, rgba(83,89,231,1) 0%, rgba(12,218,255,1) 100%)",
+                }}
               >
-                Sign Up
+                <Typography
+                  variant="body1"
+                  fontWeight="bold"
+                  style={{ fontSize: "18px" }}
+                >
+                  Next
+                </Typography>
               </Button>
-            </form>
-          </CardContent>
-        </Card>
-      </Grid>
-    </Grid>
+            </Box>
+          </>
+        );
+      case 1:
+        return (
+          <>
+            <CustomTextField
+              name="birthdate"
+              type="text"
+              value={name}
+              className="arimo-input-label"
+              label="Birth Date"
+              sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
+              onChange={onChangeName}
+              required
+            />
+            <CustomTextField
+              name="number"
+              type="text"
+              value={number}
+              className="arimo-input-label"
+              label="Number"
+              sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
+              onChange={onChangeNumber}
+              required
+            />
+            <CustomTextField
+              name="email"
+              type="text"
+              value={username}
+              className="arimo-input-label"
+              label="Email"
+              sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
+              onChange={onChangeUsername}
+              required
+            />
+            <Grid>
+              <CustomTextField
+                name="password"
+                type="password"
+                value={password}
+                className="arimo-input-label"
+                label="Password"
+                sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
+                onChange={onChangePassword}
+                required
+              />
+              <CustomTextField
+                name="confirmPassword"
+                type="password"
+                value={confirmPassword}
+                className="arimo-input-label"
+                label="Confirm Password"
+                sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
+                onChange={onChangeConfirmPassword}
+                required
+              />
+            </Grid>
+            <Box display="flex" justifyContent="right" alignItems="center">
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                sx={{
+                  // Responsive width
+                  width: { xs: "80%", sm: "60%", md: "40%" },
+                  borderRadius: "10px",
+                  boxShadow: "3px 3px 6px 0px #0cdaff",
+                  "&:hover": {
+                    boxShadow: "4px 4px 9px 0px #1976d2",
+                  },
+                  border: "1px solid white",
+                  background: "rgb(83,89,231)",
+                  background:
+                    "linear-gradient(274deg, rgba(83,89,231,1) 0%, rgba(12,218,255,1) 100%)",
+                }}
+              >
+                <Typography
+                  variant="body1"
+                  fontWeight="bold"
+                  style={{ fontSize: "18px" }}
+                >
+                  Next
+                </Typography>
+              </Button>
+            </Box>
+          </>
+        );
+    }
+  };
+
+  const content = (
+    <Card
+      style={{
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0,
+        borderTopLeftRadius: "10%",
+        borderBottomLeftRadius: "10%",
+        height: "100%",
+        position: "relative",
+      }}
+    >
+      <CardContent>
+        <Typography
+          className="vollkorn-Login"
+          sx={{ fontWeight: "700", fontSize: "4vh", mt: 1 }}
+          style={{ fontFamily: "Vollkorn ,serif" }}
+        >
+          Register
+        </Typography>
+      </CardContent>
+      <CardMedia
+        component="img"
+        image={logo}
+        sx={{
+          width: "10vh",
+          position: "absolute",
+          right: "1vh",
+          top: "1vh",
+        }}
+      />
+      <CardContent sx={{ mx: 13, mb: 1 }}>
+        <form onSubmit={handleSubmit}>{renderFormContent()}</form>
+      </CardContent>
+      <CardActions className="arimo-input-label" style={{ fontSize: "2vh" }}>
+        {"Already a member?"}
+        <Link
+          to="/login"
+          style={{
+            textDecoration: "none",
+            fontWeight: "bold",
+            color: "#0cdaff",
+            cursor: "pointer",
+          }}
+        >
+          {" "}
+          Sign in here
+        </Link>
+      </CardActions>
+    </Card>
   );
+
+  return <AuthPage content={content} />;
 };
 
 export default Register;
