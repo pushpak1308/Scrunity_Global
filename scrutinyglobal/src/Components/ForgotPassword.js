@@ -14,27 +14,28 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../logo_sg.png";
 import "./Login.css";
 import { CustomTextField } from "./Parts/CustomTextField";
-import AuthPage from "./AuthPage";
+import AuthPage from "./AuthPage"; // Ensure AuthPage is properly imported
 
-const Login = (props) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+const ForgotPassword = (props) => {
+  const [email, setEmail] = useState("");
+  const [number, setNumber] = useState("");
+  const [isItEmail, setIsItEmail] = useState(true);
 
   const navigate = useNavigate();
 
-  const onChangeUsername = (event) => {
+  const onChangeEmail = (event) => {
     event.preventDefault();
-    setUsername(event.target.value);
+    setEmail(event.target.value);
   };
 
-  const onChangePassword = (event) => {
+  const onChangeNumber = (event) => {
     event.preventDefault();
-    setPassword(event.target.value);
+    setNumber(event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    navigate("/home");
+    navigate("/resetPassword");
   };
 
   const content = (
@@ -54,7 +55,7 @@ const Login = (props) => {
           sx={{ fontWeight: "700", fontSize: "4vh", mt: 1 }}
           style={{ fontFamily: "Vollkorn ,serif" }}
         >
-          Log In
+          Reset Password
         </Typography>
       </CardContent>
       <CardMedia
@@ -70,36 +71,39 @@ const Login = (props) => {
 
       <CardContent sx={{ mx: 13, mb: 4 }}>
         <form onSubmit={handleSubmit}>
-          <CustomTextField
-            name="username"
-            type="text"
-            value={username}
-            className="arimo-input-label"
-            label="Email or Number"
-            sx={{ mt: 3, fontWeight: 550, fontSize: "2.5vh" }}
-            onChange={onChangeUsername}
-            required
-          />
-
-          <CustomTextField
-            name="password"
-            type="password"
-            value={password}
-            className="arimo-input-label"
-            label="Password"
-            sx={{ mt: 3, fontWeight: 550, fontSize: "2.5vh" }}
-            onChange={onChangePassword}
-            required
-          />
-          <Link to="/forgotPassword">
-            <FormHelperText
-              sx={{ color: "#175f93", mt: 2, mb: 5, fontSize: "1.5vh" }}
+          {isItEmail ? (
+            <CustomTextField
+              name="email"
+              type="text"
+              value={email}
               className="arimo-input-label"
-              style={{ cursor: "pointer" }}
-            >
-              forgot password?
-            </FormHelperText>
-          </Link>
+              label="Email"
+              sx={{ mt: 3, fontWeight: 550, fontSize: "2.5vh" }}
+              onChange={onChangeEmail}
+              required
+            />
+          ) : (
+            <CustomTextField
+              name="number"
+              type="text"
+              value={number}
+              className="arimo-input-label"
+              label="Number"
+              sx={{ mt: 3, fontWeight: 550, fontSize: "2.5vh" }}
+              onChange={onChangeNumber}
+              required
+            />
+          )}
+
+          <FormHelperText
+            sx={{ color: "#175f93", mb: 6, fontSize: "1.5vh" }}
+            className="arimo-input-label"
+            style={{ cursor: "pointer" }}
+            onClick={() => setIsItEmail(!isItEmail)}
+          >
+            {isItEmail ? "Use number instead" : "Use email instead"}
+          </FormHelperText>
+
           <Box display="flex" justifyContent="center" alignItems="center">
             <Button
               type="submit"
@@ -107,7 +111,7 @@ const Login = (props) => {
               color="primary"
               sx={{
                 // Responsive width
-                width: { xs: "80%", sm: "60%", md: "40%" },
+                width: { xs: "90%", sm: "70%", md: "50%" },
                 borderRadius: "10px",
                 boxShadow: "3px 3px 6px 0px #0cdaff",
                 "&:hover": {
@@ -124,7 +128,7 @@ const Login = (props) => {
                 fontWeight="bold"
                 style={{ fontSize: "18px" }}
               >
-                Log In
+                Send Reset Link
               </Typography>
             </Button>
           </Box>
@@ -137,9 +141,8 @@ const Login = (props) => {
         sx={{ my: 3 }}
       >
         <CardActions className="arimo-input-label" style={{ fontSize: "2vh" }}>
-          {"Are you new?"}
           <Link
-            to="/register"
+            to="/login"
             style={{
               textDecoration: "none",
               fontWeight: "bold",
@@ -147,8 +150,7 @@ const Login = (props) => {
               cursor: "pointer",
             }}
           >
-            {" "}
-            Sign up here
+            Go Back to Log In
           </Link>
         </CardActions>
       </Grid>
@@ -158,4 +160,4 @@ const Login = (props) => {
   return <AuthPage content={content} />;
 };
 
-export default Login;
+export default ForgotPassword;

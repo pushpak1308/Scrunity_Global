@@ -27,7 +27,7 @@ export const CustomTextField = ({
         variant="standard"
         value={value}
         onChange={onChange}
-        sx={{ my: 3 }}
+        sx={{ my: 2 }}
         size="small"
         fullWidth
         required={required}
