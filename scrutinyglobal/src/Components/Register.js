@@ -197,7 +197,7 @@ const Register = () => {
         </CardContent>
         <CardActions
           className="arimo-input-label"
-          sx={{ mb: 1, position: "absolute", bottom: 0, width: "100%" }}
+          sx={{ m: 2, width: "100%"  }}
           style={{
             justifyContent: "center",
             alignItems: "center",
