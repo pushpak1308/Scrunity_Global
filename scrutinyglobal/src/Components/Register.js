@@ -17,6 +17,7 @@ import {
 import "./Login.css";
 import AuthPage from "./AuthPage";
 import { CustomTextField } from "./Parts/CustomTextField";
+import { CustomDropdown } from "./Parts/CustomDropDown";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -27,6 +28,15 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [number, setNumber] = useState("");
+  const [birthdate, setBirthdate] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zipcode, setZipcode] = useState("");
+  const [country, setCountry] = useState("");
+  const [educationLevel, setEducationLevel] = useState("");
+  const [accountType, setAccountType] = useState("");
+  const [monthlySalary, setMonthlySalary] = useState("");
   const [loading, setLoading] = useState(false);
 
   const onChangeName = (event) => {
@@ -54,6 +64,44 @@ const Register = () => {
   const onChangeUsername = (event) => {
     event.preventDefault();
     setUsername(event.target.value);
+  };
+
+  const onChangeBirthdate = (event) => {
+    event.preventDefault();
+    setBirthdate(event.target.value);
+  };
+
+  const onChangeAddress = (event) => {
+    event.preventDefault();
+    setAddress(event.target.value);
+  };
+  const onChangeCity = (event) => {
+    event.preventDefault();
+    setCity(event.target.value);
+  };
+  const onChangeState = (event) => {
+    event.preventDefault();
+    setState(event.target.value);
+  };
+  const onChangeZipcode = (event) => {
+    event.preventDefault();
+    setZipcode(event.target.value);
+  };
+  const onChangeCountry = (event) => {
+    event.preventDefault();
+    setCountry(event.target.value);
+  };
+  const onChangeEducationLevel = (event) => {
+    event.preventDefault();
+    setEducationLevel(event.target.value);
+  };
+  const onChangeAccountType = (event) => {
+    event.preventDefault();
+    setAccountType(event.target.value);
+  };
+  const onChangeMonthlySalary = (event) => {
+    event.preventDefault();
+    setMonthlySalary(event.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -90,6 +138,15 @@ const Register = () => {
     axios.post("http://localhost:8080/auth/signup", data);
   };
 
+  const incrementFormStep = () => {
+    const newStep = formStep + 1;
+    setFormStep(newStep);
+  };
+  const decrementFormStep = () => {
+    const newStep = formStep - 1;
+    setFormStep(newStep);
+  };
+
   // const setUserData = (id,name,number,username,password) =>
   // {
   //     const data = {
@@ -124,7 +181,7 @@ const Register = () => {
               value={name}
               className="arimo-input-label"
               label="Name"
-              sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
+              sx={{ mt: 1, fontWeight: 550, fontSize: "2.5vh" }}
               onChange={onChangeName}
               required
             />
@@ -134,7 +191,7 @@ const Register = () => {
               value={number}
               className="arimo-input-label"
               label="Number"
-              sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
+              sx={{ mt: 1, fontWeight: 550, fontSize: "2.5vh" }}
               onChange={onChangeNumber}
               required
             />
@@ -144,41 +201,47 @@ const Register = () => {
               value={username}
               className="arimo-input-label"
               label="Email"
-              sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
+              sx={{ mt: 1, fontWeight: 550, fontSize: "2.5vh" }}
               onChange={onChangeUsername}
               required
             />
-            <Grid>
-              <CustomTextField
-                name="password"
-                type="password"
-                value={password}
-                className="arimo-input-label"
-                label="Password"
-                sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
-                onChange={onChangePassword}
-                required
-              />
-              <CustomTextField
-                name="confirmPassword"
-                type="password"
-                value={confirmPassword}
-                className="arimo-input-label"
-                label="Confirm Password"
-                sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
-                onChange={onChangeConfirmPassword}
-                required
-              />
+            <Grid container spacing={5}>
+              <Grid item xs={6}>
+                <CustomTextField
+                  name="password"
+                  type="password"
+                  value={password}
+                  className="arimo-input-label"
+                  label="Password"
+                  sx={{ mt: 1, fontWeight: 550, fontSize: "2.5vh" }}
+                  onChange={onChangePassword}
+                  required
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <CustomTextField
+                  name="confirmPassword"
+                  type="password"
+                  value={confirmPassword}
+                  className="arimo-input-label"
+                  label="Confirm Password"
+                  sx={{ mt: 1, fontWeight: 550, fontSize: "2.5vh" }}
+                  onChange={onChangeConfirmPassword}
+                  required
+                />
+              </Grid>
             </Grid>
             <Box display="flex" justifyContent="right" alignItems="center">
               <Button
-                type="submit"
+                type="button"
                 variant="contained"
                 color="primary"
-                onClick={setFormStep(formStep + 1)}
+                onClick={() => {
+                  incrementFormStep();
+                }}
                 sx={{
-                  // Responsive width
-                  width: { xs: "80%", sm: "60%", md: "40%" },
+                  // Responsive widths
+                  width: { xs: "60%", sm: "40%", md: "20%" },
                   borderRadius: "10px",
                   boxShadow: "3px 3px 6px 0px #0cdaff",
                   "&:hover": {
@@ -193,7 +256,7 @@ const Register = () => {
                 <Typography
                   variant="body1"
                   fontWeight="bold"
-                  style={{ fontSize: "18px" }}
+                  style={{ fontSize: "16px" }}
                 >
                   Next
                 </Typography>
@@ -206,71 +269,95 @@ const Register = () => {
           <>
             <CustomTextField
               name="birthdate"
-              type="text"
-              value={name}
+              type="date"
+              value={birthdate}
               className="arimo-input-label"
               label="Birth Date"
-              sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
-              onChange={onChangeName}
+              sx={{ mt: 1, fontWeight: 550, fontSize: "2.5vh" }}
+              onChange={onChangeBirthdate}
               required
             />
             <CustomTextField
-              name="number"
+              name="address"
               type="text"
-              value={number}
+              value={address}
               className="arimo-input-label"
-              label="Number"
-              sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
-              onChange={onChangeNumber}
+              label="Address"
+              sx={{ mt: 1, fontWeight: 550, fontSize: "2.5vh" }}
+              onChange={onChangeAddress}
               required
             />
-            <CustomTextField
-              name="email"
-              type="text"
-              value={username}
-              className="arimo-input-label"
-              label="Email"
-              sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
-              onChange={onChangeUsername}
-              required
-            />
-            <Grid>
-              <CustomTextField
-                name="password"
-                type="password"
-                value={password}
-                className="arimo-input-label"
-                label="Password"
-                sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
-                onChange={onChangePassword}
-                required
-              />
-              <CustomTextField
-                name="confirmPassword"
-                type="password"
-                value={confirmPassword}
-                className="arimo-input-label"
-                label="Confirm Password"
-                sx={{ mt: 2, fontWeight: 550, fontSize: "2.5vh" }}
-                onChange={onChangeConfirmPassword}
-                required
-              />
+
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <CustomDropdown
+                  name="city"
+                  value={city}
+                  onChange={onChangeCity}
+                  options={["New York", "Los Angeles", "Chicago"]} // Example options
+                  label="City"
+                  className="arimo-input-label"
+                  sx={{ mt: 1, fontWeight: 550, fontSize: "2.5vh" }}
+                  required
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <CustomDropdown
+                  name="state"
+                  value={state}
+                  onChange={onChangeState}
+                  options={["California", "New York", "Texas"]} // Example options
+                  label="State/Province"
+                  className="arimo-input-label"
+                  sx={{ mt: 1, fontWeight: 550, fontSize: "2.5vh" }}
+                  required
+                />
+              </Grid>
             </Grid>
-            <Box display="flex" justifyContent="right" alignItems="center">
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <CustomTextField
+                  name="zipcode"
+                  type="text"
+                  value={zipcode}
+                  className="arimo-input-label"
+                  label="Zip Code"
+                  sx={{ mt: 1, fontWeight: 550, fontSize: "2.5vh" }}
+                  onChange={onChangeZipcode}
+                  required
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <CustomDropdown
+                  name="country"
+                  value={country}
+                  onChange={onChangeCountry}
+                  options={["USA", "Canada", "UK"]} // Example options
+                  label="Country"
+                  className="arimo-input-label"
+                  sx={{ mt: 1, fontWeight: 550, fontSize: "2.5vh" }}
+                  required
+                />
+              </Grid>
+            </Grid>
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              mt={2}
+            >
               <Button
-                type="submit"
+                type="button"
                 variant="contained"
                 color="primary"
+                onClick={() => decrementFormStep()}
                 sx={{
-                  // Responsive width
-                  width: { xs: "80%", sm: "60%", md: "40%" },
                   borderRadius: "10px",
                   boxShadow: "3px 3px 6px 0px #0cdaff",
                   "&:hover": {
                     boxShadow: "4px 4px 9px 0px #1976d2",
                   },
                   border: "1px solid white",
-                  background: "rgb(83,89,231)",
                   background:
                     "linear-gradient(274deg, rgba(83,89,231,1) 0%, rgba(12,218,255,1) 100%)",
                 }}
@@ -278,7 +365,31 @@ const Register = () => {
                 <Typography
                   variant="body1"
                   fontWeight="bold"
-                  style={{ fontSize: "18px" }}
+                  style={{ fontSize: "16px" }}
+                >
+                  Previous
+                </Typography>
+              </Button>
+              <Button
+                type="button"
+                variant="contained"
+                color="primary"
+                onClick={() => incrementFormStep()}
+                sx={{
+                  borderRadius: "10px",
+                  boxShadow: "3px 3px 6px 0px #0cdaff",
+                  "&:hover": {
+                    boxShadow: "4px 4px 9px 0px #1976d2",
+                  },
+                  border: "1px solid white",
+                  background:
+                    "linear-gradient(274deg, rgba(83,89,231,1) 0%, rgba(12,218,255,1) 100%)",
+                }}
+              >
+                <Typography
+                  variant="body1"
+                  fontWeight="bold"
+                  style={{ fontSize: "16px" }}
                 >
                   Next
                 </Typography>
@@ -286,6 +397,97 @@ const Register = () => {
             </Box>
           </>
         );
+      case 2:
+        return (
+          <>
+            <CustomDropdown
+              name="educationLevel"
+              value={educationLevel}
+              onChange={onChangeEducationLevel}
+              options={["B.Tech", "BCA", "Law"]} // Example options
+              label="Education Level"
+              className="arimo-input-label"
+              sx={{ mt: 1, fontWeight: 550, fontSize: "2.5vh" }}
+              required
+            />
+            <CustomTextField
+              name="accountType"
+              type="text"
+              value={accountType}
+              className="arimo-input-label"
+              label="Account Type"
+              sx={{ mt: 1, fontWeight: 550, fontSize: "2.5vh" }}
+              onChange={onChangeAccountType}
+              required
+            />
+            <CustomTextField
+              name="monthlySalary"
+              type="text"
+              value={monthlySalary}
+              className="arimo-input-label"
+              label="Monthly Salary"
+              sx={{ mt: 1, fontWeight: 550, fontSize: "2.5vh" }}
+              onChange={onChangeMonthlySalary}
+              required
+            />
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              mt={2}
+            >
+              <Button
+                type="button"
+                variant="contained"
+                color="primary"
+                onClick={() => decrementFormStep()}
+                sx={{
+                  borderRadius: "10px",
+                  boxShadow: "3px 3px 6px 0px #0cdaff",
+                  "&:hover": {
+                    boxShadow: "4px 4px 9px 0px #1976d2",
+                  },
+                  border: "1px solid white",
+                  background:
+                    "linear-gradient(274deg, rgba(83,89,231,1) 0%, rgba(12,218,255,1) 100%)",
+                }}
+              >
+                <Typography
+                  variant="body1"
+                  fontWeight="bold"
+                  style={{ fontSize: "16px" }}
+                >
+                  Previous
+                </Typography>
+              </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                sx={{
+                  borderRadius: "10px",
+                  boxShadow: "3px 3px 6px 0px #0cdaff",
+                  "&:hover": {
+                    boxShadow: "4px 4px 9px 0px #1976d2",
+                  },
+                  border: "1px solid white",
+                  background:
+                    "linear-gradient(274deg, rgba(83,89,231,1) 0%, rgba(12,218,255,1) 100%)",
+                }}
+              >
+                <Typography
+                  variant="body1"
+                  fontWeight="bold"
+                  style={{ fontSize: "16px" }}
+                >
+                  Save
+                </Typography>
+              </Button>
+            </Box>
+          </>
+        );
+      default:
+        return null;
     }
   };
 
@@ -319,10 +521,18 @@ const Register = () => {
           top: "1vh",
         }}
       />
-      <CardContent sx={{ mx: 13, mb: 1 }}>
+      <CardContent sx={{ mx: { xs: 5, sm: 7, md: 13 }, mb: 1 }}>
         <form onSubmit={handleSubmit}>{renderFormContent()}</form>
       </CardContent>
-      <CardActions className="arimo-input-label" style={{ fontSize: "2vh" }}>
+      <CardActions
+        className="arimo-input-label"
+        sx={{ mb: 1 }}
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          fontSize: "2vh",
+        }}
+      >
         {"Already a member?"}
         <Link
           to="/login"
