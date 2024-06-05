@@ -16,6 +16,7 @@ import logo from "../logo_sg.png";
 import "./Login.css";
 import { CustomTextField } from "./Parts/CustomTextField";
 import AuthPage from "./AuthPage"; // Ensure AuthPage is properly imported
+import SuccessModal from "./Parts/SuccessModal";
 
 const ResetPassword = ({ setView }) => {
   const [newPassword, setNewPassword] = useState("");
@@ -93,7 +94,7 @@ const ResetPassword = ({ setView }) => {
           }}
         />
 
-        <CardContent sx={{ mx: 13, mb: 4 }}>
+        <CardContent sx={{ mx: { xs: 3, sm: 7, md: 13 }, mb: 4 }}>
           <form onSubmit={handleSubmit}>
             <CustomTextField
               name="newPassword"
@@ -172,61 +173,8 @@ const ResetPassword = ({ setView }) => {
           </CardActions>
         </Grid>
       </Card>
-      {show && (
-        <Modal
-          open={show}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <Typography
-              id="modal-modal-title"
-              variant="h6"
-              component="h2"
-              className="vollkorn-Login"
-              sx={{ fontWeight: "600", fontSize: "3vh", mt: 1 }}
-              style={{ fontFamily: "Vollkorn ,serif" }}
-            >
-              Password Successfully <br />
-              changed 🎉
-            </Typography>
-            <Box
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              sx={{ mt: 4 }}
-            >
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleModalButtonClick}
-                sx={{
-                  // Responsive width
-                  width: { xs: "90%", sm: "70%", md: "50%" },
-                  borderRadius: "10px",
-                  boxShadow: "3px 3px 6px 0px #0cdaff",
-                  "&:hover": {
-                    boxShadow: "4px 4px 9px 0px #1976d2",
-                  },
-                  border: "1px solid white",
-                  background: "rgb(83,89,231)",
-                  background:
-                    "linear-gradient(274deg, rgba(83,89,231,1) 0%, rgba(12,218,255,1) 100%)",
-                }}
-              >
-                <Typography
-                  variant="body1"
-                  fontWeight="bold"
-                  style={{ fontSize: "18px" }}
-                >
-                  Go to Log In
-                </Typography>
-              </Button>
-            </Box>
-          </Box>
-        </Modal>
-      )}
+      <SuccessModal showSuccess={show} handleCloseSuccess={handleClose} heading={"Password Successfully \n changed 🎉"} button={"Go to Log In"}/>
+     
     </>
   );
 

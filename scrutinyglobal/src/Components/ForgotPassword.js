@@ -69,7 +69,7 @@ const ForgotPassword = (props) => {
         }}
       />
 
-      <CardContent sx={{ mx: 13, mb: 4 }}>
+      <CardContent sx={{ mx: { xs: 3, sm: 7, md: 13 }, mb: 4 }}>
         <form onSubmit={handleSubmit}>
           {isItEmail ? (
             <CustomTextField
