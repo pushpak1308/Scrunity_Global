@@ -5,7 +5,7 @@ import Home from "./Parts/Home";
 import About from "./Parts/About";
 import Services from "./Parts/Services";
 import Drawer from '@mui/material/Drawer';
-import logo from "../logo_sg.png";
+import logo from "../../logo_sg.png";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';

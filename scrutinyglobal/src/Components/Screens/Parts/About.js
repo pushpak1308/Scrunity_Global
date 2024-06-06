@@ -1,15 +1,15 @@
 import React from "react";
 import { Box, Grid, Typography, Button } from "@mui/material";
-import aboutImage from "./../../aboutImage.png";
-import cardImage1 from "./../../cardImage1.png";
-import cardImage2 from "./../../cardImage2.png";
-import cardImage3 from "./../../cardImage3.png";
-import CardComponent from "./CardComponent";
-import CardComponent2 from "./CardComponent2";
-import HappyClients from "./../../HappyClients.png";
-import Projects from "./../../Projects.png";
-import CustomerSupport from "./../../CustomerSupport.png";
-import hardworkers from "./../../hardworkers.png";
+import aboutImage from "./../../../aboutImage.png";
+import cardImage1 from "./../../../cardImage1.png";
+import cardImage2 from "./../../../cardImage2.png";
+import cardImage3 from "./../../../cardImage3.png";
+import CardComponent from "../../MuiComponents/CardComponent";
+import CardComponent2 from "../../MuiComponents/CardComponent2";
+import HappyClients from "./../../../HappyClients.png";
+import Projects from "./../../../Projects.png";
+import CustomerSupport from "./../../../CustomerSupport.png";
+import hardworkers from "./../../../hardworkers.png";
 
 const About = () => {
   return (

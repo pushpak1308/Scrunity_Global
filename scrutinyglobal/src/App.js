@@ -1,18 +1,16 @@
 import "./App.css";
-import Register from "./Components/Register";
-import Login from "./Components/Login";
+import Login from "../src/Components/Screens/Login"
+import ForgotPassword from "../src/Components/Screens/ForgotPassword"
+import ResetPassword from "../src/Components/Screens/ResetPassword"
+import Register from "../src/Components/Screens/Register"
+import Landing from "../src/Components/Screens/Landing"
+import AddProject from "../src/Components/Screens/AddProject"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Landing from "./Components/Landing";
-import AddProject from "./Components/AddProject";
-import AuthPage from "./Components/AuthPage";
-import ForgotPassword from "./Components/ForgotPassword";
-import ResetPassword from "./Components/ResetPassword";
-
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/login" element={<Login/>} />
         <Route exact path="/forgotPassword" element={<ForgotPassword />} />
         <Route exact path="/resetPassword" element={<ResetPassword />} />
         <Route exact path="/register" element={<Register />} />
