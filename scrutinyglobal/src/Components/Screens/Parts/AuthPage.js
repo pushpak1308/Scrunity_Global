@@ -1,36 +1,14 @@
 import { Box, Card, CardContent, CardMedia, Grid } from "@mui/material";
-import { useState } from "react";
-import backgroundImage from "../background.png";
-import "./Login.css";
-import Login from "./Login";
-import ForgotPassword from "./ForgotPassword";
-import ResetPassword from "./ResetPassword";
-import Register from "./Register";
+import backgroundImage from "../../../background.png";
+import "../Login.css";
 const AuthPage = ({ content }) => {
-  // const [view, setView] = useState("login");
-
-  // const content = () => {
-  //   switch (view) {
-  //     case "login":
-  //       return <Login setView={setView} />;
-  //     case "forgotPassword":
-  //       return <ForgotPassword setView={setView} />;
-  //     case "resetPassword":
-  //       return <ResetPassword setView={setView} />;
-  //     case "register":
-  //       return <div>Register</div>;
-  //     // return <Register setView={setView} />;
-  //     default:
-  //       return null;
-  //   }
-  // };
   return (
     <Box
       display="flex"
       justifyContent="center"
       alignItems="center"
       minHeight="100vh"
-      style={{ backgroundColor: "#abeff5" }}
+      style={{ backgroundColor: "#E1F9FE" }}
     >
       <Grid
         container

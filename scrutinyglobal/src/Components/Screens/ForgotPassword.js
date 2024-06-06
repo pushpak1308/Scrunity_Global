@@ -11,10 +11,11 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../logo_sg.png";
+import logo from "../../logo_sg.png";
 import "./Login.css";
-import { CustomTextField } from "./Parts/CustomTextField";
-import AuthPage from "./AuthPage"; // Ensure AuthPage is properly imported
+import { CustomTextField } from "../MuiComponents/CustomTextField";
+import AuthPage from "./Parts/AuthPage"; // Ensure AuthPage is properly imported
+import CustomContainedButton from "../MuiComponents/CustomContainedButton";
 
 const ForgotPassword = (props) => {
   const [email, setEmail] = useState("");
@@ -105,32 +106,11 @@ const ForgotPassword = (props) => {
           </FormHelperText>
 
           <Box display="flex" justifyContent="center" alignItems="center">
-            <Button
+            <CustomContainedButton
               type="submit"
-              variant="contained"
-              color="primary"
-              sx={{
-                // Responsive width
-                width: { xs: "90%", sm: "70%", md: "50%" },
-                borderRadius: "10px",
-                boxShadow: "3px 3px 6px 0px #0cdaff",
-                "&:hover": {
-                  boxShadow: "4px 4px 9px 0px #1976d2",
-                },
-                border: "1px solid white",
-                background: "rgb(83,89,231)",
-                background:
-                  "linear-gradient(274deg, rgba(83,89,231,1) 0%, rgba(12,218,255,1) 100%)",
-              }}
-            >
-              <Typography
-                variant="body1"
-                fontWeight="bold"
-                style={{ fontSize: "18px" }}
-              >
-                Send Reset Link
-              </Typography>
-            </Button>
+              buttonText="Send Reset Link"
+              width={true}
+            />
           </Box>
         </form>
       </CardContent>
