@@ -1,6 +1,6 @@
 import { Grid, Typography, Button } from "@mui/material";
 import React from "react";
-import homeImage from "../../../homeImage.png";
+import homeImage from "../../homeImage.png";
 
 const Home = () => {
   return (

@@ -1,9 +1,9 @@
 import { TextField, InputLabel } from "@mui/material";
 import React from "react";
-import "../Screens/Login.css";
+import "../../Screens/Auth/Style.css";
 
 // Reusable TextField Component
-export const CustomTextField = ({
+export const MuiTextField = ({
   name,
   type,
   value,

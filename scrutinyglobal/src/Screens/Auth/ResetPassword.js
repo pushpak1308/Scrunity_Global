@@ -13,11 +13,11 @@ import {
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../logo_sg.png";
-import "../Screens/Login.css";
-import { CustomTextField } from "../MuiComponents/CustomTextField";
-import AuthPage from "./Parts/AuthPage"; 
-import CustomModal from "../MuiComponents/CustomModal";
-import CustomContainedButton from "../MuiComponents/CustomContainedButton";
+import "../Auth/Style.css";
+import { MuiTextField } from "../../MuiComponents/MuiTextField/Index";
+import AuthPage from "./AuthPage";
+import MuiModal from "../../MuiComponents/MuiModal/Index";
+import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 
 const ResetPassword = ({ setView }) => {
   const [newPassword, setNewPassword] = useState("");
@@ -25,18 +25,6 @@ const ResetPassword = ({ setView }) => {
   const [show, setShow] = useState(false);
 
   const navigate = useNavigate();
-
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    boxShadow: "10px 10px 20px rgba(0, 0, 0, 0.5)",
-    p: 4,
-    borderRadius: "10px",
-  };
 
   const onChangeNewPassword = (event) => {
     event.preventDefault();
@@ -97,7 +85,7 @@ const ResetPassword = ({ setView }) => {
 
         <CardContent sx={{ mx: { xs: 3, sm: 7, md: 13 }, mb: 4 }}>
           <form onSubmit={handleSubmit}>
-            <CustomTextField
+            <MuiTextField
               name="newPassword"
               type="password"
               value={newPassword}
@@ -108,7 +96,7 @@ const ResetPassword = ({ setView }) => {
               //   required
             />
 
-            <CustomTextField
+            <MuiTextField
               name="confirmPassword"
               type="password"
               value={confirmPassword}
@@ -120,13 +108,12 @@ const ResetPassword = ({ setView }) => {
             />
 
             <Box display="flex" justifyContent="center" alignItems="center">
-            <CustomContainedButton
-    type="submit"
-    buttonText="Save Password"
-    width={true}
-    mt={4}
-/>
-             
+              <MuiContainedButton
+                type="submit"
+                buttonText="Save Password"
+                width={true}
+                mt={4}
+              />
             </Box>
           </form>
         </CardContent>
@@ -154,16 +141,15 @@ const ResetPassword = ({ setView }) => {
           </CardActions>
         </Grid>
       </Card>
-      {/* <SuccessModal showSuccess={show} handleCloseSuccess={handleClose} heading={"Password Successfully \n changed 🎉"} button={"Go to Log In"}/> */}
-      <CustomModal
-          show={show}
-          handleClose={handleClose}
-          heading={"Password Successfully changed 🎉"}
-          buttonText="Go to Log In"
-          buttonAction={() => {
-            console.log("Navigating to login");
-          }}
-        />
+      <MuiModal
+        show={show}
+        handleClose={handleClose}
+        heading={"Password Successfully changed 🎉"}
+        buttonPrimaryText="Go to Log In"
+        buttonAction={() => {
+          console.log("Navigating to login");
+        }}
+      />
     </>
   );
 

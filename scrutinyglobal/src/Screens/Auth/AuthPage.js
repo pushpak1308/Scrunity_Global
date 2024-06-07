@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, CardMedia, Grid } from "@mui/material";
-import backgroundImage from "../../../background.png";
-import "../Login.css";
+import backgroundImage from "../../background.png";
+import "./Style.css";
 const AuthPage = ({ content }) => {
   return (
     <Box
@@ -56,8 +56,8 @@ const AuthPage = ({ content }) => {
                 height: "42vh",
                 borderRadius: "50%",
                 backgroundColor: "#0cdaff",
-                ml: 6,
-                boxShadow: "10px 12px 10px 0px rgba(0,0,0,0.25)",
+                // ml: 6,
+                boxShadow: "5.77px 7.42px 8.74px 0px #13697978",
               }}
             />
 
