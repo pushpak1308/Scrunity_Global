@@ -4,8 +4,8 @@ import aboutImage from "./../../aboutImage.png";
 import cardImage1 from "./../../cardImage1.png";
 import cardImage2 from "./../../cardImage2.png";
 import cardImage3 from "./../../cardImage3.png";
-import CardComponent from "../../MuiComponents/CardComponent";
-import CardComponent2 from "../../MuiComponents/CardComponent2";
+import CardComponentImage from "../../MuiComponents/CardComponentImage";
+import CardComponentIcon from "../../MuiComponents/CardComponentIcon";
 import HappyClients from "./../../HappyClients.png";
 import Projects from "./../../Projects.png";
 import CustomerSupport from "./../../CustomerSupport.png";
@@ -94,21 +94,21 @@ const About = () => {
       </Grid>
       <Grid container spacing={1} justifyContent="center" sx={{ p: 3 }}>
         <Grid item xs={12} sm={6} md={4}>
-          <CardComponent
+          <CardComponentImage
             image={cardImage1}
             title="Diversity in Departments"
             text="Our prowess is multi-faceted. We excel in Quantitative and Qualitative research, conduct Online Surveys, gauge Public Opinion, curate meticulous Data Collections, dissect Media intricacies, and unravel profound Covid-19 Insights. This versatility tailors our platform for clients in pursuit of diverse viewpoints or specific market niches."
           />
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
-          <CardComponent
+          <CardComponentImage
             image={cardImage2}
             title="Global Reach"
             text="Seizing opportunities on a global scale, we empower our clients to connect with respondents spanning the farthest reaches. We specialize in procuring top-tier responses from the most elusive participants – be it IT professionals, HR experts, Finance wizards, Sales mavens, or even esteemed C-Level executives and department heads."
           />
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
-          <CardComponent
+          <CardComponentImage
             image={cardImage3}
             title="Multiple Target Platforms"
             text="Scrutiny Global seamlessly navigates both Business-to-Business (B2B) and Business-to-Consumer (B2C) terrains. Our versatility ensures that clients effortlessly tap into their desired demographic, whether it's childcare professionals, caregivers, skilled tradespeople like plumbers and electricians, or any other target group."
@@ -117,24 +117,28 @@ const About = () => {
       </Grid>
       <Grid container spacing={3} justifyContent="center" sx={{ m: 5 }}>
         <Grid item xs={12} sm={6} md={3}>
-          <CardComponent2
+          <CardComponentIcon
             image={HappyClients}
             title="1000"
             text="Happy Clients"
           />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <CardComponent2 image={Projects} title="1000" text="Projects" />
+          <CardComponentIcon image={Projects} title="1000" text="Projects" />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <CardComponent2
+          <CardComponentIcon
             image={CustomerSupport}
             title="1000"
             text="Hours Of Customer Support"
           />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <CardComponent2 image={hardworkers} title="1000" text="Hardworkers" />
+          <CardComponentIcon
+            image={hardworkers}
+            title="1000"
+            text="Hardworkers"
+          />
         </Grid>
       </Grid>
       <Grid

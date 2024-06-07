@@ -1,78 +1,118 @@
-  .main-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #E1F9FE;
-    box-shadow: 4px 10px 14.5px 0px #6FDBF529;
-  }
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #e1f9fe;
+  box-shadow: 4px 10px 14.5px 0px #6fdbf529;
+}
 
-  .container{
-    border-radius: 10px;
-    overflow: hidden;
-    width: 80%;
-    background: linear-gradient(180deg, #0DDBFF 0%, #2C84F5 70.5%, #4344ED 100%);
-    box-shadow: 4px 10px 14.5px 0px #6FDBF529;
+.container {
+  border-radius: 10px;
+  overflow: hidden;
+  width: "80%" !important;
+  background: linear-gradient(180deg, #0ddbff 0%, #2c84f5 70.5%, #4344ed 100%);
+  box-shadow: 4px 10px 14.5px 0px #6fdbf529;
+}
 
-  }
+.image-card {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: none;
+}
 
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 43vh;
+  height: 43vh;
+  border-radius: 50%;
+  background-color: #0cdaff;
+  box-shadow: 5.77px 7.42px 8.74px 0px #13697978;
+}
 
-  .grid-image{
-    justify-content: center;
-    align-items: center;
-  }
+.arimo-input-label {
+  font-family: "Arimo", sans-serif;
+  font-optical-sizing: auto;
+  font-style: bold;
+  color: black;
+}
 
-  .image-card{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    background-color: transparent;
-    box-shadow: none;
-  }
-  
-  .arimo-input-label {
-    font-family: "Arimo", sans-serif;
-    font-optical-sizing: auto;
-    font-style: bold;
-    color: black;
-  }
+.vollkorn-hello {
+  font-family: "Vollkorn", serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 34.5px;
+  text-align: center;
+  color: white;
+}
+.vollkorn-scrutiny {
+  font-family: "Vollkorn", serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 41.4px;
+  text-align: center;
+  color: white;
+}
 
-  .vollkorn-hello {
-    font-family: "Vollkorn", serif;
-    font-optical-sizing: auto;
-    font-weight:600;
-    font-style: normal;
-    font-size:4vh;
-    /* text-align: center; */
-    
-  }
-  .vollkorn-scrutiny {
-    font-family: "Vollkorn", serif;
-    font-optical-sizing: auto;
-    font-weight:800;
-    font-style: normal;
-    font-size:6vh;
-    /* text-align: center; */
+.vollkorn-body {
+  font-family: "Vollkorn", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 3vh;
+  text-align: center;
+  color: white;
+  /* text-justify: inter-word; */
+}
 
-  }
-  .vollkorn-Login{
-    font-family: "Vollkorn", serif;
-    font-optical-sizing: auto;
-    font-weight:700;
-    font-style: normal;
-    font-size:5vh;
-    text-align: center;
+/* form section */
 
-  }
-  .vollkorn-body {
-    font-family: "Vollkorn", serif;
-    font-optical-sizing: auto;
-    font-weight:500;
-    font-style: normal;
-    font-size:3vh;
-    text-align: center;
-    /* text-justify: inter-word; */
+.card-form {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 10% !important;
+  border-bottom-left-radius: 10% !important;
+  height: 100%;
+  position: relative;
+}
 
-  }
+.vollkorn-Login {
+  font-family: "Vollkorn", serif !important;
+  font-weight: 700 !important;
+  font-style: normal;
+  font-size: 4.5vh !important;
+  text-align: center;
+}
 
-  
+.logo-image {
+  width: 10vh !important;
+  position: absolute;
+  right: 1vh;
+  top: 1vh;
+}
+
+.cardAction-link {
+  text-decoration: none;
+  font-weight: bold;
+  color: #0cdaff;
+  cursor: pointer;
+}
+
+.cardAction-container {
+  font-size: 2vh;
+}
+
+.helperText {
+  color: #175f93 !important;
+  font-size: 1.5vh !important;
+  cursor: pointer;
+}
+
+.flex-and-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

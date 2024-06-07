@@ -1,17 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../logo_sg.png";
-import {
-  Card,
-  CardContent,
-  Typography,
-  Button,
-  Grid,
-  CardMedia,
-  CardActions,
-  Box,
-} from "@mui/material";
+import { CardActions } from "@mui/material";
 import "./Style.css";
 import AuthPage from "./AuthPage";
 import StepForm from "./StepForm";
@@ -157,102 +147,59 @@ const Register = () => {
     setVerifyMethod((prev) => (prev === "email" ? "phone" : "email"));
   };
 
-  const content = (
-    <Card
-      style={{
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0,
-        borderTopLeftRadius: "10%",
-        borderBottomLeftRadius: "10%",
-        height: "100%",
-        position: "relative",
-      }}
-    >
-      <CardContent>
-        <Typography
-          className="vollkorn-Login"
-          sx={{ fontWeight: "700", fontSize: "4vh", mt: 1 }}
-          style={{ fontFamily: "Vollkorn ,serif" }}
-        >
-          Register
-        </Typography>
-      </CardContent>
-      <CardMedia
-        component="img"
-        image={logo}
-        sx={{
-          width: "10vh",
-          position: "absolute",
-          right: "1vh",
-          top: "1vh",
-        }}
+  const form = (
+    <form onSubmit={handleSubmit}>
+      <StepForm
+        formStep={formStep}
+        formData={formData}
+        onChangeHandlers={onChangeHandlers}
+        incrementFormStep={incrementFormStep}
+        decrementFormStep={decrementFormStep}
+        setShow={setShow}
       />
-      <CardContent sx={{ mx: { xs: 3, sm: 7, md: 13 }, mb: 1 }}>
-        <form onSubmit={handleSubmit}>
-          <StepForm
-            formStep={formStep}
-            formData={formData}
-            onChangeHandlers={onChangeHandlers}
-            incrementFormStep={incrementFormStep}
-            decrementFormStep={decrementFormStep}
-            setShow={setShow}
-          />
-        </form>
-
-        <OtpModal
-          show={show}
-          handleClose={handleClose}
-          heading={verifyMethod === "email" ? "Verify Email" : "Verify Number"}
-          content={
-            verifyMethod === "email"
-              ? "We have sent you a code on forexample001@gmail.com"
-              : "We have sent you a code on 87632XXXXX"
-          }
-          otpProps={{
-            otp: otp,
-            onChangeOTP: onChangeOTP,
-            verifyMethod: verifyMethod,
-            handleToggleMethod: handleToggleMethod,
-          }}
-          handleModalButtonClick={handleModalButtonClick}
-          buttonText="Verify"
-        />
-
-        <CustomModal
-          show={show2}
-          handleClose={handleClose}
-          heading="Registration Successful 🎉"
-          buttonPrimaryText="Continue"
-          buttonAction={true}
-        />
-      </CardContent>
-      <CardActions
-        className="arimo-input-label"
-        sx={{ m: 2, width: "100%" }}
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          fontSize: "2vh",
+    </form>
+  );
+  const additionalComponent = (
+    <>
+      <OtpModal
+        show={show}
+        handleClose={handleClose}
+        heading={verifyMethod === "email" ? "Verify Email" : "Verify Number"}
+        content={
+          verifyMethod === "email"
+            ? "We have sent you a code on forexample001@gmail.com"
+            : "We have sent you a code on 87632XXXXX"
+        }
+        otpProps={{
+          otp: otp,
+          onChangeOTP: onChangeOTP,
+          verifyMethod: verifyMethod,
+          handleToggleMethod: handleToggleMethod,
         }}
-      >
-        {"Already a member?"}
-        <Link
-          to="/login"
-          style={{
-            textDecoration: "none",
-            fontWeight: "bold",
-            color: "#0cdaff",
-            cursor: "pointer",
-          }}
-        >
-          {" "}
-          Sign in here
-        </Link>
-      </CardActions>
-    </Card>
+        handleModalButtonClick={handleModalButtonClick}
+        buttonText="Verify"
+      />
+
+      <CustomModal
+        show={show2}
+        handleClose={handleClose}
+        heading="Registration Successful 🎉"
+        buttonPrimaryText="Continue"
+        buttonAction={true}
+      />
+    </>
   );
 
-  return <AuthPage content={content} />;
+  return (
+    <AuthPage
+      form={form}
+      heading={"Register"}
+      cardActionLinkText={"Sign in here"}
+      cardActionLinkTo={"login"}
+      cardActionText={"Already a member?"}
+      additionalComponent={additionalComponent}
+    />
+  );
 };
 
 export default Register;

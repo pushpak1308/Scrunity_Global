@@ -8,7 +8,7 @@ import {
   Box,
 } from "@mui/material";
 
-const CardComponent2 = ({ image, title, text }) => {
+const CardComponentIcon = ({ image, title, text }) => {
   return (
     <Card sx={{ display: "flex", alignItems: "center", padding: 2 }}>
       <CardMedia
@@ -29,4 +29,4 @@ const CardComponent2 = ({ image, title, text }) => {
   );
 };
 
-export default CardComponent2;
+export default CardComponentIcon;
