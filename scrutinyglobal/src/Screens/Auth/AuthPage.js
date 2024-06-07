@@ -73,7 +73,7 @@ const AuthPage = ({
             </CardContent>
             <Grid container className="flex-and-center" sx={{ mb: 2 }}>
               <CardActions className="arimo-input-label cardAction-container">
-                {cardActionText ? cardActionText : ""}
+                {cardActionText}
                 <Link to={`/${cardActionLinkTo}`} className="cardAction-link">
                   {cardActionLinkText}
                 </Link>

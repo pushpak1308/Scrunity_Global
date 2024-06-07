@@ -100,8 +100,8 @@ const ResetPassword = ({}) => {
     <AuthPage
       form={form}
       heading={"Reset Password"}
-      cardActionsLinkText={"Go Back to Log In"}
-      cardActionsLinkTo={"login"}
+      cardActionLinkText={"Go Back to Log In"}
+      cardActionLinkTo={"login"}
       additionalComponent={additionalComponent}
     />
   );

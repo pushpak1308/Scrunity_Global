@@ -78,9 +78,8 @@ const ForgotPassword = (props) => {
     <AuthPage
       form={form}
       heading={"Reset Password"}
-      cardActionsLinkText={"Go Back to Log In"}
-      cardActionsLinkTo={"login"}
-      // cardActionText={""}
+      cardActionLinkText={"Go Back to Log In"}
+      cardActionLinkTo={"login"}
     />
   );
 };
