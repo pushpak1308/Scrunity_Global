@@ -1,0 +1,16 @@
+.containedButton {
+    border-radius: 10px;
+    box-shadow: 4.55px 3.03px 4.4px 0px #1593AA38;
+
+    border: 1px solid white;
+    background: linear-gradient(90deg, rgba(13, 219, 255, 0.77) 0%, rgba(83, 89, 231, 0.77) 100%);
+
+}
+
+.containedButton:hover {
+    box-shadow: 4px 4px 9px 0px rgba(25, 118, 210, 0.4);
+}
+
+.buttonText{
+    text-decoration: bold;
+}

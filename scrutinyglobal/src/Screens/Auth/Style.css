@@ -1,3 +1,35 @@
+  .main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #E1F9FE;
+    box-shadow: 4px 10px 14.5px 0px #6FDBF529;
+  }
+
+  .container{
+    border-radius: 10px;
+    overflow: hidden;
+    width: 80%;
+    background: linear-gradient(180deg, #0DDBFF 0%, #2C84F5 70.5%, #4344ED 100%);
+    box-shadow: 4px 10px 14.5px 0px #6FDBF529;
+
+  }
+
+
+  .grid-image{
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image-card{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: transparent;
+    box-shadow: none;
+  }
+  
   .arimo-input-label {
     font-family: "Arimo", sans-serif;
     font-optical-sizing: auto;
@@ -17,10 +49,10 @@
   .vollkorn-scrutiny {
     font-family: "Vollkorn", serif;
     font-optical-sizing: auto;
-    font-weight:900;
+    font-weight:800;
     font-style: normal;
-    font-size:7vh;
-    text-align: center;
+    font-size:6vh;
+    /* text-align: center; */
 
   }
   .vollkorn-Login{
@@ -42,3 +74,5 @@
     /* text-justify: inter-word; */
 
   }
+
+  

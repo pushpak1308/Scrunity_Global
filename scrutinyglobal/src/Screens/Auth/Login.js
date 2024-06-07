@@ -12,10 +12,10 @@ import {
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../logo_sg.png";
-import "./Login.css";
-import { CustomTextField } from "../MuiComponents/CustomTextField";
-import AuthPage from "./Parts/AuthPage";
-import CustomContainedButton from "../MuiComponents/CustomContainedButton";
+import "./Style.css";
+import { MuiTextField } from "../../MuiComponents/MuiTextField/Index";
+import AuthPage from "./AuthPage";
+import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
@@ -71,7 +71,7 @@ const Login = (props) => {
 
       <CardContent sx={{ mx: { xs: 3, sm: 7, md: 13 }, mb: 4 }}>
         <form onSubmit={handleSubmit}>
-          <CustomTextField
+          <MuiTextField
             name="username"
             type="text"
             value={username}
@@ -82,7 +82,7 @@ const Login = (props) => {
             required
           />
 
-          <CustomTextField
+          <MuiTextField
             name="password"
             type="password"
             value={password}
@@ -102,7 +102,11 @@ const Login = (props) => {
             </FormHelperText>
           </Link>
           <Box display="flex" justifyContent="center" alignItems="center">
-            <CustomContainedButton type={"submit"} width={{ xs: "80%", sm: "60%", md: "40%" }} buttonText={"Log In"}  />
+            <MuiContainedButton
+              type={"submit"}
+              width={{ xs: "80%", sm: "60%", md: "40%" }}
+              buttonText={"Log In"}
+            />
           </Box>
         </form>
       </CardContent>

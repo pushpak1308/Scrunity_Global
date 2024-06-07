@@ -12,10 +12,10 @@ import {
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../logo_sg.png";
-import "./Login.css";
-import { CustomTextField } from "../MuiComponents/CustomTextField";
-import AuthPage from "./Parts/AuthPage"; // Ensure AuthPage is properly imported
-import CustomContainedButton from "../MuiComponents/CustomContainedButton";
+import "./Style.css";
+import { MuiTextField } from "../../MuiComponents/MuiTextField/Index";
+import AuthPage from "./AuthPage";
+import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 
 const ForgotPassword = (props) => {
   const [email, setEmail] = useState("");
@@ -73,7 +73,7 @@ const ForgotPassword = (props) => {
       <CardContent sx={{ mx: { xs: 3, sm: 7, md: 13 }, mb: 4 }}>
         <form onSubmit={handleSubmit}>
           {isItEmail ? (
-            <CustomTextField
+            <MuiTextField
               name="email"
               type="text"
               value={email}
@@ -84,7 +84,7 @@ const ForgotPassword = (props) => {
               required
             />
           ) : (
-            <CustomTextField
+            <MuiTextField
               name="number"
               type="text"
               value={number}
@@ -106,7 +106,7 @@ const ForgotPassword = (props) => {
           </FormHelperText>
 
           <Box display="flex" justifyContent="center" alignItems="center">
-            <CustomContainedButton
+            <MuiContainedButton
               type="submit"
               buttonText="Send Reset Link"
               width={true}

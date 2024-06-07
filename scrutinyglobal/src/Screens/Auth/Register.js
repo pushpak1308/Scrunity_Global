@@ -12,11 +12,11 @@ import {
   CardActions,
   Box,
 } from "@mui/material";
-import "./Login.css";
-import AuthPage from "./Parts/AuthPage";
-import StepForm from "./Parts/StepForm";
-import CustomModal from "../MuiComponents/CustomModal";
-
+import "./Style.css";
+import AuthPage from "./AuthPage";
+import StepForm from "./StepForm";
+import CustomModal from "../../MuiComponents/MuiModal/Index";
+import OtpModal from "../../Components/OtpModal/Index";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -25,8 +25,8 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
-  const [otp, setOtp] = useState('');
-  const [verifyMethod, setVerifyMethod] = useState('email');
+  const [otp, setOtp] = useState("");
+  const [verifyMethod, setVerifyMethod] = useState("email");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -46,20 +46,33 @@ const Register = () => {
   });
 
   const onChangeHandlers = {
-    onChangeName: (e) => { setFormData({ ...formData, name: e.target.value }); setId(13); },
+    onChangeName: (e) => {
+      setFormData({ ...formData, name: e.target.value });
+      setId(13);
+    },
     onChangeNumber: (e) => setFormData({ ...formData, number: e.target.value }),
-    onChangeUsername: (e) => setFormData({ ...formData, username: e.target.value }),
-    onChangePassword: (e) => setFormData({ ...formData, password: e.target.value }),
-    onChangeConfirmPassword: (e) => setFormData({ ...formData, confirmPassword: e.target.value }),
-    onChangeBirthdate: (e) => setFormData({ ...formData, birthdate: e.target.value }),
-    onChangeAddress: (e) => setFormData({ ...formData, address: e.target.value }),
+    onChangeUsername: (e) =>
+      setFormData({ ...formData, username: e.target.value }),
+    onChangePassword: (e) =>
+      setFormData({ ...formData, password: e.target.value }),
+    onChangeConfirmPassword: (e) =>
+      setFormData({ ...formData, confirmPassword: e.target.value }),
+    onChangeBirthdate: (e) =>
+      setFormData({ ...formData, birthdate: e.target.value }),
+    onChangeAddress: (e) =>
+      setFormData({ ...formData, address: e.target.value }),
     onChangeCity: (e) => setFormData({ ...formData, city: e.target.value }),
     onChangeState: (e) => setFormData({ ...formData, state: e.target.value }),
-    onChangeZipcode: (e) => setFormData({ ...formData, zipcode: e.target.value }),
-    onChangeCountry: (e) => setFormData({ ...formData, country: e.target.value }),
-    onChangeEducationLevel: (e) => setFormData({ ...formData, educationLevel: e.target.value }),
-    onChangeAccountType: (e) => setFormData({ ...formData, accountType: e.target.value }),
-    onChangeMonthlySalary: (e) => setFormData({ ...formData, monthlySalary: e.target.value }),
+    onChangeZipcode: (e) =>
+      setFormData({ ...formData, zipcode: e.target.value }),
+    onChangeCountry: (e) =>
+      setFormData({ ...formData, country: e.target.value }),
+    onChangeEducationLevel: (e) =>
+      setFormData({ ...formData, educationLevel: e.target.value }),
+    onChangeAccountType: (e) =>
+      setFormData({ ...formData, accountType: e.target.value }),
+    onChangeMonthlySalary: (e) =>
+      setFormData({ ...formData, monthlySalary: e.target.value }),
   };
 
   const onChangeOTP = (otp) => {
@@ -67,9 +80,8 @@ const Register = () => {
   };
 
   const handleSubmit = () => {
-
     setLoading(true);
-    console.log('submit')
+    console.log("submit");
     // const uniqueId = uuid();
     // const smallId = uniqueId.slice(0,8);
     // setId(smallId);
@@ -110,9 +122,9 @@ const Register = () => {
     setFormStep(newStep);
   };
   const handleModalButtonClick = () => {
-    setShow2(true)
+    setShow2(true);
     handleSubmit();
-  }
+  };
 
   const handleClose = () => {
     setShow(false);
@@ -142,7 +154,7 @@ const Register = () => {
   //     .catch(error => console.error('Error creating user:', error));
   // }
   const handleToggleMethod = () => {
-    setVerifyMethod((prev) => (prev === 'email' ? 'phone' : 'email'));
+    setVerifyMethod((prev) => (prev === "email" ? "phone" : "email"));
   };
 
   const content = (
@@ -187,10 +199,7 @@ const Register = () => {
           />
         </form>
 
-        {/* <OtpModal show={show} handleClose={handleClose} otp={otp} onChangeOTP={onChangeOTP} verifyMethod={verifyMethod} handleToggleMethod={handleToggleMethod} handleModalButtonClick={handleModalButtonClick} />
-
-          <SuccessModal showSuccess={show2} handleCloseSuccess={handleClose} heading={"Registration Successful 🎉"} button={"Continue"} /> */}
-        <CustomModal
+        <OtpModal
           show={show}
           handleClose={handleClose}
           heading={verifyMethod === "email" ? "Verify Email" : "Verify Number"}
@@ -213,11 +222,8 @@ const Register = () => {
           show={show2}
           handleClose={handleClose}
           heading="Registration Successful 🎉"
-          // content="You have successfully registered."
-          buttonText="Continue"
-          buttonAction={() => {
-            console.log("Navigating to login");
-          }}
+          buttonPrimaryText="Continue"
+          buttonAction={true}
         />
       </CardContent>
       <CardActions
