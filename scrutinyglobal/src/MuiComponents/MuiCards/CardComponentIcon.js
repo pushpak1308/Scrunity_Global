@@ -10,17 +10,15 @@ import {
 
 const CardComponentIcon = ({ image, title, text }) => {
   return (
-    <Card sx={{ display: "flex", alignItems: "center", padding: 2 }}>
+    <Card className="iconCard">
       <CardMedia
         component="img"
         image={image}
         alt={title}
-        sx={{ width: 100, height: 100, objectFit: "cover", borderRadius: 1 }}
+        className="iconCardMedia"
       />
-      <CardContent sx={{ flex: 1, paddingLeft: 2 }}>
-        <Typography variant="h6" component="div">
-          {title}
-        </Typography>
+      <CardContent>
+        <Typography className="iconCard-title">{title}</Typography>
         <Typography variant="body2" color="text.secondary">
           {text}
         </Typography>

@@ -4,16 +4,34 @@ import aboutImage from "./../../aboutImage.png";
 import cardImage1 from "./../../cardImage1.png";
 import cardImage2 from "./../../cardImage2.png";
 import cardImage3 from "./../../cardImage3.png";
-import CardComponentImage from "../../MuiComponents/CardComponentImage";
-import CardComponentIcon from "../../MuiComponents/CardComponentIcon";
+import CardComponentImage from "../../MuiComponents/MuiCards/CardComponentImage";
+import CardComponentIcon from "../../MuiComponents/MuiCards/CardComponentIcon";
 import HappyClients from "./../../HappyClients.png";
 import Projects from "./../../Projects.png";
 import CustomerSupport from "./../../CustomerSupport.png";
-import hardworkers from "./../../hardworkers.png";
+import Hardworkers from "./../../hardworkers.png";
+import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
+import CenteredTextSection from "../../Components/CenteredTextSection/Index";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import aboutImage2 from "./../../aboutImage2.png";
+import CheckBoxWithText from "../../MuiComponents/MuiCards/CheckBoxWithText";
 
 const About = () => {
+  const textArray = [
+    "Survey Panel Recruitment",
+    "Survey Creation",
+    "Data Collection and Management",
+    "Survey Analytics and Reporting",
+    "Multi-Language & Country Support",
+    "Multi-Device Compatibility",
+    "Multi-Device Compatibility",
+    "Survey Security and Compliance",
+    "Survey Integrations & Personalization",
+    "Survey Scoring and Grading",
+  ];
+
   return (
-    <Box id="about" sx={{ m: 5 }}>
+    <Grid id="about" sx={{ mx: 5 }}>
       <Grid
         container
         spacing={2}
@@ -49,9 +67,12 @@ const About = () => {
             we work with you every step of the way to ensure that your research
             project is a success.
           </Typography>
-          <Button variant="contained" color="primary">
-            Read More
-          </Button>
+
+          <MuiContainedButton
+            buttonText={"Read More"}
+            type={"button"}
+            endIcon={<ArrowForwardIcon />}
+          />
         </Grid>
         <Grid item xs={12} md={6} sx={{ padding: 3 }}>
           <img
@@ -61,38 +82,14 @@ const About = () => {
           />
         </Grid>
       </Grid>
-      <Grid
-        container
-        sx={{
-          m: 5,
-          p: 3,
-          justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center",
-        }}
-      >
-        <Grid item xs={12}>
-          <Typography
-            variant="body2"
-            component="p"
-            sx={{ textTransform: "uppercase", fontSize: "0.875rem" }}
-          >
-            WHY SCRUTINY GLOBAL....
-          </Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <Typography
-            variant="body1"
-            component="h1"
-            sx={{ fontSize: "1.25rem" }}
-          >
-            We recognize the importance of expediency and thus, operate with
-            swiftness and efficacy to ensure the punctual delivery of your
-            outcomes, as delineated by the following aspects.
-          </Typography>
-        </Grid>
-      </Grid>
-      <Grid container spacing={1} justifyContent="center" sx={{ p: 3 }}>
+
+      <CenteredTextSection
+        title={"WHY SCRUTINY GLOBAL...."}
+        subtitle={
+          "We recognize the importance of expediency and thus, operate with swiftness and efficacy to ensure the punctual delivery of your outcomes, as delineated by the following aspects."
+        }
+      />
+      <Grid container spacing={1} justifyContent="center" sx={{ px: 6 }}>
         <Grid item xs={12} sm={6} md={4}>
           <CardComponentImage
             image={cardImage1}
@@ -115,7 +112,12 @@ const About = () => {
           />
         </Grid>
       </Grid>
-      <Grid container spacing={3} justifyContent="center" sx={{ m: 5 }}>
+      {/* <Grid
+        container
+        className="iconCardGrid"
+        spacing={1}
+        sx={{ px: 6, mx: 3 }}
+      >
         <Grid item xs={12} sm={6} md={3}>
           <CardComponentIcon
             image={HappyClients}
@@ -130,47 +132,44 @@ const About = () => {
           <CardComponentIcon
             image={CustomerSupport}
             title="1000"
-            text="Hours Of Customer Support"
+            text="Hours Of Support"
           />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
           <CardComponentIcon
-            image={hardworkers}
+            image={Hardworkers}
             title="1000"
             text="Hardworkers"
           />
         </Grid>
-      </Grid>
-      <Grid
-        container
-        sx={{
-          m: 5,
-          p: 3,
-          justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center",
-        }}
-      >
-        <Grid item xs={12}>
-          <Typography
-            variant="body2"
-            component="p"
-            sx={{ textTransform: "uppercase", fontSize: "0.875rem" }}
-          >
-            Features
-          </Typography>
+      </Grid> */}
+      <CenteredTextSection
+        title={"FEATURES"}
+        subtitle={
+          "We offers the powerful survey features for any research need"
+        }
+      />
+
+      <Grid container sx={{ px: 6 }}>
+        <Grid item xs={12} md={6} className="flex-and-center aboutSection2">
+          <img
+            src={aboutImage2}
+            alt="features"
+            style={{ maxWidth: "100%", height: "auto" }}
+          />
         </Grid>
-        <Grid item xs={12}>
-          <Typography
-            variant="body1"
-            component="h1"
-            sx={{ fontSize: "1.25rem" }}
-          >
-            We offers the powerful survey features for any research need
-          </Typography>
+
+        <Grid item xs={12} md={6}>
+          <Grid container spacing={2}>
+            {textArray.map((text, index) => (
+              <Grid item xs={12} sm={6} key={index}>
+                <CheckBoxWithText text={text} />
+              </Grid>
+            ))}
+          </Grid>
         </Grid>
       </Grid>
-    </Box>
+    </Grid>
   );
 };
 

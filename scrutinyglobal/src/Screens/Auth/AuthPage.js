@@ -21,17 +21,16 @@ const AuthPage = ({
 }) => {
   return (
     <Grid className="main-container">
-      <Grid container className="container" md={10}>
+      <Grid item container className="container" md={10}>
         <Grid
           item
           xs={12}
           md={5}
-          spacing={0}
           display={{ xs: "none", md: "flex" }}
           className="flex-and-center"
         >
           <Card
-            elevation="0"
+            elevation={0}
             // className="image-card"
             //background color issue!!!
             style={{
