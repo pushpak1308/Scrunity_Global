@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Typography, Grid } from "@mui/material";
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-import CheckIcon from "@mui/icons-material/Check";
+import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
 import "./Style.css";
 
 const CheckBoxWithText = ({ text }) => {
@@ -20,17 +19,9 @@ const CheckBoxWithText = ({ text }) => {
         className="icon-container"
         sx={{ mr: 2, position: "relative", width: "30px", height: "30px" }}
       >
-        <CheckBoxOutlineBlankIcon
+        <CheckBoxOutlinedIcon
           className="checkbox-icon"
           sx={{ position: "absolute", width: "30px", height: "30px" }}
-        />
-        <CheckIcon
-          className="check-icon"
-          sx={{
-            width: "24px",
-            height: "24px",
-            color: "black",
-          }}
         />
       </Grid>
       <Grid item>

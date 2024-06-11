@@ -12,7 +12,7 @@ const MuiContainedButton = ({
 }) => {
   const style = {
     mt: mt ? mt : 1,
-    width: width ? { xs: "90%", sm: "70%", md: "50%" } : "",
+    width: width ? { xs: "90%", sm: "70%", md: "50%" } : "auto",
     fontSize: width ? "18px" : "16px",
   };
   return (

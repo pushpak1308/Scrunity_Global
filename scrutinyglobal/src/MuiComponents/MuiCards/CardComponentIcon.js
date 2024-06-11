@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  Grid,
-  Box,
-} from "@mui/material";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import "./Style.css";
 
 const CardComponentIcon = ({ image, title, text }) => {
   return (
@@ -19,7 +13,11 @@ const CardComponentIcon = ({ image, title, text }) => {
       />
       <CardContent>
         <Typography className="iconCard-title">{title}</Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          className="iconCard-subtitle"
+        >
           {text}
         </Typography>
       </CardContent>

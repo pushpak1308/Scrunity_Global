@@ -3,7 +3,6 @@ import React from "react";
 import "../../Screens/Auth/Style.css";
 import "./Style.css";
 
-// Reusable TextField Component
 export const MuiTextField = ({
   name,
   type,
