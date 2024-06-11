@@ -1,7 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 import React from "react";
 import "./Style.css";
-import homeImage from "../../homeImage.png";
+import homeImage from "../../Images/LandingImages/homeImages/homeImage.png";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import MuiContainedButton from "./../../MuiComponents/MuiContainedButton/Index";
 

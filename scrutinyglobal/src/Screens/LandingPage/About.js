@@ -1,19 +1,19 @@
 import React from "react";
 import { Box, Grid, Typography, Button } from "@mui/material";
-import aboutImage from "./../../aboutImage.png";
-import cardImage1 from "./../../cardImage1.png";
-import cardImage2 from "./../../cardImage2.png";
-import cardImage3 from "./../../cardImage3.png";
+import aboutImage from "./../../Images/LandingImages/AboutImages/aboutImage.png";
+import cardImage1 from "./../../Images/LandingImages/AboutImages/CardImage/cardImage1.png";
+import cardImage2 from "./../../Images/LandingImages/AboutImages/CardImage/cardImage2.png";
+import cardImage3 from "./../../Images/LandingImages/AboutImages/CardImage/cardImage3.png";
 import CardComponentImage from "../../MuiComponents/MuiCards/CardComponentImage";
 import CardComponentIcon from "../../MuiComponents/MuiCards/CardComponentIcon";
-import HappyClients from "./../../HappyClients.png";
-import Projects from "./../../Projects.png";
-import CustomerSupport from "./../../CustomerSupport.png";
-import Hardworkers from "./../../hardworkers.png";
+import HappyClients from "./../../Images/LandingImages/AboutImages/CardImage/HappyClients.png";
+import Projects from "./../../Images/LandingImages/AboutImages/CardImage/Projects.png";
+import CustomerSupport from "./../../Images/LandingImages/AboutImages/CardImage/CustomerSupport.png";
+import Hardworkers from "./../../Images/LandingImages/AboutImages/CardImage/hardworkers.png";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 import CenteredTextSection from "../../Components/CenteredTextSection/Index";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import aboutImage2 from "./../../aboutImage2.png";
+import aboutImage2 from "./../../Images/LandingImages/AboutImages/aboutImage2.png";
 import CheckBoxWithText from "../../MuiComponents/MuiCards/CheckBoxWithText";
 
 const About = () => {
@@ -89,7 +89,7 @@ const About = () => {
           "We recognize the importance of expediency and thus, operate with swiftness and efficacy to ensure the punctual delivery of your outcomes, as delineated by the following aspects."
         }
       />
-      <Grid container spacing={1} justifyContent="center" sx={{ px: 6 }}>
+      <Grid container spacing={1} sx={{ px: 6 }}>
         <Grid item xs={12} sm={6} md={4}>
           <CardComponentImage
             image={cardImage1}

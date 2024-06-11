@@ -36,6 +36,13 @@ export const MuiDropDown = ({
             className={className}
             sx={{ ...sx, minWidth: "100%", mb: 2, mt: 1.62 }}
             required={required}
+            InputProps={{
+              ...params.InputProps,
+              style: { paddingLeft: "10px" },
+            }}
+            InputLabelProps={{
+              style: { paddingLeft: "10px" },
+            }}
           />
         )}
       />
