@@ -11,6 +11,7 @@ export const MuiTextField = ({
   onChange,
   required,
   className,
+  placeholder,
   sx,
   label,
 }) => {
@@ -23,7 +24,7 @@ export const MuiTextField = ({
       <TextField
         name={name}
         type={type}
-        placeholder={label}
+        placeholder={placeholder ? placeholder : label}
         variant="standard"
         value={value}
         onChange={onChange}

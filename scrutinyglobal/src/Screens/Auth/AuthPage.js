@@ -6,7 +6,7 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import backgroundImage from "../../background.png";
+import backgroundImage from "../../Images/AuthImages/background.png";
 import "./Style.css";
 import logo from "../../logo_sg.png";
 import { Link } from "react-router-dom";

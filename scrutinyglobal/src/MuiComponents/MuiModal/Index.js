@@ -2,7 +2,7 @@ import React from "react";
 import { Typography, Modal, IconButton, Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
-import modalImage from "../../modalImage.svg";
+import modalImage from "../../Images/AuthImages/modalImage.svg";
 import CustomContainedButton from "../MuiContainedButton/Index";
 import "./Style.css";
 

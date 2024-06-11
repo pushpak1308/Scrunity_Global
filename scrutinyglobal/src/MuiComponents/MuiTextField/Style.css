@@ -1,9 +1,12 @@
 .centered-input {
   /* text-align: center; */
+  font-family: "Arimo", sans-serif;
   padding-left: 10px !important;
+  color: rgba(10, 9, 9, 0.76);
 }
 
 .centered-placeholder {
   /* text-align: center; */
+  font-family: "Arimo", sans-serif;
   padding-left: 10px !important;
 }
