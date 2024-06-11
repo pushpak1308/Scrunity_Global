@@ -1,29 +1,33 @@
-import { Grid, Typography, Button } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import React from "react";
+import "./Style.css";
 import homeImage from "../../homeImage.png";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import MuiContainedButton from "./../../MuiComponents/MuiContainedButton/Index";
 
 const Home = () => {
   return (
-    <Grid container spacing={2} alignItems="center" sx={{ m: 5 }}>
-      <Grid item xs={12} md={6} sx={{ padding: 2 }}>
-        <Typography variant="h4" gutterBottom>
-          SCRUTINY GLOBAL
-        </Typography>
-        <Typography variant="body1" paragraph>
+    <Grid
+      container
+      spacing={6}
+      className="main-container-landing flex-and-center"
+    >
+      <Grid item xs={12} md={6} className="item-grid">
+        <Typography className="vollkorn-heading">SCRUTINY GLOBAL</Typography>
+
+        <Typography className="monsterrat-subheading-paragraph" gutterBottom>
           At Scrutiny Global, we go beyond being mere data suppliers – we are
           your dedicated partners, transforming accurate and relevant
           information into actionable truths that drive your success.
         </Typography>
-        <Button variant="contained" color="primary">
-          Get Started
-        </Button>
-      </Grid>
-      <Grid item xs={12} md={6} sx={{ p: 3, mt: 5 }}>
-        <img
-          src={homeImage}
-          alt="home Image"
-          style={{ width: "100%", height: "auto" }}
+        <MuiContainedButton
+          buttonText={"Get Started"}
+          type={"button"}
+          endIcon={<ArrowForwardIcon />}
         />
+      </Grid>
+      <Grid item xs={12} md={6} className="home-image">
+        <img src={homeImage} alt="home Image" />
       </Grid>
     </Grid>
   );

@@ -13,11 +13,7 @@ export const MuiDropDown = ({
 }) => {
   return (
     <>
-      <InputLabel
-        id="demo-simple-select-standard-label"
-        className={className}
-        sx={sx}
-      >
+      <InputLabel className={className} sx={sx}>
         {label}
       </InputLabel>
       <Autocomplete

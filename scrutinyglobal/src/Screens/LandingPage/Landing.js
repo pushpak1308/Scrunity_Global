@@ -1,23 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 // import Navbar from "./Parts/Navbar";
-import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Divider,
+  Drawer,
+  Grid,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 import Home from "./Home";
 import About from "./About";
 import Services from "./Services";
-import Drawer from "@mui/material/Drawer";
 import logo from "../../logo_sg.png";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import Divider from "@mui/material/Divider";
 import Avatar from "@mui/material/Avatar";
 import { Link } from "react-scroll";
+import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Services", "Contact"];
+const navItems = ["Home", "About", "Services", "Contact", "Login", "Panel"];
 
 const Landing = (props) => {
   const { window } = props;
@@ -48,33 +54,46 @@ const Landing = (props) => {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
+
   return (
-    <Box sx={{ display: "flex" }}>
+    <Grid className="navGrid">
       {/* ----------------------------------- */}
-      <AppBar component="nav" sx={{ bgcolor: "#fff", color: "black" }}>
+      <AppBar
+        component="nav"
+        className="navBar"
+        sx={{
+          mb: 10,
+          px: 10,
+        }}
+      >
         <Toolbar>
           <Avatar alt="SG logo" src={logo} />
           <Typography
             variant="h6"
             component="div"
+            className="navLogo-text"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
             SG
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            <ul style={{ display: "flex", listStyleType: "none" }}>
+            <ul className="navList">
               {navItems.map((item) => (
                 <li key={item}>
-                  <Button key={item}>
-                    <Link
-                      activeClass="active"
-                      smooth
-                      spy
-                      to={item.toLowerCase()}
-                    >
-                      {item}
-                    </Link>
-                  </Button>
+                  {item === "Panel" ? (
+                    <MuiContainedButton type={"button"} buttonText={item} />
+                  ) : (
+                    <Button key={item} className="navButtons">
+                      <Link
+                        activeClass="active"
+                        smooth
+                        spy
+                        to={item.toLowerCase()}
+                      >
+                        {item}
+                      </Link>
+                    </Button>
+                  )}
                 </li>
               ))}
             </ul>
@@ -102,7 +121,7 @@ const Landing = (props) => {
         </Drawer>
       </nav>
       {/* ------------------------------------ */}
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ pt: 10 }}>
         <section id="home">
           <Home />
         </section>
@@ -113,7 +132,7 @@ const Landing = (props) => {
           <Services />
         </section>
       </Box>
-    </Box>
+    </Grid>
   );
 };
 

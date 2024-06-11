@@ -41,7 +41,7 @@ const OtpModal = ({
     return (
       <Grid container className="parent-grid">
         <Grid item>
-          <Typography variant="body2" component="p" sx={{ my: 4 }}>
+          <Typography variant="body2" component="div" sx={{ my: 4 }}>
             Are you facing any problem in receiving the code?{" "}
             <span className="resend-code">Resend Code</span>
           </Typography>

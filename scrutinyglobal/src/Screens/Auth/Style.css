@@ -10,7 +10,6 @@
 .container {
   border-radius: 10px;
   overflow: hidden;
-  width: "80%" !important;
   background: linear-gradient(180deg, #0ddbff 0%, #2c84f5 70.5%, #4344ed 100%);
   box-shadow: 4px 10px 14.5px 0px #6fdbf529;
 }

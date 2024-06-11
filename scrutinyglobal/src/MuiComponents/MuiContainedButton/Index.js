@@ -8,6 +8,7 @@ const MuiContainedButton = ({
   buttonText,
   width,
   mt,
+  endIcon,
 }) => {
   const style = {
     mt: mt ? mt : 1,
@@ -21,6 +22,7 @@ const MuiContainedButton = ({
       color="primary"
       onClick={onClickFunction}
       sx={style}
+      endIcon={endIcon}
       className="containedButton"
     >
       <Typography variant="body1" className="buttonText">

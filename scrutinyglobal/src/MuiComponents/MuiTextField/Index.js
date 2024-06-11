@@ -1,6 +1,7 @@
 import { TextField, InputLabel } from "@mui/material";
 import React from "react";
 import "../../Screens/Auth/Style.css";
+import "./Style.css";
 
 // Reusable TextField Component
 export const MuiTextField = ({
@@ -23,7 +24,6 @@ export const MuiTextField = ({
         name={name}
         type={type}
         placeholder={label}
-        id="standard-basic"
         variant="standard"
         value={value}
         onChange={onChange}
@@ -31,6 +31,14 @@ export const MuiTextField = ({
         size="small"
         fullWidth
         required={required}
+        InputProps={{
+          classes: {
+            input: "centered-input",
+          },
+        }}
+        InputLabelProps={{
+          className: "centered-placeholder",
+        }}
       />
     </>
   );
