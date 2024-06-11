@@ -2,12 +2,12 @@
   max-width: 345px;
   margin: auto;
   transition: transform 0.3s ease-in-out;
-  box-shadow: 0 6px 3px 2px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px 3px 2px rgba(0, 0, 0, 0.2);
 }
 
 .cardImage:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 12px 1px rgba(0, 0, 0, 0.2);
 }
 
 .box {
@@ -31,7 +31,7 @@
   font-size: 20px !important;
   text-align: center;
   line-height: 34.5px;
-  color: rgba(12, 197, 230, 0.77);
+  color: rgba(83, 89, 231, 0.77);
 }
 
 .cardImage-text {
@@ -39,7 +39,7 @@
 }
 
 .iconCard-title {
-  font-family: "Arimo", sans-serif !important;
+  font-family: "Arimo", sans-serif;
   font-weight: 400;
   font-size: 40px !important;
   line-height: 34.5px;
@@ -49,21 +49,25 @@
 .iconCardGrid {
   height: 30vh !important;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
 .iconCard {
   display: flex;
   align-items: center;
-  width: 80%;
-
-  padding: 4px;
+  width: 60%;
+  padding: 2px;
 }
 
 .iconCardMedia {
-  width: 15%;
-  height: 15%;
   object-fit: cover;
+}
+
+.iconCard-subtitle {
+  width: 100%;
+  text-align: center;
+  text-wrap: nowrap;
 }
 
 /* checkboxWithText*/

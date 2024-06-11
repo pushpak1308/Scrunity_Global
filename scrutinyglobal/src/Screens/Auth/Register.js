@@ -30,7 +30,7 @@ const Register = () => {
     state: "",
     zipcode: "",
     country: "",
-    educationLevel: "",
+    profession: "",
     accountType: "",
     monthlySalary: "",
   });
@@ -57,8 +57,8 @@ const Register = () => {
       setFormData({ ...formData, zipcode: e.target.value }),
     onChangeCountry: (e) =>
       setFormData({ ...formData, country: e.target.value }),
-    onChangeEducationLevel: (e) =>
-      setFormData({ ...formData, educationLevel: e.target.value }),
+    onChangeProfession: (e) =>
+      setFormData({ ...formData, profession: e.target.value }),
     onChangeAccountType: (e) =>
       setFormData({ ...formData, accountType: e.target.value }),
     onChangeMonthlySalary: (e) =>
