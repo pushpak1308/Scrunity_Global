@@ -9,6 +9,7 @@ export const MuiDropDown = ({
   label,
   className,
   sx,
+  defaultValue,
   required,
 }) => {
   return (
@@ -19,6 +20,7 @@ export const MuiDropDown = ({
       <Autocomplete
         id={`${name}-autocomplete`}
         value={value}
+        defaultValue={defaultValue}
         onChange={(event, newValue) => {
           onChange({
             target: {

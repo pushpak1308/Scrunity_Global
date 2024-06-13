@@ -115,3 +115,25 @@
   justify-content: center;
   align-items: center;
 }
+
+.waitingScreen-title {
+  font-family: "Arimo";
+  font-weight: 600 !important;
+
+  text-align: center;
+  color: black;
+}
+
+.waitingScreen-text {
+  font-family: "Arimo";
+  font-size: 20px !important;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  text-align: center;
+  color: #00000080;
+}
+
+.waitingScreen-image {
+  width: 660.91px;
+  height: 380px;
+}

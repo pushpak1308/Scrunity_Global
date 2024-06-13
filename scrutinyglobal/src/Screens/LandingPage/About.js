@@ -15,6 +15,7 @@ import CenteredTextSection from "../../Components/CenteredTextSection/Index";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import aboutImage2 from "./../../Images/LandingImages/AboutImages/aboutImage2.png";
 import aboutImage3 from "./../../Images/LandingImages/AboutImages/aboutImage3.png";
+import aboutImage4 from "./../../Images/LandingImages/AboutImages/aboutImage4.png";
 import CheckBoxWithText from "../../MuiComponents/MuiCards/CheckBoxWithText";
 import MuiTab from "../../MuiComponents/MuiTab/Index";
 import CheckIcon from "@mui/icons-material/Check";
@@ -315,6 +316,19 @@ const About = () => {
       </Grid>
       <Grid item xs={12}>
         <CenteredTextSection subtitle={"Why Choose Us..."} />
+      </Grid>
+
+      <Grid container spacing={2} sx={{ p: 6, mx: 6 }}>
+        <Grid item xs={12} md={6} className="flex-and-center aboutSection2">
+          <img
+            src={aboutImage4}
+            alt="features"
+            style={{ maxWidth: "100%", height: "auto" }}
+          />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <MuiTab tabs={tabs} />
+        </Grid>
       </Grid>
     </Grid>
   );

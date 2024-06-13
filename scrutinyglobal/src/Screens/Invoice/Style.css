@@ -1,0 +1,15 @@
+.screenHeading {
+  color: #84868a;
+  font-family: "Arimo";
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 23px;
+  padding: 5px;
+}
+
+.infoContainer {
+  padding-right: 2rem;
+  padding-left: 2rem;
+  border-radius: 16px !important;
+  margin-bottom: 3rem;
+}
