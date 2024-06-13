@@ -24,7 +24,7 @@ const Login = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    navigate("/home");
+    navigate("/dashboard");
   };
 
   const form = (
