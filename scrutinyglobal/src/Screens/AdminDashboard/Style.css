@@ -1,0 +1,28 @@
+.dataGrid-header {
+  background-color: rgb(23, 182, 235) !important;
+  color: white;
+  font-family: "Arimo";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21.78px;
+  text-align: left;
+}
+
+.dataGrid-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* DataGrid Cells */
+.MuiDataGrid-cell {
+  border-bottom: 1px solid rgba(83, 83, 83, 0.491);
+  border-right: 1px solid rgba(83, 83, 83, 0.491);
+  border-left: 1px solid rgba(83, 83, 83, 0.491);
+  /* text-align: center; */
+}
+
+.dashboard-container {
+  padding-left: 4rem;
+  padding-right: 4rem;
+  padding-top: 2rem;
+}

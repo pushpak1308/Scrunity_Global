@@ -20,6 +20,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Avatar from "@mui/material/Avatar";
 import { Link } from "react-scroll";
+import { Link as RouteLink } from "react-router-dom";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 
 const drawerWidth = 240;
@@ -44,7 +45,15 @@ const Landing = (props) => {
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
+              {item === "Panel" ? (
+                <MuiContainedButton type={"button"} buttonText={item} />
+              ) : item === "Login" ? (
+                <RouteLink to={item.toLowerCase()}>{item}</RouteLink>
+              ) : (
+                <Link activeClass="active" smooth spy to={item.toLowerCase()}>
+                  {item}
+                </Link>
+              )}
             </ListItemButton>
           </ListItem>
         ))}
@@ -82,6 +91,12 @@ const Landing = (props) => {
                 <li key={item}>
                   {item === "Panel" ? (
                     <MuiContainedButton type={"button"} buttonText={item} />
+                  ) : item === "Login" ? (
+                    <Button key={item} className="navButtons">
+                      <RouteLink to={`/${item.toLowerCase()}`}>
+                        {item}
+                      </RouteLink>
+                    </Button>
                   ) : (
                     <Button key={item} className="navButtons">
                       <Link

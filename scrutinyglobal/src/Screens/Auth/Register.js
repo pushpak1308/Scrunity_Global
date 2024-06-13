@@ -147,6 +147,10 @@ const Register = () => {
     setVerifyMethod((prev) => (prev === "email" ? "phone" : "email"));
   };
 
+  const handleGotToWaitingScreen = () => {
+    navigate("/waiting-screen");
+  };
+
   const form = (
     <form onSubmit={handleSubmit}>
       <StepForm
@@ -185,7 +189,7 @@ const Register = () => {
         handleClose={handleClose}
         heading="Registration Successful 🎉"
         buttonPrimaryText="Continue"
-        buttonAction={true}
+        handleModalButtonClick={handleGotToWaitingScreen}
       />
     </>
   );
