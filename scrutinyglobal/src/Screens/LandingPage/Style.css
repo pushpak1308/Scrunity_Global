@@ -51,9 +51,11 @@
   font-weight: 300;
   font-size: 18px !important;
   padding-top: 10px !important;
-  padding-left: 12px !important;
+  padding-left: 14px !important;
+  padding-right: 14px !important;
   color: black !important;
   text-decoration: none;
+  text-transform: none !important;
 }
 
 .navButtons:hover {

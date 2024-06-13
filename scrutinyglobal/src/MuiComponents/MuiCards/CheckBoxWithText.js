@@ -3,7 +3,7 @@ import { Box, Typography, Grid } from "@mui/material";
 import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
 import "./Style.css";
 
-const CheckBoxWithText = ({ text }) => {
+const CheckBoxWithText = ({ text, icon }) => {
   return (
     <Grid
       container

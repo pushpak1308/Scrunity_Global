@@ -10,12 +10,14 @@ const MuiModal = ({
   show,
   handleClose,
   heading,
+  customHeader,
   content,
   buttonPrimaryText,
   buttonSecondaryText,
   buttonAction,
   handleModalButtonClick,
   additionalContent,
+  customHeaderStyle,
 }) => {
   const navigate = useNavigate();
 
@@ -34,18 +36,29 @@ const MuiModal = ({
   return (
     <Modal open={show}>
       <Grid container className="modal-container">
-        <Grid item xs={12} className="modal-close">
-          <IconButton onClick={handleClose}>
-            <CloseIcon fontSize="large" />
-          </IconButton>
-        </Grid>
-        <Grid item xs={12}>
-          <Typography variant="h6" component="h2" className="modal-headingText">
-            {heading}
-          </Typography>
-        </Grid>
-
-        <Grid item xs={12} className="model-item ">
+        {heading ? (
+          <Grid item container sx={{ m: 1 }}>
+            <Grid item xs={12} className="modal-close">
+              <IconButton onClick={handleClose}>
+                <CloseIcon fontSize="large" />
+              </IconButton>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography
+                variant="h6"
+                component="h2"
+                className="modal-headingText"
+              >
+                {heading}
+              </Typography>
+            </Grid>
+          </Grid>
+        ) : (
+          <Grid container style={customHeaderStyle}>
+            {customHeader}
+          </Grid>
+        )}
+        <Grid item xs={12} className="model-item">
           <Typography
             variant="body2"
             component="p"
@@ -69,12 +82,14 @@ const MuiModal = ({
               width={true}
             />
           )}
-          <CustomContainedButton
-            type="button"
-            onClickFunction={handlePrimaryButton}
-            buttonText={buttonPrimaryText}
-            width={true}
-          />
+          {buttonPrimaryText && (
+            <CustomContainedButton
+              type="button"
+              onClickFunction={handlePrimaryButton}
+              buttonText={buttonPrimaryText}
+              width={true}
+            />
+          )}
         </Grid>
 
         {additionalContent && (

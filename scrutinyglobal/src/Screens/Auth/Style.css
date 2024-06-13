@@ -33,7 +33,7 @@
 }
 
 .arimo-input-label {
-  font-family: "Arimo", sans-serif;
+  font-family: "Arimo", sans-serif !important;
   font-optical-sizing: auto;
   font-style: bold;
   color: black;

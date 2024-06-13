@@ -1,6 +1,6 @@
 .screenHeading {
   color: #84868a;
-  font-family: "Arimo";
+  font-family: "Arimo" !important;
   font-size: 20px;
   font-weight: 500;
   line-height: 23px;
@@ -12,4 +12,12 @@
   padding-left: 2rem;
   border-radius: 16px !important;
   margin-bottom: 3rem;
+  margin-top: 2rem;
+}
+
+.invoiceImage {
+  width: 464px !important;
+  height: 460px !important;
+  gap: 0px;
+  opacity: 0px;
 }

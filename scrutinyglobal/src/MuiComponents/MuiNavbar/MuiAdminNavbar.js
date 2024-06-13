@@ -23,7 +23,9 @@ const NavBar = () => {
   return (
     <AppBar position="static" className="adminNavbar">
       <Toolbar>
-        <Avatar alt="SG logo" src={logo} />
+        <Link to="/dashboard">
+          <Avatar alt="SG logo" src={logo} />
+        </Link>
         <ButtonGroup
           variant="text"
           aria-label="Basic button group"

@@ -1,5 +1,7 @@
 .containedButton {
   border-radius: 10px;
+  text-transform: none !important;
+
   box-shadow: 4.55px 3.03px 4.4px 0px #1593aa38;
   min-width: 100px !important;
   border: 1px solid white;
@@ -8,6 +10,14 @@
     rgba(13, 219, 255, 0.77) 0%,
     rgba(83, 89, 231, 0.77) 100%
   );
+}
+
+.containedButton .buttonText {
+  font-family: "Arimo";
+  font-size: 20.58px;
+  font-weight: 700;
+  line-height: 23.67px;
+  text-align: center;
 }
 
 .containedButton:hover {
