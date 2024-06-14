@@ -19,10 +19,17 @@ import aboutImage4 from "./../../Images/LandingImages/AboutImages/aboutImage4.pn
 import CheckBoxWithText from "../../MuiComponents/MuiCards/CheckBoxWithText";
 import MuiTab from "../../MuiComponents/MuiTab/Index";
 import CheckIcon from "@mui/icons-material/Check";
+import FairPricing from "../../Images/LandingImages/AboutImages/CardImage/fairPricing.png";
+import accuracy from "../../Images/LandingImages/AboutImages/CardImage/accuracy.png";
+import commitment from "../../Images/LandingImages/AboutImages/CardImage/commitment.png";
+import comprehensiveSupport from "../../Images/LandingImages/AboutImages/CardImage/comprehensiveSupport.png";
+import expertInsights from "../../Images/LandingImages/AboutImages/CardImage/expertInsights.png";
+import tailoredSolution from "../../Images/LandingImages/AboutImages/CardImage/tailoredSolution.png";
 import "./Style.css";
+import WhyChooseUsCard from "../../Components/WhyChooseUsCard/Index";
 
 const About = () => {
-  const textArray = [
+  const featuresTextArray = [
     "Survey Panel Recruitment",
     "Survey Creation",
     "Data Collection and Management",
@@ -155,6 +162,45 @@ const About = () => {
           </Typography>
         </>
       ),
+    },
+  ];
+
+  const whyChooseUstextArray = [
+    {
+      title: "Fair Pricing:",
+      description:
+        "Our transparent pricing ensures you receive exceptional value without compromising quality.",
+      image: { FairPricing },
+    },
+    {
+      title: "Expert Insights:",
+      description:
+        "Backed by industry experts, we provide insightful perspectives that drive informed decisions.",
+      image: { expertInsights },
+    },
+    {
+      title: "Tailored Solutions:",
+      description:
+        "Our services are customized to your needs, offering targeted solutions for optimal results.",
+      image: { tailoredSolution },
+    },
+    {
+      title: "Accuracy:",
+      description:
+        "We use the latest tools and techniques to ensure that our data is accurate and reliable.",
+      image: { accuracy },
+    },
+    {
+      title: "Comprehensive Support:",
+      description:
+        "From survey design to data analysis, our end-to-end solutions offer comprehensive support for your research journey.",
+      image: { comprehensiveSupport },
+    },
+    {
+      title: "Commitment:",
+      description:
+        "We are committed to providing you with the highest quality of service.",
+      image: { commitment },
     },
   ];
 
@@ -296,7 +342,7 @@ const About = () => {
 
         <Grid item xs={12} sm={12} md={6}>
           <Grid container spacing={2}>
-            {textArray.map((text, index) => (
+            {featuresTextArray.map((text, index) => (
               <Grid item xs={12} sm={6} md={6} key={index}>
                 <CheckBoxWithText text={text} />
               </Grid>
@@ -330,8 +376,16 @@ const About = () => {
             style={{ maxWidth: "100%", height: "auto" }}
           />
         </Grid>
-        <Grid item xs={12} md={6}>
-          <MuiTab tabs={tabs} />
+        <Grid item container xs={12} md={6}>
+          {whyChooseUstextArray.map((item, index) => (
+            <Grid item xs={12} md={6} key={index}>
+              <WhyChooseUsCard
+                title={item.title}
+                description={item.description}
+                image={item.image}
+              />
+            </Grid>
+          ))}
         </Grid>
       </Grid>
     </Grid>
