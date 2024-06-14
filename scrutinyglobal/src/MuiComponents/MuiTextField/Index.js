@@ -8,6 +8,7 @@ export const MuiTextField = ({
   type,
   value,
   onChange,
+  className,
   placeholder,
   label,
 }) => {
@@ -26,6 +27,7 @@ export const MuiTextField = ({
         className="arimo-input-label"
         size="small"
         fullWidth
+        required
         InputProps={{
           classes: {
             input: "centered-input",

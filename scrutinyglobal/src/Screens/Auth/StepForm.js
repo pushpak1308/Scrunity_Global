@@ -56,6 +56,7 @@ const StepForm = ({
               value={name}
               label="Name"
               onChange={onChangeName}
+              
             />
           </Grid>
           <Grid item xs={12}>
@@ -65,6 +66,7 @@ const StepForm = ({
               value={number}
               label="Number"
               onChange={onChangeNumber}
+              
             />
           </Grid>
           <Grid item xs={12}>
@@ -74,6 +76,7 @@ const StepForm = ({
               value={username}
               label="Email"
               onChange={onChangeUsername}
+              
             />
           </Grid>
           <Grid item xs={12}>
@@ -85,6 +88,7 @@ const StepForm = ({
                   value={password}
                   label="Password"
                   onChange={onChangePassword}
+                  
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -94,6 +98,7 @@ const StepForm = ({
                   value={confirmPassword}
                   label="Confirm Password"
                   onChange={onChangeConfirmPassword}
+                  
                 />
               </Grid>
             </Grid>
@@ -123,6 +128,7 @@ const StepForm = ({
               value={birthdate}
               label="Birth Date"
               onChange={onChangeBirthdate}
+              
             />
           </Grid>
           <Grid item xs={12}>
@@ -132,6 +138,7 @@ const StepForm = ({
               value={address}
               label="Address"
               onChange={onChangeAddress}
+              
             />
           </Grid>
           <Grid item xs={12}>
@@ -143,6 +150,7 @@ const StepForm = ({
                   value={city}
                   label="City"
                   onChange={onChangeCity}
+                  
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -152,6 +160,7 @@ const StepForm = ({
                   value={state}
                   label="State/Province"
                   onChange={onChangeState}
+                  
                 />
               </Grid>
             </Grid>
@@ -165,6 +174,7 @@ const StepForm = ({
                   value={zipcode}
                   label="Zip Code"
                   onChange={onChangeZipcode}
+                
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -174,6 +184,7 @@ const StepForm = ({
                   onChange={onChangeCountry}
                   options={["USA", "Canada", "UK"]} // Example options
                   label="Country"
+                  className="arimo-input-label"
                 />
               </Grid>
             </Grid>
@@ -211,6 +222,7 @@ const StepForm = ({
               type="text"
               placeholder={"Ex: Software Developer"}
               label="Profession"
+            
             />
           </Grid>
           <Grid item xs={12}>
@@ -220,6 +232,8 @@ const StepForm = ({
               onChange={onChangeAccountType}
               options={["User", "Premium", "Vendor"]}
               label="Account Type"
+              className="arimo-input-label"
+              
             />
           </Grid>
           <Grid item xs={12}>
@@ -230,6 +244,7 @@ const StepForm = ({
               label="Monthly Salary"
               placeholder={"50,000"}
               onChange={onChangeMonthlySalary}
+            
             />
           </Grid>
           <Grid

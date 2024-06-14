@@ -20,16 +20,15 @@ const Register = () => {
 
   const [formData, setFormData] = useState({
     name: "",
-    number: "",
-    username: "",
+    email: "",
     password: "",
-    confirmPassword: "",
-    birthdate: "",
-    address: "",
-    city: "",
-    state: "",
-    zipcode: "",
+    number: "",
+    countryCode: "",
+    dob: "",
     country: "",
+    state: "",
+    city: "",
+    zipcode: "",
     profession: "",
     accountType: "",
     monthlySalary: "",
@@ -42,13 +41,13 @@ const Register = () => {
     },
     onChangeNumber: (e) => setFormData({ ...formData, number: e.target.value }),
     onChangeUsername: (e) =>
-      setFormData({ ...formData, username: e.target.value }),
+      setFormData({ ...formData, email: e.target.value }),
     onChangePassword: (e) =>
       setFormData({ ...formData, password: e.target.value }),
     onChangeConfirmPassword: (e) =>
       setFormData({ ...formData, confirmPassword: e.target.value }),
     onChangeBirthdate: (e) =>
-      setFormData({ ...formData, birthdate: e.target.value }),
+      setFormData({ ...formData, dob: e.target.value }),
     onChangeAddress: (e) =>
       setFormData({ ...formData, address: e.target.value }),
     onChangeCity: (e) => setFormData({ ...formData, city: e.target.value }),
@@ -64,6 +63,10 @@ const Register = () => {
     onChangeMonthlySalary: (e) =>
       setFormData({ ...formData, monthlySalary: e.target.value }),
   };
+
+  const onChange = () => {
+    
+  }
 
   const onChangeOTP = (otp) => {
     setOtp(otp);
@@ -85,16 +88,16 @@ const Register = () => {
     //   number: number,
     // };
 
-    // const userData = ;
-    // fetch('http://localhost:8080/auth/signup',{
-    //     // mode: 'no-cors',
-    //     method : 'POST',
-    //     headers : {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(data)
-    // })
+    const userData = formData;
+    fetch('http://localhost:8080/ScrutinyGlobal/saveRegisterUser',{
+        // mode: 'no-cors',
+        method : 'POST',
+        headers : {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData)
+    })
     // .then(response => response.json())
     // .then(data => console.log('User created:', data))
     // .catch(error => console.error('Error creating user:', error));
