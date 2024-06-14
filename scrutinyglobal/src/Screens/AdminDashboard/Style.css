@@ -10,15 +10,9 @@
 
 .dataGrid-cell {
   display: flex;
+  border: 1px solid rgba(83, 83, 83, 0.491);
   justify-content: center;
   align-items: center;
-}
-/* DataGrid Cells */
-.MuiDataGrid-cell {
-  border-bottom: 1px solid rgba(83, 83, 83, 0.491);
-  border-right: 1px solid rgba(83, 83, 83, 0.491);
-  border-left: 1px solid rgba(83, 83, 83, 0.491);
-  /* text-align: center; */
 }
 
 .dashboard-container {

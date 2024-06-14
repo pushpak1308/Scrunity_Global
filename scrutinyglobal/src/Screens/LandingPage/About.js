@@ -19,6 +19,7 @@ import aboutImage4 from "./../../Images/LandingImages/AboutImages/aboutImage4.pn
 import CheckBoxWithText from "../../MuiComponents/MuiCards/CheckBoxWithText";
 import MuiTab from "../../MuiComponents/MuiTab/Index";
 import CheckIcon from "@mui/icons-material/Check";
+import "./Style.css";
 
 const About = () => {
   const textArray = [
@@ -38,7 +39,7 @@ const About = () => {
     {
       label: "WHAT WE OFFER",
       content: (
-        <Grid conatiner>
+        <Grid container>
           <Grid item>
             <Typography>
               At Scrutiny Global, excellence is not just a goal; it's our
@@ -158,7 +159,7 @@ const About = () => {
   ];
 
   return (
-    <Grid container id="about">
+    <Grid container id="about" className="about-grid ">
       <Grid
         item
         container
@@ -166,7 +167,6 @@ const About = () => {
         alignItems="center"
         justifyContent="center"
         sx={{
-          maxWidth: 1200,
           margin: "0 auto",
           backgroundColor: "#e0f7fa",
           padding: 3,
@@ -218,22 +218,22 @@ const About = () => {
           }
         />
       </Grid>
-      <Grid container spacing={1} sx={{ p: 6 }}>
-        <Grid item xs={12} sm={6} md={4}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={12} md={4}>
           <CardComponentImage
             image={cardImage1}
             title="Diversity in Departments"
             text="Our prowess is multi-faceted. We excel in Quantitative and Qualitative research, conduct Online Surveys, gauge Public Opinion, curate meticulous Data Collections, dissect Media intricacies, and unravel profound Covid-19 Insights. This versatility tailors our platform for clients in pursuit of diverse viewpoints or specific market niches."
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={12} md={4}>
           <CardComponentImage
             image={cardImage2}
             title="Global Reach"
             text="Seizing opportunities on a global scale, we empower our clients to connect with respondents spanning the farthest reaches. We specialize in procuring top-tier responses from the most elusive participants – be it IT professionals, HR experts, Finance wizards, Sales mavens, or even esteemed C-Level executives and department heads."
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={12} md={4}>
           <CardComponentImage
             image={cardImage3}
             title="Multiple Target Platforms"
@@ -243,14 +243,15 @@ const About = () => {
       </Grid>
       <Grid
         container
+        alignItems="center"
+        justifyContent="space-between"
         className="iconCardGrid"
-        spacing={1}
-        sx={{ p: 6, ml: 10 }}
+        spacing={3}
       >
         <Grid item xs={12} sm={6} md={3}>
           <CardComponentIcon
             image={HappyClients}
-            title="1000"
+            title="2234"
             text="Happy Clients"
           />
         </Grid>
@@ -260,14 +261,14 @@ const About = () => {
         <Grid item xs={12} sm={6} md={3}>
           <CardComponentIcon
             image={CustomerSupport}
-            title="1000"
+            title="1454"
             text="Hours Of Support"
           />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
           <CardComponentIcon
             image={Hardworkers}
-            title="1000"
+            title="2345"
             text="Hardworkers"
           />
         </Grid>
@@ -281,19 +282,22 @@ const About = () => {
         />
       </Grid>
 
-      <Grid container spacing={2} sx={{ px: 6 }}>
-        <Grid item xs={12} md={6} className="flex-and-center aboutSection2">
-          <img
-            src={aboutImage2}
-            alt="features"
-            style={{ maxWidth: "100%", height: "auto" }}
-          />
+      <Grid container spacing={2}>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={6}
+          spacing={2}
+          className="flex-and-center aboutSection2"
+        >
+          <img src={aboutImage2} alt="features" className="aboutImage2" />
         </Grid>
 
         <Grid item xs={12} sm={12} md={6}>
           <Grid container spacing={2}>
             {textArray.map((text, index) => (
-              <Grid item xs={12} sm={6} key={index}>
+              <Grid item xs={12} sm={6} md={6} key={index}>
                 <CheckBoxWithText text={text} />
               </Grid>
             ))}
@@ -301,8 +305,8 @@ const About = () => {
         </Grid>
       </Grid>
 
-      <Grid container spacing={2} sx={{ p: 6, mx: 6 }}>
-        <Grid item xs={12} md={6}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6} className="aboutSection2">
           <Typography variant="h4">Quality you can Trust</Typography>
           <MuiTab tabs={tabs} />
         </Grid>
@@ -318,7 +322,7 @@ const About = () => {
         <CenteredTextSection subtitle={"Why Choose Us..."} />
       </Grid>
 
-      <Grid container spacing={2} sx={{ p: 6, mx: 6 }}>
+      <Grid container spacing={2}>
         <Grid item xs={12} md={6} className="flex-and-center aboutSection2">
           <img
             src={aboutImage4}

@@ -9,7 +9,6 @@ import {
   List,
   ListItem,
   ListItemButton,
-  ListItemText,
   Typography,
 } from "@mui/material";
 import Home from "./Home";
@@ -20,6 +19,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Avatar from "@mui/material/Avatar";
 import { Link } from "react-scroll";
+import "./Style.css";
 import { Link as RouteLink } from "react-router-dom";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 
@@ -28,7 +28,7 @@ const navItems = ["Home", "About", "Services", "Contact", "Login", "Panel"];
 
 const Landing = (props) => {
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -65,26 +65,11 @@ const Landing = (props) => {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Grid className="navGrid">
-      {/* ----------------------------------- */}
-      <AppBar
-        component="nav"
-        className="navBar"
-        sx={{
-          mb: 10,
-          px: 10,
-        }}
-      >
+    <Grid>
+      <AppBar component="nav" className="navBar">
         <Toolbar>
           <Avatar alt="SG logo" src={logo} />
-          <Typography
-            variant="h6"
-            component="div"
-            className="navLogo-text"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-          >
-            SG
-          </Typography>
+          <Typography className="navLogo-text">SG</Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             <ul className="navList">
               {navItems.map((item) => (
@@ -92,22 +77,18 @@ const Landing = (props) => {
                   {item === "Panel" ? (
                     <MuiContainedButton type={"button"} buttonText={item} />
                   ) : item === "Login" ? (
-                    <Button key={item} className="navButtons">
-                      <RouteLink to={`/${item.toLowerCase()}`}>
-                        {item}
-                      </RouteLink>
-                    </Button>
+                    <RouteLink to={`/${item.toLowerCase()}`}>
+                      <Button className="navButtons">{item}</Button>
+                    </RouteLink>
                   ) : (
-                    <Button key={item} className="navButtons">
-                      <Link
-                        activeClass="active"
-                        smooth
-                        spy
-                        to={item.toLowerCase()}
-                      >
-                        {item}
-                      </Link>
-                    </Button>
+                    <Link
+                      activeClass="active"
+                      smooth
+                      spy
+                      to={item.toLowerCase()}
+                    >
+                      <Button className="navButtons">{item}</Button>
+                    </Link>
                   )}
                 </li>
               ))}
@@ -115,6 +96,7 @@ const Landing = (props) => {
           </Box>
         </Toolbar>
       </AppBar>
+      <Toolbar />
       <nav>
         <Drawer
           container={container}
@@ -135,8 +117,7 @@ const Landing = (props) => {
           {drawer}
         </Drawer>
       </nav>
-      {/* ------------------------------------ */}
-      <Box component="main" sx={{ pt: 10 }}>
+      <Grid component="main">
         <section id="home">
           <Home />
         </section>
@@ -146,7 +127,7 @@ const Landing = (props) => {
         <section id="services">
           <Services />
         </section>
-      </Box>
+      </Grid>
     </Grid>
   );
 };

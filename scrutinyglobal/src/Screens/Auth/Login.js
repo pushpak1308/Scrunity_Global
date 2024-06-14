@@ -33,22 +33,18 @@ const Login = (props) => {
         name="username"
         type="text"
         value={username}
-        className="arimo-input-label"
         label="Email or Number"
         sx={{ mt: 3, fontWeight: 550, fontSize: "2.5vh" }}
         onChange={onChangeUsername}
-        required
       />
 
       <MuiTextField
         name="password"
         type="password"
         value={password}
-        className="arimo-input-label"
         label="Password"
         sx={{ mt: 3, fontWeight: 550, fontSize: "2.5vh" }}
         onChange={onChangePassword}
-        required
       />
       <Link to="/forgotPassword">
         <FormHelperText

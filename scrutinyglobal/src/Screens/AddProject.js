@@ -75,7 +75,6 @@ const AddProject = () => {
             margin="normal"
             size="small"
             focused
-            required
           />
           <InputLabel htmlFor="clientName">client Name</InputLabel>
           <TextField
@@ -84,7 +83,6 @@ const AddProject = () => {
             onChange={onChangeClientName}
             margin="normal"
             size="small"
-            required
           />
           <InputLabel htmlFor="target">Target</InputLabel>
           <TextField
@@ -93,7 +91,6 @@ const AddProject = () => {
             onChange={onChangeTarget}
             margin="normal"
             size="small"
-            required
           />
           <InputLabel htmlFor="optimisticSearch">Optimistic Search</InputLabel>
           <TextField
@@ -102,7 +99,6 @@ const AddProject = () => {
             onChange={onChangeOptimisticSearch}
             margin="normal"
             size="small"
-            required
           />
           <InputLabel htmlFor="surveyLink">Survey Link</InputLabel>
           <TextField
@@ -111,7 +107,6 @@ const AddProject = () => {
             onChange={onChangeSurveyLink}
             margin="normal"
             size="small"
-            required
           />
           <InputLabel htmlFor="description">Discription</InputLabel>
           <TextField
@@ -120,7 +115,6 @@ const AddProject = () => {
             onChange={onChangeDescription}
             margin="normal"
             size="small"
-            required
           />
 
           <Button

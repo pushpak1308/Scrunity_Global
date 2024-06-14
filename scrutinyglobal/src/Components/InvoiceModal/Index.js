@@ -37,14 +37,10 @@ const InvoiceModal = ({
       <Grid item>
         <Grid container alignItems="center">
           <Grid item>
-            <img src={logo} alt="Logo" style={{ height: 50 }} />{" "}
+            <img src={logo} alt="Logo" style={{ height: "8vh" }} />{" "}
           </Grid>
           <Grid item>
-            <Typography
-              variant="h6"
-              sx={{ ml: 2 }}
-              className="invoiceHeader-clientName"
-            >
+            <Typography variant="h6" className="invoiceHeader-clientName">
               {ClientName ? ClientName : "Client Name"}
             </Typography>
           </Grid>
@@ -114,7 +110,7 @@ const InvoiceModal = ({
               </Typography>
             </Grid>
           </Grid>
-          <Divider sx={{ width: "100%", borderStyle: "dotted" }} />
+          <Divider sx={{ width: "100%", borderStyle: "dashed" }} />
           <Grid item container>
             <Grid item xs={6}>
               <Typography variant="body2">3. Cost/Survey</Typography>

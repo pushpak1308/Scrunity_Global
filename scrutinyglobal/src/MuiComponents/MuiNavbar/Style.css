@@ -5,12 +5,8 @@
 
 .buttons {
   text-transform: none !important;
-  min-width: 200px !important;
-  padding-left: 20px;
-  padding-right: 20px;
-  font-family: "Arimo";
-  font-size: 18px !important;
-  font-weight: 400;
-  line-height: 20.7px;
+  min-width: 12rem !important;
+  font-family: "Arimo" !important;
+  font-size: 2.5vh !important;
   text-align: center;
 }

@@ -36,19 +36,13 @@ const Invoice = () => {
     setShow(false);
   };
 
-  const style = {
-    color: "black",
-    fontWeight: "500",
-    fontSie: "16px",
-    marginTop: "12px",
-  };
   return (
     <>
       <MuiAdminNavbar />
       <Grid container className="dashboard-container">
         <Grid item xs={12}>
           <Typography
-            variant="h6"
+            variant="h5"
             component="div"
             gutterBottom
             className="screenHeading"
@@ -66,9 +60,6 @@ const Invoice = () => {
                   onChange={onChangeClient}
                   options={["client 1", "client 2", "client 3"]} // Example options
                   label="Select Client"
-                  sx={style}
-                  className="arimo-input-label"
-                  required
                 />
               </Grid>
               <Grid container spacing={3}>
@@ -77,11 +68,8 @@ const Invoice = () => {
                     name="totalNoofSurveys"
                     type="text"
                     value={totalNoofSurveys}
-                    className="arimo-input-label"
                     label="Total No. of Surveys"
-                    sx={style}
                     onChange={onChangeTotalNoofSurveys}
-                    required
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -89,11 +77,8 @@ const Invoice = () => {
                     name="successfulSurveys"
                     type="text"
                     value={successfulSurveys}
-                    className="arimo-input-label"
                     label="Successful Surveys"
-                    sx={style}
                     onChange={onChangeSuccessfulSurveys}
-                    required
                   />
                 </Grid>
               </Grid>
@@ -102,12 +87,9 @@ const Invoice = () => {
                   name="costPerSurvey"
                   type="text"
                   value={costPerSurvey}
-                  className="arimo-input-label"
                   label="Cost/Survey"
                   placeholder="Ex: Rs 40"
-                  sx={style}
                   onChange={onChangeCostPerSurvey}
-                  required
                 />
               </Grid>
             </form>
