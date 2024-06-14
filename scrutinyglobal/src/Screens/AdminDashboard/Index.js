@@ -54,6 +54,7 @@ const Dashboard = () => {
       headerName: "S.No.",
       width: 90,
       align: "center",
+      cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
     },
     {
@@ -62,7 +63,8 @@ const Dashboard = () => {
       width: 150,
       headerAlign: "center",
       editable: true,
-      align: "center",
+      // align: "center",
+      cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
       renderCell: (params) => (
         <MuiDropDown
@@ -79,6 +81,7 @@ const Dashboard = () => {
       headerAlign: "center",
       editable: true,
       align: "center",
+      cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
       renderCell: (params) => (
         <Button variant="outlined" color="primary">
@@ -94,6 +97,7 @@ const Dashboard = () => {
       width: 110,
       headerAlign: "center",
       editable: true,
+      cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
       // valueGetter: (params) =>
       // `${params.row.firstName || ""} ${params.row.lastName || ""}`,
@@ -230,7 +234,7 @@ const Dashboard = () => {
       <Grid container className="dashboard-container">
         <Grid item xs={12}>
           <Typography
-            variant="h6"
+            variant="h5"
             component="div"
             gutterBottom
             className="screenHeading"
@@ -244,7 +248,6 @@ const Dashboard = () => {
           spacing={3}
           justifyContent="space-between"
           alignItems="center"
-          sx={{ mx: 2 }}
         >
           <Grid item xs={12} md={3}>
             <InfoCard

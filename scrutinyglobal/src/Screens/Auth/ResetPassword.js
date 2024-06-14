@@ -57,7 +57,6 @@ const ResetPassword = ({}) => {
         name="newPassword"
         type="password"
         value={newPassword}
-        className="arimo-input-label"
         label="New Password"
         sx={{ mt: 3, fontWeight: 550, fontSize: "2.5vh" }}
         onChange={onChangeNewPassword}
@@ -67,7 +66,6 @@ const ResetPassword = ({}) => {
         name="confirmPassword"
         type="password"
         value={confirmPassword}
-        className="arimo-input-label"
         label="Confirm Password"
         sx={{ mt: 3, fontWeight: 550, fontSize: "2.5vh" }}
         onChange={onChangeConfirmPassword}

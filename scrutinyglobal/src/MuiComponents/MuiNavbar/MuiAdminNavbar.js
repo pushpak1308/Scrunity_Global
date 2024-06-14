@@ -28,7 +28,6 @@ const NavBar = () => {
         </Link>
         <ButtonGroup
           variant="text"
-          aria-label="Basic button group"
           sx={{
             "& .MuiButton-root": {
               color: "white",
@@ -48,19 +47,11 @@ const NavBar = () => {
           justifyContent="flex-end"
           alignItems="center"
         >
-          <Grid item>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ textAlign: "center", fontSize: "14px" }}
-            >
+          <Grid item direction="column" textAlign="center">
+            <Typography variant="body" component="div">
               {userDetails.name}
             </Typography>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ textAlign: "center", fontSize: "14px" }}
-            >
+            <Typography variant="body" component="div">
               {userDetails.email}
             </Typography>
           </Grid>
@@ -68,7 +59,7 @@ const NavBar = () => {
             <Avatar
               alt={userDetails.name}
               src={userDetails.avatar}
-              sx={{ marginLeft: 2 }}
+              sx={{ ml: 1 }}
             />
           </Grid>
         </Grid>

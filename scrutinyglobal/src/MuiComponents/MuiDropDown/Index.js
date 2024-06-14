@@ -1,3 +1,4 @@
+// MuiDropDown/Index.js
 import React from "react";
 import { Autocomplete, InputLabel, TextField } from "@mui/material";
 
@@ -7,19 +8,18 @@ export const MuiDropDown = ({
   onChange,
   options,
   label,
-  className,
   sx,
   defaultValue,
-  required,
 }) => {
   return (
     <>
-      <InputLabel className={className} sx={sx}>
+      <InputLabel className="arimo-input-label" sx={sx}>
         {label}
       </InputLabel>
       <Autocomplete
         id={`${name}-autocomplete`}
         value={value}
+        className="arimo-input-label"
         defaultValue={defaultValue}
         onChange={(event, newValue) => {
           onChange({
@@ -35,9 +35,7 @@ export const MuiDropDown = ({
             {...params}
             placeholder={label}
             variant="standard"
-            className={className}
             sx={{ ...sx, minWidth: "100%", mb: 2, mt: 1.62 }}
-            required={required}
             InputProps={{
               ...params.InputProps,
               style: { paddingLeft: "10px" },

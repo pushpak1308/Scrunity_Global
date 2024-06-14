@@ -7,11 +7,7 @@ import MuiContainedButton from "./../../MuiComponents/MuiContainedButton/Index";
 
 const Home = () => {
   return (
-    <Grid
-      container
-      spacing={6}
-      className="main-container-landing flex-and-center"
-    >
+    <Grid container spacing={6} className="main-container-landing ">
       <Grid item xs={12} md={6} className="item-grid">
         <Typography className="vollkorn-heading">SCRUTINY GLOBAL</Typography>
 

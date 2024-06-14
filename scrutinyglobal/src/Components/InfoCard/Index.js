@@ -7,7 +7,7 @@ const InfoCard = ({ title, value, bgcolor }) => {
       <CardContent>
         <Grid container justifyContent="space-between" alignItems="center">
           <Grid item>
-            <Typography variant="body1" className="infoText">
+            <Typography variant="body" className="infoText">
               {title}
             </Typography>
           </Grid>

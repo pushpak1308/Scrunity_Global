@@ -37,22 +37,18 @@ const ForgotPassword = (props) => {
           name="email"
           type="text"
           value={email}
-          className="arimo-input-label"
           label="Email"
           sx={style}
           onChange={onChangeEmail}
-          required
         />
       ) : (
         <MuiTextField
           name="number"
           type="text"
           value={number}
-          className="arimo-input-label"
           label="Number"
           sx={style}
           onChange={onChangeNumber}
-          required
         />
       )}
 

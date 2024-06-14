@@ -34,9 +34,9 @@
 
 .arimo-input-label {
   font-family: "Arimo", sans-serif !important;
-  font-optical-sizing: auto;
-  font-style: bold;
-  color: black;
+  margin-top: 1rem;
+  font-weight: 550;
+  font-size: 2.5vh;
 }
 
 .vollkorn-hello {

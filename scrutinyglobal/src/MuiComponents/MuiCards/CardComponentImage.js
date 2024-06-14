@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, CardMedia, Typography, Box } from "@mui/material";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import "./Style.css";
 
 const CardComponentImage = ({ image, title, text }) => {
@@ -12,9 +12,7 @@ const CardComponentImage = ({ image, title, text }) => {
         className="cardImage-media "
       />
       <CardContent>
-        <Typography variant="h6" component="div" className="cardImage-heading">
-          {title}
-        </Typography>
+        <Typography className="cardImage-heading">{title}</Typography>
         <Typography
           variant="body2"
           color="text.secondary"
