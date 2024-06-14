@@ -17,7 +17,7 @@ const AppRoutes = () => (
       <Route exact path="/forgotPassword" element={<ForgotPassword />} />
       <Route exact path="/resetPassword" element={<ResetPassword />} />
       <Route exact path="/register" element={<Register />} />
-      <Route exact path="/home" element={<Landing />} />
+      <Route exact path="/" element={<Landing />} />
       <Route exact path="/add-project" element={<AddProject />} />
       <Route exact path="/waiting-screen" element={<WaitingScreen />} />
       <Route exact path="/dashboard" element={<Dashboard />} />

@@ -8,7 +8,6 @@ export const MuiTextField = ({
   type,
   value,
   onChange,
-  required,
   className,
   placeholder,
   sx,
@@ -30,7 +29,7 @@ export const MuiTextField = ({
         sx={{ my: 2 }}
         size="small"
         fullWidth
-        required={required}
+        required
         InputProps={{
           classes: {
             input: "centered-input",

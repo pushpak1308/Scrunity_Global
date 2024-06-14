@@ -81,7 +81,7 @@ const Dashboard = () => {
       align: "center",
       headerClassName: "dataGrid-header",
       renderCell: (params) => (
-        <Button variant="outlined" color="primary">
+        <Button variant="outlined" color="primary" onClick={handleApprove}>
           Approve
         </Button>
       ),
@@ -222,6 +222,10 @@ const Dashboard = () => {
 
   const onChangeRole = () => {
     console.log("onChange called ");
+  };
+
+  const handleApprove = () => {
+    console.log("user is approved");
   };
 
   return (
