@@ -1,6 +1,6 @@
 /* .invoiceHeader {
    background: linear-gradient(90deg, #0ddbff 0%, #cef8ff 100%) !important; 
-} */
+} 
 
 .invoiceHeader-text {
   font-family: "Arimo", sans-serif !important;
@@ -24,4 +24,31 @@
 
 .table-header {
   font-weight: bold;
+} */
+
+.invoice-modal-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-height: 80vh;
+  background-color: #fff;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  overflow: auto;
+}
+
+.invoice-grid {
+  border: 1px solid black;
+  margin: 2rem;
+  border-radius: 10px !important;
+}
+
+.forBorder {
+  border: 1px solid black;
+  padding: 1rem;
 }

@@ -1,0 +1,25 @@
+.survey-card {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.survey-card:hover {
+  background-color: #f0f0f0;
+}
+
+.read-more-btn {
+  text-transform: none;
+  transition: color 0.3s;
+}
+
+.survey-card:hover .read-more-btn {
+  color: white;
+}
+
+.survey-card:hover .icon {
+  color: transparent;
+  border: 2px solid currentColor;
+}
+
+.icon {
+  transition: color 0.3s;
+}

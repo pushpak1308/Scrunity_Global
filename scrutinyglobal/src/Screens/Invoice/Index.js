@@ -99,12 +99,19 @@ const Invoice = () => {
           </Grid>
         </Grid>
 
-        <Grid container justifyContent="center" alignItems="center">
+        <Grid container justifyContent="space-evenly" alignItems="center">
           <Grid item>
             <MuiContainedButton
               buttonText={"Generate Invoice"}
               onClickFunction={handleSubmit}
               type="submit"
+            />
+          </Grid>
+          <Grid item>
+            <MuiContainedButton
+              buttonText={"Generate PO"}
+              onClickFunction={handleSubmit}
+              type="button"
             />
           </Grid>
         </Grid>
