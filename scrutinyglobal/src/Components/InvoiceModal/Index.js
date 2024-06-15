@@ -6,6 +6,9 @@ import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import { IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import "./Style.css";
+import { PdfDownloader } from "../PdfDownloader";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 const InvoiceModal = ({
   show,
@@ -28,6 +31,16 @@ const InvoiceModal = ({
     borderTopRightRadius: "10px",
     borderTopLeftRadius: "10px",
   };
+
+  const handlePdfDownload = () => {
+    const input =  document.getElementById('pdf-content');
+    html2canvas(input).then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF();
+        pdf.addImage(imgData,'PNG',0,0);
+        pdf.save('Invoice.pdf');
+    });
+};
 
   const header = (
     <Grid
@@ -148,9 +161,9 @@ const InvoiceModal = ({
   return (
     <Modal open={show}>
       <Grid container className="invoice-modal-container">
-        <Grid item container justifyContent="space-between">
+        <Grid  item container justifyContent="space-between">
           <Grid item xs={3} className="modal-close" justifyContent="flex-start">
-            <IconButton onClick={handleClose}>
+            <IconButton onClick={handlePdfDownload}>
               <DownloadOutlinedIcon fontSize="large" />
             </IconButton>
           </Grid>
@@ -160,6 +173,7 @@ const InvoiceModal = ({
             </IconButton>
           </Grid>
         </Grid>
+        <Grid id="pdf-content">
         <Grid item className="invoice-grid">
           <Grid item container className="forBorder">
             <Grid item xs={4}>
@@ -451,6 +465,7 @@ const InvoiceModal = ({
               </Typography>
             </Grid>
           </Grid>
+        </Grid>
         </Grid>
       </Grid>
     </Modal>
