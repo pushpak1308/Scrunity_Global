@@ -170,37 +170,37 @@ const About = () => {
       title: "Fair Pricing:",
       description:
         "Our transparent pricing ensures you receive exceptional value without compromising quality.",
-      image: { FairPricing },
+      // image: { FairPricing },
     },
     {
       title: "Expert Insights:",
       description:
         "Backed by industry experts, we provide insightful perspectives that drive informed decisions.",
-      image: { expertInsights },
+      // image: { expertInsights },
     },
     {
       title: "Tailored Solutions:",
       description:
         "Our services are customized to your needs, offering targeted solutions for optimal results.",
-      image: { tailoredSolution },
+      // image: { tailoredSolution },
     },
     {
       title: "Accuracy:",
       description:
         "We use the latest tools and techniques to ensure that our data is accurate and reliable.",
-      image: { accuracy },
+      // image: { accuracy },
     },
     {
       title: "Comprehensive Support:",
       description:
         "From survey design to data analysis, our end-to-end solutions offer comprehensive support for your research journey.",
-      image: { comprehensiveSupport },
+      // image: { comprehensiveSupport },
     },
     {
       title: "Commitment:",
       description:
         "We are committed to providing you with the highest quality of service.",
-      image: { commitment },
+      // image: { commitment },
     },
   ];
 
@@ -382,7 +382,6 @@ const About = () => {
               <WhyChooseUsCard
                 title={item.title}
                 description={item.description}
-                image={item.image}
               />
             </Grid>
           ))}
