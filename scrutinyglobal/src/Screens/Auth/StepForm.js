@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { Grid, Button, Box, Typography } from "@mui/material";
 import { MuiTextField } from "../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../MuiComponents/MuiDropDown/Index";
@@ -11,6 +11,7 @@ const StepForm = ({
   incrementFormStep,
   decrementFormStep,
   setShow,
+  onClick
 }) => {
   const {
     name,
@@ -262,7 +263,7 @@ const StepForm = ({
             />
             <CustomContainedButton
               type="button"
-              onClickFunction={() => setShow(true)}
+              onClickFunction={onClick}
               buttonText={"Save"}
             />
           </Grid>

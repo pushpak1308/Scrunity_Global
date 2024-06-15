@@ -18,11 +18,17 @@ const Register = () => {
   const [otp, setOtp] = useState("");
   const [verifyMethod, setVerifyMethod] = useState("email");
 
+  const [otpVerificationData, setOtpVerificationData] = useState({
+    email: "",
+    number: ""
+  })
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     number: "",
+    otp:"",
     countryCode: "",
     dob: "",
     country: "",
@@ -39,9 +45,11 @@ const Register = () => {
       setFormData({ ...formData, name: e.target.value });
       setId(13);
     },
-    onChangeNumber: (e) => setFormData({ ...formData, number: e.target.value }),
-    onChangeUsername: (e) =>
+    onChangeNumber: (e) => (setFormData({ ...formData, number: e.target.value }),
+    setOtpVerificationData({...otpVerificationData,number:e.target.value})),
+    onChangeUsername: (e) =>(
       setFormData({ ...formData, email: e.target.value }),
+      setOtpVerificationData({...otpVerificationData,email:e.target.value})),
     onChangePassword: (e) =>
       setFormData({ ...formData, password: e.target.value }),
     onChangeConfirmPassword: (e) =>
@@ -64,46 +72,23 @@ const Register = () => {
       setFormData({ ...formData, monthlySalary: e.target.value }),
   };
 
-  const onChange = () => {
-    
-  }
-
   const onChangeOTP = (otp) => {
     setOtp(otp);
+    setFormData({...formData,otp: otp});
   };
 
   const handleSubmit = () => {
-    setLoading(true);
+    setShow(true);
     console.log("submit");
-    // const uniqueId = uuid();
-    // const smallId = uniqueId.slice(0,8);
-    // setId(smallId);
-
-    // RegisterDataSetup(id,name,number,username,password);
-    // const data = {
-    //   id: id,
-    //   name: name,
-    //   username: username,
-    //   password: password,
-    //   number: number,
-    // };
-
-    const userData = formData;
-    fetch('http://localhost:8080/ScrutinyGlobal/saveRegisterUser',{
-        // mode: 'no-cors',
-        method : 'POST',
-        headers : {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData)
-    })
-    // .then(response => response.json())
-    // .then(data => console.log('User created:', data))
-    // .catch(error => console.error('Error creating user:', error));
-    // navigate("/login");
-
-    // axios.post("http://localhost:8080/auth/signup", data);
+    console.log("otp data :- ",otpVerificationData);
+    fetch('http://localhost:8080/ScrutinyGlobal/otpsend',{
+      method : 'POST',
+      headers : {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(otpVerificationData)
+  })
   };
 
   const incrementFormStep = () => {
@@ -116,7 +101,16 @@ const Register = () => {
   };
   const handleModalButtonClick = () => {
     setShow2(true);
-    handleSubmit();
+    const userData = formData;
+    fetch('http://localhost:8080/ScrutinyGlobal/saveRegisterUser',{
+        // mode: 'no-cors',
+        method : 'POST',
+        headers : {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData)
+    })
   };
 
   const handleClose = () => {
@@ -124,28 +118,6 @@ const Register = () => {
     setShow2(false);
   };
 
-  // const setUserData = (id,name,number,username,password) =>
-  // {
-  //     const data = {
-  //         id: id,
-  //         name: name,
-  //         username: username,
-  //         password: password,
-  //         number: number
-  //     };
-
-  //     const userData = {
-  //         method : 'POST',
-  //         headers : {
-  //             'Content-Type': 'application/json',
-  //         },
-  //         body: JSON.stringify(data)
-  //     };
-  //     fetch('http//localhost:8080/auth/signup',userData)
-  //     .then(response => response.json())
-  //     .then(data => console.log('User created:', data))
-  //     .catch(error => console.error('Error creating user:', error));
-  // }
   const handleToggleMethod = () => {
     setVerifyMethod((prev) => (prev === "email" ? "phone" : "email"));
   };
@@ -155,7 +127,7 @@ const Register = () => {
   };
 
   const form = (
-    <form onSubmit={handleSubmit}>
+    <form>
       <StepForm
         formStep={formStep}
         formData={formData}
@@ -163,6 +135,7 @@ const Register = () => {
         incrementFormStep={incrementFormStep}
         decrementFormStep={decrementFormStep}
         setShow={setShow}
+        onClick={handleSubmit}
       />
     </form>
   );
