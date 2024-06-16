@@ -9,26 +9,46 @@ import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loginData, setLoginData] = useState({
+    username: "",
+    password: ""
+  });
 
   const navigate = useNavigate();
 
   const onChangeUsername = (event) => {
     event.preventDefault();
     setUsername(event.target.value);
+    setLoginData({...loginData,username:event.target.value});
   };
 
   const onChangePassword = (event) => {
     event.preventDefault();
     setPassword(event.target.value);
+    setLoginData({...loginData,password:event.target.value});
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    navigate("/dashboard");
+    fetch('http://localhost:8080/login',{
+      method : 'POST',
+      headers : {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(loginData)
+  }).then(function(response){
+    if(response.status===200)
+      {
+        navigate("/dashboard");
+      }
+    return response.json();
+  })
+    
   };
 
   const form = (
-    <form onSubmit={handleSubmit}>
+    <form>
       <MuiTextField
         name="username"
         type="text"
@@ -59,6 +79,7 @@ const Login = (props) => {
           type={"submit"}
           width={{ xs: "80%", sm: "60%", md: "40%" }}
           buttonText={"Log In"}
+          onClickFunction={handleSubmit}
         />
       </Box>
     </form>
