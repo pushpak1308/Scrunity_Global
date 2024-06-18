@@ -46,18 +46,18 @@ const InvoiceModal = ({
         <Grid item container justifyContent="space-between">
           <Grid item xs={3} className="modal-close" justifyContent="flex-start">
             <IconButton onClick={handlePdfDownload}>
-              <DownloadOutlinedIcon fontSize="large" />
+              <DownloadOutlinedIcon className="muiIcon" />
             </IconButton>
           </Grid>
           <Grid item xs={3} className="modal-close" justifyContent="flex-end">
             <IconButton onClick={handleClose}>
-              <CloseIcon fontSize="large" />
+              <CloseIcon className="muiIcon" />
             </IconButton>
           </Grid>
         </Grid>
         <Grid id="pdf-content">
           <Grid item className="invoice-grid">
-            <Grid item container className="forBorder">
+            <Grid item container className="forBorderTop">
               <Grid item xs={4}>
                 <img src={logo} alt="Logo" className="invoiceLogo" />{" "}
               </Grid>
@@ -72,11 +72,13 @@ const InvoiceModal = ({
                   <Typography variant="h4" component="div" gutterbottom>
                     SCRUTINY GLOBAL
                   </Typography>
-                  <Typography variant="body" component="div" gutterBottom>
-                    Second floor L-295, Mohan Garden, Uttam Nagar, New Delhi-
-                    110059. INDIA Contact +91-7678294335 Email Id -
-                    business@scrutinyglobal.com GSTIN - 071GJPK820IEIZF
-                  </Typography>
+                  <Grid item xs={8}>
+                    <Typography variant="body" component="div" gutterBottom>
+                      Second floor L-295, Mohan Garden, Uttam Nagar, New Delhi-
+                      110059. INDIA Contact +91-7678294335 Email Id -
+                      business@scrutinyglobal.com GSTIN - 071GJPK820IEIZF
+                    </Typography>
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>
@@ -282,7 +284,7 @@ const InvoiceModal = ({
               </Grid>
             </Grid>
             <Grid item container direction="row">
-              <Grid item xs={8} md={8} className="forBorder">
+              <Grid item xs={8} md={8} className="forBorderBottomLeft">
                 <Grid>
                   <Typography variant="h6" component="span" gutterBottom>
                     Name:
@@ -336,7 +338,7 @@ const InvoiceModal = ({
                 item
                 xs={4}
                 md={4}
-                className="forBorder"
+                className="forBorderBottomRight"
                 justifyContent="flex-end"
                 textAlign="right"
                 alignItems="flex-end"

@@ -14,7 +14,13 @@ export const MuiTextField = ({
 }) => {
   return (
     <>
-      <InputLabel className="arimo-input-label">{label}</InputLabel>
+      <InputLabel
+        className={
+          className === "forRegister" ? "forRegister" : "arimo-input-label"
+        }
+      >
+        {label}
+      </InputLabel>
 
       <TextField
         name={name}
@@ -23,8 +29,9 @@ export const MuiTextField = ({
         variant="standard"
         value={value}
         onChange={onChange}
-        sx={{ my: 2 }}
-        className="arimo-input-label"
+        className={
+          className === "forRegister" ? "forRegister" : "arimo-input-label"
+        }
         size="small"
         fullWidth
         required

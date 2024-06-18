@@ -34,24 +34,25 @@
 
 .arimo-input-label {
   font-family: "Arimo", sans-serif !important;
-  margin-top: 1rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
   font-weight: 550;
   font-size: 2.5vh;
 }
 
 .vollkorn-hello {
   font-family: "Vollkorn", serif;
-  font-size: 30px;
+  font-size: 4.5vh;
   font-weight: 400;
-  line-height: 34.5px;
+  line-height: 2rem;
   text-align: center;
   color: white;
 }
 .vollkorn-scrutiny {
   font-family: "Vollkorn", serif;
-  font-size: 40px;
+  font-size: 6vh;
   font-weight: 700;
-  line-height: 41.4px;
+  line-height: 3rem;
   text-align: center;
   color: white;
 }
@@ -69,21 +70,13 @@
 
 /* form section */
 
-.card-form {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-top-left-radius: 10% !important;
-  border-bottom-left-radius: 10% !important;
-  height: 100%;
-  position: relative;
-}
-
 .vollkorn-Login {
   font-family: "Vollkorn", serif !important;
   font-weight: 700 !important;
   font-style: normal;
   font-size: 4.5vh !important;
   text-align: center;
+  padding-top: 1.5rem;
 }
 
 .logo-image {
@@ -91,6 +84,23 @@
   position: absolute;
   right: 1vh;
   top: 1vh;
+}
+
+.card-form-container {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 10% !important;
+  border-bottom-left-radius: 10% !important;
+  height: 94vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-form {
+  max-height: 94vh;
+  overflow: auto;
 }
 
 .cardAction-link {
@@ -105,9 +115,11 @@
 }
 
 .helperText {
-  color: #175f93 !important;
-  font-size: 1.5vh !important;
   cursor: pointer;
+  text-decoration: none !important;
+  font-weight: 200 !important;
+  font-size: 0.9rem !important;
+  margin-bottom: 2rem !important;
 }
 
 .flex-and-center {

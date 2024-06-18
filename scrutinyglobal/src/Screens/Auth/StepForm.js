@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Grid, Button, Box, Typography } from "@mui/material";
 import { MuiTextField } from "../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../MuiComponents/MuiDropDown/Index";
@@ -11,7 +11,7 @@ const StepForm = ({
   incrementFormStep,
   decrementFormStep,
   setShow,
-  onClick
+  onClick,
 }) => {
   const {
     name,
@@ -57,7 +57,7 @@ const StepForm = ({
               value={name}
               label="Name"
               onChange={onChangeName}
-              
+              className="forRegister"
             />
           </Grid>
           <Grid item xs={12}>
@@ -67,7 +67,7 @@ const StepForm = ({
               value={number}
               label="Number"
               onChange={onChangeNumber}
-              
+              className="forRegister"
             />
           </Grid>
           <Grid item xs={12}>
@@ -77,7 +77,7 @@ const StepForm = ({
               value={username}
               label="Email"
               onChange={onChangeUsername}
-              
+              className="forRegister"
             />
           </Grid>
           <Grid item xs={12}>
@@ -89,7 +89,7 @@ const StepForm = ({
                   value={password}
                   label="Password"
                   onChange={onChangePassword}
-                  
+                  className="forRegister"
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -99,7 +99,7 @@ const StepForm = ({
                   value={confirmPassword}
                   label="Confirm Password"
                   onChange={onChangeConfirmPassword}
-                  
+                  className="forRegister"
                 />
               </Grid>
             </Grid>
@@ -129,7 +129,7 @@ const StepForm = ({
               value={birthdate}
               label="Birth Date"
               onChange={onChangeBirthdate}
-              
+              className="forRegister"
             />
           </Grid>
           <Grid item xs={12}>
@@ -139,7 +139,7 @@ const StepForm = ({
               value={address}
               label="Address"
               onChange={onChangeAddress}
-              
+              className="forRegister"
             />
           </Grid>
           <Grid item xs={12}>
@@ -151,7 +151,7 @@ const StepForm = ({
                   value={city}
                   label="City"
                   onChange={onChangeCity}
-                  
+                  className="forRegister"
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -161,7 +161,7 @@ const StepForm = ({
                   value={state}
                   label="State/Province"
                   onChange={onChangeState}
-                  
+                  className="forRegister"
                 />
               </Grid>
             </Grid>
@@ -175,7 +175,7 @@ const StepForm = ({
                   value={zipcode}
                   label="Zip Code"
                   onChange={onChangeZipcode}
-                
+                  className="forRegister"
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -185,7 +185,7 @@ const StepForm = ({
                   onChange={onChangeCountry}
                   options={["USA", "Canada", "UK"]} // Example options
                   label="Country"
-                  className="arimo-input-label"
+                  className="forRegister"
                 />
               </Grid>
             </Grid>
@@ -197,7 +197,6 @@ const StepForm = ({
             display="flex"
             justifyContent="space-between"
             alignItems="center"
-            mt={2}
           >
             <CustomContainedButton
               type="button"
@@ -223,7 +222,7 @@ const StepForm = ({
               type="text"
               placeholder={"Ex: Software Developer"}
               label="Profession"
-            
+              className="forRegister"
             />
           </Grid>
           <Grid item xs={12}>
@@ -233,8 +232,7 @@ const StepForm = ({
               onChange={onChangeAccountType}
               options={["User", "Premium", "Vendor"]}
               label="Account Type"
-              className="arimo-input-label"
-              
+              className="forRegister"
             />
           </Grid>
           <Grid item xs={12}>
@@ -245,7 +243,7 @@ const StepForm = ({
               label="Monthly Salary"
               placeholder={"50,000"}
               onChange={onChangeMonthlySalary}
-            
+              className="forRegister"
             />
           </Grid>
           <Grid
@@ -254,7 +252,6 @@ const StepForm = ({
             display="flex"
             justifyContent="space-between"
             alignItems="center"
-            mt={2}
           >
             <CustomContainedButton
               type="button"

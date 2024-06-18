@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import MuiAdminNavbar from "../../MuiComponents/MuiNavbar/MuiAdminNavbar";
 import { Button, Grid, Typography, styled } from "@mui/material";
@@ -9,6 +9,7 @@ import { MuiDropDown } from "../../MuiComponents/MuiDropDown/Index";
 import "./Style.css";
 
 const Dashboard = () => {
+  const [approved, setApproved] = useState(false);
   const rows = [
     {
       id: 1,
@@ -48,6 +49,13 @@ const Dashboard = () => {
     },
   ];
 
+  useEffect(() => {}, [approved]);
+
+  const handleApprove = () => {
+    setApproved(!approved);
+    console.log("user is approved");
+  };
+
   const [columns, setColumns] = useState([
     {
       field: "id",
@@ -83,11 +91,19 @@ const Dashboard = () => {
       align: "center",
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
-      renderCell: (params) => (
-        <Button variant="outlined" color="primary" onClick={handleApprove}>
-          Approve
-        </Button>
-      ),
+      renderCell: (params) => {
+        return approved ? (
+          <MuiContainedButton
+            buttonText={"Approved"}
+            onClickFunction={handleApprove}
+            type={"button"}
+          />
+        ) : (
+          <Button variant="outlined" color="primary" onClick={handleApprove}>
+            Approve
+          </Button>
+        );
+      },
     },
     {
       field: "name",
@@ -226,10 +242,6 @@ const Dashboard = () => {
 
   const onChangeRole = () => {
     console.log("onChange called ");
-  };
-
-  const handleApprove = () => {
-    console.log("user is approved");
   };
 
   return (

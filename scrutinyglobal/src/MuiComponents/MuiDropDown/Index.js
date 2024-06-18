@@ -8,18 +8,24 @@ export const MuiDropDown = ({
   onChange,
   options,
   label,
-  sx,
   defaultValue,
+  className,
 }) => {
   return (
     <>
-      <InputLabel className="arimo-input-label" sx={sx}>
+      <InputLabel
+        className={
+          className === "forRegister" ? "forRegister" : "arimo-input-label"
+        }
+      >
         {label}
       </InputLabel>
       <Autocomplete
         id={`${name}-autocomplete`}
         value={value}
-        className="arimo-input-label"
+        className={
+          className === "forRegister" ? "forRegister" : "arimo-input-label"
+        }
         defaultValue={defaultValue}
         onChange={(event, newValue) => {
           onChange({
@@ -35,7 +41,7 @@ export const MuiDropDown = ({
             {...params}
             placeholder={label}
             variant="standard"
-            sx={{ ...sx, minWidth: "100%", mb: 2, mt: 1.62 }}
+            size="small"
             InputProps={{
               ...params.InputProps,
               style: { paddingLeft: "10px" },

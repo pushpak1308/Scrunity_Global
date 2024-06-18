@@ -1,5 +1,7 @@
 .survey-card {
   transition: background-color 0.3s, color 0.3s;
+  min-height: 70vh;
+  max-width: 60vh;
 }
 
 .survey-card:hover {
