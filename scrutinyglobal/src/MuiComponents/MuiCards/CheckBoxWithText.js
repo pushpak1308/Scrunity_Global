@@ -1,16 +1,29 @@
-import React from "react";
-import { Box, Typography, Grid } from "@mui/material";
+import React, { useState } from "react";
+import { Typography, Grid } from "@mui/material";
 import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import "./Style.css";
 
 const CheckBoxWithText = ({ text, icon }) => {
+  const [hover, setHover] = useState(false);
   return (
-    <Grid container className="checkBoxWithText-container">
+    <Grid
+      container
+      justifyContent="center"
+      alignItems="center"
+      className="checkBoxWithText-container"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
       <Grid item xs={2} className="icon-container">
-        <CheckBoxOutlinedIcon />
+        {hover ? (
+          <CheckBoxIcon color="primary" />
+        ) : (
+          <CheckBoxOutlinedIcon color="primary" />
+        )}
       </Grid>
       <Grid item xs={9}>
-        <Typography variant="body1">{text}</Typography>
+        <Typography className="checkBox-text">{text}</Typography>
       </Grid>
     </Grid>
   );

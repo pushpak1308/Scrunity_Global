@@ -60,14 +60,15 @@ const AuthPage = ({
           </Card>
         </Grid>
         <Grid item xs={12} md={7}>
-          <Card className="card-form">
+          <Card className="card-form-container">
             <CardContent>
-              <Typography className="vollkorn-Login" sx={{ mt: 2 }}>
-                {heading}
-              </Typography>
+              <Typography className="vollkorn-Login">{heading}</Typography>
             </CardContent>
             <CardMedia component="img" image={logo} className="logo-image" />
-            <CardContent sx={{ mx: { xs: 3, sm: 7, md: 13 }, mb: 4 }}>
+            <CardContent
+              sx={{ mx: { xs: 3, sm: 7, md: 13 } }}
+              className="card-form"
+            >
               {form}
             </CardContent>
             <Grid container className="flex-and-center" sx={{ mb: 2 }}>

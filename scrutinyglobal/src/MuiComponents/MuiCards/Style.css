@@ -71,13 +71,21 @@
 .checkBoxWithText-container {
   display: flex;
   align-items: center;
-  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
   padding: 2%;
   margin: 2%;
+  transition: background-color 0.3s ease;
 }
 
-.check-box-with-text {
-  transition: background-color 0.3s, color 0.3s;
+.checkBoxWithText-container:hover {
+  background-color: rgb(221, 232, 232);
+}
+
+.checkBox-text {
+  font-family: "Arimo", sans-serif !important;
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1.5;
 }
 
 .icon-container {
@@ -85,3 +93,7 @@
   height: 7vh;
   align-content: center;
 }
+
+/* .icon-hover-secondary {
+  color: #f50057;
+}   */

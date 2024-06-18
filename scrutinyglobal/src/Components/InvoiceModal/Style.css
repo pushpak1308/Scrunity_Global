@@ -17,7 +17,8 @@
 
 .invoice-grid {
   border: 1px solid black;
-  /* border-radius: 10px; */
+  border-radius: 10px;
+  margin-bottom: 2rem !important;
 }
 
 .forBorder {
@@ -25,6 +26,29 @@
   padding: 0.5rem;
 }
 
+.forBorderTop {
+  border: 1px solid black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 0.5rem;
+}
+
+.forBorderBottomLeft {
+  border: 1px solid black;
+  border-bottom-left-radius: 10px;
+  padding: 0.5rem;
+}
+
+.forBorderBottomRight {
+  border: 1px solid black;
+  border-bottom-right-radius: 10px;
+  padding: 0.5rem;
+}
+
 .invoiceLogo {
   height: 8vh;
+}
+
+.muiIcon {
+  font-size: 5.6vh !important;
 }

@@ -1,4 +1,4 @@
-import { Box, CardActions, FormHelperText } from "@mui/material";
+import { Box, CardActions, FormHelperText, Grid } from "@mui/material";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Style.css";
@@ -11,7 +11,7 @@ const Login = (props) => {
   const [password, setPassword] = useState("");
   const [loginData, setLoginData] = useState({
     username: "",
-    password: ""
+    password: "",
   });
 
   const navigate = useNavigate();
@@ -19,32 +19,30 @@ const Login = (props) => {
   const onChangeUsername = (event) => {
     event.preventDefault();
     setUsername(event.target.value);
-    setLoginData({...loginData,username:event.target.value});
+    setLoginData({ ...loginData, username: event.target.value });
   };
 
   const onChangePassword = (event) => {
     event.preventDefault();
     setPassword(event.target.value);
-    setLoginData({...loginData,password:event.target.value});
+    setLoginData({ ...loginData, password: event.target.value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch('http://localhost:8080/login',{
-      method : 'POST',
-      headers : {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
+    fetch("http://localhost:8080/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(loginData)
-  }).then(function(response){
-    if(response.status===200)
-      {
+      body: JSON.stringify(loginData),
+    }).then(function (response) {
+      if (response.status === 200) {
         navigate("/dashboard");
       }
-    return response.json();
-  })
-    
+      return response.json();
+    });
   };
 
   const form = (
@@ -66,22 +64,17 @@ const Login = (props) => {
         sx={{ mt: 3, fontWeight: 550, fontSize: "2.5vh" }}
         onChange={onChangePassword}
       />
-      <Link to="/forgotPassword">
-        <FormHelperText
-          sx={{ mt: 2, mb: 5 }}
-          className="arimo-input-label helperText"
-        >
-          forgot password?
-        </FormHelperText>
+      <Link to="/forgotPassword" className="arimo-input-label helperText">
+        forgot password?
       </Link>
-      <Box display="flex" justifyContent="center" alignItems="center">
+      <Grid display="flex" justifyContent="center" alignItems="center">
         <MuiContainedButton
           type={"submit"}
           width={{ xs: "80%", sm: "60%", md: "40%" }}
           buttonText={"Log In"}
           onClickFunction={handleSubmit}
         />
-      </Box>
+      </Grid>
     </form>
   );
 

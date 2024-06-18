@@ -9,7 +9,7 @@ const SurveyCard = ({ title1, title2, content, color }) => {
     <Card className="survey-card">
       <CardContent>
         <Box display="flex" justifyContent="center" alignItems="center" mb={2}>
-          <MessageIcon className="icon" sx={{ fontSize: 40, color: color }} />
+          <MessageIcon className="icon" color="color" />
         </Box>
         <Typography variant="h6" align="center" color="textPrimary">
           {title1}

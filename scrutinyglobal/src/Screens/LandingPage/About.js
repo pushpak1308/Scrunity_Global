@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Typography, Button } from "@mui/material";
+import { Box, Grid, Typography, Button, Stack } from "@mui/material";
 import aboutImage from "./../../Images/LandingImages/AboutImages/aboutImage.png";
 import cardImage1 from "./../../Images/LandingImages/AboutImages/CardImage/cardImage1.png";
 import cardImage2 from "./../../Images/LandingImages/AboutImages/CardImage/cardImage2.png";
@@ -46,21 +46,29 @@ const About = () => {
     {
       label: "WHAT WE OFFER",
       content: (
-        <Grid container>
+        <Grid container className="tab-content-container">
           <Grid item>
-            <Typography>
+            <Typography gutterBottom className="tab-text">
               At Scrutiny Global, excellence is not just a goal; it's our
               commitment. Through our top-tier services, we provide you with a
               lens into various industries, equipping you with the knowledge
               needed to make informed and impactful decisions.
             </Typography>
           </Grid>
-          <Grid item>
-            <Typography>
-              <CheckIcon />
-              Multiple Target Platforms
-            </Typography>
-            <Typography>
+          <Grid item justifyContent="center" alignItems="center">
+            <Stack
+              direction="row"
+              alignItems="center"
+              spacing={1}
+              className="tab-point"
+            >
+              <CheckIcon fontSize="large" />
+
+              <Typography className="tab-point">
+                Multiple Target Platforms
+              </Typography>
+            </Stack>
+            <Typography gutterBottom className="tab-text">
               Scrutiny Global seamlessly navigates both Business-to-Business
               (B2B) and Business-to-Consumer (B2C) terrains. Our versatility
               ensures that clients effortlessly tap into their desired
@@ -68,11 +76,19 @@ const About = () => {
               skilled tradespeople like plumbers and electricians, or any other
               target group..
             </Typography>
-            <Typography>
-              <CheckIcon />
-              Unlocking the Power of Insights: Join Scrutiny Global
-            </Typography>
-            <Typography>
+            <Stack
+              direction="row"
+              alignItems="center"
+              spacing={1}
+              className="tab-point"
+            >
+              <CheckIcon fontSize="large" />
+
+              <Typography className="tab-point">
+                Unlocking the Power of Insights: Join Scrutiny Global
+              </Typography>
+            </Stack>
+            <Typography gutterBottom className="tab-text">
               Scrutiny Global stands as your catalyst for informed decisions,
               your conduit to dynamic insights, and your navigator through the
               evolving landscape of business challenges. Our commitment to
@@ -87,80 +103,125 @@ const About = () => {
     {
       label: "TOP SERVICES SECTORS",
       content: (
-        <>
-          <Typography>
-            Scrutiny Global offers a wide range of market research services to
-            businesses of all sizes, in a variety of industries. Our top
-            services include:
-          </Typography>
-          <Typography>
-            <CheckIcon />
-            Healthcare/Medical/Dental
-          </Typography>
-          <Typography>
-            At the intersection of healthcare, medical, and dental domains, we
-            provide a vital service. Our platform acquires pivotal therapeutic
-            insights and evidentiary support, enabling you to shape crucial
-            medical and clinical business decisions. By harnessing these
-            insights, you can not only improve patient well-being outcomes but
-            also drive advancements within your respective field.
-          </Typography>
-          <Typography>
-            <CheckIcon />
-            Media/Advertising/Marketing
-          </Typography>
-          <Typography>
-            At Scrutiny Global, we sculpt decisions in the realms of media,
-            advertising, and marketing with insight. We enhance the efficacy of
-            your creative endeavors, optimizing your interactions across owned,
-            paid, and earned media channels at every juncture. Our expertise
-            amplifies the impact of your communication strategies, fostering
-            enhanced engagement and conversion rates.
-          </Typography>
-        </>
+        <Grid container className="tab-content-container">
+          <Grid item>
+            <Typography gutterBottom className="tab-text">
+              Scrutiny Global offers a wide range of market research services to
+              businesses of all sizes, in a variety of industries. Our top
+              services include:
+            </Typography>
+          </Grid>
+          <Grid item justifyContent="center" alignItems="center">
+            <Stack
+              direction="row"
+              alignItems="center"
+              spacing={1}
+              className="tab-point"
+            >
+              <CheckIcon fontSize="large" />
+
+              <Typography className="tab-point">
+                Healthcare/Medical/Dental
+              </Typography>
+            </Stack>
+            <Typography gutterBottom className="tab-text">
+              At the intersection of healthcare, medical, and dental domains, we
+              provide a vital service. Our platform acquires pivotal therapeutic
+              insights and evidentiary support, enabling you to shape crucial
+              medical and clinical business decisions. By harnessing these
+              insights, you can not only improve patient well-being outcomes but
+              also drive advancements within your respective field.
+            </Typography>
+            <Stack
+              direction="row"
+              alignItems="center"
+              spacing={1}
+              className="tab-point"
+            >
+              <CheckIcon fontSize="large" />
+
+              <Typography className="tab-point">
+                Media/Advertising/Marketing
+              </Typography>
+            </Stack>
+            <Typography gutterBottom className="tab-text">
+              At Scrutiny Global, we sculpt decisions in the realms of media,
+              advertising, and marketing with insight. We enhance the efficacy
+              of your creative endeavors, optimizing your interactions across
+              owned, paid, and earned media channels at every juncture. Our
+              expertise amplifies the impact of your communication strategies,
+              fostering enhanced engagement and conversion rates.
+            </Typography>
+          </Grid>
+        </Grid>
       ),
     },
     {
       label: "OTHER SECTORS...",
       content: (
-        <>
-          <Typography>
-            <CheckIcon />
-            Software/Technology
-          </Typography>
-          <Typography>
-            Acknowledging insights shared by various IT Decision Makers (ITDMs),
-            we immerse ourselves in the intricacies of the software and
-            technology realm. Our deep understanding of industry dynamics
-            empowers us to deliver nuanced perspectives, ensuring you're
-            equipped to make strategic decisions in a rapidly evolving
-            landscape.
-          </Typography>
-          <Typography>
-            <CheckIcon />
-            Financial Services/Insurance
-          </Typography>
-          <Typography>
-            In a world where customer expectations undergo rapid transformation,
-            and the banking sector remains fiercely competitive, we step in as
-            your guides. Our expertise offers you an unparalleled view into
-            these challenges, drawing from the insights of financial experts.
-            With our support, you can navigate this terrain with clarity,
-            ensuring your offerings align with customer demands.
-          </Typography>
-          <Typography>
-            <CheckIcon />
-            Retail
-          </Typography>
-          <Typography>
-            Crafting an efficient and impactful retail strategy requires an
-            in-depth understanding of consumer behavior. Our approach goes
-            beyond the surface. We delve deep into customer insights, enabling
-            you to leverage emerging retail channels effectively. Through our
-            partnership, you'll be primed to create strategies that resonate
-            with customers and capitalize on evolving market trends.
-          </Typography>
-        </>
+        <Grid container className="tab-content-container">
+          <Grid item justifyContent="center" alignItems="center">
+            <Stack
+              direction="row"
+              alignItems="center"
+              spacing={1}
+              className="tab-point"
+            >
+              <CheckIcon fontSize="large" />
+
+              <Typography className="tab-point">Software/Technology</Typography>
+            </Stack>
+            <Typography gutterBottom className="tab-text">
+              Acknowledging insights shared by various IT Decision Makers
+              (ITDMs), we immerse ourselves in the intricacies of the software
+              and technology realm. Our deep understanding of industry dynamics
+              empowers us to deliver nuanced perspectives, ensuring you're
+              equipped to make strategic decisions in a rapidly evolving
+              landscape.
+            </Typography>
+            <Stack
+              direction="row"
+              alignItems="center"
+              spacing={1}
+              className="tab-point"
+            >
+              <CheckIcon fontSize="large" />
+
+              <Typography className="tab-point">
+                Financial Services/Insurance
+              </Typography>
+            </Stack>
+            <Typography gutterBottom className="tab-text">
+              In a world where customer expectations undergo rapid
+              transformation, and the banking sector remains fiercely
+              competitive, we step in as your guides. Our expertise offers you
+              an unparalleled view into these challenges, drawing from the
+              insights of financial experts. With our support, you can navigate
+              this terrain with clarity, ensuring your offerings align with
+              customer demands.
+            </Typography>
+          </Grid>
+          <Grid item justifyContent="center" alignItems="center">
+            <Stack
+              direction="row"
+              alignItems="center"
+              spacing={1}
+              className="tab-point"
+            >
+              <CheckIcon fontSize="large" />
+
+              <Typography className="tab-point">Retail</Typography>
+            </Stack>
+            <Typography gutterBottom className="tab-text">
+              Crafting an efficient and impactful retail strategy requires an
+              in-depth understanding of consumer behavior. Our approach goes
+              beyond the surface. We delve deep into customer insights, enabling
+              you to leverage emerging retail channels effectively. Through our
+              partnership, you'll be primed to create strategies that resonate
+              with customers and capitalize on evolving market trends.
+            </Typography>
+          </Grid>
+        </Grid>
       ),
     },
   ];
@@ -212,14 +273,9 @@ const About = () => {
         spacing={2}
         alignItems="center"
         justifyContent="center"
-        sx={{
-          margin: "0 auto",
-          backgroundColor: "#e0f7fa",
-          padding: 3,
-          borderRadius: 2,
-        }}
+        className="aboutSection1"
       >
-        <Grid item xs={12} md={6} sx={{ padding: 3 }}>
+        <Grid item xs={12} md={6} className="aboutSectionText1">
           <Typography variant="h4" gutterBottom>
             WHO WE ARE
           </Typography>
@@ -248,12 +304,8 @@ const About = () => {
             endIcon={<ArrowForwardIcon />}
           />
         </Grid>
-        <Grid item xs={12} md={6} sx={{ padding: 3 }}>
-          <img
-            src={aboutImage}
-            alt="About Image"
-            style={{ width: "100%", height: "auto", borderRadius: "8px" }}
-          />
+        <Grid item xs={12} md={6}>
+          <img src={aboutImage} alt="About Image" className="aboutImage1" />
         </Grid>
       </Grid>
       <Grid item>
@@ -264,7 +316,7 @@ const About = () => {
           }
         />
       </Grid>
-      <Grid container spacing={2}>
+      <Grid item container spacing={2}>
         <Grid item xs={12} sm={12} md={4}>
           <CardComponentImage
             image={cardImage1}
@@ -288,6 +340,7 @@ const About = () => {
         </Grid>
       </Grid>
       <Grid
+        item
         container
         alignItems="center"
         justifyContent="space-between"
@@ -328,40 +381,36 @@ const About = () => {
         />
       </Grid>
 
-      <Grid container spacing={2}>
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          md={6}
-          spacing={2}
-          className="flex-and-center aboutSection2"
-        >
+      <Grid
+        item
+        container
+        spacing={2}
+        jjustifyContent="center"
+        alignItems="center"
+        className="aboutSection2"
+      >
+        <Grid item xs={12} sm={12} md={6} spacing={2}>
           <img src={aboutImage2} alt="features" className="aboutImage2" />
         </Grid>
 
-        <Grid item xs={12} sm={12} md={6}>
-          <Grid container spacing={2}>
-            {featuresTextArray.map((text, index) => (
-              <Grid item xs={12} sm={6} md={6} key={index}>
-                <CheckBoxWithText text={text} />
-              </Grid>
-            ))}
-          </Grid>
+        <Grid item container spacing={2} xs={12} sm={12} md={6}>
+          {featuresTextArray.map((text, index) => (
+            <Grid item xs={12} sm={6} md={6} key={index}>
+              <CheckBoxWithText text={text} />
+            </Grid>
+          ))}
         </Grid>
       </Grid>
 
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6} className="aboutSection2">
-          <Typography variant="h4">Quality you can Trust</Typography>
+      <Grid item container spacing={2} className="aboutSection3">
+        <Grid item xs={12} md={6}>
+          <Typography className="aboutSection3-heading">
+            Quality you can Trust
+          </Typography>
           <MuiTab tabs={tabs} />
         </Grid>
-        <Grid item xs={12} md={6} className="flex-and-center aboutSection2">
-          <img
-            src={aboutImage3}
-            alt="features"
-            style={{ maxWidth: "100%", height: "auto" }}
-          />
+        <Grid item xs={12} md={6}>
+          <img src={aboutImage3} alt="features" className="aboutImage2" />
         </Grid>
       </Grid>
       <Grid item xs={12}>
@@ -369,7 +418,7 @@ const About = () => {
       </Grid>
 
       <Grid container spacing={2}>
-        <Grid item xs={12} md={6} className="flex-and-center aboutSection2">
+        <Grid item xs={12} md={6} className="flex-and-center ">
           <img
             src={aboutImage4}
             alt="features"
