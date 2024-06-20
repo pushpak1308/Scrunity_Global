@@ -12,13 +12,13 @@
   font-family: "Arimo", sans-serif !important;
   padding: 1rem;
 }
-.accordion-summary.Mui-expanded {
-  background-color: #f5f5f5;
+.accordion-summary-expanded {
+  font-family: "Arimo", sans-serif !important;
+  padding: 1rem;
+  color: rgba(83, 89, 231, 0.77);
 }
+
 .accordion-details {
   padding: 1rem;
   font-family: "Arimo", sans-serif !important;
-}
-.summary-content.Mui-expanded {
-  color: rgba(83, 89, 231, 0.77);
 }

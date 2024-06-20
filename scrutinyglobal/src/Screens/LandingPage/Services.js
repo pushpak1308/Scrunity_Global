@@ -275,7 +275,7 @@ const Services = () => {
 
   return (
     <Grid container id="services" className="about-grid ">
-      <Grid item>
+      <Grid item className="addMargin">
         <CenteredTextSection
           title={"SERVICES"}
           subtitle={

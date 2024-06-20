@@ -91,7 +91,7 @@
   border-bottom-right-radius: 0;
   border-top-left-radius: 10% !important;
   border-bottom-left-radius: 10% !important;
-  height: 94vh;
+  height: 93vh;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -99,7 +99,7 @@
 }
 
 .card-form {
-  max-height: 94vh;
+  max-height: 93vh;
   overflow: auto;
 }
 

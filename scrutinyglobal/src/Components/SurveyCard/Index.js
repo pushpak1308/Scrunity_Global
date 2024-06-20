@@ -5,8 +5,6 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import "./Style.css";
 
 const SurveyCard = ({ title1, title2, content, color, number }) => {
-  console.log(`survey-card-${number}`);
-
   return (
     <Grid
       container

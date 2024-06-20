@@ -79,10 +79,18 @@ const ContactUs = () => {
             </Grid>
           </Stack>
         </Grid>
-        <Grid item container xs={12} md={8} className="contactUs1-form">
+        <Grid
+          item
+          container
+          xs={12}
+          md={8}
+          display="flex"
+          justifyContent="space-around"
+          className="contactUs1-form"
+        >
           <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
-              <Grid item container xs={12} md={12} spacing={2}>
+              <Grid item container xs={12} md={11} spacing={2}>
                 <Grid item xs={6}>
                   <TextField
                     fullWidth
@@ -102,7 +110,7 @@ const ContactUs = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid item xs={12} md={12}>
+              <Grid item xs={12} md={11}>
                 <TextField
                   fullWidth
                   placeholder="Subject"
@@ -111,7 +119,7 @@ const ContactUs = () => {
                   onChange={handleChange}
                 />
               </Grid>
-              <Grid item xs={12} md={12}>
+              <Grid item xs={12} md={11}>
                 <TextField
                   fullWidth
                   multiline
@@ -122,8 +130,9 @@ const ContactUs = () => {
                   onChange={handleChange}
                 />
               </Grid>
-              <Grid item xs={12} md={8}>
+              <Grid item xs={12} md={11}>
                 <FormControlLabel
+                  className="captcha-box"
                   control={
                     <Checkbox
                       name="recaptcha"
@@ -134,7 +143,7 @@ const ContactUs = () => {
                   label="I am not a robot"
                 />
               </Grid>
-              <Grid item xs={12} md={12}>
+              <Grid item xs={12} md={11} display="flex" justifyContent="center">
                 <MuiContainedButton type="submit" buttonText="Send Message" />
               </Grid>
             </Grid>

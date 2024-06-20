@@ -6,17 +6,28 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Grid, Typography } from "@mui/material";
 import "./Style.css";
 
-export default function MaiAccordion({ content }) {
+export default function MuiAccordion({ content }) {
+  // const [classforExpand, setClassforExpand] = React.useState(false);
   return (
     <Grid className="accordion-container">
       {content.map((item, index) => (
         <Accordion key={index} className="accordion" elevation={0}>
           <AccordionSummary
+            // expandIcon={<ExpandMoreIcon onClick={setClassforExpand(true)} />}
             expandIcon={<ExpandMoreIcon />}
             aria-controls={`panel${index}-content`}
             id={`panel${index}-header`}
           >
-            <Typography className="accordion-summary">{item.title}</Typography>
+            <Typography
+              // className={
+              //   classforExpand
+              //     ? "accordion-summary-expanded"
+              //     : "accordion-summary"
+              // }
+              className="accordion-summary"
+            >
+              {item.title}
+            </Typography>
           </AccordionSummary>
           <AccordionDetails className="accordion-details">
             {item.content}

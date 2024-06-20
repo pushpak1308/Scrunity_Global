@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Grid, Button, Box, Typography } from "@mui/material";
+import React from "react";
+import { Grid } from "@mui/material";
 import { MuiTextField } from "../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../MuiComponents/MuiDropDown/Index";
 import CustomContainedButton from "../../MuiComponents/MuiContainedButton/Index";
@@ -10,7 +10,6 @@ const StepForm = ({
   onChangeHandlers,
   incrementFormStep,
   decrementFormStep,
-  setShow,
   onClick,
 }) => {
   const {
@@ -26,6 +25,7 @@ const StepForm = ({
     zipcode,
     country,
     profession,
+    experience,
     accountType,
     monthlySalary,
   } = formData;
@@ -42,6 +42,7 @@ const StepForm = ({
     onChangeZipcode,
     onChangeCountry,
     onChangeProfession,
+    onChangeExperience,
     onChangeAccountType,
     onChangeMonthlySalary,
   } = onChangeHandlers;
@@ -60,16 +61,7 @@ const StepForm = ({
               className="forRegister"
             />
           </Grid>
-          <Grid item xs={12}>
-            <MuiTextField
-              name="number"
-              type="text"
-              value={number}
-              label="Number"
-              onChange={onChangeNumber}
-              className="forRegister"
-            />
-          </Grid>
+
           <Grid item xs={12}>
             <MuiTextField
               name="email"
@@ -123,6 +115,27 @@ const StepForm = ({
       return (
         <Grid container spacing={2}>
           <Grid item xs={12}>
+            <MuiDropDown
+              name="accountType"
+              value={accountType}
+              onChange={onChangeAccountType}
+              options={["User", "Premium", "Vendor"]}
+              label="Account Type"
+              className="forRegister"
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <MuiTextField
+              name="number"
+              type="text"
+              value={number}
+              label="Number"
+              onChange={onChangeNumber}
+              className="forRegister"
+            />
+          </Grid>
+          <Grid item xs={12}>
             <MuiTextField
               name="birthdate"
               type="date"
@@ -132,6 +145,30 @@ const StepForm = ({
               className="forRegister"
             />
           </Grid>
+
+          <Grid
+            item
+            xs={12}
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <CustomContainedButton
+              type="button"
+              onClickFunction={decrementFormStep}
+              buttonText={"Previous"}
+            />
+            <CustomContainedButton
+              type="button"
+              onClickFunction={incrementFormStep}
+              buttonText={"Next"}
+            />
+          </Grid>
+        </Grid>
+      );
+    case 2:
+      return (
+        <Grid container spacing={2}>
           <Grid item xs={12}>
             <MuiTextField
               name="address"
@@ -211,30 +248,32 @@ const StepForm = ({
           </Grid>
         </Grid>
       );
-    case 2:
+    case 3:
       return (
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <MuiTextField
+            <MuiDropDown
               name="profession"
               value={profession}
               onChange={onChangeProfession}
-              type="text"
+              options={["profession1", "profession2", "profession2"]} // Example options
               placeholder={"Ex: Software Developer"}
               label="Profession"
               className="forRegister"
             />
           </Grid>
+
           <Grid item xs={12}>
-            <MuiDropDown
-              name="accountType"
-              value={accountType}
-              onChange={onChangeAccountType}
-              options={["User", "Premium", "Vendor"]}
-              label="Account Type"
+            <MuiTextField
+              name="experience"
+              value={experience}
+              onChange={onChangeExperience}
+              type="text"
+              label="Experience"
               className="forRegister"
             />
           </Grid>
+
           <Grid item xs={12}>
             <MuiTextField
               name="monthlySalary"
