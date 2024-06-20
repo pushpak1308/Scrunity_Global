@@ -1,27 +1,33 @@
 import React from "react";
-import { Card, CardContent, Typography, Button, Box } from "@mui/material";
-import MessageIcon from "@mui/icons-material/Message";
+import { Typography, Button, Grid } from "@mui/material";
+import ForumIcon from "@mui/icons-material/Forum";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import "./Style.css";
 
-const SurveyCard = ({ title1, title2, content, color }) => {
+const SurveyCard = ({ title1, title2, content, color, number }) => {
+  console.log(`survey-card-${number}`);
+
   return (
-    <Card className="survey-card">
-      <CardContent>
-        <Box display="flex" justifyContent="center" alignItems="center" mb={2}>
-          <MessageIcon className="icon" color="color" />
-        </Box>
-        <Typography variant="h6" align="center" color="textPrimary">
+    <Grid
+      container
+      spacing={2}
+      className={`survey-card-${number} border-bottom-${color}`}
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Grid item xs={12} textAlign="center">
+        <ForumIcon className="icon" color={color} fontSize="large" />
+      </Grid>
+      <Grid item xs={12}>
+        <Typography align="center" className="title1-text">
           {title1}
         </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="textPrimary"
-          gutterBottom
-        >
+        <Typography className="title2-text" align="center" gutterBottom>
           {title2}
         </Typography>
+      </Grid>
+
+      <Grid item xs={12} textAlign="center">
         <Typography
           variant="body2"
           align="center"
@@ -30,17 +36,17 @@ const SurveyCard = ({ title1, title2, content, color }) => {
         >
           {content}
         </Typography>
-        <Box display="flex" justifyContent="center">
-          <Button
-            className="read-more-btn"
-            variant="text"
-            endIcon={<ArrowForwardIcon />}
-          >
-            Read More
-          </Button>
-        </Box>
-      </CardContent>
-    </Card>
+      </Grid>
+      <Grid item display="flex" justifyContent="center" alignItems="flex-end">
+        <Button
+          className="read-more-btn"
+          variant="text"
+          endIcon={<ArrowForwardIcon />}
+        >
+          Read More
+        </Button>
+      </Grid>
+    </Grid>
   );
 };
 
