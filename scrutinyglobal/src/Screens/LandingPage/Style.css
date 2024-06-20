@@ -36,7 +36,7 @@
 }
 
 .vollkorn-heading {
-  font-family: "Vollkorn", serif;
+  font-family: "Vollkorn", serif !important;
   font-weight: 500;
   font-size: 7vh !important;
   color: rgba(83, 89, 231, 0.77);
@@ -63,12 +63,12 @@
 }
 
 .monsterrat-subheading-paragraph {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif !important;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 400 !important;
   font-style: normal;
-  width: 80%;
-  line-height: 1.8;
+  width: 80% !important;
+  line-height: 1.8 !important;
   padding-bottom: 3%;
 }
 
@@ -180,27 +180,34 @@
 }
 
 .contactUs1-form {
-  /* background-color: aliceblue; */
-  padding: 1rem;
+  /* padding: 2rem; */
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: row-reverse;
 }
 
 .contactus-grid {
   min-height: 90vh;
+  padding-left: 3rem;
 }
 
 .smallBox-heading {
-  font-family: "Arimo";
-  font-size: 5vh;
-  font-weight: 500;
+  font-family: "Arimo" !important;
+  font-size: 3vh !important;
+  font-weight: 600 !important;
   color: rgba(83, 89, 231, 0.77);
 }
 
 .smallBox-text {
-  font-family: "Arimo";
+  font-family: "Arimo" !important;
   font-size: 3vh;
 }
 
 .surveyContent-text {
   font-family: "Arimo";
   font-size: 2vh;
+}
+
+.addMargin {
+  margin-top: 2rem !important;
 }

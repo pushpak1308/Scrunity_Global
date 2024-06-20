@@ -10,6 +10,7 @@ import InvoiceModal from "../../Components/InvoiceModal/Index";
 
 const Invoice = () => {
   const [client, setClient] = useState("");
+  const [date, setDate] = useState("");
   const [totalNoofSurveys, setTotalNoofSurveys] = useState("");
   const [successfulSurveys, setSuccessfulSurveys] = useState("");
   const [costPerSurvey, setCostPerSurvey] = useState("");
@@ -17,6 +18,9 @@ const Invoice = () => {
 
   const onChangeClient = (e) => {
     setClient(e.target.value);
+  };
+  const onChangeDate = (e) => {
+    setDate(e.target.value);
   };
   const onChangeTotalNoofSurveys = (e) => {
     setTotalNoofSurveys(e.target.value);
@@ -53,16 +57,28 @@ const Invoice = () => {
         <Grid container justifyContent="space-between" alignItems="center">
           <Grid item xs={12} md={5}>
             <form onSubmit={handleSubmit}>
-              <Grid item xs={12}>
+              <Grid item xs={12} className="addPadding">
                 <MuiDropDown
                   name="client"
                   value={client}
                   onChange={onChangeClient}
                   options={["client 1", "client 2", "client 3"]} // Example options
                   label="Select Client"
+                  className="forRegister"
                 />
               </Grid>
-              <Grid container spacing={3}>
+              <Grid item xs={12} className="addPadding">
+                <MuiTextField
+                  name="date"
+                  type="date"
+                  value={date}
+                  label="Select Date"
+                  placeholder={"01-02-2001"}
+                  onChange={onChangeDate}
+                  className="forRegister"
+                />
+              </Grid>
+              <Grid container spacing={3} className="addPadding">
                 <Grid item xs={12} md={6}>
                   <MuiTextField
                     name="totalNoofSurveys"
@@ -70,6 +86,7 @@ const Invoice = () => {
                     value={totalNoofSurveys}
                     label="Total No. of Surveys"
                     onChange={onChangeTotalNoofSurveys}
+                    className="forRegister"
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -79,10 +96,11 @@ const Invoice = () => {
                     value={successfulSurveys}
                     label="Successful Surveys"
                     onChange={onChangeSuccessfulSurveys}
+                    className="forRegister"
                   />
                 </Grid>
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} className="addPadding">
                 <MuiTextField
                   name="costPerSurvey"
                   type="text"
@@ -90,6 +108,7 @@ const Invoice = () => {
                   label="Cost/Survey"
                   placeholder="Ex: Rs 40"
                   onChange={onChangeCostPerSurvey}
+                  className="forRegister"
                 />
               </Grid>
             </form>
@@ -99,7 +118,12 @@ const Invoice = () => {
           </Grid>
         </Grid>
 
-        <Grid container justifyContent="space-evenly" alignItems="center">
+        <Grid
+          container
+          justifyContent="space-evenly"
+          alignItems="center"
+          className="addPadding"
+        >
           <Grid item>
             <MuiContainedButton
               buttonText={"Generate Invoice"}

@@ -16,3 +16,7 @@
   width: 70vh !important;
   height: 65vh !important;
 }
+
+.addPadding {
+  padding-bottom: 1rem;
+}

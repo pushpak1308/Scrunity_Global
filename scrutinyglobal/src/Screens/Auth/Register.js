@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { CardActions } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import "./Style.css";
 import AuthPage from "./AuthPage";
 import StepForm from "./StepForm";
@@ -12,7 +10,6 @@ const Register = () => {
   const navigate = useNavigate();
   const [formStep, setFormStep] = useState(0);
   const [id, setId] = useState(0);
-  const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
   const [otp, setOtp] = useState("");
@@ -20,15 +17,15 @@ const Register = () => {
 
   const [otpVerificationData, setOtpVerificationData] = useState({
     email: "",
-    number: ""
-  })
+    number: "",
+  });
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     number: "",
-    otp:"",
+    otp: "",
     countryCode: "",
     dob: "",
     country: "",
@@ -36,6 +33,7 @@ const Register = () => {
     city: "",
     zipcode: "",
     profession: "",
+    experience: "",
     accountType: "",
     monthlySalary: "",
   });
@@ -45,17 +43,19 @@ const Register = () => {
       setFormData({ ...formData, name: e.target.value });
       setId(13);
     },
-    onChangeNumber: (e) => (setFormData({ ...formData, number: e.target.value }),
-    setOtpVerificationData({...otpVerificationData,number:e.target.value})),
-    onChangeUsername: (e) =>(
+    onChangeNumber: (e) => (
+      setFormData({ ...formData, number: e.target.value }),
+      setOtpVerificationData({ ...otpVerificationData, number: e.target.value })
+    ),
+    onChangeUsername: (e) => (
       setFormData({ ...formData, email: e.target.value }),
-      setOtpVerificationData({...otpVerificationData,email:e.target.value})),
+      setOtpVerificationData({ ...otpVerificationData, email: e.target.value })
+    ),
     onChangePassword: (e) =>
       setFormData({ ...formData, password: e.target.value }),
     onChangeConfirmPassword: (e) =>
       setFormData({ ...formData, confirmPassword: e.target.value }),
-    onChangeBirthdate: (e) =>
-      setFormData({ ...formData, dob: e.target.value }),
+    onChangeBirthdate: (e) => setFormData({ ...formData, dob: e.target.value }),
     onChangeAddress: (e) =>
       setFormData({ ...formData, address: e.target.value }),
     onChangeCity: (e) => setFormData({ ...formData, city: e.target.value }),
@@ -66,6 +66,8 @@ const Register = () => {
       setFormData({ ...formData, country: e.target.value }),
     onChangeProfession: (e) =>
       setFormData({ ...formData, profession: e.target.value }),
+    onChangeExperience: (e) =>
+      setFormData({ ...formData, experience: e.target.value }),
     onChangeAccountType: (e) =>
       setFormData({ ...formData, accountType: e.target.value }),
     onChangeMonthlySalary: (e) =>
@@ -74,21 +76,21 @@ const Register = () => {
 
   const onChangeOTP = (otp) => {
     setOtp(otp);
-    setFormData({...formData,otp: otp});
+    setFormData({ ...formData, otp: otp });
   };
 
   const handleSubmit = () => {
     setShow(true);
     console.log("submit");
-    console.log("otp data :- ",otpVerificationData);
-    fetch('http://localhost:8080/ScrutinyGlobal/otpsend',{
-      method : 'POST',
-      headers : {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
+    console.log("otp data :- ", otpVerificationData);
+    fetch("http://localhost:8080/ScrutinyGlobal/otpsend", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(otpVerificationData)
-  })
+      body: JSON.stringify(otpVerificationData),
+    });
   };
 
   const incrementFormStep = () => {
@@ -102,15 +104,15 @@ const Register = () => {
   const handleModalButtonClick = () => {
     setShow2(true);
     const userData = formData;
-    fetch('http://localhost:8080/ScrutinyGlobal/saveRegisterUser',{
-        // mode: 'no-cors',
-        method : 'POST',
-        headers : {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData)
-    })
+    fetch("http://localhost:8080/ScrutinyGlobal/saveRegisterUser", {
+      // mode: 'no-cors',
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
   };
 
   const handleClose = () => {
