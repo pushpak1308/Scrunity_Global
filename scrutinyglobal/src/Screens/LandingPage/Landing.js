@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Grid, Typography } from "@mui/material";
 import Home from "./Home";
 import About from "./About";
@@ -11,6 +11,7 @@ import { Link } from "react-scroll";
 import "./Style.css";
 import { Link as RouteLink } from "react-router-dom";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
+import ContactUs from "./ContactUs";
 
 const navItems = ["Home", "About", "Services", "Contact", "Login", "Panel"];
 
@@ -51,6 +52,9 @@ const Landing = (props) => {
         </section>
         <section id="services">
           <Services />
+        </section>
+        <section id="contact">
+          <ContactUs />
         </section>
       </Grid>
     </Grid>

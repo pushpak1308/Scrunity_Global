@@ -1,7 +1,18 @@
-.survey-card {
+.survey-card-1 {
+  transition: background-color 0.3s, color 0.3s;
+  min-height: 110vh;
+  max-width: 58vh;
+  padding: 2rem;
+  margin: 2rem;
+  box-shadow: 0 2px 12px 1px rgba(0, 0, 0, 0.2);
+}
+.survey-card-2 {
   transition: background-color 0.3s, color 0.3s;
   min-height: 70vh;
-  max-width: 60vh;
+  max-width: 58vh;
+  padding: 2rem;
+  margin: 2rem;
+  box-shadow: 0 2px 12px 1px rgba(0, 0, 0, 0.2);
 }
 
 .survey-card:hover {
@@ -22,6 +33,16 @@
   border: 2px solid currentColor;
 }
 
-.icon {
-  transition: color 0.3s;
+.title1-text {
+  font-family: "Vollkorn", serif !important;
+  font-size: 4.5vh !important;
+  font-weight: 600 !important;
+  color: rgba(83, 89, 231, 0.77);
+}
+
+.title2-text {
+  font-family: "Vollkorn", serif !important;
+  font-size: 3vh !important;
+  font-weight: 500 !important;
+  color: rgba(83, 89, 231, 0.77);
 }
