@@ -37,11 +37,11 @@ const Register = () => {
     accountType: "",
     monthlySalary: "",
   });
+  
 
   const onChangeHandlers = {
     onChangeName: (e) => {
       setFormData({ ...formData, name: e.target.value });
-      setId(13);
     },
     onChangeNumber: (e) => (
       setFormData({ ...formData, number: e.target.value }),
@@ -55,14 +55,20 @@ const Register = () => {
       setFormData({ ...formData, password: e.target.value }),
     onChangeConfirmPassword: (e) =>
       setFormData({ ...formData, confirmPassword: e.target.value }),
+<<<<<<< Updated upstream
     onChangeBirthdate: (e) => setFormData({ ...formData, dob: e.target.value }),
     onChangeAddress: (e) =>
+=======
+    onChangeBirthdate: (e) =>
+      setFormData({ ...formData, dob: e.target.value }),
+    onChangeAddress: (e) => 
+>>>>>>> Stashed changes
       setFormData({ ...formData, address: e.target.value }),
     onChangeCity: (e) => setFormData({ ...formData, city: e.target.value }),
     onChangeState: (e) => setFormData({ ...formData, state: e.target.value }),
     onChangeZipcode: (e) =>
       setFormData({ ...formData, zipcode: e.target.value }),
-    onChangeCountry: (e) =>
+    onChangeCountry: (e) => 
       setFormData({ ...formData, country: e.target.value }),
     onChangeProfession: (e) =>
       setFormData({ ...formData, profession: e.target.value }),

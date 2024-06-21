@@ -47,6 +47,10 @@ const StepForm = ({
     onChangeMonthlySalary,
   } = onChangeHandlers;
 
+  const [countries,setCountries] = useState([]);
+
+  
+
   switch (formStep) {
     case 0:
       return (
@@ -145,6 +149,67 @@ const StepForm = ({
               className="forRegister"
             />
           </Grid>
+<<<<<<< Updated upstream
+=======
+          <Grid item xs={12}>
+            <MuiTextField
+              name="address"
+              type="text"
+              value={address}
+              label="Address"
+              onChange={onChangeAddress}
+              
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={6}>
+                <MuiTextField
+                  name="city"
+                  type="text"
+                  value={city}
+                  label="City"
+                  onChange={onChangeCity}
+                  
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <MuiTextField
+                  name="state"
+                  type="text"
+                  value={state}
+                  label="State/Province"
+                  onChange={onChangeState}
+                  
+                />
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={6}>
+                <MuiTextField
+                  name="zipcode"
+                  type="text"
+                  value={zipcode}
+                  label="Zip Code"
+                  onChange={onChangeZipcode}
+                
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <MuiDropDown
+                  name="country"
+                  value={country}
+                  onChange={onChangeCountry}
+                  options={countries} // Example options
+                  label="Country"
+                  className="arimo-input-label"
+                />
+              </Grid>
+            </Grid>
+          </Grid>
+>>>>>>> Stashed changes
 
           <Grid
             item
