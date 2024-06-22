@@ -1,9 +1,10 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import { MuiTextField } from "../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../MuiComponents/MuiDropDown/Index";
 import CustomContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const StepForm = ({
   formStep,
@@ -16,7 +17,7 @@ const StepForm = ({
   const {
     name,
     number,
-    username,
+    email,
     password,
     confirmPassword,
     birthdate,
@@ -33,7 +34,7 @@ const StepForm = ({
   const {
     onChangeName,
     onChangeNumber,
-    onChangeUsername,
+    onChangeEmail,
     onChangePassword,
     onChangeConfirmPassword,
     onChangeBirthdate,
@@ -48,10 +49,13 @@ const StepForm = ({
     onChangeMonthlySalary,
   } = onChangeHandlers;
 
+  const reduxData = useSelector((state) => state.user);
+  console.log("reduxData111 :>> ", reduxData);
+
   const [countriesData, setCountriesData] = useState([""]);
   useEffect(() => {
-    fetch('http://localhost:8080/ScrutinyGlobal/getCountries',{
-      method : 'GET',
+    fetch("http://localhost:8080/ScrutinyGlobal/getCountries", {
+      method: "GET",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -61,16 +65,18 @@ const StepForm = ({
         return res.json();
       })
       .then((data) => {
-        setCountriesData(data.map((element)=>{
-          return element.countryName;
-        })); 
+        setCountriesData(
+          data.map((element) => {
+            return element.countryName;
+          })
+        );
         console.log("countries data seting ", countriesData);
-      })
-  },[])
+      });
+  }, []);
 
   const countryOptions = () => {
-      return countriesData;
-  }
+    return countriesData;
+  };
 
   switch (formStep) {
     case 0:
@@ -78,9 +84,9 @@ const StepForm = ({
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <MuiTextField
-              name="name"
               type="text"
               value={name}
+              defaultValue={reduxData?.name || ""}
               label="Name"
               onChange={onChangeName}
               className="forRegister"
@@ -89,11 +95,11 @@ const StepForm = ({
 
           <Grid item xs={12}>
             <MuiTextField
-              name="email"
               type="text"
-              value={username}
+              value={email}
+              defaultValue={reduxData?.email || ""}
               label="Email"
-              onChange={onChangeUsername}
+              onChange={onChangeEmail}
               className="forRegister"
             />
           </Grid>
@@ -101,20 +107,20 @@ const StepForm = ({
             <Grid container spacing={5}>
               <Grid item xs={12} md={6}>
                 <MuiTextField
-                  name="password"
                   type="password"
                   value={password}
                   label="Password"
+                  defaultValue={reduxData?.password || ""}
                   onChange={onChangePassword}
                   className="forRegister"
                 />
               </Grid>
               <Grid item xs={12} md={6}>
                 <MuiTextField
-                  name="confirmPassword"
                   type="password"
                   value={confirmPassword}
                   label="Confirm Password"
+                  defaultValue={reduxData?.confirmPassword || ""}
                   onChange={onChangeConfirmPassword}
                   className="forRegister"
                 />
@@ -141,8 +147,8 @@ const StepForm = ({
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <MuiDropDown
-              name="accountType"
               value={accountType}
+              defaultValue={reduxData?.accountType || ""}
               onChange={onChangeAccountType}
               options={["User", "Premium", "Vendor"]}
               label="Account Type"
@@ -152,9 +158,9 @@ const StepForm = ({
 
           <Grid item xs={12}>
             <MuiTextField
-              name="number"
               type="text"
               value={number}
+              defaultValue={reduxData?.number || ""}
               label="Number"
               onChange={onChangeNumber}
               className="forRegister"
@@ -162,10 +168,10 @@ const StepForm = ({
           </Grid>
           <Grid item xs={12}>
             <MuiTextField
-              name="birthdate"
               type="date"
               value={birthdate}
               label="Birth Date"
+              defaultValue={reduxData?.dob || ""}
               onChange={onChangeBirthdate}
               className="forRegister"
             />
@@ -196,10 +202,10 @@ const StepForm = ({
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <MuiTextField
-              name="address"
               type="text"
               value={address}
               label="Address"
+              defaultValue={reduxData?.address || ""}
               onChange={onChangeAddress}
               className="forRegister"
             />
@@ -208,20 +214,20 @@ const StepForm = ({
             <Grid container spacing={2}>
               <Grid item xs={12} md={6}>
                 <MuiTextField
-                  name="city"
                   type="text"
                   value={city}
                   label="City"
+                  defaultValue={reduxData?.city || ""}
                   onChange={onChangeCity}
                   className="forRegister"
                 />
               </Grid>
               <Grid item xs={12} md={6}>
                 <MuiTextField
-                  name="state"
                   type="text"
                   value={state}
                   label="State/Province"
+                  defaultValue={reduxData?.state || ""}
                   onChange={onChangeState}
                   className="forRegister"
                 />
@@ -236,15 +242,16 @@ const StepForm = ({
                   type="text"
                   value={zipcode}
                   label="Zip Code"
+                  defaultValue={reduxData?.zipcode || ""}
                   onChange={onChangeZipcode}
                   className="forRegister"
                 />
               </Grid>
               <Grid item xs={12} md={6}>
                 <MuiDropDown
-                  name="country"
                   value={country}
                   onChange={onChangeCountry}
+                  defaultValue={reduxData?.country || ""}
                   options={countryOptions()} // Example options
                   label="Country"
                   className="forRegister"
@@ -281,6 +288,7 @@ const StepForm = ({
               name="profession"
               value={profession}
               onChange={onChangeProfession}
+              defaultValue={reduxData?.profession || ""}
               options={["profession1", "profession2", "profession2"]} // Example options
               placeholder={"Ex: Software Developer"}
               label="Profession"
@@ -292,6 +300,7 @@ const StepForm = ({
             <MuiTextField
               name="experience"
               value={experience}
+              defaultValue={reduxData?.experience || ""}
               onChange={onChangeExperience}
               type="text"
               label="Experience"
@@ -306,6 +315,7 @@ const StepForm = ({
               value={monthlySalary}
               label="Monthly Salary"
               placeholder={"50,000"}
+              defaultValue={reduxData?.salary || ""}
               onChange={onChangeMonthlySalary}
               className="forRegister"
             />
