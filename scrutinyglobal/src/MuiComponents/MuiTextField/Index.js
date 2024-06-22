@@ -4,12 +4,12 @@ import "../../Screens/Auth/Style.css";
 import "./Style.css";
 
 export const MuiTextField = ({
-  name,
   type,
   value,
   onChange,
   className,
   placeholder,
+  defaultValue,
   label,
 }) => {
   return (
@@ -23,8 +23,9 @@ export const MuiTextField = ({
       </InputLabel>
 
       <TextField
-        name={name}
+        name={value}
         type={type}
+        defaultValue={defaultValue}
         placeholder={placeholder ? placeholder : label}
         variant="standard"
         value={value}

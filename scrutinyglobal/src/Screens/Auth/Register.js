@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Style.css";
 import AuthPage from "./AuthPage";
 import StepForm from "./StepForm";
 import CustomModal from "../../MuiComponents/MuiModal/Index";
 import OtpModal from "../../Components/OtpModal/Index";
-import { useSelector, useDispatch } from 'react-redux';
-// import { updateValues } from '../../Store/Slice/userSlice';
-import { updateValues } from '../../Store/Slice/userSlice';
+import { useSelector, useDispatch } from "react-redux";
+import { selectFormData, setField } from "../../Store/Slice/userSlice";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -18,8 +17,9 @@ const Register = () => {
   const [otp, setOtp] = useState("");
   const [verifyMethod, setVerifyMethod] = useState("email");
 
-  // const counter = useSelector(state => state.counter.count);
   const dispatch = useDispatch();
+  const formDataRegister = useSelector(selectFormData);
+  console.log("formDataRegister :>> ", formDataRegister);
 
   const [otpVerificationData, setOtpVerificationData] = useState({
     email: "",
@@ -44,39 +44,39 @@ const Register = () => {
     monthlySalary: "",
   });
 
-  useEffect(() => {
-
-    // console.log("in use effect");
-    // console.log(counter);
-    // dispatch(increment());
-    // console.log(counter);
-    // dispatch(increment());
-    // console.log(counter);
-    // dispatch(decrement());
-    // console.log(counter);
-
-
-  },[]);
   const onChangeHandlers = {
     onChangeName: (e) => {
+      dispatch(setField({ field: "name", value: e.target.value }));
       setFormData({ ...formData, name: e.target.value });
       setId(13);
     },
-    onChangeNumber: (e) => (
-      setFormData({ ...formData, number: e.target.value }),
-      setOtpVerificationData({ ...otpVerificationData, number: e.target.value })
-    ),
-    onChangeUsername: (e) => (
+    onChangeEmail: (e) => (
       setFormData({ ...formData, email: e.target.value }),
+      dispatch(setField({ field: "email", value: e.target.value })),
       setOtpVerificationData({ ...otpVerificationData, email: e.target.value })
     ),
-    onChangePassword: (e) =>
-      setFormData({ ...formData, password: e.target.value }),
-    onChangeConfirmPassword: (e) =>
+
+    onChangePassword: (e) => (
+      dispatch(setField({ field: "password", value: e.target.value })),
+      setFormData({ ...formData, password: e.target.value })
+    ),
+    onChangeConfirmPassword: (e) => (
       setFormData({ ...formData, confirmPassword: e.target.value }),
-    onChangeBirthdate: (e) => setFormData({ ...formData, dob: e.target.value }),
-    onChangeAddress: (e) =>
+      dispatch(setField({ field: "confirmPassword", value: e.target.value }))
+    ),
+    onChangeNumber: (e) => (
+      setFormData({ ...formData, number: e.target.value }),
+      dispatch(setField({ field: "number", value: e.target.value })),
+      setOtpVerificationData({ ...otpVerificationData, number: e.target.value })
+    ),
+    onChangeBirthdate: (e) => (
+      setFormData({ ...formData, dob: e.target.value }),
+      dispatch(setField({ field: "dob", value: e.target.value }))
+    ),
+    onChangeAddress: (e) => (
       setFormData({ ...formData, address: e.target.value }),
+      dispatch(setField({ field: "address", value: e.target.value }))
+    ),
     onChangeCity: (e) => setFormData({ ...formData, city: e.target.value }),
     onChangeState: (e) => setFormData({ ...formData, state: e.target.value }),
     onChangeZipcode: (e) =>
@@ -113,7 +113,6 @@ const Register = () => {
   };
 
   const incrementFormStep = () => {
-    dispatch(updateValues({name:"name",value:formData.name}));
     const newStep = formStep + 1;
     setFormStep(newStep);
   };
