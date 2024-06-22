@@ -1,49 +1,37 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    name: '',
-    email: '',
-    password: '',
-    accountType:'',
-    number:"",
-    dob:'',
-    address:'',
-    city:'',
-    state:'',
-    zipcode:'',
-    country:'',
-    profession:'',
-    experience:'',
-    salary:''
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+  number: "",
+  otp: "",
+  countryCode: "",
+  dob: "",
+  country: "",
+  state: "",
+  city: "",
+  zipcode: "",
+  profession: "",
+  experience: "",
+  accountType: "",
+  monthlySalary: "",
+};
 
-}
-
-export const userSlice = createSlice({
-    name: 'user',
-    initialState,
-    reducers: {
-        updateValues: (state,action) => {
-            
-            switch (action.payload.name) {
-
-                case "name":
-                    state.name = action.payload.value;
-                    break;
-                case "email":
-                    state.email = action.payload.value;
-                    break;
-                case "password":
-                    state.password = action.payload.value;
-                    break;
-                case "accountType":
-                    state.accountType = action.accountType.value;
-            }
-           
-        },
-       
-    }
+const formDataSlice = createSlice({
+  name: "formData",
+  initialState,
+  reducers: {
+    setField: (state, action) => {
+      const { field, value } = action.payload;
+      return { ...state, [field]: value };
+    },
+    resetForm: () => initialState,
+  },
 });
 
-export const { updateValues } = userSlice.actions;
+export const { setField, resetForm } = formDataSlice.actions;
 
-export default userSlice.reducer;
+export const selectFormData = (state) => state.formData;
+export default formDataSlice.reducer;
