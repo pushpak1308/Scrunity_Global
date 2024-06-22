@@ -29,9 +29,14 @@ export const userSlice = createSlice({
                 case "name":
                     state.name = action.payload.value;
                     break;
-                  case "email":
+                case "email":
                     state.email = action.payload.value;
                     break;
+                case "password":
+                    state.password = action.payload.value;
+                    break;
+                case "accountType":
+                    state.accountType = action.accountType.value;
             }
            
         },

@@ -1,8 +1,9 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import { Grid } from "@mui/material";
 import { MuiTextField } from "../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../MuiComponents/MuiDropDown/Index";
 import CustomContainedButton from "../../MuiComponents/MuiContainedButton/Index";
+import axios from "axios";
 
 const StepForm = ({
   formStep,
@@ -46,6 +47,33 @@ const StepForm = ({
     onChangeAccountType,
     onChangeMonthlySalary,
   } = onChangeHandlers;
+
+  const [countriesData, setCountriesData] = useState([""]);
+  let countryData = [""];
+  useEffect(() => {
+    fetch('http://localhost:8080/ScrutinyGlobal/getCountries',{
+      method : 'GET',
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setCountriesData(data.map((element)=>{
+          return element.countryName;
+        })); 
+        console.log("countries data seting ", countriesData);
+      })
+  },[])
+
+  const countryOptions = () => {
+    
+      return countriesData;
+      // return ["India","USA"];
+  }
 
   switch (formStep) {
     case 0:
@@ -220,7 +248,7 @@ const StepForm = ({
                   name="country"
                   value={country}
                   onChange={onChangeCountry}
-                  options={["USA", "Canada", "UK"]} // Example options
+                  options={countryOptions()} // Example options
                   label="Country"
                   className="forRegister"
                 />
