@@ -49,7 +49,6 @@ const StepForm = ({
   } = onChangeHandlers;
 
   const [countriesData, setCountriesData] = useState([""]);
-  let countryData = [""];
   useEffect(() => {
     fetch('http://localhost:8080/ScrutinyGlobal/getCountries',{
       method : 'GET',
@@ -70,9 +69,7 @@ const StepForm = ({
   },[])
 
   const countryOptions = () => {
-    
       return countriesData;
-      // return ["India","USA"];
   }
 
   switch (formStep) {

@@ -347,24 +347,24 @@ const About = () => {
         className="iconCardGrid"
         spacing={3}
       >
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid>
           <CardComponentIcon
             image={HappyClients}
             title="2234"
             text="Happy Clients"
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid >
           <CardComponentIcon image={Projects} title="1000" text="Projects" />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid >
           <CardComponentIcon
             image={CustomerSupport}
             title="1454"
             text="Hours Of Support"
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid>
           <CardComponentIcon
             image={Hardworkers}
             title="2345"
