@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Style.css";
 import AuthPage from "./AuthPage";
 import StepForm from "./StepForm";
 import CustomModal from "../../MuiComponents/MuiModal/Index";
 import OtpModal from "../../Components/OtpModal/Index";
+import { useSelector, useDispatch } from 'react-redux';
+// import { updateValues } from '../../Store/Slice/userSlice';
+import { updateValues } from '../../Store/Slice/userSlice';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -14,6 +17,9 @@ const Register = () => {
   const [show2, setShow2] = useState(false);
   const [otp, setOtp] = useState("");
   const [verifyMethod, setVerifyMethod] = useState("email");
+
+  // const counter = useSelector(state => state.counter.count);
+  const dispatch = useDispatch();
 
   const [otpVerificationData, setOtpVerificationData] = useState({
     email: "",
@@ -39,6 +45,19 @@ const Register = () => {
   });
   
 
+  useEffect(() => {
+
+    // console.log("in use effect");
+    // console.log(counter);
+    // dispatch(increment());
+    // console.log(counter);
+    // dispatch(increment());
+    // console.log(counter);
+    // dispatch(decrement());
+    // console.log(counter);
+
+
+  },[]);
   const onChangeHandlers = {
     onChangeName: (e) => {
       setFormData({ ...formData, name: e.target.value });
@@ -100,6 +119,7 @@ const Register = () => {
   };
 
   const incrementFormStep = () => {
+    dispatch(updateValues({name:"name",value:formData.name}));
     const newStep = formStep + 1;
     setFormStep(newStep);
   };
