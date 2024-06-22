@@ -9,6 +9,7 @@ const MuiContainedButton = ({
   width,
   mt,
   endIcon,
+  disabled,
 }) => {
   const style = {
     mt: mt ? mt : 1,
@@ -24,6 +25,7 @@ const MuiContainedButton = ({
       sx={style}
       endIcon={endIcon}
       className="containedButton"
+      disabled={disabled}
     >
       <Typography variant="body1" className="buttonText">
         {buttonText}

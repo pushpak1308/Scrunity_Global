@@ -140,6 +140,7 @@ const StepForm = ({
               type="button"
               onClickFunction={incrementFormStep}
               buttonText={"Next"}
+              disabled={confirmPassword !== password || password === ""}
             />
           </Grid>
         </Grid>
