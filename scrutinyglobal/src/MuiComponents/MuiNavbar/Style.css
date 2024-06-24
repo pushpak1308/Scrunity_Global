@@ -1,12 +1,36 @@
 .adminNavbar {
-  background: linear-gradient(270deg, #10d4ff 0%, #3e55ef 100%);
-  box-shadow: 0px 7px 12px 0px #00000040;
+  background-color: white !important;
+  box-shadow: none !important;
+  border-bottom: 1px solid rgba(24, 24, 24, 0.434);
 }
 
-.buttons {
-  text-transform: none !important;
-  min-width: 12rem !important;
-  font-family: "Arimo" !important;
-  font-size: 2.5vh !important;
+.navbarText-1 {
+  font-family: "Vollkorn";
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 33.45px;
   text-align: center;
+  color: black;
+}
+
+.navbarText-2 {
+  font-family: "Arimo";
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 18.41px;
+  text-align: center;
+  color: #28a745;
+}
+.search-input {
+  width: 45%;
+  border-radius: 10px;
+  max-height: 10%;
+}
+
+.no-border {
+  border-radius: 20px !important;
+}
+
+.MuiOutlinedInput-root {
+  border-radius: 20px;
 }

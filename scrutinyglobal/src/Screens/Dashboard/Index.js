@@ -7,6 +7,9 @@ import "./Style.css";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 import { MuiDropDown } from "../../MuiComponents/MuiDropDown/Index";
 import "./Style.css";
+import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
+import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
+import Sidebar from "../../Components/Sidebar/Index";
 
 const Dashboard = () => {
   const [approved, setApproved] = useState(false);
@@ -245,65 +248,62 @@ const Dashboard = () => {
   };
 
   return (
-    <>
-      <MuiAdminNavbar />
-      <Grid container className="dashboard-container">
-        <Grid item xs={12}>
-          <Typography
-            variant="h5"
-            component="div"
-            gutterBottom
-            className="screenHeading"
+    <Grid container>
+      <Grid item md={2}>
+        <Sidebar />
+      </Grid>
+      <Grid item md={10}>
+        <MuiAdminNavbar />
+        <Grid container className="dashboard-container">
+          <Grid
+            item
+            container
+            spacing={3}
+            justifyContent="space-between"
+            alignItems="center"
           >
-            Admin Dashboard
-          </Typography>
-        </Grid>
-        <Grid
-          item
-          container
-          spacing={3}
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          <Grid item xs={12} md={3}>
-            <InfoCard
-              title="Total no of Vendors"
-              value="10"
-              bgcolor="#173CFF24"
-            />
+            <Grid item xs={12} md={3}>
+              <InfoCard
+                title="New Leads"
+                value="21"
+                subtitle="This week"
+                icon={<PeopleAltOutlinedIcon color="success" />}
+              />
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <InfoCard
+                title="Leads Approved"
+                value="20"
+                subtitle="This week"
+              />
+            </Grid>
+            <Grid item xs={12} md={3}>
+              <InfoCard
+                title="Ongoing Projects"
+                value="50"
+                subtitle="CAWI"
+                icon={<FeedOutlinedIcon color="success" />}
+              />
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={3}>
-            <InfoCard
-              title="Total no of Clients"
-              value="10"
-              bgcolor="#FCA5BF45"
-            />
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <InfoCard
-              title="Total no of Projects"
-              value="1"
-              bgcolor="#D1A5FC4D"
-            />
-          </Grid>
-        </Grid>
-        <Grid item xs={12} md={12}>
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            initialState={{
-              pagination: {
-                paginationModel: {
-                  pageSize: 5,
+          <Grid item xs={12} md={12}>
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              initialState={{
+                pagination: {
+                  paginationModel: {
+                    pageSize: 5,
+                  },
                 },
-              },
-            }}
-            pageSizeOptions={[5]}
-            disableRowSelectionOnClick
-          />
+              }}
+              pageSizeOptions={[5]}
+              disableRowSelectionOnClick
+            />
+          </Grid>
         </Grid>
       </Grid>
-    </>
+    </Grid>
   );
 };
 

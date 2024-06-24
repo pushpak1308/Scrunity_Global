@@ -7,7 +7,7 @@ import Register from "./Screens/Auth/Register";
 import Landing from "../src/Screens/LandingPage/Landing";
 import AddProject from "../src/Screens/AddProject";
 import WaitingScreen from "./Screens/Auth/WaitingScreen";
-import Dashboard from "./Screens/AdminDashboard/Index";
+import Dashboard from "./Screens/Dashboard/Index";
 import Invoice from "./Screens/Invoice/Index";
 
 const AppRoutes = () => (
