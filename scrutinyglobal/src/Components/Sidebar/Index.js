@@ -30,15 +30,23 @@ const Sidebar = () => {
       <Grid container alignItems="center" spacing={1}>
         <Grid item>{icon}</Grid>
         <Grid item>
-          {link ? (
-            <Link to={link}>
-              <Typography className="sidebar-text" component="div">
-                {text}
-              </Typography>
-            </Link>
+          {className == "logout" ? (
+            <Typography>
+              <Link to={link} className="sidebar-text logout">
+                {text}{" "}
+              </Link>
+            </Typography>
+          ) : link ? (
+            <Typography>
+              <Link to={link} className="sidebar-text">
+                {text}{" "}
+              </Link>
+            </Typography>
           ) : (
-            <Typography className="sidebar-text" component="div">
-              {text}
+            <Typography>
+              <Link to={link} className="sidebar-text">
+                {text}{" "}
+              </Link>
             </Typography>
           )}
         </Grid>
@@ -51,15 +59,12 @@ const Sidebar = () => {
       <Accordion elevation={0}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls={`${summaryText.toLowerCase()}-content`}
           id={`${summaryText.toLowerCase()}-header`}
         >
-          <Grid container spacing={1}>
+          <Grid container spacing={1} className="sidebar-button">
             <Grid item>{summaryIcon}</Grid>
             <Grid item>
-              <Typography className="sidebar-text" component="div">
-                {summaryText}
-              </Typography>
+              <Typography className="sidebar-text">{summaryText}</Typography>
             </Grid>
           </Grid>
         </AccordionSummary>
@@ -97,12 +102,12 @@ const Sidebar = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <Grid item xs={12}>
+      <Grid item>
         <Link to="/dashboard" className="logo-grid">
           <img alt="SG logo" src={logo} className="avatarLogo" />
         </Link>
       </Grid>
-      <Grid item container alignItems="center" xs={12}>
+      <Grid item container alignItems="center" className="userDetails-grid">
         <Grid item>
           <Avatar alt={userDetails.name} src={userDetails.avatar} />
         </Grid>
@@ -118,7 +123,7 @@ const Sidebar = () => {
           <SidebarButton
             icon={<GridViewOutlinedIcon color="action" />}
             text="Dashboard"
-            link="/"
+            link="/dashboard"
           />
           <SidebarAccordion
             summaryIcon={<FeedOutlinedIcon color="action" />}
@@ -156,7 +161,7 @@ const Sidebar = () => {
           <SidebarButton
             icon={<PeopleAltOutlinedIcon color="error" />}
             text="Log Out"
-            className="sidebar-button logout"
+            className="logout"
           />
         </Grid>
       </Grid>

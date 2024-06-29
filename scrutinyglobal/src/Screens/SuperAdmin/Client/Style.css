@@ -1,0 +1,27 @@
+.screenHeading {
+  font-family: "Vollkorn";
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 44.6px;
+  text-align: center;
+  color: #5b5b5b;
+}
+
+.heading-grid {
+  width: 100%;
+  margin: 2rem;
+  min-height: 10%;
+  display: flex;
+  align-items: center;
+}
+
+.form-grid {
+  margin: 2rem;
+  padding-right: 3rem;
+  padding-left: 3rem;
+  min-width: 70%;
+  min-height: 55vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

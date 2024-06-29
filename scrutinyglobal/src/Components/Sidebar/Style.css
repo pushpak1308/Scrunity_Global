@@ -4,12 +4,12 @@
 }
 
 .logo-grid {
-  min-height: 8vh;
+  max-height: 3vh;
 }
 
 .sidebar-grid {
-  padding: 5%;
-  height: 100vh;
+  padding: 3%;
+  min-height: 100vh;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   box-shadow: 0px 9px 19px 0px #0000000f, 0px 35px 35px 0px #0000000f,
@@ -18,8 +18,8 @@
 }
 
 .sidebar-button {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,17 +31,28 @@
   padding-right: 1.5rem;
 }
 
-.sidebar-text {
-  font-family: "Vollkorn" !important;
-  font-size: 1.2rem;
-  font-weight: 400;
+.userDetails-grid {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
-.logout {
-  color: #cb0202;
+.sidebar-text {
   font-family: "Arimo";
   font-size: 1.2rem;
   font-weight: 400;
+  text-align: center;
+  text-decoration: none !important;
+  color: #5b5b5b;
+}
+
+.logout {
+  font-family: "Arimo";
+  font-size: 1.2rem;
+  padding-top: 0.8rem;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none !important;
+  color: #f10808;
 }
 
 .sidebar-section-1 {
