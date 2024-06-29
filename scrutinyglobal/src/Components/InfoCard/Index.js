@@ -1,13 +1,13 @@
 import React from "react";
-import { Card, CardContent, Typography, Grid } from "@mui/material";
-
+import { Card, CardContent, Typography, Grid, Paper } from "@mui/material";
+import "./Style.css";
 import { Chart } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import { ArcElement, Legend, Tooltip } from "chart.js";
+import { ArcElement, Tooltip } from "chart.js";
 
-Chart.register(ArcElement, Tooltip, Legend);
+Chart.register(ArcElement, Tooltip);
 
-const InfoCard = ({ title, value, subtitle, icon }) => {
+const InfoCard = ({ title, value, subtitle, image }) => {
   const data = {
     labels: ["Vendors", "Clients"],
     datasets: [
@@ -19,33 +19,45 @@ const InfoCard = ({ title, value, subtitle, icon }) => {
       },
     ],
   };
+
+  const options = {
+    cutout: "70%", // inner radius
+    radius: "90%", // outer radius
+  };
+
   const chart = (
     <>
-      <Doughnut data={data} className="doughnut-chart"></Doughnut>
+      <Doughnut
+        data={data}
+        options={options}
+        className="doughnut-chart"
+      ></Doughnut>
     </>
   );
   return (
     <Card className="infoContainer">
       <CardContent>
         <Grid container justifyContent="space-between" alignItems="center">
-          <Grid item container xs={6}>
+          <Grid item container xs={8}>
             <Grid item xs={12}>
-              <Typography component="div" className="infoText">
+              <Paper className="infoText-1" elevation={0}>
                 {value}
-              </Typography>
+              </Paper>
             </Grid>
             <Grid item xs={12}>
-              <Typography component="div" className="infoText">
+              <Paper className="infoText-2" elevation={0}>
                 {title}
-              </Typography>
+              </Paper>
             </Grid>
             <Grid item xs={12}>
-              <Typography component="div" className="infoText">
+              <Paper className="infoText-3" elevation={0}>
                 {subtitle}
-              </Typography>
+              </Paper>
             </Grid>
           </Grid>
-          <Grid item>{icon ? icon : chart}</Grid>
+          <Grid item xs={3}>
+            {image ? <img src={image} /> : chart}
+          </Grid>
         </Grid>
       </CardContent>
     </Card>

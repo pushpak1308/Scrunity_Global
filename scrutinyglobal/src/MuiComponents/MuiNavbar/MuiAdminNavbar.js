@@ -11,14 +11,12 @@ import "./Style.css";
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 
-const NavBar = () => {
+const NavBar = ({ navbarHeading }) => {
   return (
     <AppBar position="static" className="adminNavbar">
       <Toolbar>
         <Grid item direction="column">
-          <Typography component="div" className="navbarText-1">
-            DASHBOARD
-          </Typography>
+          <Typography className="navbarText-1">{navbarHeading}</Typography>
           <Typography variant="body2" className="navbarText-2" component="div">
             Super Admin
           </Typography>
@@ -26,24 +24,28 @@ const NavBar = () => {
         <Grid
           item
           container
-          sx={{ flexGrow: 1 }}
           justifyContent="flex-end"
           alignItems="center"
+          spacing={2}
         >
-          <TextField
-            className="search-input"
-            placeholder="Search"
-            variant="outlined"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-              classes: { notchedOutline: "no-border" },
-            }}
-          />
-          <NotificationsNoneOutlinedIcon color="disabled" fontSize="large" />
+          <Grid item>
+            <TextField
+              placeholder="Search"
+              variant="outlined"
+              size="small"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              }}
+              className="search-input"
+            />
+          </Grid>
+          <Grid item>
+            <NotificationsNoneOutlinedIcon color="disabled" />
+          </Grid>
         </Grid>
       </Toolbar>
     </AppBar>

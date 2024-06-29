@@ -7,9 +7,10 @@ import "./Style.css";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 import { MuiDropDown } from "../../MuiComponents/MuiDropDown/Index";
 import "./Style.css";
-import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
-import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
+import Group from "../../Images/Dashboard/Group.png";
+import Vector from "../../Images/Dashboard/Vector.png";
 import Sidebar from "../../Components/Sidebar/Index";
+import Layout from "./Layout";
 
 const Dashboard = () => {
   const [approved, setApproved] = useState(false);
@@ -71,10 +72,10 @@ const Dashboard = () => {
     {
       field: "role",
       headerName: "Role",
-      width: 150,
+      width: 160,
       headerAlign: "center",
       editable: true,
-      // align: "center",
+      align: "center",
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
       renderCell: (params) => (
@@ -247,64 +248,54 @@ const Dashboard = () => {
     console.log("onChange called ");
   };
 
-  return (
-    <Grid container>
-      <Grid item md={2}>
-        <Sidebar />
-      </Grid>
-      <Grid item md={10}>
-        <MuiAdminNavbar />
-        <Grid container className="dashboard-container">
-          <Grid
-            item
-            container
-            spacing={3}
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <Grid item xs={12} md={3}>
-              <InfoCard
-                title="New Leads"
-                value="21"
-                subtitle="This week"
-                icon={<PeopleAltOutlinedIcon color="success" />}
-              />
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <InfoCard
-                title="Leads Approved"
-                value="20"
-                subtitle="This week"
-              />
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <InfoCard
-                title="Ongoing Projects"
-                value="50"
-                subtitle="CAWI"
-                icon={<FeedOutlinedIcon color="success" />}
-              />
-            </Grid>
-          </Grid>
-          <Grid item xs={12} md={12}>
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              initialState={{
-                pagination: {
-                  paginationModel: {
-                    pageSize: 5,
-                  },
-                },
-              }}
-              pageSizeOptions={[5]}
-              disableRowSelectionOnClick
-            />
-          </Grid>
+  const content = (
+    <Grid container className="dashboard-container">
+      <Grid
+        item
+        container
+        spacing={3}
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Grid item xs={12} md={3}>
+          <InfoCard
+            title="New Leads"
+            value="21"
+            subtitle="This week"
+            image={Group}
+          />
         </Grid>
+        <Grid item xs={12} md={3}>
+          <InfoCard title="Leads Approved" value="20" subtitle="This week" />
+        </Grid>
+        <Grid item xs={12} md={3}>
+          <InfoCard
+            title="Ongoing Projects"
+            value="50"
+            subtitle="CAWI"
+            image={Vector}
+          />
+        </Grid>
+      </Grid>
+      <Grid item xs={12} md={12}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 5,
+              },
+            },
+          }}
+          pageSizeOptions={[5]}
+          disableRowSelectionOnClick
+        />
       </Grid>
     </Grid>
   );
+
+  return <Layout content={content} navbarHeading="DASHBOARD" />;
 };
 
 export default Dashboard;

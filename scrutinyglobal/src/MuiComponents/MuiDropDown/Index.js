@@ -3,7 +3,6 @@ import React from "react";
 import { Autocomplete, InputLabel, TextField } from "@mui/material";
 
 export const MuiDropDown = ({
-  name,
   value,
   onChange,
   options,
@@ -11,6 +10,7 @@ export const MuiDropDown = ({
   defaultValue,
   className,
 }) => {
+  const name = value;
   return (
     <>
       <InputLabel
