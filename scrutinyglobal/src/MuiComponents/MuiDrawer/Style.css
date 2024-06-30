@@ -1,0 +1,35 @@
+.avatarLogo {
+  width: 30%;
+  margin: 1rem;
+}
+
+.userDetails {
+  margin: 1rem;
+}
+
+.sidebar-grid {
+  display: flex;
+  border-top-right-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+  box-shadow: 0px 9px 19px 0px #0000000f, 0px 35px 35px 0px #0000000f,
+    0px 78px 47px 0px #00000008, 0px 139px 56px 0px #00000003,
+    0px 218px 61px 0px #00000000 !important;
+}
+
+.sidebar-text {
+  color: #5b5b5b;
+  text-decoration: none;
+}
+
+.list-grid {
+  padding-top: 2rem;
+}
+
+.logout {
+  color: #f10808;
+  text-decoration: none;
+}
+
+.subList {
+  padding-left: 2rem;
+}

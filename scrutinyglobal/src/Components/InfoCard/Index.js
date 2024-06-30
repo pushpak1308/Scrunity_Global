@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, Typography, Grid, Paper } from "@mui/material";
+import { Card, CardContent, Grid, Paper } from "@mui/material";
 import "./Style.css";
 import { Chart } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
@@ -21,8 +21,8 @@ const InfoCard = ({ title, value, subtitle, image }) => {
   };
 
   const options = {
-    cutout: "70%", // inner radius
-    radius: "90%", // outer radius
+    cutout: "80%", // inner radius
+    radius: "100%", // outer radius
   };
 
   const chart = (
@@ -37,7 +37,12 @@ const InfoCard = ({ title, value, subtitle, image }) => {
   return (
     <Card className="infoContainer">
       <CardContent>
-        <Grid container justifyContent="space-between" alignItems="center">
+        <Grid
+          container
+          justifyContent="space-between"
+          alignItems="center"
+          className="info-subcontainer"
+        >
           <Grid item container xs={8}>
             <Grid item xs={12}>
               <Paper className="infoText-1" elevation={0}>
@@ -56,7 +61,7 @@ const InfoCard = ({ title, value, subtitle, image }) => {
             </Grid>
           </Grid>
           <Grid item xs={3}>
-            {image ? <img src={image} /> : chart}
+            {image ? <img src={image} alt={title} /> : chart}
           </Grid>
         </Grid>
       </CardContent>

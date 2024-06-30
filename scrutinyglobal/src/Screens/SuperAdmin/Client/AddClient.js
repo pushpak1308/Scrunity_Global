@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import StepForm from "../../../Components/StepForm/Index";
 import { MuiTextField } from "../../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../../MuiComponents/MuiDropDown/Index";
+import CustomModal from "../../../MuiComponents/MuiModal/Index";
 import Layout from "../Layout";
 import "./Style.css";
 
@@ -19,6 +20,7 @@ const AddClient = () => {
   const [country, setCountry] = useState("");
   const [currency, setCurrency] = useState("");
   const [industry, setIndustry] = useState("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const onChangeCountry = (e) => {
     setCountry(e.target.value);
@@ -69,7 +71,7 @@ const AddClient = () => {
   };
   const steps = [
     [
-      <Grid item xs={12}>
+      <Grid item>
         <MuiDropDown
           value={clientName}
           //   defaultValue={reduxData?.accountType || ""}
@@ -80,7 +82,7 @@ const AddClient = () => {
         />
       </Grid>,
       <Grid item>
-        <Grid container spacing={3} justifyContent="space-between">
+        <Grid container spacing={2} justifyContent="space-between">
           <Grid item md={5}>
             <MuiTextField
               type="text"
@@ -103,8 +105,8 @@ const AddClient = () => {
           </Grid>
         </Grid>
       </Grid>,
-      <Grid item xs={12}>
-        <Grid container spacing={3} justifyContent="space-between">
+      <Grid item>
+        <Grid container spacing={2} justifyContent="space-between">
           <Grid item md={5}>
             <MuiTextField
               type="text"
@@ -129,7 +131,7 @@ const AddClient = () => {
       </Grid>,
     ],
     [
-      <Grid item xs={12}>
+      <Grid item>
         <MuiTextField
           type="text"
           value={email}
@@ -138,7 +140,7 @@ const AddClient = () => {
           className="forRegister"
         />
       </Grid>,
-      <Grid item xs={12}>
+      <Grid item>
         <MuiTextField
           type="text"
           value={websiteLink}
@@ -147,7 +149,7 @@ const AddClient = () => {
           className="forRegister"
         />
       </Grid>,
-      <Grid item xs={12}>
+      <Grid item>
         <MuiDropDown
           value={status}
           //   defaultValue={reduxData?.accountType || ""}
@@ -159,7 +161,7 @@ const AddClient = () => {
       </Grid>,
     ],
     [
-      <Grid item xs={12}>
+      <Grid item>
         <MuiTextField
           type="text"
           value={address}
@@ -168,8 +170,8 @@ const AddClient = () => {
           className="forRegister"
         />
       </Grid>,
-      <Grid item xs={12}>
-        <Grid container spacing={3} justifyContent="space-between">
+      <Grid item>
+        <Grid container spacing={2} justifyContent="space-between">
           <Grid item md={5}>
             <MuiTextField
               type="text"
@@ -192,7 +194,7 @@ const AddClient = () => {
           </Grid>
         </Grid>
       </Grid>,
-      <Grid item xs={12}>
+      <Grid item>
         <MuiDropDown
           value={industry}
           //   defaultValue={reduxData?.accountType || ""}
@@ -207,18 +209,35 @@ const AddClient = () => {
 
   const handleSave = (formData) => {
     // Save form data
+    setShowSuccessModal(!showSuccessModal);
     console.log("Form Data:", formData);
+  };
+
+  const handleClose = () => {
+    setShowSuccessModal(!showSuccessModal);
   };
 
   const content = (
     <Grid container alignItems="center">
       <Grid item className="heading-grid">
-        <Typography className="screenHeading">Add a New Client</Typography>
+        <Paper elevation={0} className="screenHeading">
+          Add a New Client
+        </Paper>
       </Grid>
       <Grid item>
         <Paper elevation={2} className="form-grid">
-          <StepForm steps={steps} onSave={handleSave} />
+          <Grid className="form-sub-grid">
+            <StepForm steps={steps} onSave={handleSave} />
+          </Grid>
         </Paper>
+        <CustomModal
+          show={showSuccessModal}
+          handleClose={handleClose}
+          heading="Client Saved 🎉"
+          buttonPrimaryText="View"
+          // image={f}
+          // handleModalButtonClick={handleGotToWaitingScreen}
+        />
       </Grid>
     </Grid>
   );

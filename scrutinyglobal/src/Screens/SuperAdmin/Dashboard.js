@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import MuiAdminNavbar from "../../MuiComponents/MuiNavbar/MuiAdminNavbar";
-import { Button, Grid, Typography, styled } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import InfoCard from "../../Components/InfoCard/Index";
 import "./Style.css";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
@@ -9,7 +8,6 @@ import { MuiDropDown } from "../../MuiComponents/MuiDropDown/Index";
 import "./Style.css";
 import Group from "../../Images/Dashboard/Group.png";
 import Vector from "../../Images/Dashboard/Vector.png";
-import Sidebar from "../../Components/Sidebar/Index";
 import Layout from "./Layout";
 
 const Dashboard = () => {

@@ -1,25 +1,31 @@
 .screenHeading {
   font-family: "Vollkorn";
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 600;
-  line-height: 44.6px;
   text-align: center;
-  color: #5b5b5b;
+  color: #5b5b5b !important;
+  margin: 1rem;
 }
 
 .heading-grid {
   width: 100%;
-  margin: 2rem;
   min-height: 10%;
   display: flex;
   align-items: center;
 }
 
 .form-grid {
-  margin: 2rem;
-  padding-right: 3rem;
-  padding-left: 3rem;
-  min-width: 70%;
+  margin-left: 4rem;
+  padding: 2rem;
+  /* padding-left: 3rem; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-sub-grid {
+  max-width: 69%;
+  min-width: 69%;
   min-height: 55vh;
   display: flex;
   align-items: center;

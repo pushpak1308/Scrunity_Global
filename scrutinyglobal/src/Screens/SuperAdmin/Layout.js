@@ -1,13 +1,13 @@
 import { Grid } from "@mui/material";
 import React from "react";
-import Sidebar from "../../Components/Sidebar/Index";
 import MuiAdminNavbar from "../../MuiComponents/MuiNavbar/MuiAdminNavbar";
+import MuiDrawer from "../../MuiComponents/MuiDrawer/Index";
 
 const Layout = ({ content, navbarHeading }) => {
   return (
     <Grid container>
       <Grid item md={2}>
-        <Sidebar />
+        <MuiDrawer />
       </Grid>
       <Grid item container md={10}>
         <Grid item xs={12}>

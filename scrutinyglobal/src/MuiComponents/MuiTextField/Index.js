@@ -11,6 +11,7 @@ export const MuiTextField = ({
   placeholder,
   defaultValue,
   label,
+  rows,
 }) => {
   return (
     <>
@@ -30,6 +31,8 @@ export const MuiTextField = ({
         variant="standard"
         value={value}
         onChange={onChange}
+        multiline={rows ? true : false}
+        rows={rows}
         className={
           className === "forRegister" ? "forRegister" : "arimo-input-label"
         }

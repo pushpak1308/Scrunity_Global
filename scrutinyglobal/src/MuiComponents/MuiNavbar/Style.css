@@ -7,20 +7,19 @@
 
 .navbarText-1 {
   font-family: "Vollkorn";
-  font-size: 24px;
+  font-size: 1.1rem;
   font-weight: 600;
-  line-height: 33.45px;
   text-align: center;
   color: black;
+  text-wrap: nowrap;
 }
 
 .navbarText-2 {
   font-family: "Arimo";
-  font-size: 16px;
+  font-size: 0.9rem;
   font-weight: 700;
-  line-height: 18.41px;
   text-align: center;
-  color: #28a745;
+  color: #28a745 !important;
 }
 .search-input {
   width: 25rem;

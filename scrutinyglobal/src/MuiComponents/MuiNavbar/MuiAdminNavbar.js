@@ -6,6 +6,7 @@ import {
   Grid,
   TextField,
   InputAdornment,
+  Paper,
 } from "@mui/material";
 import "./Style.css";
 import SearchIcon from "@mui/icons-material/Search";
@@ -16,10 +17,12 @@ const NavBar = ({ navbarHeading }) => {
     <AppBar position="static" className="adminNavbar">
       <Toolbar>
         <Grid item direction="column">
-          <Typography className="navbarText-1">{navbarHeading}</Typography>
-          <Typography variant="body2" className="navbarText-2" component="div">
+          <Paper elevation={0} className="navbarText-1">
+            {navbarHeading}
+          </Paper>
+          <Paper elevation={0} className="navbarText-2">
             Super Admin
-          </Typography>
+          </Paper>
         </Grid>
         <Grid
           item
