@@ -18,8 +18,8 @@ const Clients = () => {
       headerClassName: "dataGrid-header",
     },
     {
-      field: "approval",
-      headerName: "Approval",
+      field: "status",
+      headerName: "Status",
       width: 150,
       headerAlign: "center",
       editable: true,
@@ -169,7 +169,7 @@ const Clients = () => {
     {
       id: 1,
       role: "Vendor",
-      approval: "Yes",
+      status: "Yes",
       name: "Daniel",
       number: "123456789",
       email: "daniel@gmail.com",
@@ -187,7 +187,7 @@ const Clients = () => {
     {
       id: 2,
       role: "Vendor",
-      approval: "Yes",
+      status: "Yes",
       name: "Daniel",
       number: "123456789",
       email: "daniel@gmail.com",
@@ -206,7 +206,13 @@ const Clients = () => {
 
   const content = (
     <Grid container>
-      <Grid item container justifyContent="center" alignItems="center">
+      <Grid
+        item
+        container
+        className="heading-grid2"
+        justifyContent="center"
+        alignItems="end"
+      >
         <Grid item md={4}>
           <Paper elevation={0} className="screenHeading">
             CLIENT LIST

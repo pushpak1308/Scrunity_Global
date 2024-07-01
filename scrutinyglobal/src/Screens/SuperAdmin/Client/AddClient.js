@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Paper } from "@mui/material";
+import { Grid, Paper, Typography } from "@mui/material";
 import StepForm from "../../../Components/StepForm/Index";
 import { MuiTextField } from "../../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../../MuiComponents/MuiDropDown/Index";
@@ -218,7 +218,7 @@ const AddClient = () => {
   };
 
   const content = (
-    <Grid container alignItems="center">
+    <Grid container alignItems="center" justifyContent="center">
       <Grid item className="heading-grid">
         <Paper elevation={0} className="screenHeading">
           Add a New Client
