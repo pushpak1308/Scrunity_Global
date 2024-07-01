@@ -18,3 +18,10 @@
   margin-top: 0.5rem;
   font-size: 1rem !important;
 }
+
+.forAddClient {
+  font-family: "Arimo" !important;
+  font-size: 1.2rem !important;
+  font-weight: 400 !important;
+  padding: 0.9rem !important;
+}

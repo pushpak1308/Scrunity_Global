@@ -78,53 +78,53 @@ const AddClient = () => {
           onChange={onChangeClientName}
           options={["User", "Premium", "Vendor"]}
           label="Client Name"
-          className="forRegister"
+          className="forAddClient"
         />
       </Grid>,
       <Grid item>
-        <Grid container spacing={2} justifyContent="space-between">
-          <Grid item md={5}>
+        <Grid container spacing={2}>
+          <Grid item md={6}>
             <MuiTextField
               type="text"
               value={contactName}
               label="Contact Name"
               // defaultValue={reduxData?.city || ""}
               onChange={onChangeContactName}
-              className="forRegister"
+              className="forAddClient"
             />
           </Grid>
-          <Grid item md={5}>
+          <Grid item md={6}>
             <MuiTextField
               type="text"
               value={alternateContactName}
               label="Alternate Contact Name"
               // defaultValue={reduxData?.state || ""}
               onChange={onChangeAlternateContactName}
-              className="forRegister"
+              className="forAddClient"
             />
           </Grid>
         </Grid>
       </Grid>,
       <Grid item>
-        <Grid container spacing={2} justifyContent="space-between">
-          <Grid item md={5}>
+        <Grid container spacing={2}>
+          <Grid item md={6}>
             <MuiTextField
               type="text"
               value={contactNumber}
               label="Contact Number"
               // defaultValue={reduxData?.city || ""}
               onChange={onChangeContactNumber}
-              className="forRegister"
+              className="forAddClient"
             />
           </Grid>
-          <Grid item md={5}>
+          <Grid item md={6}>
             <MuiTextField
               type="text"
               value={alternateContactNumber}
               label="Alternate Contact Number"
               // defaultValue={reduxData?.state || ""}
               onChange={onChangeAlternateContactNumber}
-              className="forRegister"
+              className="forAddClient"
             />
           </Grid>
         </Grid>
@@ -137,7 +137,7 @@ const AddClient = () => {
           value={email}
           label="Email"
           onChange={onChangeEmail}
-          className="forRegister"
+          className="forAddClient"
         />
       </Grid>,
       <Grid item>
@@ -146,7 +146,7 @@ const AddClient = () => {
           value={websiteLink}
           label="Website Link"
           onChange={onChangeWebsiteLink}
-          className="forRegister"
+          className="forAddClient"
         />
       </Grid>,
       <Grid item>
@@ -156,7 +156,7 @@ const AddClient = () => {
           onChange={onChangeStatus}
           options={["status 1", "status 2", "status 3"]}
           label="Status"
-          className="forRegister"
+          className="forAddClient"
         />
       </Grid>,
     ],
@@ -167,29 +167,29 @@ const AddClient = () => {
           value={address}
           label="Address"
           onChange={onChangeAddress}
-          className="forRegister"
+          className="forAddClient"
         />
       </Grid>,
       <Grid item>
-        <Grid container spacing={2} justifyContent="space-between">
-          <Grid item md={5}>
+        <Grid container spacing={2}>
+          <Grid item md={6}>
             <MuiTextField
               type="text"
               value={country}
               label="Country"
               // defaultValue={reduxData?.city || ""}
               onChange={onChangeCountry}
-              className="forRegister"
+              className="forAddClient"
             />
           </Grid>
-          <Grid item md={5}>
+          <Grid item md={6}>
             <MuiTextField
               type="text"
               value={currency}
               label="Currency"
               // defaultValue={reduxData?.state || ""}
               onChange={onChangeCurrency}
-              className="forRegister"
+              className="forAddClient"
             />
           </Grid>
         </Grid>
@@ -201,7 +201,7 @@ const AddClient = () => {
           onChange={onChangeIndustry}
           options={["industry 1", "industry 2", "industry 3"]}
           label="Industry"
-          className="forRegister"
+          className="forAddClient"
         />
       </Grid>,
     ],
@@ -224,20 +224,28 @@ const AddClient = () => {
           Add a New Client
         </Paper>
       </Grid>
-      <Grid item>
-        <Paper elevation={2} className="form-grid">
-          <Grid className="form-sub-grid">
+      <Grid
+        item
+        container
+        md={7}
+        className="form-grid"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid item>
+          <Paper elevation={2} className="form-sub-grid">
             <StepForm steps={steps} onSave={handleSave} />
-          </Grid>
-        </Paper>
-        <CustomModal
-          show={showSuccessModal}
-          handleClose={handleClose}
-          heading="Client Saved 🎉"
-          buttonPrimaryText="View"
-          // image={f}
-          // handleModalButtonClick={handleGotToWaitingScreen}
-        />
+          </Paper>
+        </Grid>
+        <Grid item>
+          <CustomModal
+            show={showSuccessModal}
+            handleClose={handleClose}
+            heading="Client Saved 🎉"
+            buttonPrimaryText="View"
+            // handleModalButtonClick={handleGotToWaitingScreen}
+          />
+        </Grid>
       </Grid>
     </Grid>
   );

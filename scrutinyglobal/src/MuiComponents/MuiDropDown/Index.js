@@ -1,6 +1,7 @@
 // MuiDropDown/Index.js
 import React from "react";
 import { Autocomplete, InputLabel, TextField } from "@mui/material";
+import "../MuiTextField/Style.css";
 
 export const MuiDropDown = ({
   value,
@@ -13,19 +14,13 @@ export const MuiDropDown = ({
   const name = value;
   return (
     <>
-      <InputLabel
-        className={
-          className === "forRegister" ? "forRegister" : "arimo-input-label"
-        }
-      >
+      <InputLabel className={className ? className : "arimo-input-label"}>
         {label}
       </InputLabel>
       <Autocomplete
         id={`${name}-autocomplete`}
         value={value}
-        className={
-          className === "forRegister" ? "forRegister" : "arimo-input-label"
-        }
+        className={className ? className : "arimo-input-label"}
         defaultValue={defaultValue}
         onChange={(event, newValue) => {
           onChange({

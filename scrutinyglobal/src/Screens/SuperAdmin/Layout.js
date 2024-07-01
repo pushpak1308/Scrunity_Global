@@ -7,7 +7,7 @@ const Layout = ({ content, navbarHeading }) => {
   return (
     <Grid container>
       <Grid item md={2}>
-        <MuiDrawer />
+        <MuiDrawer active={navbarHeading} />
       </Grid>
       <Grid item container md={10}>
         <Grid item xs={12}>

@@ -22,7 +22,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleDrawer, selectDrawerOpen } from "../../Store/Slice/drawerSlice";
 const drawerWidth = 240;
 
-export default function MuiDrawer() {
+export default function MuiDrawer({ active }) {
   const openClient = useSelector(selectDrawerOpen);
   const dispatch = useDispatch();
 
@@ -74,8 +74,13 @@ export default function MuiDrawer() {
         <List className="list-grid">
           <LinkButton
             text="Dashboard"
-            icon={<GridViewOutlinedIcon color="action" />}
+            icon={
+              <GridViewOutlinedIcon
+                color={active === "DASHBOARD" ? "primary" : "action"}
+              />
+            }
             link="dashboard"
+            active={active === "DASHBOARD"}
           />
           <CollapseButton
             text="Client"
@@ -85,27 +90,52 @@ export default function MuiDrawer() {
           >
             <LinkButton
               text="Add Client"
-              icon={<AddIcon />}
+              icon={
+                <AddIcon
+                  color={active === "ADD CLIENT" ? "primary" : "action"}
+                />
+              }
               link="add-client"
+              active={active === "ADD CLIENT"}
             />
             <LinkButton
               text="Clients"
-              icon={<PeopleAltOutlinedIcon />}
+              icon={
+                <PeopleAltOutlinedIcon
+                  color={active === "CLIENTS" ? "primary" : "action"}
+                />
+              }
               link="clients"
+              active={active === "CLIENTS"}
             />
           </CollapseButton>
           <LinkButton
             text="Projects"
-            icon={<PeopleAltOutlinedIcon color="action" />}
+            icon={
+              <PeopleAltOutlinedIcon
+                color={active === "PROJECTS" ? "primary" : "action"}
+              />
+            }
+            active={active === "PROJECTS"}
           />
           <LinkButton
             text="Vendors"
-            icon={<PeopleAltOutlinedIcon color="action" />}
+            icon={
+              <PeopleAltOutlinedIcon
+                color={active === "VENDORS" ? "primary" : "action"}
+              />
+            }
+            active={active === "VENDORS"}
           />
           <LinkButton
-            text="Sales Modules"
-            icon={<PeopleAltOutlinedIcon color="action" />}
+            text="Sales Module"
+            icon={
+              <PeopleAltOutlinedIcon
+                color={active === "SALES MODULE" ? "primary" : "action"}
+              />
+            }
             link="invoice"
+            active={active === "SALES MODULE"}
           />
         </List>
         <Divider />

@@ -33,3 +33,7 @@
 .subList {
   padding-left: 2rem;
 }
+
+.list-button :active {
+  background-color: aqua;
+}

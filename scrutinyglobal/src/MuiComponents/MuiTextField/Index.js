@@ -15,11 +15,7 @@ export const MuiTextField = ({
 }) => {
   return (
     <>
-      <InputLabel
-        className={
-          className === "forRegister" ? "forRegister" : "arimo-input-label"
-        }
-      >
+      <InputLabel className={className ? className : "arimo-input-label"}>
         {label}
       </InputLabel>
 
@@ -33,9 +29,7 @@ export const MuiTextField = ({
         onChange={onChange}
         multiline={rows ? true : false}
         rows={rows}
-        className={
-          className === "forRegister" ? "forRegister" : "arimo-input-label"
-        }
+        className={className ? className : "arimo-input-label"}
         size="small"
         fullWidth
         required

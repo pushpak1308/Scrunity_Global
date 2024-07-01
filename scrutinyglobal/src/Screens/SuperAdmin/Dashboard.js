@@ -9,6 +9,7 @@ import "./Style.css";
 import Group from "../../Images/Dashboard/Group.png";
 import Vector from "../../Images/Dashboard/Vector.png";
 import Layout from "./Layout";
+import MuiDataGrid from "../../MuiComponents/MuiDataGrid/Index";
 
 const Dashboard = () => {
   const [approved, setApproved] = useState(false);
@@ -275,20 +276,8 @@ const Dashboard = () => {
           />
         </Grid>
       </Grid>
-      <Grid item xs={12} md={12}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 5,
-              },
-            },
-          }}
-          pageSizeOptions={[5]}
-          disableRowSelectionOnClick
-        />
+      <Grid item md={12}>
+        <MuiDataGrid rows={rows} columns={columns} />
       </Grid>
     </Grid>
   );

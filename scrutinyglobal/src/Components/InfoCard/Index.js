@@ -1,37 +1,29 @@
 import React from "react";
 import { Card, CardContent, Grid, Paper } from "@mui/material";
 import "./Style.css";
-import { Chart } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
-import { ArcElement, Tooltip } from "chart.js";
 
-Chart.register(ArcElement, Tooltip);
+import { PieChart } from "@mui/x-charts/PieChart";
 
 const InfoCard = ({ title, value, subtitle, image }) => {
-  const data = {
-    labels: ["Vendors", "Clients"],
-    datasets: [
-      {
-        label: "Leads Approved",
-        data: [10, 10],
-        backgroundColor: [" #31BAF4", "#C6F5FF"],
-        borderColor: ["#31BAF4", "#C6F5FF"],
-      },
-    ],
-  };
-
-  const options = {
-    cutout: "80%", // inner radius
-    radius: "100%", // outer radius
-  };
+  const pieParams = { height: 100, marginRight: 5 };
 
   const chart = (
     <>
-      <Doughnut
-        data={data}
-        options={options}
-        className="doughnut-chart"
-      ></Doughnut>
+      <PieChart
+        series={[
+          {
+            data: [
+              { value: 10, color: " #31BAF4" },
+              { value: 10, color: "#C6F5FF" },
+            ],
+            innerRadius: 25,
+            outerRadius: 40,
+            paddingAngle: 0,
+            cornerRadius: 0,
+          },
+        ]}
+        {...pieParams}
+      />
     </>
   );
   return (
@@ -60,9 +52,7 @@ const InfoCard = ({ title, value, subtitle, image }) => {
               </Paper>
             </Grid>
           </Grid>
-          <Grid item xs={3}>
-            {image ? <img src={image} alt={title} /> : chart}
-          </Grid>
+          <Grid item>{image ? <img src={image} alt={title} /> : chart}</Grid>
         </Grid>
       </CardContent>
     </Card>

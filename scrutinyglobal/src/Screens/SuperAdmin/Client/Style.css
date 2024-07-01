@@ -15,19 +15,40 @@
 }
 
 .form-grid {
-  margin-left: 4rem;
-  padding: 2rem;
-  /* padding-left: 3rem; */
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+}
+.form-sub-grid {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.form-sub-grid {
-  max-width: 69%;
-  min-width: 69%;
-  min-height: 55vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.client-button {
+  min-width: 1em !important;
+  text-transform: none !important;
+  box-shadow: 0px 2.79px 5.57px 0px #0000000f, 0px 9.75px 9.75px 0px #0000000d,
+    0px 22.29px 13.23px 0px #00000008, 0px 39.7px 16.02px 0px #00000003,
+    0px 61.98px 17.41px 0px #00000000;
+  font-family: "Arimo" !important;
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  line-height: 18.4px;
+  text-align: center;
+}
+.delete-class {
+  border: 2.25px solid red !important;
+  color: red !important;
+}
+
+.add-class {
+  border: 2.25px solid #28a745 !important;
+  color: #28a745 !important;
+}
+
+.export-class {
+  border: 2.25px solid #001aff !important;
+  color: #001aff !important;
 }

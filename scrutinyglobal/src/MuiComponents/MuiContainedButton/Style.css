@@ -27,3 +27,40 @@
 .buttonText {
   text-decoration: bold;
 }
+
+.StepForm-next {
+  border-radius: 10px;
+  text-transform: none !important;
+  min-width: 100px !important;
+  box-shadow: 0px 5px 11px 0px #0000001a, 0px 19px 19px 0px #00000017,
+    0px 44px 26px 0px #0000000d, 0px 78px 31px 0px #00000003,
+    0px 122px 34px 0px #00000000 !important;
+  background: #25a442 !important;
+}
+
+.StepForm-previous {
+  border-radius: 10px;
+  text-transform: none !important;
+  min-width: 100px !important;
+  border: 3px solid #28a745 !important;
+  box-shadow: 0px 5px 11px 0px #0000001a, 0px 19px 19px 0px #00000017,
+    0px 44px 26px 0px #0000000d, 0px 78px 31px 0px #00000003,
+    0px 122px 34px 0px #00000000;
+}
+
+.StepForm-next .buttonText {
+  font-family: "Arimo";
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 23.67px;
+  text-align: center;
+}
+
+.StepForm-previous .buttonText {
+  font-family: "Arimo";
+  color: #28a745;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 23.67px;
+  text-align: center;
+}

@@ -19,6 +19,7 @@
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
+  text-wrap: nowrap !important;
   color: #28a745 !important;
 }
 .search-input {

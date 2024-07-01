@@ -39,6 +39,8 @@ const StepForm = ({ steps, onSave }) => {
             type="button"
             onClickFunction={handlePrev}
             buttonText={"Previous"}
+            variant="outlined"
+            className="StepForm-previous"
           />
         )}
         {!isLastStep ? (
@@ -46,12 +48,14 @@ const StepForm = ({ steps, onSave }) => {
             type="button"
             onClickFunction={handleNext}
             buttonText={"Next"}
+            className="StepForm-next"
           />
         ) : (
           <CustomContainedButton
             type="button"
             onClickFunction={handleSave}
             buttonText={"Save"}
+            className="StepForm-next"
           />
         )}
       </Grid>
