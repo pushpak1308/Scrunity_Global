@@ -6,11 +6,12 @@ import ResetPassword from "./Screens/Auth/ResetPassword";
 import Landing from "./Screens/LandingPage/Landing";
 import Register from "./Screens/Auth/Register";
 import WaitingScreen from "./Screens/Auth/WaitingScreen";
-import AddProject from "./Screens/AddProject";
 import AddClient from "./Screens/SuperAdmin/Client/AddClient";
 import Dashboard from "./Screens/SuperAdmin/Dashboard";
 import Invoice from "./Screens/SuperAdmin/Invoice";
 import Clients from "./Screens/SuperAdmin/Client/Clients";
+import ClientDetail from "./Screens/SuperAdmin/Client/ClientDetail";
+import AddProject from "./Screens/SuperAdmin/Project/AddProject";
 
 const WithoutTokenRoutes = () => {
   return (
@@ -29,6 +30,7 @@ const WithoutTokenRoutes = () => {
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/invoice" element={<Invoice />} />
         <Route exact path="/add-client" element={<AddClient />} />
+        <Route exact path="/client/:id" element={<ClientDetail />} />
       </Routes>
     </BrowserRouter>
   );

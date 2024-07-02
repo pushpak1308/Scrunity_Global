@@ -4,10 +4,15 @@ import Layout from "../Layout";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
-import MuiContainedButton from "../../../MuiComponents/MuiContainedButton/Index";
 import MuiDataGrid from "../../../MuiComponents/MuiDataGrid/Index";
+import { useNavigate } from "react-router-dom";
 
 const Clients = () => {
+  const navigate = useNavigate();
+
+  const handleAddProject = () => {
+    navigate("/add-project");
+  };
   const [columns, setColumns] = useState([
     {
       field: "id",
@@ -204,6 +209,10 @@ const Clients = () => {
     },
   ];
 
+  const handleRowClick = (params) => {
+    navigate(`/client/${params.id}`);
+  };
+
   const content = (
     <Grid container>
       <Grid
@@ -229,6 +238,7 @@ const Clients = () => {
             <Button
               variant="outlined"
               color="error"
+              onClick={handleAddProject}
               className="client-button add-class"
               startIcon={<AddIcon color="success" fontSize="large" />}
             >
@@ -261,7 +271,11 @@ const Clients = () => {
       </Grid>
 
       <Grid item md={12}>
-        <MuiDataGrid rows={rows} columns={columns} />
+        <MuiDataGrid
+          rows={rows}
+          columns={columns}
+          handleRowClick={handleRowClick}
+        />
       </Grid>
     </Grid>
   );

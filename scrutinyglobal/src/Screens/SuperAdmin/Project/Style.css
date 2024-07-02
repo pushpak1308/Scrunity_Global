@@ -1,0 +1,25 @@
+.fixing-height {
+  height: 68vh;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: none !important;
+  border-top-right-radius: none !important;
+  border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+}
+.fixed-heading {
+  /* position: sticky; */
+  background: #31baf4;
+  font-family: "Arimo";
+  font-size: 1.4rem;
+  padding: 0.7rem;
+  font-weight: 700;
+  color: #ffffff;
+  width: 100%;
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+}

@@ -102,11 +102,21 @@ export default function MuiDrawer({ active }) {
               text="Clients"
               icon={
                 <PeopleAltOutlinedIcon
-                  color={active === "CLIENTS" ? "primary" : "action"}
+                  color={
+                    active === "CLIENTS" ||
+                    active === "CLIENT DETAILS" ||
+                    active === "ADD PROJECT"
+                      ? "primary"
+                      : "action"
+                  }
                 />
               }
               link="clients"
-              active={active === "CLIENTS"}
+              active={
+                active === "CLIENTS" ||
+                active === "CLIENT DETAILS" ||
+                active === "ADD PROJECT"
+              }
             />
           </CollapseButton>
           <LinkButton

@@ -34,7 +34,7 @@
 }
 
 .client-button {
-  margin-bottom: 1rem;
+  margin-bottom: 1.1rem !important;
   min-width: 1em !important;
   text-transform: none !important;
   box-shadow: 0px 2.79px 5.57px 0px #0000000f, 0px 9.75px 9.75px 0px #0000000d,
@@ -59,4 +59,44 @@
 .export-class {
   border: 2.25px solid #001aff !important;
   color: #001aff !important;
+}
+
+.client-detail-grid {
+  padding: 1.8rem;
+}
+
+.section-heading {
+  background: #31baf4;
+  font-family: "Arimo";
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 25.31px;
+  color: #ffffff;
+  width: 95%;
+  padding: 0.5rem;
+}
+
+.two-in-a-row {
+  width: 100%;
+}
+.one-in-a-row {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.active-inactive-grid {
+  height: 30vh;
+  padding-top: 2rem;
+  margin-top: 2rem;
+}
+
+.active-inactive {
+  font-family: "Arimo" !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  text-align: center;
+  padding-top: 0.4rem;
+  padding-left: 2rem;
+  color: #3a3a3b;
 }
