@@ -123,10 +123,15 @@ export default function MuiDrawer({ active }) {
             text="Projects"
             icon={
               <PeopleAltOutlinedIcon
-                color={active === "PROJECTS" ? "primary" : "action"}
+                color={
+                  active === "PROJECT DETAILS" || active === "PROJECTS"
+                    ? "primary"
+                    : "action"
+                }
               />
             }
-            active={active === "PROJECTS"}
+            link="projects"
+            active={active === "PROJECTS" || active === "PROJECT DETAILS"}
           />
           <LinkButton
             text="Vendors"

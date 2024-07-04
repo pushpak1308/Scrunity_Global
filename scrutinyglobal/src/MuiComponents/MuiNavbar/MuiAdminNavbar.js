@@ -33,6 +33,7 @@ const NavBar = ({ navbarHeading }) => {
         >
           <Grid item>
             <TextField
+              className="search-input"
               placeholder="Search"
               variant="outlined"
               size="small"
@@ -43,7 +44,6 @@ const NavBar = ({ navbarHeading }) => {
                   </InputAdornment>
                 ),
               }}
-              className="search-input"
             />
           </Grid>
           <Grid item>

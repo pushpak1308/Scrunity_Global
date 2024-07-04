@@ -3,7 +3,14 @@ import { DataGrid } from "@mui/x-data-grid";
 import React from "react";
 import "./Style.css";
 
-const MuiDataGrid = ({ rows, columns, handleRowClick }) => {
+const MuiDataGrid = ({
+  rows,
+  columns,
+  onRowSelectionModelChange,
+  checkboxSelection,
+  rowSelectionModel,
+  columnVisibilityModel,
+}) => {
   return (
     <Grid container className="data-grid-container">
       <DataGrid
@@ -18,7 +25,10 @@ const MuiDataGrid = ({ rows, columns, handleRowClick }) => {
         }}
         pageSizeOptions={[5]}
         disableRowSelectionOnClick
-        onRowClick={handleRowClick}
+        rowSelectionModel={rowSelectionModel}
+        onRowSelectionModelChange={onRowSelectionModelChange}
+        checkboxSelection={checkboxSelection}
+        columnVisibilityModel={columnVisibilityModel}
       />
     </Grid>
   );

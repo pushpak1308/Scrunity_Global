@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 
 const Clients = () => {
   const navigate = useNavigate();
+  const [rowSelectionModel, setRowSelectionModel] = useState([]);
+  const [selectedRows, setSelectedRows] = useState([]);
 
   const handleAddProject = () => {
     navigate("/add-project");
@@ -16,10 +18,7 @@ const Clients = () => {
   const [columns, setColumns] = useState([
     {
       field: "id",
-      headerName: "S.No.",
-      width: 90,
-      align: "center",
-      cellClassName: "dataGrid-cell",
+      headerName: "",
       headerClassName: "dataGrid-header",
     },
     {
@@ -32,25 +31,31 @@ const Clients = () => {
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
       renderCell: (params) => {
-        return <Switch defaultChecked />;
+        return <Switch defaultChecked color="success" />;
       },
     },
     {
-      field: "name",
-      headerName: "Name",
+      field: "clientName",
+      headerName: "Client Name",
       align: "center",
-      type: "number",
+      type: "text",
       width: 110,
       headerAlign: "center",
-      editable: true,
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
-      // valueGetter: (params) =>
-      // `${params.row.firstName || ""} ${params.row.lastName || ""}`,
     },
     {
-      field: "number",
-      headerName: "Number",
+      field: "contactName",
+      headerName: "Contact Name",
+      width: 160,
+      align: "center",
+      headerClassName: "dataGrid-header",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+    },
+    {
+      field: "contactNumber",
+      headerName: "Contact Number",
       sortable: false,
       width: 160,
       align: "center",
@@ -69,8 +74,8 @@ const Clients = () => {
       headerAlign: "center",
     },
     {
-      field: "birthdate",
-      headerName: "Birthdate",
+      field: "websiteLink",
+      headerName: "Website Link",
       sortable: false,
       width: 160,
       align: "center",
@@ -99,18 +104,8 @@ const Clients = () => {
       headerAlign: "center",
     },
     {
-      field: "state",
-      align: "center",
-      headerName: "State/Province",
-      sortable: false,
-      width: 160,
-      cellClassName: "dataGrid-cell",
-      headerClassName: "dataGrid-header",
-      headerAlign: "center",
-    },
-    {
-      field: "city",
-      headerName: "City",
+      field: "currency",
+      headerName: "Currency",
       align: "center",
       sortable: false,
       width: 160,
@@ -119,99 +114,62 @@ const Clients = () => {
       headerAlign: "center",
     },
     {
-      field: "zipCode",
-      headerName: "Zip Code",
+      field: "industry",
+      headerName: "Industry",
       align: "center",
       sortable: false,
       width: 160,
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
-      headerAlign: "center",
-    },
-    {
-      field: "profession",
-      headerName: "Profession",
-      sortable: false,
-      align: "center",
-      width: 160,
-      cellClassName: "dataGrid-cell",
-      headerClassName: "dataGrid-header",
-      headerAlign: "center",
-    },
-    {
-      field: "ipAddress",
-      headerName: "IP Address",
-      sortable: false,
-      width: 160,
-      cellClassName: "dataGrid-cell",
-      headerClassName: "dataGrid-header",
-      headerAlign: "center",
-      align: "center",
-    },
-    {
-      field: "accountType",
-      headerName: "Account Type",
-      sortable: false,
-      width: 160,
-      align: "center",
-      cellClassName: "dataGrid-cell",
-      headerClassName: "dataGrid-header",
-      headerAlign: "center",
-    },
-    {
-      field: "salary",
-      headerName: "Salary/mo",
-      sortable: false,
-      width: 160,
-      align: "center",
-      headerClassName: "dataGrid-header",
-      cellClassName: "dataGrid-cell",
       headerAlign: "center",
     },
   ]);
 
+  const [columnVisibilityModel, setColumnVisibilityModel] = useState({
+    id: false,
+  });
+
   const rows = [
     {
       id: 1,
-      role: "Vendor",
       status: "Yes",
-      name: "Daniel",
-      number: "123456789",
+      clientName: "clientName",
+      contactName: "contactName",
+      contactNumber: "123456789",
       email: "daniel@gmail.com",
-      birthdate: "05-06-24",
+      websiteLink: "exampleLink.com",
       address: "street 20",
       country: "india",
-      state: "delhi",
-      city: "saket",
-      zipCode: "1234",
-      profession: "android developer",
-      ipAddress: "12.23.34.55",
-      accountType: "vendor",
-      salary: "500000",
+      currency: "INR",
+      industry: "HealthCare",
     },
     {
       id: 2,
-      role: "Vendor",
       status: "Yes",
-      name: "Daniel",
-      number: "123456789",
+      clientName: "clientName",
+      contactName: "contactName",
+      contactNumber: "123456789",
       email: "daniel@gmail.com",
-      birthdate: "05-06-24",
+      websiteLink: "exampleLink.com",
       address: "street 20",
       country: "india",
-      state: "delhi",
-      city: "saket",
-      zipCode: "1234",
-      profession: "android developer",
-      ipAddress: "12.23.34.55",
-      accountType: "vendor",
-      salary: "500000",
+      currency: "INR",
+      industry: "HealthCare",
     },
   ];
 
   const handleRowClick = (params) => {
     navigate(`/client/${params.id}`);
   };
+  const handleRowSelection = (newRowSelectionModel) => {
+    setRowSelectionModel(newRowSelectionModel);
+    const selectedRowData = newRowSelectionModel.map((id) =>
+      rows.find((row) => row.id === id)
+    );
+    setSelectedRows(selectedRowData);
+  };
+
+  console.log("Selected Rows:", selectedRows);
 
   const content = (
     <Grid container>
@@ -219,27 +177,22 @@ const Clients = () => {
         item
         container
         className="heading-grid2"
-        justifyContent="center"
+        justifyContent="space-between"
         alignItems="end"
       >
-        <Grid item md={4}>
+        <Grid item>
           <Paper elevation={0} className="screenHeading">
             CLIENT LIST
           </Paper>
         </Grid>
-        <Grid
-          item
-          container
-          md={6}
-          justifyContent="space-evenly"
-          alignItems="center"
-        >
+        <Grid item container md={6} spacing={3}>
           <Grid item>
             <Button
               variant="outlined"
               color="error"
               onClick={handleAddProject}
               className="client-button add-class"
+              disabled={selectedRows.length === 0}
               startIcon={<AddIcon color="success" fontSize="large" />}
             >
               Add Project
@@ -249,12 +202,14 @@ const Clients = () => {
             <Button
               variant="outlined"
               color="error"
+              onClick={handleRowClick}
               className="client-button export-class"
+              disabled={selectedRows.length === 0}
               startIcon={
                 <DescriptionOutlinedIcon color="primary" size="large" />
               }
             >
-              Export
+              View Details
             </Button>
           </Grid>
           <Grid item>
@@ -262,6 +217,7 @@ const Clients = () => {
               variant="outlined"
               color="error"
               className="client-button delete-class"
+              disabled={selectedRows.length === 0}
               startIcon={<DeleteOutlinedIcon color="error" fontSize="large" />}
             >
               Delete
@@ -274,7 +230,13 @@ const Clients = () => {
         <MuiDataGrid
           rows={rows}
           columns={columns}
-          handleRowClick={handleRowClick}
+          checkboxSelection={true}
+          onRowSelectionModelChange={handleRowSelection}
+          rowSelectionModel={rowSelectionModel}
+          columnVisibilityModel={columnVisibilityModel}
+          onColumnVisibilityModelChange={(newModel) =>
+            setColumnVisibilityModel(newModel)
+          }
         />
       </Grid>
     </Grid>

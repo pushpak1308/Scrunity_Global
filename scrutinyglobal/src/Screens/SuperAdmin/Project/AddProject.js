@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AppBar, Grid, Paper, Toolbar } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import StepForm from "../../../Components/StepForm/Index";
 import { MuiTextField } from "../../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../../MuiComponents/MuiDropDown/Index";
@@ -10,8 +10,10 @@ import "./Style.css";
 import { Add as AddIcon } from "@mui/icons-material";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import MuiDataGrid from "../../../MuiComponents/MuiDataGrid/Index";
+import { useNavigate } from "react-router-dom";
 
 const AddProject = () => {
+  const navigate = useNavigate();
   const [clientName, setClientName] = useState("");
   const [projectName, setProjectName] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -85,293 +87,260 @@ const AddProject = () => {
     console.log("file :>> ", file);
     setDocument(file);
   };
+  const [columnVisibilityModel, setColumnVisibilityModel] = useState({
+    id: false,
+  });
 
   const [columns, setColumns] = useState([
-    {
-      field: "status",
-      headerName: "Status",
-      width: 150,
-      headerAlign: "center",
-      editable: true,
-      align: "center",
-      cellClassName: "dataGrid-cell",
-      headerClassName: "dataGrid-header",
-    },
-    {
-      field: "name",
-      headerName: "Name",
-      align: "center",
-      type: "number",
-      width: 110,
-      headerAlign: "center",
-      editable: true,
-      cellClassName: "dataGrid-cell",
-      headerClassName: "dataGrid-header",
-      // valueGetter: (params) =>
-      // `${params.row.firstName || ""} ${params.row.lastName || ""}`,
-    },
-    {
-      field: "number",
-      headerName: "Number",
-      sortable: false,
-      width: 160,
-      align: "center",
-      headerClassName: "dataGrid-header",
-      cellClassName: "dataGrid-cell",
-      headerAlign: "center",
-    },
-    {
-      field: "email",
-      headerName: "Email",
-      sortable: false,
-      width: 160,
-      align: "center",
-      headerClassName: "dataGrid-header",
-      cellClassName: "dataGrid-cell",
-      headerAlign: "center",
-    },
-    {
-      field: "birthdate",
-      headerName: "Birthdate",
-      sortable: false,
-      width: 160,
-      align: "center",
-      headerClassName: "dataGrid-header",
-      cellClassName: "dataGrid-cell",
-      headerAlign: "center",
-    },
-    {
-      field: "address",
-      headerName: "Address",
-      sortable: false,
-      width: 160,
-      align: "center",
-      headerClassName: "dataGrid-header",
-      cellClassName: "dataGrid-cell",
-      headerAlign: "center",
-    },
+    { field: "id" },
     {
       field: "country",
       headerName: "Country",
-      sortable: false,
-      width: 160,
+      width: 100,
       align: "center",
-      headerClassName: "dataGrid-header",
-      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+    },
+    {
+      field: "IR",
+      headerName: "IR%",
+      width: 70,
+      align: "center",
+      headerAlign: "center",
+    },
+    {
+      field: "LOI",
+      headerName: "LOI(min)",
+      type: "number",
+      width: 80,
+      align: "center",
+      headerAlign: "center",
+    },
+    {
+      field: "completesNeeded",
+      headerName: "Completes needed",
+      width: 150,
+      align: "center",
+      headerAlign: "center",
+    },
+    {
+      field: "completesFeasable",
+      headerName: "Completes Feasable",
+      width: 150,
+      align: "center",
       headerAlign: "center",
     },
   ]);
 
   const rows = [
     {
+      id: "1",
       country: "India",
       IR: "12",
       LOI: "10",
       completesNeeded: "200",
       completesFeasable: "180",
-      successURL: "www.ytrtrfgj.kjhjshsy@hsajg#hshkkdhhy",
-      terminateURL: "www.ytrtrfgj.kjhjshsy@hsajg#hshkkdhhy",
-      quotafulURL: "www.ytrtrfgj.kjhjshsy@hsajg#hshkkdhhy",
     },
     {
+      id: "2",
       country: "India",
       IR: "12",
       LOI: "10",
       completesNeeded: "200",
       completesFeasable: "180",
-      successURL: "www.ytrtrfgj.kjhjshsy@hsajg#hshkkdhhy",
-      terminateURL: "www.ytrtrfgj.kjhjshsy@hsajg#hshkkdhhy",
-      quotafulURL: "www.ytrtrfgj.kjhjshsy@hsajg#hshkkdhhy",
     },
     {
+      id: "3",
       country: "India",
       IR: "12",
       LOI: "10",
       completesNeeded: "200",
       completesFeasable: "180",
-      successURL: "www.ytrtrfgj.kjhjshsy@hsajg#hshkkdhhy",
-      terminateURL: "www.ytrtrfgj.kjhjshsy@hsajg#hshkkdhhy",
-      quotafulURL: "www.ytrtrfgj.kjhjshsy@hsajg#hshkkdhhy",
     },
     {
+      id: "4",
       country: "India",
       IR: "12",
       LOI: "10",
       completesNeeded: "200",
       completesFeasable: "180",
-      successURL: "www.ytrtrfgj.kjhjshsy@hsajg#hshkkdhhy",
-      terminateURL: "www.ytrtrfgj.kjhjshsy@hsajg#hshkkdhhy",
-      quotafulURL: "www.ytrtrfgj.kjhjshsy@hsajg#hshkkdhhy",
     },
   ];
 
   const steps = [
-    [
-      <Grid item>
-        <MuiTextField
-          type="text"
-          value={projectName}
-          label="Project Name"
-          // defaultValue={reduxData?.city || ""}
-          onChange={onChangeProjectName}
-          className="forAddClient"
-        />
-      </Grid>,
-      <Grid item>
-        <MuiDropDown
-          value={clientName}
-          //   defaultValue={reduxData?.accountType || ""}
-          onChange={onChangeClientName}
-          options={["User", "Premium", "Vendor"]}
-          label="Client Name"
-          className="forAddClient"
-        />
-      </Grid>,
-      <Grid item>
-        <Grid container spacing={2} justifyContent="space-between">
-          <Grid item md={5}>
-            <MuiTextField
-              type="text"
-              value={contactNumber}
-              label="Contact Number"
-              // defaultValue={reduxData?.city || ""}
-              onChange={onChangeContactNumber}
-              className="forAddClient"
-            />
-          </Grid>
-          <Grid item md={5}>
-            <MuiTextField
-              type="text"
-              value={alternateContactNumber}
-              label="Alternate Contact Number"
-              // defaultValue={reduxData?.state || ""}
-              onChange={onChangeAlternateContactNumber}
-              className="forAddClient"
-            />
-          </Grid>
-        </Grid>
-      </Grid>,
-    ],
-    [
-      <Grid item>
-        <Grid container spacing={2} justifyContent="space-between">
-          <Grid item md={5}>
-            <MuiTextField
-              type="date"
-              value={startDate}
-              label="Start Date"
-              // defaultValue={reduxData?.city || ""}
-              onChange={onChangeStartDate}
-              placeholder="01-07-2024"
-              className="forAddClient"
-            />
-          </Grid>
-          <Grid item md={5}>
-            <MuiTextField
-              type="date"
-              value={endDate}
-              label="End Date"
-              // defaultValue={reduxData?.city || ""}
-              onChange={onChangeEndDate}
-              placeholder="01-07-2024"
-              className="forAddClient"
-            />
-          </Grid>
-        </Grid>
-      </Grid>,
+    // [
+    //   <Grid item>
+    //     <MuiTextField
+    //       type="text"
+    //       value={projectName}
+    //       label="Project Name"
+    //       // defaultValue={reduxData?.city || ""}
+    //       onChange={onChangeProjectName}
+    //       className="forAddClient"
+    //     />
+    //   </Grid>,
+    //   <Grid item>
+    //     <MuiDropDown
+    //       value={clientName}
+    //       //   defaultValue={reduxData?.accountType || ""}
+    //       onChange={onChangeClientName}
+    //       options={["User", "Premium", "Vendor"]}
+    //       label="Client Name"
+    //       className="forAddClient"
+    //     />
+    //   </Grid>,
+    //   <Grid item>
+    //     <Grid container spacing={2} justifyContent="space-between">
+    //       <Grid item md={5}>
+    //         <MuiTextField
+    //           type="text"
+    //           value={contactNumber}
+    //           label="Contact Number"
+    //           // defaultValue={reduxData?.city || ""}
+    //           onChange={onChangeContactNumber}
+    //           className="forAddClient"
+    //         />
+    //       </Grid>
+    //       <Grid item md={5}>
+    //         <MuiTextField
+    //           type="text"
+    //           value={alternateContactNumber}
+    //           label="Alternate Contact Number"
+    //           // defaultValue={reduxData?.state || ""}
+    //           onChange={onChangeAlternateContactNumber}
+    //           className="forAddClient"
+    //         />
+    //       </Grid>
+    //     </Grid>
+    //   </Grid>,
+    // ],
+    // [
+    //   <Grid item>
+    //     <Grid container spacing={2} justifyContent="space-between">
+    //       <Grid item md={5}>
+    //         <MuiTextField
+    //           type="date"
+    //           value={startDate}
+    //           label="Start Date"
+    //           // defaultValue={reduxData?.city || ""}
+    //           onChange={onChangeStartDate}
+    //           placeholder="01-07-2024"
+    //           className="forAddClient"
+    //         />
+    //       </Grid>
+    //       <Grid item md={5}>
+    //         <MuiTextField
+    //           type="date"
+    //           value={endDate}
+    //           label="End Date"
+    //           // defaultValue={reduxData?.city || ""}
+    //           onChange={onChangeEndDate}
+    //           placeholder="01-07-2024"
+    //           className="forAddClient"
+    //         />
+    //       </Grid>
+    //     </Grid>
+    //   </Grid>,
 
-      <Grid item>
-        <MuiTextField
-          type="text"
-          value={projectHead}
-          label="Project Head"
-          onChange={onChangeProjectHead}
-          className="forAddClient"
-        />
-      </Grid>,
-      <Grid item>
-        <MuiTextField
-          type="text"
-          value={spoc}
-          label="Pre Sales SPOC"
-          // defaultValue={reduxData?.state || ""}
-          onChange={onChangeSPOC}
-          className="forAddClient"
-        />
-      </Grid>,
-    ],
+    //   <Grid item>
+    //     <MuiTextField
+    //       type="text"
+    //       value={projectHead}
+    //       label="Project Head"
+    //       onChange={onChangeProjectHead}
+    //       className="forAddClient"
+    //     />
+    //   </Grid>,
+    //   <Grid item>
+    //     <MuiTextField
+    //       type="text"
+    //       value={spoc}
+    //       label="Pre Sales SPOC"
+    //       // defaultValue={reduxData?.state || ""}
+    //       onChange={onChangeSPOC}
+    //       className="forAddClient"
+    //     />
+    //   </Grid>,
+    // ],
+    // [
+    //   <Grid item>
+    //     <MuiDropDown
+    //       value={audienceType}
+    //       //   defaultValue={reduxData?.accountType || ""}
+    //       onChange={onChangeAudienceType}
+    //       placeholder="College Students"
+    //       options={["College Students", "audienceType 2", "audienceType 3"]}
+    //       label="Audience Type"
+    //       className="forAddClient"
+    //     />
+    //   </Grid>,
+    //   <Grid item>
+    //     <MuiTextField
+    //       type="text"
+    //       value={projectBudget}
+    //       label="Project Budget"
+    //       placeholder="Ex 40,000"
+    //       onChange={onChangeProjectBudget}
+    //       className="forAddClient"
+    //     />
+    //   </Grid>,
+    //   <Grid item>
+    //     <MuiTextField
+    //       type="file"
+    //       value={document}
+    //       label="Document(id any)"
+    //       placeholder=""
+    //       onChange={onChangeDocument}
+    //       className="forAddClient"
+    //     />
+    //   </Grid>,
+    // ],
+    // [
+    //   <Grid item>
+    //     <MuiDropDown
+    //       value={billingCurrency}
+    //       //   defaultValue={reduxData?.accountType || ""}
+    //       onChange={onChangeBillingCurrency}
+    //       placeholder="USD"
+    //       options={["USD", "INR", "EURO"]}
+    //       label="Billing Currency"
+    //       className="forAddClient"
+    //     />
+    //   </Grid>,
+    //   <Grid item>
+    //     <MuiDropDown
+    //       value={country}
+    //       //   defaultValue={reduxData?.accountType || ""}
+    //       onChange={onChangeCountry}
+    //       options={["USA", "INDIA", "EUROPE"]}
+    //       label="Country"
+    //       className="forAddClient"
+    //     />
+    //   </Grid>,
+    //   <Grid item>
+    //     <MuiTextField
+    //       type="text"
+    //       value={description}
+    //       label="Description"
+    //       onChange={onChangeDescription}
+    //       className="forAddClient"
+    //     />
+    //   </Grid>,
+    // ],
     [
-      <Grid item>
-        <MuiDropDown
-          value={audienceType}
-          //   defaultValue={reduxData?.accountType || ""}
-          onChange={onChangeAudienceType}
-          placeholder="College Students"
-          options={["College Students", "audienceType 2", "audienceType 3"]}
-          label="Audience Type"
-          className="forAddClient"
-        />
-      </Grid>,
-      <Grid item>
-        <MuiTextField
-          type="text"
-          value={projectBudget}
-          label="Project Budget"
-          placeholder="Ex 40,000"
-          onChange={onChangeProjectBudget}
-          className="forAddClient"
-        />
-      </Grid>,
-      <Grid item>
-        <MuiTextField
-          type="file"
-          value={document}
-          label="Document(id any)"
-          placeholder=""
-          onChange={onChangeDocument}
-          className="forAddClient"
-        />
-      </Grid>,
-    ],
-    [
-      <Grid item>
-        <MuiDropDown
-          value={billingCurrency}
-          //   defaultValue={reduxData?.accountType || ""}
-          onChange={onChangeBillingCurrency}
-          placeholder="USD"
-          options={["USD", "INR", "EURO"]}
-          label="Billing Currency"
-          className="forAddClient"
-        />
-      </Grid>,
-      <Grid item>
-        <MuiDropDown
-          value={country}
-          //   defaultValue={reduxData?.accountType || ""}
-          onChange={onChangeCountry}
-          options={["USA", "INDIA", "EUROPE"]}
-          label="Country"
-          className="forAddClient"
-        />
-      </Grid>,
-      <Grid item>
-        <MuiTextField
-          type="text"
-          value={description}
-          label="Description"
-          onChange={onChangeDescription}
-          className="forAddClient"
-        />
-      </Grid>,
-    ],
-    [
-      <Grid container>
-        <Grid item container justifyContent="space-between">
-          <Grid item xs={10}>
-            Based on your country selection:
+      <Grid container justifyContent="center" alignItems="center" spacing={2}>
+        <Grid item container xs={12}>
+          <Grid item md={10}>
+            <Paper elevation={0} className="datagrid-label">
+              Based on your country selection:
+            </Paper>
           </Grid>
-          <Grid item container xs={2}>
+          <Grid
+            item
+            container
+            md={2}
+            justifyContent="flex-end"
+            alignItems="center"
+          >
             <Grid item>
               <AddIcon />
             </Grid>
@@ -380,8 +349,13 @@ const AddProject = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={10}>
-          <MuiDataGrid rows={rows} columns={columns} />
+        <Grid item>
+          <MuiDataGrid
+            rows={rows}
+            columns={columns}
+            checkboxSelection={true}
+            columnVisibilityModel={columnVisibilityModel}
+          />
         </Grid>
       </Grid>,
     ],
@@ -395,6 +369,10 @@ const AddProject = () => {
 
   const handleClose = () => {
     setShowSuccessModal(!showSuccessModal);
+  };
+
+  const handleGotToWaitingScreen = () => {
+    navigate("/projects");
   };
 
   const content = (
@@ -412,11 +390,12 @@ const AddProject = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Grid item className="fixed-heading">
+        {/* <Grid item className="fixed-heading">
           Project Specifications
-        </Grid>
+        </Grid> */}
         <Grid item>
-          <Paper elevation={2} className="fixing-height">
+          {/* <Paper elevation={2} className="fixing-height"> */}
+          <Paper elevation={2} className="form-sub-grid">
             <StepForm steps={steps} onSave={handleSave} />
           </Paper>
         </Grid>
@@ -427,7 +406,7 @@ const AddProject = () => {
           handleClose={handleClose}
           heading="Project Saved 🎉"
           buttonPrimaryText="View"
-          // handleModalButtonClick={handleGotToWaitingScreen}
+          handleModalButtonClick={handleGotToWaitingScreen}
         />
       </Grid>
     </Grid>

@@ -12,6 +12,8 @@ import Invoice from "./Screens/SuperAdmin/Invoice";
 import Clients from "./Screens/SuperAdmin/Client/Clients";
 import ClientDetail from "./Screens/SuperAdmin/Client/ClientDetail";
 import AddProject from "./Screens/SuperAdmin/Project/AddProject";
+import Projects from "./Screens/SuperAdmin/Project/Projects";
+import ProjectDetail from "./Screens/SuperAdmin/Project/ProjectDetails";
 
 const WithoutTokenRoutes = () => {
   return (
@@ -27,10 +29,12 @@ const WithoutTokenRoutes = () => {
         {/* with token */}
         <Route exact path="/add-project" element={<AddProject />} />
         <Route exact path="/clients" element={<Clients />} />
+        <Route exact path="/projects" element={<Projects />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/invoice" element={<Invoice />} />
         <Route exact path="/add-client" element={<AddClient />} />
         <Route exact path="/client/:id" element={<ClientDetail />} />
+        <Route exact path="/project/:id" element={<ProjectDetail />} />
       </Routes>
     </BrowserRouter>
   );

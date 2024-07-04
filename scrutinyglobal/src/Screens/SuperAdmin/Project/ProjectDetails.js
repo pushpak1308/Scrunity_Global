@@ -1,21 +1,17 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import Layout from "../Layout";
 import EditIcon from "@mui/icons-material/Edit";
-import { Grid, Switch, Typography } from "@mui/material";
+import Layout from "../Layout";
+import { Grid } from "@mui/material";
 import LabelValueCard from "../../../Components/LabelValueCard/Index";
+import "../Client/Style.css";
 
-const ClientDetail = () => {
-  const [isActive, setIsActive] = useState(false);
+const ProjectDetail = () => {
   const [isEditable, setIsEditable] = useState(false);
   const { id } = useParams();
 
   const handleEditClick = () => {
     setIsEditable(!isEditable);
-  };
-
-  const handleSwitchChange = (event) => {
-    setIsActive(event.target.checked);
   };
 
   const content = (
@@ -24,31 +20,22 @@ const ClientDetail = () => {
         <EditIcon color="primary" fontSize="large" onClick={handleEditClick} />
       </Grid>
       <Grid item className="section-heading">
-        Contact Information
+        Project & Client Information
       </Grid>
       <Grid item container md={8}>
         <Grid item className="one-in-a-row">
           <LabelValueCard
-            label={"Client Name"}
+            label={"Project Name"}
             value={"Scrutiny Global"}
             disabled={!isEditable}
           />
         </Grid>
-        <Grid item container md={9} justifyContent="space-between">
-          <Grid item>
-            <LabelValueCard
-              label="Contact Name"
-              value="Scrutiny Global"
-              disabled={!isEditable}
-            />
-          </Grid>
-          <Grid item>
-            <LabelValueCard
-              label="Alt. Contact Name"
-              value="Scrutiny Global"
-              disabled={!isEditable}
-            />
-          </Grid>
+        <Grid item className="one-in-a-row">
+          <LabelValueCard
+            label={"Client Name"}
+            value={"XYZ"}
+            disabled={!isEditable}
+          />
         </Grid>
         <Grid item container md={9} justifyContent="space-between">
           <Grid item>
@@ -66,55 +53,73 @@ const ClientDetail = () => {
             />
           </Grid>
         </Grid>
-        <Grid item md={8}>
-          <LabelValueCard
-            label={"Email"}
-            value={"scrutinyglobal0987@gmail.com"}
-            disabled={!isEditable}
-          />
-        </Grid>
-        <Grid item md={8}>
-          <LabelValueCard
-            label={"Website Link"}
-            value={"www.scrutinyGlobal.com"}
-            disabled={!isEditable}
-          />
-        </Grid>
-      </Grid>
-
-      <Grid item className="section-heading">
-        Address Information
-      </Grid>
-      <Grid item container>
-        <Grid item className="one-in-a-row">
-          <LabelValueCard
-            label={"Address"}
-            value={"31 Street,New Delhi"}
-            disabled={!isEditable}
-          />
+        <Grid item container md={8} justifyContent="space-between">
+          <Grid item>
+            <LabelValueCard
+              label="Start Date"
+              value="01-07-24"
+              disabled={!isEditable}
+            />
+          </Grid>
+          <Grid item>
+            <LabelValueCard
+              label="End Date"
+              value="01-07-24"
+              disabled={!isEditable}
+            />
+          </Grid>
         </Grid>
         <Grid item container md={9} justifyContent="space-between">
           <Grid item>
             <LabelValueCard
-              label="Country"
-              value="India"
+              label="Project Head"
+              value="Alex Gorgia"
               disabled={!isEditable}
             />
           </Grid>
           <Grid item>
             <LabelValueCard
-              label="Currency"
-              value="Rs"
+              label="Pre Sales SPOC"
+              value="Alex Gorgia"
               disabled={!isEditable}
             />
           </Grid>
         </Grid>
+        <Grid item container md={9} justifyContent="space-between">
+          <Grid item>
+            <LabelValueCard
+              label="Audience Type"
+              value="College Students"
+              disabled={!isEditable}
+            />
+          </Grid>
+          <Grid item>
+            <LabelValueCard
+              label="Project Budget"
+              value="Rs 40,000"
+              disabled={!isEditable}
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+
+      <Grid item className="section-heading">
+        Vendor RFQ
+      </Grid>
+      {/* <Grid item container>
         <Grid item className="one-in-a-row">
-          <LabelValueCard
-            label={"Industry"}
-            value={"Healthcare"}
-            disabled={!isEditable}
-          />
+          <LabelValueCard label={"Address"} value={"31 Street,New Delhi"} />
+        </Grid>
+        <Grid item container md={9} justifyContent="space-between">
+          <Grid item>
+            <LabelValueCard label="Country" value="India" />
+          </Grid>
+          <Grid item>
+            <LabelValueCard label="Currency" value="Rs" />
+          </Grid>
+        </Grid>
+        <Grid item className="one-in-a-row">
+          <LabelValueCard label={"Industry"} value={"Healthcare"} />
         </Grid>
       </Grid>
 
@@ -132,7 +137,6 @@ const ClientDetail = () => {
             color="success"
             size="large"
             checked={isActive}
-            disabled={!isEditable}
             // className="active-inactive-toggle"
             onChange={handleSwitchChange}
           />
@@ -142,11 +146,11 @@ const ClientDetail = () => {
             {isActive ? "Active" : "Inactive"}
           </Typography>
         </Grid>
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 
-  return <Layout content={content} navbarHeading="CLIENT DETAILS" />;
+  return <Layout content={content} navbarHeading="PROJECT DETAILS" />;
 };
 
-export default ClientDetail;
+export default ProjectDetail;

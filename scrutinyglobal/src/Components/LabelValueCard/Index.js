@@ -1,14 +1,21 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, TextField, InputLabel } from "@mui/material";
 import React from "react";
 import "./Style.css";
 
-const LabelValueCard = ({ label, value }) => (
+const LabelValueCard = ({ label, value, onChange, disabled }) => (
   <Grid item container direction="column" className="label-value-grid">
     <Grid item>
-      <Typography className="label">{label} :</Typography>
+      <InputLabel className="label">{label}</InputLabel>
     </Grid>
     <Grid item>
-      <Typography className="value">{value}</Typography>
+      <TextField
+        className="value"
+        defaultValue={value}
+        onChange={onChange}
+        variant="outlined"
+        fullWidth
+        disabled={disabled}
+      />
     </Grid>
   </Grid>
 );
