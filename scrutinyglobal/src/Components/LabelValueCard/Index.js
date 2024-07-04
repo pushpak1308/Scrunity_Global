@@ -12,7 +12,7 @@ const LabelValueCard = ({ label, value, onChange, disabled }) => (
         className="value"
         defaultValue={value}
         onChange={onChange}
-        variant="outlined"
+        variant="standard"
         fullWidth
         disabled={disabled}
       />

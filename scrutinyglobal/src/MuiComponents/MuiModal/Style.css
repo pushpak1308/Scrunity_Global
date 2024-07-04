@@ -50,3 +50,11 @@
   width: 60%;
   height: 100%;
 }
+
+.heading-success {
+  color: #28a745;
+}
+
+.heading-error {
+  color: #f10808;
+}

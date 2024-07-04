@@ -21,7 +21,7 @@ const StepForm = ({ steps, onSave }) => {
   const isLastStep = currentStep === steps.length - 1;
 
   return (
-    <Grid container spacing={2} style={{ backgroundColor: "yellow" }}>
+    <Grid container spacing={2}>
       {steps[currentStep].map((FieldComponent, index) => (
         <Grid item xs={12} key={index}>
           {FieldComponent}

@@ -6,8 +6,10 @@ import { MuiDropDown } from "../../../MuiComponents/MuiDropDown/Index";
 import CustomModal from "../../../MuiComponents/MuiModal/Index";
 import Layout from "../Layout";
 import "./Style.css";
+import { useNavigate } from "react-router-dom";
 
 const AddClient = () => {
+  const navigate = useNavigate();
   const [clientName, setClientName] = useState("");
   const [contactName, setContactName] = useState("");
   const [alternateContactName, setAlternateContactName] = useState("");
@@ -217,6 +219,10 @@ const AddClient = () => {
     setShowSuccessModal(!showSuccessModal);
   };
 
+  const handleGoToClientList = () => {
+    navigate("/clients");
+  };
+
   const content = (
     <Grid container alignItems="center" justifyContent="center">
       <Grid item className="heading-grid">
@@ -241,9 +247,10 @@ const AddClient = () => {
           <CustomModal
             show={showSuccessModal}
             handleClose={handleClose}
-            heading="Client Saved 🎉"
+            heading="Client is Saved !!"
+            colorHeading="success"
             buttonPrimaryText="View"
-            // handleModalButtonClick={handleGotToWaitingScreen}
+            handleModalButtonClick={handleGoToClientList}
           />
         </Grid>
       </Grid>

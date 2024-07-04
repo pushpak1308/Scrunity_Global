@@ -1,5 +1,7 @@
 import { Button, Grid, Paper, Switch } from "@mui/material";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setSelectedRows } from "../../../Store/Slice/rowSelectionSlice";
 import Layout from "../Layout";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
@@ -8,9 +10,10 @@ import MuiDataGrid from "../../../MuiComponents/MuiDataGrid/Index";
 import { useNavigate } from "react-router-dom";
 
 const Clients = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [rowSelectionModel, setRowSelectionModel] = useState([]);
-  const [selectedRows, setSelectedRows] = useState([]);
+  const [checkedRows, setCheckedRows] = useState([]);
 
   const handleAddProject = () => {
     navigate("/add-project");
@@ -31,7 +34,7 @@ const Clients = () => {
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
       renderCell: (params) => {
-        return <Switch defaultChecked color="success" />;
+        return <Switch checked={params.value === "Yes"} color="success" />;
       },
     },
     {
@@ -145,7 +148,7 @@ const Clients = () => {
     },
     {
       id: 2,
-      status: "Yes",
+      status: "No",
       clientName: "clientName",
       contactName: "contactName",
       contactNumber: "123456789",
@@ -158,18 +161,19 @@ const Clients = () => {
     },
   ];
 
-  const handleRowClick = (params) => {
-    navigate(`/client/${params.id}`);
+  const handleRowClick = () => {
+    navigate(`/client/${checkedRows[0].id}`);
   };
   const handleRowSelection = (newRowSelectionModel) => {
     setRowSelectionModel(newRowSelectionModel);
     const selectedRowData = newRowSelectionModel.map((id) =>
       rows.find((row) => row.id === id)
     );
-    setSelectedRows(selectedRowData);
+    setCheckedRows(selectedRowData);
+    dispatch(setSelectedRows(selectedRowData));
   };
 
-  console.log("Selected Rows:", selectedRows);
+  console.log("Selected Rows:", checkedRows);
 
   const content = (
     <Grid container>
@@ -192,7 +196,7 @@ const Clients = () => {
               color="error"
               onClick={handleAddProject}
               className="client-button add-class"
-              disabled={selectedRows.length === 0}
+              disabled={checkedRows.length === 0}
               startIcon={<AddIcon color="success" fontSize="large" />}
             >
               Add Project
@@ -204,7 +208,7 @@ const Clients = () => {
               color="error"
               onClick={handleRowClick}
               className="client-button export-class"
-              disabled={selectedRows.length === 0}
+              disabled={checkedRows.length === 0}
               startIcon={
                 <DescriptionOutlinedIcon color="primary" size="large" />
               }
@@ -217,7 +221,7 @@ const Clients = () => {
               variant="outlined"
               color="error"
               className="client-button delete-class"
-              disabled={selectedRows.length === 0}
+              disabled={checkedRows.length === 0}
               startIcon={<DeleteOutlinedIcon color="error" fontSize="large" />}
             >
               Delete

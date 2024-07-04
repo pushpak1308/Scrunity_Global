@@ -18,6 +18,7 @@ const MuiModal = ({
   handleModalButtonClick,
   additionalContent,
   customHeaderStyle,
+  colorHeading,
 }) => {
   const navigate = useNavigate();
 
@@ -47,7 +48,11 @@ const MuiModal = ({
               <Typography
                 variant="h6"
                 component="h2"
-                className="modal-headingText"
+                className={`modal-headingText ${
+                  colorHeading === "success"
+                    ? "heading-success"
+                    : "heading-error"
+                }`}
               >
                 {heading}
               </Typography>
