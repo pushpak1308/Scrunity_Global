@@ -2,9 +2,6 @@
   border-bottom: 1px solid #b2aaaa;
 }
 
-.accordion-container {
-  height: 60vh;
-}
 .accordion:before {
   display: none;
 }

@@ -55,7 +55,12 @@ const Invoice = () => {
   const content = (
     <>
       <Grid container className="dashboard-container">
-        <Grid container justifyContent="space-between" alignItems="center">
+        <Grid
+          className="sub-container"
+          container
+          justifyContent="space-between"
+          alignItems="center"
+        >
           <Grid item xs={12} md={5}>
             <Paper elevation={2} className="invoice-form">
               <form onSubmit={handleSubmit}>

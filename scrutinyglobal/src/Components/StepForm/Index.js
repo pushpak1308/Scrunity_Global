@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import { Grid } from "@mui/material";
 import CustomContainedButton from "../../MuiComponents/MuiContainedButton/Index";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentStep, setCurrentStep } from "../../Store/Slice/stepSlice";
 
 const StepForm = ({ steps, onSave }) => {
-  const [currentStep, setCurrentStep] = useState(0);
+  const dispatch = useDispatch();
+  const currentStep = useSelector(selectCurrentStep);
   const [formData, setFormData] = useState({});
 
   const handleNext = () => {
-    setCurrentStep(currentStep + 1);
+    dispatch(setCurrentStep(currentStep + 1));
   };
 
   const handlePrev = () => {
-    setCurrentStep(currentStep - 1);
+    dispatch(setCurrentStep(currentStep - 1));
   };
 
   const handleSave = () => {

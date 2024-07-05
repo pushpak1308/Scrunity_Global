@@ -11,9 +11,12 @@ import { Add as AddIcon } from "@mui/icons-material";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import MuiDataGrid from "../../../MuiComponents/MuiDataGrid/Index";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectCurrentStep } from "../../../Store/Slice/stepSlice";
 
 const AddProject = () => {
   const navigate = useNavigate();
+  const currentStep = useSelector(selectCurrentStep);
   const [clientName, setClientName] = useState("");
   const [projectName, setProjectName] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -167,165 +170,165 @@ const AddProject = () => {
   ];
 
   const steps = [
-    // [
-    //   <Grid item>
-    //     <MuiTextField
-    //       type="text"
-    //       value={projectName}
-    //       label="Project Name"
-    //       // defaultValue={reduxData?.city || ""}
-    //       onChange={onChangeProjectName}
-    //       className="forAddClient"
-    //     />
-    //   </Grid>,
-    //   <Grid item>
-    //     <MuiDropDown
-    //       value={clientName}
-    //       //   defaultValue={reduxData?.accountType || ""}
-    //       onChange={onChangeClientName}
-    //       options={["User", "Premium", "Vendor"]}
-    //       label="Client Name"
-    //       className="forAddClient"
-    //     />
-    //   </Grid>,
-    //   <Grid item>
-    //     <Grid container spacing={2} justifyContent="space-between">
-    //       <Grid item md={5}>
-    //         <MuiTextField
-    //           type="text"
-    //           value={contactNumber}
-    //           label="Contact Number"
-    //           // defaultValue={reduxData?.city || ""}
-    //           onChange={onChangeContactNumber}
-    //           className="forAddClient"
-    //         />
-    //       </Grid>
-    //       <Grid item md={5}>
-    //         <MuiTextField
-    //           type="text"
-    //           value={alternateContactNumber}
-    //           label="Alternate Contact Number"
-    //           // defaultValue={reduxData?.state || ""}
-    //           onChange={onChangeAlternateContactNumber}
-    //           className="forAddClient"
-    //         />
-    //       </Grid>
-    //     </Grid>
-    //   </Grid>,
-    // ],
-    // [
-    //   <Grid item>
-    //     <Grid container spacing={2} justifyContent="space-between">
-    //       <Grid item md={5}>
-    //         <MuiTextField
-    //           type="date"
-    //           value={startDate}
-    //           label="Start Date"
-    //           // defaultValue={reduxData?.city || ""}
-    //           onChange={onChangeStartDate}
-    //           placeholder="01-07-2024"
-    //           className="forAddClient"
-    //         />
-    //       </Grid>
-    //       <Grid item md={5}>
-    //         <MuiTextField
-    //           type="date"
-    //           value={endDate}
-    //           label="End Date"
-    //           // defaultValue={reduxData?.city || ""}
-    //           onChange={onChangeEndDate}
-    //           placeholder="01-07-2024"
-    //           className="forAddClient"
-    //         />
-    //       </Grid>
-    //     </Grid>
-    //   </Grid>,
+    [
+      <Grid item>
+        <MuiTextField
+          type="text"
+          value={projectName}
+          label="Project Name"
+          // defaultValue={reduxData?.city || ""}
+          onChange={onChangeProjectName}
+          className="forAddClient"
+        />
+      </Grid>,
+      <Grid item>
+        <MuiDropDown
+          value={clientName}
+          //   defaultValue={reduxData?.accountType || ""}
+          onChange={onChangeClientName}
+          options={["User", "Premium", "Vendor"]}
+          label="Client Name"
+          className="forAddClient"
+        />
+      </Grid>,
+      <Grid item>
+        <Grid container spacing={2} justifyContent="space-between">
+          <Grid item md={5}>
+            <MuiTextField
+              type="text"
+              value={contactNumber}
+              label="Contact Number"
+              // defaultValue={reduxData?.city || ""}
+              onChange={onChangeContactNumber}
+              className="forAddClient"
+            />
+          </Grid>
+          <Grid item md={5}>
+            <MuiTextField
+              type="text"
+              value={alternateContactNumber}
+              label="Alternate Contact Number"
+              // defaultValue={reduxData?.state || ""}
+              onChange={onChangeAlternateContactNumber}
+              className="forAddClient"
+            />
+          </Grid>
+        </Grid>
+      </Grid>,
+    ],
+    [
+      <Grid item>
+        <Grid container spacing={2} justifyContent="space-between">
+          <Grid item md={5}>
+            <MuiTextField
+              type="date"
+              value={startDate}
+              label="Start Date"
+              // defaultValue={reduxData?.city || ""}
+              onChange={onChangeStartDate}
+              placeholder="01-07-2024"
+              className="forAddClient"
+            />
+          </Grid>
+          <Grid item md={5}>
+            <MuiTextField
+              type="date"
+              value={endDate}
+              label="End Date"
+              // defaultValue={reduxData?.city || ""}
+              onChange={onChangeEndDate}
+              placeholder="01-07-2024"
+              className="forAddClient"
+            />
+          </Grid>
+        </Grid>
+      </Grid>,
 
-    //   <Grid item>
-    //     <MuiTextField
-    //       type="text"
-    //       value={projectHead}
-    //       label="Project Head"
-    //       onChange={onChangeProjectHead}
-    //       className="forAddClient"
-    //     />
-    //   </Grid>,
-    //   <Grid item>
-    //     <MuiTextField
-    //       type="text"
-    //       value={spoc}
-    //       label="Pre Sales SPOC"
-    //       // defaultValue={reduxData?.state || ""}
-    //       onChange={onChangeSPOC}
-    //       className="forAddClient"
-    //     />
-    //   </Grid>,
-    // ],
-    // [
-    //   <Grid item>
-    //     <MuiDropDown
-    //       value={audienceType}
-    //       //   defaultValue={reduxData?.accountType || ""}
-    //       onChange={onChangeAudienceType}
-    //       placeholder="College Students"
-    //       options={["College Students", "audienceType 2", "audienceType 3"]}
-    //       label="Audience Type"
-    //       className="forAddClient"
-    //     />
-    //   </Grid>,
-    //   <Grid item>
-    //     <MuiTextField
-    //       type="text"
-    //       value={projectBudget}
-    //       label="Project Budget"
-    //       placeholder="Ex 40,000"
-    //       onChange={onChangeProjectBudget}
-    //       className="forAddClient"
-    //     />
-    //   </Grid>,
-    //   <Grid item>
-    //     <MuiTextField
-    //       type="file"
-    //       value={document}
-    //       label="Document(id any)"
-    //       placeholder=""
-    //       onChange={onChangeDocument}
-    //       className="forAddClient"
-    //     />
-    //   </Grid>,
-    // ],
-    // [
-    //   <Grid item>
-    //     <MuiDropDown
-    //       value={billingCurrency}
-    //       //   defaultValue={reduxData?.accountType || ""}
-    //       onChange={onChangeBillingCurrency}
-    //       placeholder="USD"
-    //       options={["USD", "INR", "EURO"]}
-    //       label="Billing Currency"
-    //       className="forAddClient"
-    //     />
-    //   </Grid>,
-    //   <Grid item>
-    //     <MuiDropDown
-    //       value={country}
-    //       //   defaultValue={reduxData?.accountType || ""}
-    //       onChange={onChangeCountry}
-    //       options={["USA", "INDIA", "EUROPE"]}
-    //       label="Country"
-    //       className="forAddClient"
-    //     />
-    //   </Grid>,
-    //   <Grid item>
-    //     <MuiTextField
-    //       type="text"
-    //       value={description}
-    //       label="Description"
-    //       onChange={onChangeDescription}
-    //       className="forAddClient"
-    //     />
-    //   </Grid>,
-    // ],
+      <Grid item>
+        <MuiTextField
+          type="text"
+          value={projectHead}
+          label="Project Head"
+          onChange={onChangeProjectHead}
+          className="forAddClient"
+        />
+      </Grid>,
+      <Grid item>
+        <MuiTextField
+          type="text"
+          value={spoc}
+          label="Pre Sales SPOC"
+          // defaultValue={reduxData?.state || ""}
+          onChange={onChangeSPOC}
+          className="forAddClient"
+        />
+      </Grid>,
+    ],
+    [
+      <Grid item>
+        <MuiDropDown
+          value={audienceType}
+          //   defaultValue={reduxData?.accountType || ""}
+          onChange={onChangeAudienceType}
+          placeholder="College Students"
+          options={["College Students", "audienceType 2", "audienceType 3"]}
+          label="Audience Type"
+          className="forAddClient"
+        />
+      </Grid>,
+      <Grid item>
+        <MuiTextField
+          type="text"
+          value={projectBudget}
+          label="Project Budget"
+          placeholder="Ex 40,000"
+          onChange={onChangeProjectBudget}
+          className="forAddClient"
+        />
+      </Grid>,
+      <Grid item>
+        <MuiTextField
+          type="file"
+          value={document}
+          label="Document(id any)"
+          placeholder=""
+          onChange={onChangeDocument}
+          className="forAddClient"
+        />
+      </Grid>,
+    ],
+    [
+      <Grid item>
+        <MuiDropDown
+          value={billingCurrency}
+          //   defaultValue={reduxData?.accountType || ""}
+          onChange={onChangeBillingCurrency}
+          placeholder="USD"
+          options={["USD", "INR", "EURO"]}
+          label="Billing Currency"
+          className="forAddClient"
+        />
+      </Grid>,
+      <Grid item>
+        <MuiDropDown
+          value={country}
+          //   defaultValue={reduxData?.accountType || ""}
+          onChange={onChangeCountry}
+          options={["USA", "INDIA", "EUROPE"]}
+          label="Country"
+          className="forAddClient"
+        />
+      </Grid>,
+      <Grid item>
+        <MuiTextField
+          type="text"
+          value={description}
+          label="Description"
+          onChange={onChangeDescription}
+          className="forAddClient"
+        />
+      </Grid>,
+    ],
     [
       <Grid container justifyContent="center" alignItems="center" spacing={2}>
         <Grid item container xs={12}>
@@ -390,9 +393,9 @@ const AddProject = () => {
         justifyContent="center"
         alignItems="center"
       >
-        {/* <Grid item className="fixed-heading">
-          Project Specifications
-        </Grid> */}
+        <Grid item className="fixed-heading">
+          {currentStep > 2 ? "Sampling Requirements" : "Project Specifications"}
+        </Grid>
         <Grid item>
           {/* <Paper elevation={2} className="fixing-height"> */}
           <Paper elevation={2} className="form-sub-grid">

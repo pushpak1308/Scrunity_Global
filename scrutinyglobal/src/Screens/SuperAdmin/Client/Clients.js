@@ -189,7 +189,7 @@ const Clients = () => {
             CLIENT LIST
           </Paper>
         </Grid>
-        <Grid item container md={6} spacing={3}>
+        <Grid item container justifyContent="space-evenly" md={6}>
           <Grid item>
             <Button
               variant="outlined"

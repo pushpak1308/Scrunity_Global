@@ -10,6 +10,7 @@ const MuiDataGrid = ({
   checkboxSelection,
   rowSelectionModel,
   columnVisibilityModel,
+  disablePagination,
 }) => {
   return (
     <Grid container className="data-grid-container">
@@ -19,16 +20,17 @@ const MuiDataGrid = ({
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 5,
+              pageSize: disablePagination ? rows.length : 5,
             },
           },
         }}
-        pageSizeOptions={[5]}
+        pageSizeOptions={disablePagination ? [rows.length] : [5]}
         disableRowSelectionOnClick
         rowSelectionModel={rowSelectionModel}
         onRowSelectionModelChange={onRowSelectionModelChange}
         checkboxSelection={checkboxSelection}
         columnVisibilityModel={columnVisibilityModel}
+        pagination={!disablePagination}
       />
     </Grid>
   );

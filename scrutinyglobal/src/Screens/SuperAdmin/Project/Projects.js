@@ -6,9 +6,14 @@ import { useNavigate } from "react-router-dom";
 import MuiDataGrid from "../../../MuiComponents/MuiDataGrid/Index";
 import { Button, Grid, Paper } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
+import { useDispatch } from "react-redux";
+import { setSelectedRows } from "../../../Store/Slice/rowSelectionSlice";
 
 const Projects = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [rowSelectionModel, setRowSelectionModel] = useState([]);
+  const [checkedRows, setCheckedRows] = useState([]);
 
   const [columns, setColumns] = useState([
     {
@@ -23,7 +28,7 @@ const Projects = () => {
       field: "status",
       headerName: "Status",
       width: 170,
-      headerAlign: "center",
+      // headerAlign: "center",
       editable: true,
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
@@ -170,6 +175,9 @@ const Projects = () => {
     },
   ]);
 
+  const [columnVisibilityModel, setColumnVisibilityModel] = useState({
+    id: false,
+  });
   const rows = [
     {
       id: 1,
@@ -242,8 +250,18 @@ const Projects = () => {
   ];
 
   const handleRowClick = (params) => {
-    navigate(`/project/${params.id}`);
+    navigate(`/project/${checkedRows[0].id}`);
   };
+  const handleRowSelection = (newRowSelectionModel) => {
+    setRowSelectionModel(newRowSelectionModel);
+    const selectedRowData = newRowSelectionModel.map((id) =>
+      rows.find((row) => row.id === id)
+    );
+    setCheckedRows(selectedRowData);
+    dispatch(setSelectedRows(selectedRowData));
+  };
+
+  console.log("Selected Rows:", checkedRows);
 
   const content = (
     <Grid container>
@@ -272,6 +290,7 @@ const Projects = () => {
               color="error"
               //   onClick={handleAddProject}
               className="client-button add-class"
+              disabled={checkedRows.length === 0}
               startIcon={
                 <DescriptionOutlinedIcon color="success" fontSize="large" />
               }
@@ -283,18 +302,21 @@ const Projects = () => {
             <Button
               variant="outlined"
               color="error"
+              onClick={handleRowClick}
               className="client-button export-class"
+              disabled={checkedRows.length === 0}
               startIcon={
                 <DescriptionOutlinedIcon color="primary" size="large" />
               }
             >
-              Export
+              View Details
             </Button>
           </Grid>
           <Grid item>
             <Button
               variant="outlined"
               color="error"
+              disabled={checkedRows.length === 0}
               className="client-button delete-class"
               startIcon={<DeleteOutlinedIcon color="error" fontSize="large" />}
             >
@@ -308,7 +330,13 @@ const Projects = () => {
         <MuiDataGrid
           rows={rows}
           columns={columns}
-          handleRowClick={handleRowClick}
+          checkboxSelection={true}
+          onRowSelectionModelChange={handleRowSelection}
+          rowSelectionModel={rowSelectionModel}
+          columnVisibilityModel={columnVisibilityModel}
+          onColumnVisibilityModelChange={(newModel) =>
+            setColumnVisibilityModel(newModel)
+          }
         />
       </Grid>
     </Grid>

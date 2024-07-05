@@ -2,17 +2,293 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import Layout from "../Layout";
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import LabelValueCard from "../../../Components/LabelValueCard/Index";
 import "../Client/Style.css";
+import MuiDataGrid from "../../../MuiComponents/MuiDataGrid/Index";
+import { useSelector } from "react-redux";
+import { selectedRow } from "../../../Store/Slice/rowSelectionSlice";
+import MuiAccordion from "../../../MuiComponents/MuiAccordion/Index";
+import { MuiDropDown } from "../../../MuiComponents/MuiDropDown/Index";
 
 const ProjectDetail = () => {
+  const dataArray = useSelector(selectedRow);
+  console.log("selectedRows11 :>> ", dataArray[0]);
   const [isEditable, setIsEditable] = useState(false);
+  const [vendorSeleted, setVendorSelected] = useState("");
   const { id } = useParams();
 
+  const onChangeVendor = (event) => {
+    event.preventDefault();
+    setVendorSelected(event.target.value);
+  };
   const handleEditClick = () => {
     setIsEditable(!isEditable);
   };
+
+  const [columns, setColumns] = useState([
+    // {
+    //   field: "id",
+    //   headerName: "S.No.",
+    //   width: 90,
+    //   align: "center",
+    //   cellClassName: "dataGrid-cell",
+    //   //headerClassName: "dataGrid-header",
+    // },
+    {
+      field: "vendor",
+      headerName: "Vendor",
+      width: 120,
+      align: "center",
+      headerAlign: "center",
+      cellClassName: "dataGrid-cell",
+      headerClassName: "dataGrid-header-accpetedRFQ",
+    },
+    {
+      field: "country",
+      headerName: "Country",
+      align: "center",
+      width: 100,
+      headerAlign: "center",
+      cellClassName: "dataGrid-cell",
+      headerClassName: "dataGrid-header-accpetedRFQ",
+    },
+    {
+      field: "IR",
+      headerName: "IR%",
+      width: 80,
+      align: "center",
+      headerClassName: "dataGrid-header-accpetedRFQ",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+    },
+    {
+      field: "LOI",
+      headerName: "LOI(min)",
+      width: 90,
+      align: "center",
+      headerClassName: "dataGrid-header-accpetedRFQ",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+    },
+    {
+      field: "completesNeeded",
+      headerName: "Completes Needed",
+      width: 150,
+      align: "center",
+      headerClassName: "dataGrid-header-accpetedRFQ",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+    },
+    {
+      field: "completesFeasible",
+      headerName: "Completes Feasible",
+      width: 150,
+      align: "center",
+      headerClassName: "dataGrid-header-accpetedRFQ",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+    },
+    {
+      field: "cost",
+      headerName: "Cost",
+      width: 90,
+      align: "center",
+      headerClassName: "dataGrid-header-accpetedRFQ",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+    },
+    {
+      field: "cost1",
+      headerName: "Cost",
+      width: 90,
+      align: "center",
+      headerClassName: "dataGrid-header-accpetedRFQ",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+    },
+    {
+      field: "status",
+      headerName: "STATUS",
+      width: 150,
+      align: "center",
+      headerClassName: "dataGrid-header-accpetedRFQ",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+      renderCell: (params) => (
+        <Button
+          variant={params.value === "Yes" ? "contained" : "outlined"}
+          color="success"
+        >
+          {params.value === "Yes" ? "Accepted" : "Accept"}
+        </Button>
+      ),
+    },
+  ]);
+
+  const rows = [
+    {
+      id: 1,
+      status: "Yes",
+      vendor: "vendor Name",
+      country: "India",
+      IR: "2",
+      LOI: "3",
+      completesNeeded: "10",
+      completesFeasible: "8",
+      cost: "743",
+      cost1: "543",
+    },
+    {
+      id: 2,
+      status: "No",
+      vendor: "vendor Name",
+      country: "India",
+      IR: "2",
+      LOI: "3",
+      completesNeeded: "10",
+      completesFeasible: "8",
+      cost: "743",
+      cost1: "543",
+    },
+  ];
+  const [colAcc, setColAcc] = useState([
+    // {
+    //   field: "id",
+    //   headerName: "S.No.",
+    //   width: 90,
+    //   align: "center",
+    //   cellClassName: "dataGrid-cell",
+    //   //headerClassName: "dataGrid-header",
+    // },
+    {
+      field: "country",
+      headerName: "Country",
+      align: "center",
+      width: 120,
+      headerAlign: "center",
+      cellClassName: "dataGrid-cell",
+      //headerClassName: "dataGrid-header",
+    },
+    {
+      field: "IR",
+      headerName: "IR%",
+      width: 100,
+      align: "center",
+      //headerClassName: "dataGrid-header",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+    },
+    {
+      field: "LOI",
+      headerName: "LOI(min)",
+      width: 100,
+      align: "center",
+      //headerClassName: "dataGrid-header",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+    },
+    {
+      field: "completesNeeded",
+      headerName: "Completes Needed",
+      width: 150,
+      align: "center",
+      //headerClassName: "dataGrid-header",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+    },
+    {
+      field: "completesFeasible",
+      headerName: "Completes Feasible",
+      width: 150,
+      align: "center",
+      //headerClassName: "dataGrid-header",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+    },
+    {
+      field: "cost",
+      headerName: "Cost",
+      width: 120,
+      align: "center",
+      //headerClassName: "dataGrid-header",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+    },
+    {
+      field: "cost1",
+      headerName: "Cost",
+      width: 120,
+      align: "center",
+      //headerClassName: "dataGrid-header",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+    },
+    {
+      field: "status",
+      headerName: "STATUS",
+      width: 140,
+      align: "center",
+      //headerClassName: "dataGrid-header",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+      renderCell: (params) => (
+        <Button
+          variant={params.value === "Yes" ? "contained" : "outlined"}
+          color="success"
+        >
+          {params.value === "Yes" ? "Accepted" : "Accept"}
+        </Button>
+      ),
+    },
+  ]);
+
+  const rowsAcc = [
+    {
+      id: 1,
+      status: "Yes",
+      country: "India",
+      IR: "2",
+      LOI: "3",
+      completesNeeded: "10",
+      completesFeasible: "8",
+      cost: "743",
+      cost1: "543",
+    },
+    {
+      id: 2,
+      status: "No",
+      country: "India",
+      IR: "2",
+      LOI: "3",
+      completesNeeded: "10",
+      completesFeasible: "8",
+      cost: "743",
+      cost1: "543",
+    },
+  ];
+
+  const accordionArray = [
+    {
+      title: "Example supplier name ( 01 - 07 - 24 ) ( 0 Accepted )",
+      content: (
+        <MuiDataGrid rows={rowsAcc} columns={colAcc} disablePagination={true} />
+      ),
+    },
+    {
+      defaultOpen: true,
+      title: "Example supplier name ( 01 - 07 - 24 ) ( 1 Accepted )",
+      content: (
+        <MuiDataGrid rows={rowsAcc} columns={colAcc} disablePagination={true} />
+      ),
+    },
+    {
+      title: "Example supplier name ( 01 - 07 - 24 ) ( 0 Accepted )",
+      content: (
+        <MuiDataGrid rows={rowsAcc} columns={colAcc} disablePagination={true} />
+      ),
+    },
+  ];
 
   const content = (
     <Grid container className="client-detail-grid">
@@ -26,77 +302,111 @@ const ProjectDetail = () => {
         <Grid item className="one-in-a-row">
           <LabelValueCard
             label={"Project Name"}
-            value={"Scrutiny Global"}
             disabled={!isEditable}
+            value={
+              dataArray[0]?.projectName
+                ? dataArray[0]?.projectName
+                : "ScrutinyGlobal"
+            }
           />
         </Grid>
         <Grid item className="one-in-a-row">
           <LabelValueCard
             label={"Client Name"}
-            value={"XYZ"}
+            value={
+              dataArray[0]?.clientName
+                ? dataArray[0]?.clientName
+                : "ScrutinyGlobal"
+            }
             disabled={!isEditable}
           />
         </Grid>
-        <Grid item container md={9} justifyContent="space-between">
+        <Grid item container md={10} justifyContent="space-between">
           <Grid item>
             <LabelValueCard
               label="Contact Number"
-              value="Scrutiny Global"
+              value={
+                dataArray[0]?.contactNumber
+                  ? dataArray[0]?.contactNumber
+                  : "ScrutinyGlobal"
+              }
               disabled={!isEditable}
             />
           </Grid>
           <Grid item>
             <LabelValueCard
               label="Alt. Contact Number"
-              value="Scrutiny Global"
+              value={
+                dataArray[0]?.altContactNumber
+                  ? dataArray[0]?.altContactNumber
+                  : "ScrutinyGlobal"
+              }
               disabled={!isEditable}
             />
           </Grid>
         </Grid>
-        <Grid item container md={8} justifyContent="space-between">
+        <Grid item container md={10} justifyContent="space-between">
           <Grid item>
             <LabelValueCard
               label="Start Date"
-              value="01-07-24"
+              value={
+                dataArray[0]?.startDate
+                  ? dataArray[0]?.startDate
+                  : "ScrutinyGlobal"
+              }
               disabled={!isEditable}
             />
           </Grid>
           <Grid item>
             <LabelValueCard
               label="End Date"
-              value="01-07-24"
+              value={
+                dataArray[0]?.endDate ? dataArray[0]?.endDate : "ScrutinyGlobal"
+              }
               disabled={!isEditable}
             />
           </Grid>
         </Grid>
-        <Grid item container md={9} justifyContent="space-between">
+        <Grid item container md={10} justifyContent="space-between">
           <Grid item>
             <LabelValueCard
               label="Project Head"
-              value="Alex Gorgia"
+              value={
+                dataArray[0]?.projectHead
+                  ? dataArray[0]?.projectHead
+                  : "ScrutinyGlobal"
+              }
               disabled={!isEditable}
             />
           </Grid>
           <Grid item>
             <LabelValueCard
               label="Pre Sales SPOC"
-              value="Alex Gorgia"
+              value={dataArray[0]?.SPOC ? dataArray[0]?.SPOC : "ScrutinyGlobal"}
               disabled={!isEditable}
             />
           </Grid>
         </Grid>
-        <Grid item container md={9} justifyContent="space-between">
+        <Grid item container md={10} justifyContent="space-between">
           <Grid item>
             <LabelValueCard
               label="Audience Type"
-              value="College Students"
+              value={
+                dataArray[0]?.audienceType
+                  ? dataArray[0]?.audienceType
+                  : "ScrutinyGlobal"
+              }
               disabled={!isEditable}
             />
           </Grid>
           <Grid item>
             <LabelValueCard
               label="Project Budget"
-              value="Rs 40,000"
+              value={
+                dataArray[0]?.projectBudget
+                  ? dataArray[0]?.projectBudget
+                  : "ScrutinyGlobal"
+              }
               disabled={!isEditable}
             />
           </Grid>
@@ -106,47 +416,35 @@ const ProjectDetail = () => {
       <Grid item className="section-heading">
         Vendor RFQ
       </Grid>
-      {/* <Grid item container>
-        <Grid item className="one-in-a-row">
-          <LabelValueCard label={"Address"} value={"31 Street,New Delhi"} />
-        </Grid>
-        <Grid item container md={9} justifyContent="space-between">
-          <Grid item>
-            <LabelValueCard label="Country" value="India" />
-          </Grid>
-          <Grid item>
-            <LabelValueCard label="Currency" value="Rs" />
-          </Grid>
-        </Grid>
-        <Grid item className="one-in-a-row">
-          <LabelValueCard label={"Industry"} value={"Healthcare"} />
-        </Grid>
+      <Grid item className="accordion-section">
+        <MuiAccordion content={accordionArray} />
       </Grid>
 
       <Grid item className="section-heading">
-        Status
+        Accepted RFQ
       </Grid>
-      <Grid
-        item
-        container
-        className="active-inactive-grid"
-        alignItems="flex-start"
-      >
-        <Grid item>
-          <Switch
-            color="success"
-            size="large"
-            checked={isActive}
-            // className="active-inactive-toggle"
-            onChange={handleSwitchChange}
+      <Grid item className="accepted-RFQ-table">
+        <MuiDataGrid rows={rows} columns={columns} />
+      </Grid>
+
+      <Grid item className="section-heading">
+        Quotaion
+      </Grid>
+      <Grid item container direction="column" className="quotation-grid">
+        <Grid item md={6}>
+          <MuiDropDown
+            value={vendorSeleted}
+            onChange={onChangeVendor}
+            options={["Vendor 1", "Vendor 2", "Vendor 3"]}
+            label="Select Vendor"
           />
         </Grid>
         <Grid item>
-          <Typography className="active-inactive">
-            {isActive ? "Active" : "Inactive"}
-          </Typography>
+          <Button variant="contained" color="success">
+            Create Quotation
+          </Button>
         </Grid>
-      </Grid> */}
+      </Grid>
     </Grid>
   );
 

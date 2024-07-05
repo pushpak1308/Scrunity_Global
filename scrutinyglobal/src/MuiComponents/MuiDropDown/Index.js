@@ -1,4 +1,3 @@
-// MuiDropDown/Index.js
 import React from "react";
 import { Autocomplete, InputLabel, TextField } from "@mui/material";
 import "../MuiTextField/Style.css";
