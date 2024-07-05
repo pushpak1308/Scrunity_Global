@@ -13,44 +13,140 @@ import MuiDataGrid from "../../MuiComponents/MuiDataGrid/Index";
 
 const Dashboard = () => {
   const [approved, setApproved] = useState(false);
-  const rows = [
+  const [responseData,setResponseData] = useState([]);
+  const [userDataNew, setUserDataNew] = useState([]);
+  let userData =  
     {
-      id: 1,
-      role: "Vendor",
-      approval: "Yes",
-      name: "Daniel",
-      number: "123456789",
-      email: "daniel@gmail.com",
-      birthdate: "05-06-24",
-      address: "street 20",
-      country: "india",
-      state: "delhi",
-      city: "saket",
-      zipCode: "1234",
-      profession: "android developer",
-      ipAddress: "12.23.34.55",
-      accountType: "vendor",
-      salary: "500000",
-    },
-    {
-      id: 2,
-      role: "Vendor",
-      approval: "Yes",
-      name: "Daniel",
-      number: "123456789",
-      email: "daniel@gmail.com",
-      birthdate: "05-06-24",
-      address: "street 20",
-      country: "india",
-      state: "delhi",
-      city: "saket",
-      zipCode: "1234",
-      profession: "android developer",
-      ipAddress: "12.23.34.55",
-      accountType: "vendor",
-      salary: "500000",
-    },
-  ];
+      id:[],
+      role: [],
+      approval: [],
+      username :[],
+      number : [],
+      email:[],
+      birthdate: [],
+      address: [],
+      country: [],
+      state: [],
+      city: [],
+      zipCode: [],
+      profession: [],
+      ipAddress:[],
+      accountType:[],
+      salary:[],
+    };
+
+    const rows = [
+        {
+          id: 1,
+          role: "Vendor",
+          approval: "Yes",
+          name: "Daniel",
+          number: "123456789",
+          email: "daniel@gmail.com",
+          birthdate: "05-06-24",
+          address: "street 20",
+          country: "india",
+          state: "delhi",
+          city: "saket",
+          zipCode: "1234",
+          profession: "android developer",
+          ipAddress: "12.23.34.55",
+          accountType: "vendor",
+          salary: "500000",
+        },
+        {
+          id: 2,
+          role: "Vendor",
+          approval: "Yes",
+          name: "Daniel",
+          number: "123456789",
+          email: "daniel@gmail.com",
+          birthdate: "05-06-24",
+          address: "street 20",
+          country: "india",
+          state: "delhi",
+          city: "saket",
+          zipCode: "1234",
+          profession: "android developer",
+          ipAddress: "12.23.34.55",
+          accountType: "vendor",
+          salary: "500000",
+        },
+      ];
+        console.log(rows);
+        
+
+  
+    useEffect(() => {
+      getUserData();
+    }, []);
+
+    function getUserData() {
+      fetch("http://localhost:8080/ScrutinyGlobal/getUserList", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: "jainpushpak326@gmail.com",
+          password: "12345",
+        }),
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          setResponseData(data); // Update state with fetched data
+        })
+        .catch(function (error) {
+          console.error("Error fetching data:", error);
+        });
+    }
+
+    // userDataNew = convertData(responseData).
+
+    useEffect(() => {
+      setUserDataNew(convertData(responseData));
+    }, [responseData]);
+  function convertData(data)
+  {
+      console.log(data);
+      data.map((element) => userData.id.push(element.userId))
+      data.map((element) => userData.username.push(element.name))
+      data.map((element) => userData.number.push(element.number))
+      data.map((element) => userData.country.push(element.country))
+      data.map((element) => userData.accountType.push(element.accountType))
+      data.map((element) => userData.approval.push(element.approval))
+      data.map((element) => userData.email.push(element.email))
+      data.map((element) => userData.profession.push(element.profession))
+      data.map((element) => userData.birthdate.push(element.dob))
+      data.map((element) => userData.ipAddress.push("undefined"))
+      data.map((element) => userData.address.push(element.address))
+      data.map((element) => userData.city.push(element.city))
+      data.map((element) => userData.role.push(""))
+      data.map((element) => userData.salary.push(element.monthlySalary))
+      data.map((element) => userData.state.push(element.state))
+      data.map((element) => userData.zipCode.push(element.zipcode))
+      console.log("userData",userData);
+
+      let userDataConverted = [];
+      const keys = Object.keys(userData);
+      const numObjects = userData[keys[0]].length;
+      for (let i = 0; i < numObjects; i++) {
+        const newObj = {}; 
+        keys.forEach(key => {
+          newObj[key] = userData[key][i];
+        });
+        userDataConverted = [...userDataConverted, newObj];
+      }
+      console.log("userDataNew",userDataConverted);
+      return userDataConverted;
+  }
+
+  
+  console.log("response outside the function",responseData);
+  console.log("userDataNew outside the function",userDataNew);
 
   useEffect(() => {}, [approved]);
 
@@ -109,7 +205,7 @@ const Dashboard = () => {
       },
     },
     {
-      field: "name",
+      field: "username",
       headerName: "Name",
       align: "center",
       type: "number",
@@ -243,10 +339,16 @@ const Dashboard = () => {
     },
   ]);
 
+
   const onChangeRole = () => {
     console.log("onChange called ");
   };
 
+  function getRowId(userDataNew) {
+    return userDataNew.id;
+  }
+
+  
   const content = (
     <Grid container className="dashboard-container">
       <Grid
@@ -277,7 +379,7 @@ const Dashboard = () => {
         </Grid>
       </Grid>
       <Grid item md={12}>
-        <MuiDataGrid rows={rows} columns={columns} />
+        <MuiDataGrid rows={userDataNew} columns={columns} />
       </Grid>
     </Grid>
   );
