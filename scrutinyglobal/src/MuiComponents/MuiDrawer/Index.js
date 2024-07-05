@@ -19,15 +19,25 @@ import "./Style.css";
 import CollapseButton from "./SidebarButtons/CollapseButton";
 import LinkButton from "./SidebarButtons/LinkButton";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleDrawer, selectDrawerOpen } from "../../Store/Slice/drawerSlice";
+import {
+  toggleDrawerClient,
+  toggleDrawerVendor,
+  selectDrawerOpenVendor,
+  selectDrawerOpenClient,
+} from "../../Store/Slice/drawerSlice";
 const drawerWidth = 240;
 
 export default function MuiDrawer({ active }) {
-  const openClient = useSelector(selectDrawerOpen);
+  const openClient = useSelector(selectDrawerOpenClient);
+  const openVendor = useSelector(selectDrawerOpenVendor);
   const dispatch = useDispatch();
 
-  const handleClick = () => {
-    dispatch(toggleDrawer());
+  const handleClientClick = () => {
+    dispatch(toggleDrawerClient());
+  };
+
+  const handleVendorClick = () => {
+    dispatch(toggleDrawerVendor());
   };
 
   const userDetails = {
@@ -86,7 +96,7 @@ export default function MuiDrawer({ active }) {
             text="Client"
             icon={<FeedOutlinedIcon />}
             open={openClient}
-            handleClick={handleClick}
+            handleClick={handleClientClick}
           >
             <LinkButton
               text="Add Client"
@@ -133,7 +143,7 @@ export default function MuiDrawer({ active }) {
             link="projects"
             active={active === "PROJECTS" || active === "PROJECT DETAILS"}
           />
-          <LinkButton
+          {/* <LinkButton
             text="Vendors"
             icon={
               <PeopleAltOutlinedIcon
@@ -141,7 +151,38 @@ export default function MuiDrawer({ active }) {
               />
             }
             active={active === "VENDORS"}
-          />
+          /> */}
+          <CollapseButton
+            text="Vendors"
+            icon={<PeopleAltOutlinedIcon />}
+            open={openVendor}
+            handleClick={handleVendorClick}
+          >
+            <LinkButton
+              text="Add Vendor"
+              icon={
+                <AddIcon
+                  color={active === "ADD VENDOR" ? "primary" : "action"}
+                />
+              }
+              link="add-vendor"
+              active={active === "ADD VENDOR"}
+            />
+            <LinkButton
+              text="Vendors"
+              icon={
+                <PeopleAltOutlinedIcon
+                  color={
+                    active === "VENDORS" || active === "VENDOR DETAILS"
+                      ? "primary"
+                      : "action"
+                  }
+                />
+              }
+              link="vendors"
+              active={active === "VENDORS" || active === "VENDOR DETAILS"}
+            />
+          </CollapseButton>
           <LinkButton
             text="Sales Module"
             icon={
