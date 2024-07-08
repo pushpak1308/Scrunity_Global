@@ -1,18 +1,19 @@
 import React from "react";
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import "./Style.css";
 
-const CardComponentIcon = ({ image, title, text }) => {
+const CardComponentIcon = ({ title, text }) => {
   return (
-    <Card className="iconCard">
-      <CardMedia
-        component="img"
-        image={image}
-        alt={title}
-        className="iconCardMedia"
-      />
-      <CardContent>
+    <Grid
+      container
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Grid item>
         <Typography className="iconCard-title">{title}</Typography>
+      </Grid>
+      <Grid item>
         <Typography
           variant="body2"
           color="text.secondary"
@@ -20,8 +21,8 @@ const CardComponentIcon = ({ image, title, text }) => {
         >
           {text}
         </Typography>
-      </CardContent>
-    </Card>
+      </Grid>
+    </Grid>
   );
 };
 

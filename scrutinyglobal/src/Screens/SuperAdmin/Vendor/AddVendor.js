@@ -409,7 +409,7 @@ const AddVendor = () => {
     setShowSuccessModal(!showSuccessModal);
   };
 
-  const handleGotToWaitingScreen = () => {
+  const handleGoToProjects = () => {
     navigate("/projects");
   };
 
@@ -444,7 +444,7 @@ const AddVendor = () => {
           colorHeading="success"
           heading="Vendor is Saved !!"
           buttonPrimaryText="View"
-          handleModalButtonClick={handleGotToWaitingScreen}
+          handleModalButtonClick={handleGoToProjects}
         />
       </Grid>
     </Grid>

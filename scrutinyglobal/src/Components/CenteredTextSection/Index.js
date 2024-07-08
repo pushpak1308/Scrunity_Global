@@ -2,14 +2,24 @@ import React from "react";
 import { Grid, Typography } from "@mui/material";
 import "./Style.css";
 
-const CenteredTextSection = ({ title, subtitle }) => {
+const CenteredTextSection = ({ image, title, subtitle }) => {
   return (
-    <Grid container className="center-text flex-and-center">
-      <Grid item xs={10}>
-        <Typography className="title">{title}</Typography>
+    <Grid
+      container
+      justifyContent="center"
+      alignItems="center"
+      className="center-text"
+    >
+      <Grid item md={6}>
+        <img src={image} alt="About" className="centered-text-image" />
       </Grid>
-      <Grid item xs={12}>
-        <Typography className="subtitle">{subtitle}</Typography>
+      <Grid item container md={6}>
+        <Grid item xs={10}>
+          <Typography className="title">{title}</Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography className="subtitle">{subtitle}</Typography>
+        </Grid>
       </Grid>
     </Grid>
   );

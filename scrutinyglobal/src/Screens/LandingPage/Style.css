@@ -85,12 +85,46 @@
   align-items: center;
 }
 
+.contact-us {
+  font-family: "Vollkorn", serif !important;
+  font-weight: 600 !important;
+  font-size: 2rem !important;
+  text-align: center;
+}
+
+.contact-us-grid {
+  height: 7vh;
+}
 .aboutSection1 {
-  background-color: #def3f5;
+  /* background-color: #def3f5; */
   padding: 3rem;
 }
-.aboutSectionText1 {
-  /* padding: 3rem !important; */
+/* .aboutSectionText1 {
+} */
+
+.about-section-heading1 {
+  font-family: "Vollkorn", serif !important;
+  font-weight: 500 !important;
+  font-size: 2rem !important;
+}
+
+.about-section-scrutinyGlobal {
+  font-family: "Vollkorn", serif !important;
+  font-weight: 600 !important;
+  font-size: 1.7rem !important;
+  color: rgba(16, 210, 244, 0.77) !important;
+}
+
+.about-section-heading2 {
+  font-family: "Vollkorn", serif !important;
+  font-weight: 400 !important;
+  font-size: 1.4rem !important;
+}
+
+.about-section1-paragraph {
+  font-family: "Arimo", sans-serif !important;
+  font-size: 1rem !important;
+  padding-bottom: 1rem;
 }
 
 .aboutImage1 {
@@ -210,4 +244,12 @@
 
 .addMargin {
   margin-top: 2rem !important;
+}
+
+.icon {
+  color: #bdbdbd;
+}
+
+.icon:hover {
+  color: #62acc9;
 }
