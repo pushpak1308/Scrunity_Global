@@ -32,20 +32,22 @@ const ClientDetail = () => {
       <Grid item className="section-heading">
         Contact Information
       </Grid>
-      <Grid item container md={6}>
-        <Grid item className="one-in-a-row">
-          <LabelValueCard
-            label={"Client Name"}
-            value={
-              dataArray[0]?.clientName
-                ? dataArray[0]?.clientName
-                : "ScrutinyGlobal"
-            }
-            disabled={!isEditable}
-          />
+      <Grid item container md={10}>
+        <Grid item container md={8}>
+          <Grid item className="one-in-a-row">
+            <LabelValueCard
+              label={"Client Name"}
+              value={
+                dataArray[0]?.clientName
+                  ? dataArray[0]?.clientName
+                  : "ScrutinyGlobal"
+              }
+              disabled={!isEditable}
+            />
+          </Grid>
         </Grid>
-        <Grid item container md={9} justifyContent="space-between">
-          <Grid item>
+        <Grid item container spacing={5}>
+          <Grid item md={6}>
             <LabelValueCard
               label="Contact Name"
               value={
@@ -56,7 +58,7 @@ const ClientDetail = () => {
               disabled={!isEditable}
             />
           </Grid>
-          <Grid item>
+          <Grid item md={6}>
             <LabelValueCard
               label="Alt. Contact Name"
               value={
@@ -68,8 +70,8 @@ const ClientDetail = () => {
             />
           </Grid>
         </Grid>
-        <Grid item container md={9} justifyContent="space-between">
-          <Grid item>
+        <Grid item container spacing={5}>
+          <Grid item md={6}>
             <LabelValueCard
               label="Contact Number"
               value={
@@ -80,7 +82,7 @@ const ClientDetail = () => {
               disabled={!isEditable}
             />
           </Grid>
-          <Grid item>
+          <Grid item md={6}>
             <LabelValueCard
               label="Alt. Contact Number"
               value={
@@ -92,45 +94,50 @@ const ClientDetail = () => {
             />
           </Grid>
         </Grid>
-        <Grid item className="one-in-a-row">
-          <LabelValueCard
-            label={"Email"}
-            value={
-              dataArray[0]?.email
-                ? dataArray[0]?.email
-                : "scrutinyglobal0987@gmail.com"
-            }
-            disabled={!isEditable}
-          />
-        </Grid>
-        <Grid item className="one-in-a-row">
-          <LabelValueCard
-            label={"Website Link"}
-            value={
-              dataArray[0]?.websiteLink
-                ? dataArray[0]?.websiteLink
-                : "www.scrutinyglobal.com"
-            }
-            disabled={!isEditable}
-          />
+        <Grid item container md={8}>
+          <Grid item className="one-in-a-row">
+            <LabelValueCard
+              label={"Email"}
+              value={
+                dataArray[0]?.email
+                  ? dataArray[0]?.email
+                  : "scrutinyglobal0987@gmail.com"
+              }
+              disabled={!isEditable}
+            />
+          </Grid>
+
+          <Grid item className="one-in-a-row">
+            <LabelValueCard
+              label={"Website Link"}
+              value={
+                dataArray[0]?.websiteLink
+                  ? dataArray[0]?.websiteLink
+                  : "www.scrutinyglobal.com"
+              }
+              disabled={!isEditable}
+            />
+          </Grid>
         </Grid>
       </Grid>
 
       <Grid item className="section-heading">
         Address Information
       </Grid>
-      <Grid item container md={6}>
-        <Grid item className="one-in-a-row">
-          <LabelValueCard
-            label={"Address"}
-            value={
-              dataArray[0]?.address ? dataArray[0]?.address : "ScrutinyGlobal"
-            }
-            disabled={!isEditable}
-          />
+      <Grid item container md={10}>
+        <Grid item container md={8}>
+          <Grid item className="one-in-a-row">
+            <LabelValueCard
+              label={"Address"}
+              value={
+                dataArray[0]?.address ? dataArray[0]?.address : "ScrutinyGlobal"
+              }
+              disabled={!isEditable}
+            />
+          </Grid>
         </Grid>
-        <Grid item container md={9} justifyContent="space-between">
-          <Grid item>
+        <Grid item container spacing={5}>
+          <Grid item md={6}>
             <LabelValueCard
               label="Country"
               value={
@@ -139,7 +146,7 @@ const ClientDetail = () => {
               disabled={!isEditable}
             />
           </Grid>
-          <Grid item>
+          <Grid item md={6}>
             <LabelValueCard
               label="Currency"
               value={
@@ -151,14 +158,18 @@ const ClientDetail = () => {
             />
           </Grid>
         </Grid>
-        <Grid item className="one-in-a-row">
-          <LabelValueCard
-            label={"Industry"}
-            value={
-              dataArray[0]?.industry ? dataArray[0]?.industry : "ScrutinyGlobal"
-            }
-            disabled={!isEditable}
-          />
+        <Grid item container md={8}>
+          <Grid item className="one-in-a-row">
+            <LabelValueCard
+              label={"Industry"}
+              value={
+                dataArray[0]?.industry
+                  ? dataArray[0]?.industry
+                  : "ScrutinyGlobal"
+              }
+              disabled={!isEditable}
+            />
+          </Grid>
         </Grid>
       </Grid>
 

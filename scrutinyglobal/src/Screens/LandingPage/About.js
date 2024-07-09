@@ -396,7 +396,7 @@ const About = () => {
           <img src={aboutImage3} alt="features" className="aboutImage2" />
         </Grid>
       </Grid>
-      <Grid itemclassName="contact-us-grid">
+      <Grid item className="contact-us-grid">
         <Typography className="contact-us" gutterBottom>
           Why choose us?
         </Typography>

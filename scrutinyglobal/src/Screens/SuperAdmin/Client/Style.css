@@ -2,7 +2,7 @@
   font-family: "Vollkorn";
   font-size: 1.8rem;
   font-weight: 600;
-  text-align: center;
+  text-align: left;
   color: #5b5b5b !important;
   margin: 1rem;
 }
@@ -74,7 +74,9 @@
   line-height: 25.31px;
   color: #ffffff;
   width: 95%;
-  padding: 0.5rem;
+  padding: 0.8rem;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.2rem !important;
 }
 
 .two-in-a-row {

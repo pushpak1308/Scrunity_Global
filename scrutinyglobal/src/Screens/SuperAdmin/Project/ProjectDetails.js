@@ -298,31 +298,33 @@ const ProjectDetail = () => {
       <Grid item className="section-heading">
         Project & Client Information
       </Grid>
-      <Grid item container md={8}>
-        <Grid item className="one-in-a-row">
-          <LabelValueCard
-            label={"Project Name"}
-            disabled={!isEditable}
-            value={
-              dataArray[0]?.projectName
-                ? dataArray[0]?.projectName
-                : "ScrutinyGlobal"
-            }
-          />
+      <Grid item container md={10}>
+        <Grid item container md={8}>
+          <Grid item className="one-in-a-row">
+            <LabelValueCard
+              label={"Project Name"}
+              disabled={!isEditable}
+              value={
+                dataArray[0]?.projectName
+                  ? dataArray[0]?.projectName
+                  : "ScrutinyGlobal"
+              }
+            />
+          </Grid>
+          <Grid item className="one-in-a-row">
+            <LabelValueCard
+              label={"Client Name"}
+              value={
+                dataArray[0]?.clientName
+                  ? dataArray[0]?.clientName
+                  : "ScrutinyGlobal"
+              }
+              disabled={!isEditable}
+            />
+          </Grid>
         </Grid>
-        <Grid item className="one-in-a-row">
-          <LabelValueCard
-            label={"Client Name"}
-            value={
-              dataArray[0]?.clientName
-                ? dataArray[0]?.clientName
-                : "ScrutinyGlobal"
-            }
-            disabled={!isEditable}
-          />
-        </Grid>
-        <Grid item container md={10} justifyContent="space-between">
-          <Grid item>
+        <Grid item container spacing={5}>
+          <Grid item md={6}>
             <LabelValueCard
               label="Contact Number"
               value={
@@ -333,7 +335,7 @@ const ProjectDetail = () => {
               disabled={!isEditable}
             />
           </Grid>
-          <Grid item>
+          <Grid item md={6}>
             <LabelValueCard
               label="Alt. Contact Number"
               value={
@@ -345,8 +347,8 @@ const ProjectDetail = () => {
             />
           </Grid>
         </Grid>
-        <Grid item container md={10} justifyContent="space-between">
-          <Grid item>
+        <Grid item container spacing={5}>
+          <Grid item md={6}>
             <LabelValueCard
               label="Start Date"
               value={
@@ -357,7 +359,7 @@ const ProjectDetail = () => {
               disabled={!isEditable}
             />
           </Grid>
-          <Grid item>
+          <Grid item md={6}>
             <LabelValueCard
               label="End Date"
               value={
@@ -367,8 +369,8 @@ const ProjectDetail = () => {
             />
           </Grid>
         </Grid>
-        <Grid item container md={10} justifyContent="space-between">
-          <Grid item>
+        <Grid item container spacing={5}>
+          <Grid item md={6}>
             <LabelValueCard
               label="Project Head"
               value={
@@ -379,7 +381,7 @@ const ProjectDetail = () => {
               disabled={!isEditable}
             />
           </Grid>
-          <Grid item>
+          <Grid item md={6}>
             <LabelValueCard
               label="Pre Sales SPOC"
               value={dataArray[0]?.SPOC ? dataArray[0]?.SPOC : "ScrutinyGlobal"}
@@ -387,8 +389,8 @@ const ProjectDetail = () => {
             />
           </Grid>
         </Grid>
-        <Grid item container md={10} justifyContent="space-between">
-          <Grid item>
+        <Grid item container spacing={5}>
+          <Grid item md={6}>
             <LabelValueCard
               label="Audience Type"
               value={
@@ -399,7 +401,7 @@ const ProjectDetail = () => {
               disabled={!isEditable}
             />
           </Grid>
-          <Grid item>
+          <Grid item md={6}>
             <LabelValueCard
               label="Project Budget"
               value={
@@ -431,7 +433,7 @@ const ProjectDetail = () => {
         Quotaion
       </Grid>
       <Grid item container direction="column" className="quotation-grid">
-        <Grid item md={6}>
+        <Grid item md={5}>
           <MuiDropDown
             value={vendorSeleted}
             onChange={onChangeVendor}

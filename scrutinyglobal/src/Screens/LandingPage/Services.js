@@ -276,9 +276,9 @@ const Services = () => {
           }
         />
       </Grid>
-      <Grid container spacing={2}>
+      <Grid container spacing={4}>
         {cardArray.map((item, index) => (
-          <Grid item xs={12} md={4} key={index}>
+          <Grid item md={4} key={index}>
             <SurveyCard
               title1={item.title1}
               title2={item.title2}
@@ -289,17 +289,21 @@ const Services = () => {
           </Grid>
         ))}
       </Grid>
-      <Grid item className="contact-us-grid">
-        <Typography className="contact-us" gutterBottom>
-          F.A.Q
-        </Typography>
-        <Typography className="contact-us" gutterBottom>
-          Frequently Asked Questions
-        </Typography>
+      <Grid item container className="contact-us-grid">
+        <Grid item md={12}>
+          <Typography className="contact-us" gutterBottom>
+            F.A.Q
+          </Typography>
+        </Grid>
+        <Grid item md={12}>
+          <Typography className="contact-us" gutterBottom>
+            Frequently Asked Questions
+          </Typography>
+        </Grid>
       </Grid>
 
       <Grid item container spacing={2}>
-        <Grid item xs={12}>
+        <Grid item xs={12} className="accordion-array-grid">
           <MuiAccordion content={accordionArray} />
         </Grid>
       </Grid>

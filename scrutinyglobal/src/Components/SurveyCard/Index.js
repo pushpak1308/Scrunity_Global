@@ -9,13 +9,13 @@ const SurveyCard = ({ title1, title2, content, color, number }) => {
     <Grid
       container
       spacing={2}
-      className={`survey-card-${number} border-bottom-${color}`}
+      className={`survey-card-${number}`}
       justifyContent="center"
       alignItems="center"
     >
-      {/* <Grid item xs={12} textAlign="center">
+      <Grid item xs={12} textAlign="center">
         <ForumIcon className="icon" color={color} fontSize="large" />
-      </Grid> */}
+      </Grid>
       <Grid item xs={12}>
         <Typography align="center" className="title1-text">
           {title1}

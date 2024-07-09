@@ -43,20 +43,13 @@
   font-weight: 700 !important;
   font-size: 2rem !important;
   line-height: 1.5;
-  color: rgba(83, 89, 231, 0.77);
-}
-
-.iconCardGrid {
-  height: 15vh;
-  background-color: #bbdded;
-  border-radius: 20px;
-  max-width: 85%;
+  color: rgb(28 33 139 / 77%);
 }
 
 .iconCard-subtitle {
   font-family: "Volkorn", serif !important;
-  font-weight: 500;
-  font-size: 1.2rem;
+  font-weight: 500 !important;
+  font-size: 1.2rem !important;
   text-align: center;
   text-wrap: nowrap;
 }

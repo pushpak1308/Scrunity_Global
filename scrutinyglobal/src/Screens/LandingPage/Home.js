@@ -9,8 +9,15 @@ import CardComponentIcon from "../../MuiComponents/MuiCards/CardComponentIcon";
 const Home = () => {
   return (
     <Grid container className="main-container-landing ">
-      <Grid item container spacing={6}>
-        <Grid item xs={12} md={6} className="item-grid">
+      <Grid
+        item
+        container
+        spacing={3}
+        justifyContent="center"
+        alignItems="center"
+        className="home-sub-grid"
+      >
+        <Grid item md={6} className="item-grid">
           <Typography className="vollkorn-heading">SCRUTINY GLOBAL</Typography>
 
           <Typography className="monsterrat-subheading-paragraph" gutterBottom>
@@ -24,7 +31,7 @@ const Home = () => {
             endIcon={<ArrowForwardIcon />}
           />
         </Grid>
-        <Grid item xs={12} md={6} className="home-image">
+        <Grid item md={6} className="home-image">
           <img src={homeImage} alt="home Image" />
         </Grid>
       </Grid>
@@ -35,16 +42,16 @@ const Home = () => {
         justifyContent="space-evenly"
         className="iconCardGrid"
       >
-        <Grid item md={2}>
+        <Grid item>
           <CardComponentIcon title="2234" text="Happy Clients" />
         </Grid>
-        <Grid item md={2}>
+        <Grid item>
           <CardComponentIcon title="1000" text="Projects" />
         </Grid>
-        <Grid item md={2}>
+        <Grid item>
           <CardComponentIcon title="1454" text="Hours Of Support" />
         </Grid>
-        <Grid item md={2}>
+        <Grid item>
           <CardComponentIcon title="2345" text="Hardworkers" />
         </Grid>
       </Grid>

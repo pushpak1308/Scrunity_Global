@@ -6,16 +6,13 @@ import { MuiDropDown } from "../../../MuiComponents/MuiDropDown/Index";
 import CustomModal from "../../../MuiComponents/MuiModal/Index";
 import Layout from "../Layout";
 import "../Client/Style.css";
-import { Add as AddIcon } from "@mui/icons-material";
-import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import MuiDataGrid from "../../../MuiComponents/MuiDataGrid/Index";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectCurrentStep } from "../../../Store/Slice/stepSlice";
+import { selectAddVendorStep } from "../../../Store/Slice/stepSlice";
 
 const AddVendor = () => {
   const navigate = useNavigate();
-  const currentStep = useSelector(selectCurrentStep);
+  const currentStep = useSelector(selectAddVendorStep);
   const [email, setEmail] = useState("");
   const [vendorName, setVendorName] = useState("");
   const [address, setAddress] = useState("");
@@ -254,8 +251,8 @@ const AddVendor = () => {
         />
       </Grid>,
       <Grid item>
-        <Grid container spacing={2} justifyContent="space-between">
-          <Grid item md={5}>
+        <Grid container spacing={2}>
+          <Grid item md={6}>
             <MuiTextField
               type="text"
               required={true}
@@ -266,7 +263,7 @@ const AddVendor = () => {
               className="forAddClient"
             />
           </Grid>
-          <Grid item md={5}>
+          <Grid item md={6}>
             <MuiTextField
               type="text"
               value={alternateContactNumber}
@@ -282,6 +279,7 @@ const AddVendor = () => {
       <Grid item>
         <MuiDropDown
           value={country}
+          required={true}
           //   defaultValue={reduxData?.accountType || ""}
           onChange={onChangeCountry}
           placeholder="India , USA"
@@ -297,6 +295,7 @@ const AddVendor = () => {
           type="text"
           value={successURL}
           label="Success URL"
+          required={true}
           onChange={onChangeSuccessURL}
           className="forAddClient"
         />
@@ -304,6 +303,7 @@ const AddVendor = () => {
       <Grid item>
         <MuiTextField
           type="text"
+          required={true}
           value={terminateURL}
           label="Success URL"
           onChange={onChangeTerminateURL}
@@ -313,6 +313,7 @@ const AddVendor = () => {
       <Grid item>
         <MuiTextField
           type="text"
+          required={true}
           value={quotafulURL}
           label="Success URL"
           onChange={onChangeQuotafulURL}
@@ -324,6 +325,7 @@ const AddVendor = () => {
       <Grid item>
         <MuiTextField
           type="text"
+          required={true}
           value={registrationNo}
           label="Registration Number"
           onChange={onChangeRegistrationNo}
@@ -333,6 +335,7 @@ const AddVendor = () => {
       <Grid item>
         <MuiTextField
           type="text"
+          required={true}
           value={panNo}
           label="PAN Number"
           onChange={onChangePanNumber}
@@ -364,6 +367,7 @@ const AddVendor = () => {
       <Grid item>
         <MuiTextField
           type="text"
+          required={true}
           value={accountNo}
           label="Account Number"
           // defaultValue={reduxData?.state || ""}
@@ -409,8 +413,8 @@ const AddVendor = () => {
     setShowSuccessModal(!showSuccessModal);
   };
 
-  const handleGoToProjects = () => {
-    navigate("/projects");
+  const handleGoToVendors = () => {
+    navigate("/vendors");
   };
 
   const content = (
@@ -433,7 +437,11 @@ const AddVendor = () => {
         </Grid>
         <Grid item>
           <Paper elevation={2} className="form-sub-grid">
-            <StepForm steps={steps} onSave={handleSave} />
+            <StepForm
+              steps={steps}
+              onSave={handleSave}
+              formType={"add-vendor"}
+            />
           </Paper>
         </Grid>
       </Grid>
@@ -444,7 +452,7 @@ const AddVendor = () => {
           colorHeading="success"
           heading="Vendor is Saved !!"
           buttonPrimaryText="View"
-          handleModalButtonClick={handleGoToProjects}
+          handleModalButtonClick={handleGoToVendors}
         />
       </Grid>
     </Grid>

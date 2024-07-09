@@ -9,12 +9,14 @@ export const MuiDropDown = ({
   label,
   defaultValue,
   className,
+  required,
 }) => {
   const name = value;
   return (
     <>
       <InputLabel className={className ? className : "arimo-input-label"}>
         {label}
+        {required && <span style={{ color: "red" }}> *</span>}
       </InputLabel>
       <Autocomplete
         id={`${name}-autocomplete`}
