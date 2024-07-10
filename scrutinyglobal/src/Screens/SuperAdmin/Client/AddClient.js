@@ -21,6 +21,8 @@ const AddClient = () => {
   const [address, setAddress] = useState("");
   const [country, setCountry] = useState("");
   const [currency, setCurrency] = useState("");
+  const [userId, setUserId] = useState("");
+  const [accountType, setAccountType] = useState("");
   const [industry, setIndustry] = useState("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
@@ -68,7 +70,6 @@ const AddClient = () => {
     setIndustry(e.target.value);
   };
 
-  const [accountType, setAccountType] = useState("CLIENT");
   const [clientData, setClientData] = useState([]);
   const [clientUserName, setClientUserName] = useState([]);
 
@@ -107,15 +108,35 @@ const AddClient = () => {
     );
 
     if (selectedClient) {
+      setUserId(selectedClient.userId);
       setClientName(selectedClientName);
-      setContactName(selectedClient.name);
+      // setContactName(selectedClient.name);
       setContactNumber(selectedClient.number);
       setEmail(selectedClient.email);
       setAddress(selectedClient.address);
       setCountry(selectedClient.country);
+      setAccountType(selectedClient.accountType);
     }
   };
 
+  const clientFormData = [
+    {
+      userId: userId,
+      accountType: accountType,
+      successURL: "",
+      terminateURL: "",
+      quotaFullURL: "",
+      securityTerminateURL: "",
+      contactName: contactName,
+      contactEmail: email,
+      alternateNumber: alternateContactNumber,
+      website: websiteLink,
+      industry: industry,
+      description: "",
+    },
+  ];
+  //setClientFormData
+  // console.log('object :>> ', object);
   console.log("client data seting outside", clientUserName);
 
   const steps = [
