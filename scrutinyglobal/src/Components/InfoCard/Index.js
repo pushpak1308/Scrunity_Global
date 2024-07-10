@@ -4,7 +4,7 @@ import { PieChart } from "@mui/x-charts/PieChart";
 import "./Style.css";
 
 const InfoCard = ({ title, value, subtitle, image }) => {
-  const pieParams = { height: 100, width: 100 };
+  const pieParams = { height: 100, width: 200 };
 
   const chart = (
     <PieChart
@@ -29,11 +29,12 @@ const InfoCard = ({ title, value, subtitle, image }) => {
       <CardContent>
         <Grid
           container
-          justifyContent="space-between"
+          justifyContent="center"
           alignItems="center"
+          spacing={2}
           className="info-subcontainer"
         >
-          <Grid item container xs={6}>
+          <Grid item container xs={6} direction="column">
             <Grid item>
               <Paper className="infoText-1" elevation={0}>
                 {value}
@@ -50,7 +51,7 @@ const InfoCard = ({ title, value, subtitle, image }) => {
               </Paper>
             </Grid>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={4} className="image-section">
             {image ? <img src={image} alt={title} /> : chart}
           </Grid>
         </Grid>

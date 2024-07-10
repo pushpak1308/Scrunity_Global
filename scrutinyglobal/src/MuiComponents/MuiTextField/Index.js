@@ -11,12 +11,14 @@ export const MuiTextField = ({
   placeholder,
   defaultValue,
   label,
+  required,
   rows,
 }) => {
   return (
     <>
       <InputLabel className={className ? className : "arimo-input-label"}>
         {label}
+        {required && <span style={{ color: "red" }}> *</span>}
       </InputLabel>
 
       <TextField

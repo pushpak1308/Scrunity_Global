@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import StepForm from "../../../Components/StepForm/Index";
 import { MuiTextField } from "../../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../../MuiComponents/MuiDropDown/Index";

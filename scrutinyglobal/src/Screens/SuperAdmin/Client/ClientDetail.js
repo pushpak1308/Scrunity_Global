@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import Layout from "../Layout";
 import { useSelector } from "react-redux";
 import EditIcon from "@mui/icons-material/Edit";
@@ -9,12 +9,11 @@ import { selectedRow } from "../../../Store/Slice/rowSelectionSlice";
 
 const ClientDetail = () => {
   const dataArray = useSelector(selectedRow);
-  console.log("selectedRows11 :>> ", dataArray[0]);
   const [isActive, setIsActive] = useState(
     dataArray[0]?.status ? dataArray[0]?.status : false
   );
   const [isEditable, setIsEditable] = useState(false);
-  const { id } = useParams();
+  // const { id } = useParams();
 
   const handleEditClick = () => {
     setIsEditable(!isEditable);

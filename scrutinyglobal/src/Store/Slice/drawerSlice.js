@@ -1,22 +1,35 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  open: false,
+  openClient: false,
+  openVendor: false,
 };
 
 const drawerSlice = createSlice({
   name: "drawer",
   initialState,
   reducers: {
-    toggleDrawer: (state) => {
-      state.open = !state.open;
+    toggleDrawerClient: (state) => {
+      state.openClient = !state.openClient;
     },
-    setDrawerOpen: (state, action) => {
-      state.open = action.payload;
+    toggleDrawerVendor: (state) => {
+      state.openVendor = !state.openVendor;
+    },
+    setDrawerOpenClient: (state, action) => {
+      state.openClient = action.payload;
+    },
+    setDrawerOpenVendor: (state, action) => {
+      state.openVendor = action.payload;
     },
   },
 });
 
-export const { toggleDrawer, setDrawerOpen } = drawerSlice.actions;
-export const selectDrawerOpen = (state) => state.drawer.open;
+export const {
+  toggleDrawerClient,
+  toggleDrawerVendor,
+  setDrawerOpenClient,
+  setDrawerOpenVendor,
+} = drawerSlice.actions;
+export const selectDrawerOpenClient = (state) => state.drawer.openClient;
+export const selectDrawerOpenVendor = (state) => state.drawer.openVendor;
 export default drawerSlice.reducer;
