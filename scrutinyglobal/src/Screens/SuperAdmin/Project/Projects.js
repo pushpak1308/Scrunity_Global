@@ -249,10 +249,6 @@ const Projects = () => {
     },
   ];
 
-  const handleSendRFQ = () => {
-    navigate("/vendorRFQ");
-  };
-
   const handleRowClick = (params) => {
     navigate(`/project/${checkedRows[0].id}`);
   };
@@ -292,7 +288,7 @@ const Projects = () => {
             <Button
               variant="outlined"
               color="error"
-              onClick={handleSendRFQ}
+              //   onClick={handleAddProject}
               className="client-button add-class"
               disabled={checkedRows.length === 0}
               startIcon={
