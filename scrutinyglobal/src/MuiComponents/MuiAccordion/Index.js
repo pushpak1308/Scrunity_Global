@@ -13,7 +13,7 @@ export default function MuiAccordion({ content }) {
         <Accordion
           key={index}
           className="accordion"
-          elevation={1}
+          elevation={0}
           defaultExpanded={item.defaultOpen}
         >
           <AccordionSummary
