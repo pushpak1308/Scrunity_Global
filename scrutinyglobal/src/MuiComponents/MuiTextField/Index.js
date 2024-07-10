@@ -1,4 +1,4 @@
-import { TextField, InputLabel, Typography } from "@mui/material";
+import { TextField, InputLabel } from "@mui/material";
 import React from "react";
 import "../../Screens/Auth/Style.css";
 import "./Style.css";
@@ -10,7 +10,6 @@ export const MuiTextField = ({
   className,
   placeholder,
   defaultValue,
-  required,
   label,
   rows,
 }) => {
@@ -18,7 +17,6 @@ export const MuiTextField = ({
     <>
       <InputLabel className={className ? className : "arimo-input-label"}>
         {label}
-        {required && <span style={{ color: "red" }}> *</span>}
       </InputLabel>
 
       <TextField
@@ -33,6 +31,8 @@ export const MuiTextField = ({
         rows={rows}
         className={className ? className : "arimo-input-label"}
         size="small"
+        fullWidth
+        required
         InputProps={{
           classes: {
             input: "centered-input",

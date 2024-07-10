@@ -9,7 +9,6 @@ const MuiContainedButton = ({
   width,
   mt,
   endIcon,
-  startIcon,
   disabled,
   variant,
   className,
@@ -26,7 +25,6 @@ const MuiContainedButton = ({
       color="primary"
       onClick={onClickFunction}
       sx={style}
-      startIcon={startIcon}
       endIcon={endIcon}
       className={className ? className : "containedButton"}
       disabled={disabled}
