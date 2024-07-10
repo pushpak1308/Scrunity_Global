@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Paper, Typography } from "@mui/material";
 import StepForm from "../../../Components/StepForm/Index";
 import { MuiTextField } from "../../../MuiComponents/MuiTextField/Index";
@@ -73,8 +73,8 @@ const AddClient = () => {
   };
 
   const [accountType, setAccountType] = useState("CLIENT");
-  const [clientData,setClientData] = useState([]);
-  const [clientUserName,setClientUserName] = useState([]);
+  const [clientData, setClientData] = useState([]);
+  const [clientUserName, setClientUserName] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:8080/ScrutinyGlobal/getUserList", {
@@ -84,31 +84,32 @@ const AddClient = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "accountType":["user"],
-        "aprove":false
-      })
+        accountType: ["user"],
+        aprove: false,
+      }),
     })
       .then(function (res) {
         return res.json();
       })
-      .then(function(data){
-        console.log("data of client : ",data)
+      .then(function (data) {
+        console.log("data of client : ", data);
         setClientData(data);
-        setClientUserName(data.map((element) => {
-          return element.name;
-        }))
+        setClientUserName(
+          data.map((element) => {
+            return element.name;
+          })
+        );
         console.log("client data seting ", clientData);
       });
   }, []);
 
   console.log("client data seting outside", clientUserName);
 
-
-
   const steps = [
     [
       <Grid item>
         <MuiDropDown
+          required={true}
           value={clientData.name}
           //   defaultValue={reduxData?.accountType || ""}
           onChange={onChangeClientName}
@@ -122,6 +123,7 @@ const AddClient = () => {
           <Grid item md={6}>
             <MuiTextField
               type="text"
+              required={true}
               value={contactName}
               label="Contact Name"
               // defaultValue={reduxData?.city || ""}
@@ -146,6 +148,7 @@ const AddClient = () => {
           <Grid item md={6}>
             <MuiTextField
               type="text"
+              required={true}
               value={contactNumber}
               label="Contact Number"
               // defaultValue={reduxData?.city || ""}
@@ -171,6 +174,7 @@ const AddClient = () => {
         <MuiTextField
           type="text"
           value={email}
+          required={true}
           label="Email"
           onChange={onChangeEmail}
           className="forAddClient"
@@ -180,6 +184,7 @@ const AddClient = () => {
         <MuiTextField
           type="text"
           value={websiteLink}
+          required={true}
           label="Website Link"
           onChange={onChangeWebsiteLink}
           className="forAddClient"
@@ -201,6 +206,7 @@ const AddClient = () => {
         <MuiTextField
           type="text"
           value={address}
+          required={true}
           label="Address"
           onChange={onChangeAddress}
           className="forAddClient"
@@ -211,6 +217,7 @@ const AddClient = () => {
           <Grid item md={6}>
             <MuiTextField
               type="text"
+              required={true}
               value={country}
               label="Country"
               // defaultValue={reduxData?.city || ""}
@@ -233,6 +240,7 @@ const AddClient = () => {
       <Grid item>
         <MuiDropDown
           value={industry}
+          required={true}
           //   defaultValue={reduxData?.accountType || ""}
           onChange={onChangeIndustry}
           options={["industry 1", "industry 2", "industry 3"]}
@@ -274,7 +282,11 @@ const AddClient = () => {
       >
         <Grid item>
           <Paper elevation={2} className="form-sub-grid">
-            <StepForm steps={steps} onSave={handleSave} />
+            <StepForm
+              steps={steps}
+              onSave={handleSave}
+              formType={"add-client"}
+            />
           </Paper>
         </Grid>
         <Grid item>

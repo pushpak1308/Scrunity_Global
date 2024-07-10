@@ -1,15 +1,10 @@
 import React from "react";
-import { Box, Grid, Typography, Button, Stack } from "@mui/material";
+import { Box, Grid, Typography, Button, Stack, Paper } from "@mui/material";
 import aboutImage from "./../../Images/LandingImages/AboutImages/aboutImage.png";
 import cardImage1 from "./../../Images/LandingImages/AboutImages/CardImage/cardImage1.png";
 import cardImage2 from "./../../Images/LandingImages/AboutImages/CardImage/cardImage2.png";
 import cardImage3 from "./../../Images/LandingImages/AboutImages/CardImage/cardImage3.png";
 import CardComponentImage from "../../MuiComponents/MuiCards/CardComponentImage";
-import CardComponentIcon from "../../MuiComponents/MuiCards/CardComponentIcon";
-import HappyClients from "./../../Images/LandingImages/AboutImages/CardImage/HappyClients.png";
-import Projects from "./../../Images/LandingImages/AboutImages/CardImage/Projects.png";
-import CustomerSupport from "./../../Images/LandingImages/AboutImages/CardImage/CustomerSupport.png";
-import Hardworkers from "./../../Images/LandingImages/AboutImages/CardImage/hardworkers.png";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 import CenteredTextSection from "../../Components/CenteredTextSection/Index";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -276,20 +271,29 @@ const About = () => {
         className="aboutSection1"
       >
         <Grid item xs={12} md={6} className="aboutSectionText1">
-          <Typography variant="h4" gutterBottom>
-            WHO WE ARE
+          <Typography className="about-section-heading1" gutterBottom>
+            Something About Us
           </Typography>
-          <Typography variant="h5" gutterBottom>
-            Scrutiny Global: Your Partner in Market Research
-          </Typography>
-          <Typography variant="body1" paragraph>
+          <Grid container direction="row" alignItems="center">
+            <Grid item>
+              <Typography className="about-section-scrutinyGlobal" gutterBottom>
+                Scrutiny Global:{" "}
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography className="about-section-heading2" gutterBottom>
+                Your Partner in Market Research
+              </Typography>
+            </Grid>
+          </Grid>
+          <Typography className="about-section1-paragraph">
             Scrutiny Global is a market research firm that provides businesses
             with the insights they need to make informed decisions. We offer a
             wide range of services, including quantitative and qualitative
             research, online surveys, public opinion polling, data collection,
             and media research.
           </Typography>
-          <Typography variant="body1" paragraph>
+          <Typography className="about-section1-paragraph">
             Our team of experienced researchers is committed to providing our
             clients with accurate, reliable, and actionable data. We understand
             that the success of your business depends on your ability to make
@@ -310,10 +314,20 @@ const About = () => {
       </Grid>
       <Grid item>
         <CenteredTextSection
-          title={"WHY SCRUTINY GLOBAL...."}
-          subtitle={
-            "We recognize the importance of expediency and thus, operate with swiftness and efficacy to ensure the punctual delivery of your outcomes, as delineated by the following aspects."
+          title={
+            <>
+              WHY{" "}
+              <Typography
+                component="span"
+                className="about-section-scrutinyGlobal"
+              >
+                SCRUTINY GLOBAL
+              </Typography>
+              ?
+            </>
           }
+          subtitle="We recognize the importance of expediency and thus, operate with swiftness and efficacy to ensure the punctual delivery of your outcomes, as delineated by the following aspects."
+          image={aboutImage}
         />
       </Grid>
       <Grid item container spacing={2}>
@@ -339,42 +353,11 @@ const About = () => {
           />
         </Grid>
       </Grid>
-      <Grid
-        item
-        container
-        alignItems="center"
-        justifyContent="space-between"
-        className="iconCardGrid"
-        spacing={3}
-      >
-        <Grid item xs={12} sm={6} md={3}>
-          <CardComponentIcon
-            image={HappyClients}
-            title="2234"
-            text="Happy Clients"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <CardComponentIcon image={Projects} title="1000" text="Projects" />
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <CardComponentIcon
-            image={CustomerSupport}
-            title="1454"
-            text="Hours Of Support"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <CardComponentIcon
-            image={Hardworkers}
-            title="2345"
-            text="Hardworkers"
-          />
-        </Grid>
-      </Grid>
+
       <Grid item xs={12}>
         <CenteredTextSection
-          title={"FEATURES"}
+          image={aboutImage}
+          title={"Our Features"}
           subtitle={
             "We offers the powerful survey features for any research need"
           }
@@ -385,7 +368,7 @@ const About = () => {
         item
         container
         spacing={2}
-        jjustifyContent="center"
+        justifyContent="center"
         alignItems="center"
         className="aboutSection2"
       >
@@ -413,8 +396,10 @@ const About = () => {
           <img src={aboutImage3} alt="features" className="aboutImage2" />
         </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <CenteredTextSection subtitle={"Why Choose Us..."} />
+      <Grid item className="contact-us-grid">
+        <Typography className="contact-us" gutterBottom>
+          Why choose us?
+        </Typography>
       </Grid>
 
       <Grid container spacing={2}>

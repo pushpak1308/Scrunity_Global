@@ -1,21 +1,15 @@
 .accordion {
-  border-bottom: 1px solid #b2aaaa;
+  /* margin: 1.2rem;
+  padding: 0.3rem; */
 }
 
-.accordion:before {
-  display: none;
-}
-.accordion-summary {
-  font-family: "Arimo", sans-serif !important;
-  padding: 1rem;
-}
 .accordion-summary-expanded {
   font-family: "Arimo", sans-serif !important;
   padding: 1rem;
   color: rgba(83, 89, 231, 0.77);
 }
 
+.accordion-summary,
 .accordion-details {
-  padding: 1rem;
-  font-family: "Arimo", sans-serif !important;
+  font-family: "Arimo", sans-serif;
 }

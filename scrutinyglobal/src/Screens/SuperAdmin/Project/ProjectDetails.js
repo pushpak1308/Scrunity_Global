@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import Layout from "../Layout";
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import LabelValueCard from "../../../Components/LabelValueCard/Index";
 import "../Client/Style.css";
 import MuiDataGrid from "../../../MuiComponents/MuiDataGrid/Index";
@@ -13,7 +13,6 @@ import { MuiDropDown } from "../../../MuiComponents/MuiDropDown/Index";
 
 const ProjectDetail = () => {
   const dataArray = useSelector(selectedRow);
-  console.log("selectedRows11 :>> ", dataArray[0]);
   const [isEditable, setIsEditable] = useState(false);
   const [vendorSeleted, setVendorSelected] = useState("");
   const { id } = useParams();
@@ -110,7 +109,7 @@ const ProjectDetail = () => {
     {
       field: "status",
       headerName: "STATUS",
-      width: 150,
+      width: 160,
       align: "center",
       headerClassName: "dataGrid-header-accpetedRFQ",
       cellClassName: "dataGrid-cell",
@@ -151,31 +150,59 @@ const ProjectDetail = () => {
       cost: "743",
       cost1: "543",
     },
+    {
+      id: 3,
+      status: "No",
+      vendor: "vendor Name",
+      country: "India",
+      IR: "2",
+      LOI: "3",
+      completesNeeded: "10",
+      completesFeasible: "8",
+      cost: "743",
+      cost1: "543",
+    },
+    {
+      id: 4,
+      status: "No",
+      vendor: "vendor Name",
+      country: "India",
+      IR: "2",
+      LOI: "3",
+      completesNeeded: "10",
+      completesFeasible: "8",
+      cost: "743",
+      cost1: "543",
+    },
+    {
+      id: 5,
+      status: "No",
+      vendor: "vendor Name",
+      country: "India",
+      IR: "2",
+      LOI: "3",
+      completesNeeded: "10",
+      completesFeasible: "8",
+      cost: "743",
+      cost1: "543",
+    },
   ];
   const [colAcc, setColAcc] = useState([
-    // {
-    //   field: "id",
-    //   headerName: "S.No.",
-    //   width: 90,
-    //   align: "center",
-    //   cellClassName: "dataGrid-cell",
-    //   //headerClassName: "dataGrid-header",
-    // },
     {
       field: "country",
       headerName: "Country",
       align: "center",
       width: 120,
       headerAlign: "center",
-      cellClassName: "dataGrid-cell",
-      //headerClassName: "dataGrid-header",
+      headerClassName: "dataGrid-header-accordion",
+      cellClassName: "dataGrid-cell-country",
     },
     {
       field: "IR",
       headerName: "IR%",
       width: 100,
       align: "center",
-      //headerClassName: "dataGrid-header",
+      headerClassName: "dataGrid-header-accordion",
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
     },
@@ -184,7 +211,7 @@ const ProjectDetail = () => {
       headerName: "LOI(min)",
       width: 100,
       align: "center",
-      //headerClassName: "dataGrid-header",
+      headerClassName: "dataGrid-header-accordion",
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
     },
@@ -193,7 +220,7 @@ const ProjectDetail = () => {
       headerName: "Completes Needed",
       width: 150,
       align: "center",
-      //headerClassName: "dataGrid-header",
+      headerClassName: "dataGrid-header-accordion",
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
     },
@@ -202,7 +229,7 @@ const ProjectDetail = () => {
       headerName: "Completes Feasible",
       width: 150,
       align: "center",
-      //headerClassName: "dataGrid-header",
+      headerClassName: "dataGrid-header-accordion",
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
     },
@@ -211,7 +238,7 @@ const ProjectDetail = () => {
       headerName: "Cost",
       width: 120,
       align: "center",
-      //headerClassName: "dataGrid-header",
+      headerClassName: "dataGrid-header-accordion",
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
     },
@@ -220,7 +247,7 @@ const ProjectDetail = () => {
       headerName: "Cost",
       width: 120,
       align: "center",
-      //headerClassName: "dataGrid-header",
+      headerClassName: "dataGrid-header-accordion",
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
     },
@@ -229,7 +256,7 @@ const ProjectDetail = () => {
       headerName: "STATUS",
       width: 140,
       align: "center",
-      //headerClassName: "dataGrid-header",
+      headerClassName: "dataGrid-header-accordion",
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
       renderCell: (params) => (
@@ -270,7 +297,16 @@ const ProjectDetail = () => {
 
   const accordionArray = [
     {
-      title: "Example supplier name ( 01 - 07 - 24 ) ( 0 Accepted )",
+      title: (
+        <Grid container>
+          <Grid item>
+            <Typography>Example supplier name ( 01 - 07 - 24 )</Typography>
+          </Grid>
+          <Grid item>
+            <Typography> ( 0 Accepted )</Typography>
+          </Grid>
+        </Grid>
+      ),
       content: (
         <MuiDataGrid rows={rowsAcc} columns={colAcc} disablePagination={true} />
       ),
@@ -298,31 +334,33 @@ const ProjectDetail = () => {
       <Grid item className="section-heading">
         Project & Client Information
       </Grid>
-      <Grid item container md={8}>
-        <Grid item className="one-in-a-row">
-          <LabelValueCard
-            label={"Project Name"}
-            disabled={!isEditable}
-            value={
-              dataArray[0]?.projectName
-                ? dataArray[0]?.projectName
-                : "ScrutinyGlobal"
-            }
-          />
+      <Grid item container md={10}>
+        <Grid item container md={8}>
+          <Grid item className="one-in-a-row">
+            <LabelValueCard
+              label={"Project Name"}
+              disabled={!isEditable}
+              value={
+                dataArray[0]?.projectName
+                  ? dataArray[0]?.projectName
+                  : "ScrutinyGlobal"
+              }
+            />
+          </Grid>
+          <Grid item className="one-in-a-row">
+            <LabelValueCard
+              label={"Client Name"}
+              value={
+                dataArray[0]?.clientName
+                  ? dataArray[0]?.clientName
+                  : "ScrutinyGlobal"
+              }
+              disabled={!isEditable}
+            />
+          </Grid>
         </Grid>
-        <Grid item className="one-in-a-row">
-          <LabelValueCard
-            label={"Client Name"}
-            value={
-              dataArray[0]?.clientName
-                ? dataArray[0]?.clientName
-                : "ScrutinyGlobal"
-            }
-            disabled={!isEditable}
-          />
-        </Grid>
-        <Grid item container md={10} justifyContent="space-between">
-          <Grid item>
+        <Grid item container spacing={5}>
+          <Grid item md={6}>
             <LabelValueCard
               label="Contact Number"
               value={
@@ -333,7 +371,7 @@ const ProjectDetail = () => {
               disabled={!isEditable}
             />
           </Grid>
-          <Grid item>
+          <Grid item md={6}>
             <LabelValueCard
               label="Alt. Contact Number"
               value={
@@ -345,8 +383,8 @@ const ProjectDetail = () => {
             />
           </Grid>
         </Grid>
-        <Grid item container md={10} justifyContent="space-between">
-          <Grid item>
+        <Grid item container spacing={5}>
+          <Grid item md={6}>
             <LabelValueCard
               label="Start Date"
               value={
@@ -357,7 +395,7 @@ const ProjectDetail = () => {
               disabled={!isEditable}
             />
           </Grid>
-          <Grid item>
+          <Grid item md={6}>
             <LabelValueCard
               label="End Date"
               value={
@@ -367,8 +405,8 @@ const ProjectDetail = () => {
             />
           </Grid>
         </Grid>
-        <Grid item container md={10} justifyContent="space-between">
-          <Grid item>
+        <Grid item container spacing={5}>
+          <Grid item md={6}>
             <LabelValueCard
               label="Project Head"
               value={
@@ -379,7 +417,7 @@ const ProjectDetail = () => {
               disabled={!isEditable}
             />
           </Grid>
-          <Grid item>
+          <Grid item md={6}>
             <LabelValueCard
               label="Pre Sales SPOC"
               value={dataArray[0]?.SPOC ? dataArray[0]?.SPOC : "ScrutinyGlobal"}
@@ -387,8 +425,8 @@ const ProjectDetail = () => {
             />
           </Grid>
         </Grid>
-        <Grid item container md={10} justifyContent="space-between">
-          <Grid item>
+        <Grid item container spacing={5}>
+          <Grid item md={6}>
             <LabelValueCard
               label="Audience Type"
               value={
@@ -399,7 +437,7 @@ const ProjectDetail = () => {
               disabled={!isEditable}
             />
           </Grid>
-          <Grid item>
+          <Grid item md={6}>
             <LabelValueCard
               label="Project Budget"
               value={
@@ -431,7 +469,7 @@ const ProjectDetail = () => {
         Quotaion
       </Grid>
       <Grid item container direction="column" className="quotation-grid">
-        <Grid item md={6}>
+        <Grid item md={5}>
           <MuiDropDown
             value={vendorSeleted}
             onChange={onChangeVendor}

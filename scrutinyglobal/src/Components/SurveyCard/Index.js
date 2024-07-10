@@ -9,7 +9,7 @@ const SurveyCard = ({ title1, title2, content, color, number }) => {
     <Grid
       container
       spacing={2}
-      className={`survey-card-${number} border-bottom-${color}`}
+      className={`survey-card-${number}`}
       justifyContent="center"
       alignItems="center"
     >

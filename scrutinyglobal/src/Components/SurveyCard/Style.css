@@ -4,7 +4,7 @@
   max-width: 58vh;
   padding: 2rem;
   margin: 2rem;
-  box-shadow: 0 2px 12px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 .survey-card-2 {
   transition: background-color 0.3s, color 0.3s;
@@ -12,11 +12,12 @@
   max-width: 58vh;
   padding: 2rem;
   margin: 2rem;
-  box-shadow: 0 2px 12px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.survey-card:hover {
-  background-color: #f0f0f0;
+.survey-card-1:hover,
+.survey-card-2:hover {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
 }
 
 .read-more-btn {

@@ -13,7 +13,6 @@ import {
 import React, { useState } from "react";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
-import CenteredTextSection from "../../Components/CenteredTextSection/Index";
 import logo from "../../logo_sg.png";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
@@ -47,8 +46,10 @@ const ContactUs = () => {
   };
   return (
     <Grid container id="contact" className="about-grid ">
-      <Grid item>
-        <CenteredTextSection subtitle={"Contact Us"} />
+      <Grid item className="contact-us-grid">
+        <Typography className="contact-us" gutterBottom>
+          Contact Us
+        </Typography>
       </Grid>
       <Grid item container spacing={3} className="contactus-grid">
         <Grid item xs={12} md={3}>
@@ -164,16 +165,16 @@ const ContactUs = () => {
           </Typography>
           <Grid item container spacing={1}>
             <Grid item>
-              <TwitterIcon fontSize="large" />
+              <TwitterIcon className="icon" />
             </Grid>
             <Grid item>
-              <FacebookOutlinedIcon fontSize="large" />
+              <FacebookOutlinedIcon className="icon" />
             </Grid>
             <Grid item>
-              <InstagramIcon fontSize="large" />
+              <InstagramIcon className="icon" />
             </Grid>
             <Grid item>
-              <LinkedInIcon fontSize="large" />
+              <LinkedInIcon className="icon" />
             </Grid>
           </Grid>
         </Grid>

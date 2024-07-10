@@ -47,10 +47,18 @@
   justify-content: center;
   align-items: center;
 }
+.home-sub-grid {
+  height: 55vh;
+}
+.iconCardGrid {
+  height: 12vh;
+  background-color: #cbf9ff;
+}
 
 .main-container-landing {
-  padding-top: 1rem;
+  padding-top: 0.5rem;
   padding-left: 12%;
+  padding-right: 12%;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -67,13 +75,13 @@
   font-optical-sizing: auto;
   font-weight: 400 !important;
   font-style: normal;
-  width: 80% !important;
+  width: 85% !important;
   line-height: 1.8 !important;
   padding-bottom: 3%;
 }
 
 .home-image img {
-  width: 75%;
+  width: 100%;
   height: auto;
 }
 
@@ -85,12 +93,53 @@
   align-items: center;
 }
 
+.contact-us-grid {
+  height: 7vh;
+  display: flex; /* Added to ensure children align properly */
+  align-items: center; /* Vertically center the child elements */
+  justify-content: center; /* Horizontally center the child elements if needed */
+}
+
+.contact-us {
+  font-family: "Vollkorn", serif !important;
+  font-weight: 600 !important;
+  font-size: 2rem !important;
+  text-align: center;
+  padding: 2rem;
+  margin: 2rem;
+}
 .aboutSection1 {
-  background-color: #def3f5;
+  /* background-color: #def3f5; */
   padding: 3rem;
 }
-.aboutSectionText1 {
-  /* padding: 3rem !important; */
+
+.accordion-array-grid {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.about-section-heading1 {
+  font-family: "Vollkorn", serif !important;
+  font-weight: 500 !important;
+  font-size: 2rem !important;
+}
+
+.about-section-scrutinyGlobal {
+  font-family: "Vollkorn", serif !important;
+  font-weight: 600 !important;
+  font-size: 1.7rem !important;
+  color: rgba(16, 210, 244, 0.77) !important;
+}
+
+.about-section-heading2 {
+  font-family: "Vollkorn", serif !important;
+  font-weight: 400 !important;
+  font-size: 1.4rem !important;
+}
+
+.about-section1-paragraph {
+  font-family: "Arimo", sans-serif !important;
+  font-size: 1rem !important;
+  padding-bottom: 1rem;
 }
 
 .aboutImage1 {
@@ -210,4 +259,12 @@
 
 .addMargin {
   margin-top: 2rem !important;
+}
+
+.icon {
+  color: #bdbdbd;
+}
+
+.icon:hover {
+  color: #62acc9;
 }

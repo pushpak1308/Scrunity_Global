@@ -12,11 +12,11 @@ import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import MuiDataGrid from "../../../MuiComponents/MuiDataGrid/Index";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectCurrentStep } from "../../../Store/Slice/stepSlice";
+import { selectAddProjectStep } from "../../../Store/Slice/stepSlice";
 
 const AddProject = () => {
   const navigate = useNavigate();
-  const currentStep = useSelector(selectCurrentStep);
+  const currentStep = useSelector(selectAddProjectStep);
   const [clientName, setClientName] = useState("");
   const [projectName, setProjectName] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -415,7 +415,13 @@ const AddProject = () => {
     </Grid>
   );
 
-  return <Layout content={content} navbarHeading="ADD PROJECT" />;
+  return (
+    <Layout
+      content={content}
+      navbarHeading="ADD PROJECT"
+      formType="add-project"
+    />
+  );
 };
 
 export default AddProject;
