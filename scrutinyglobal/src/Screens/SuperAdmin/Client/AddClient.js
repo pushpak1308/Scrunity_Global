@@ -28,10 +28,6 @@ const AddClient = () => {
     setCountry(e.target.value);
   };
 
-  const onChangeClientName = (e) => {
-    setClientName(e.target.value);
-  };
-
   const onChangeContactName = (e) => {
     setContactName(e.target.value);
   };
@@ -103,6 +99,23 @@ const AddClient = () => {
       });
   }, []);
 
+  const onChangeClientName = (e) => {
+    const selectedClientName = e.target.value;
+    setClientName(selectedClientName);
+    const selectedClient = clientData.find(
+      (client) => client.name === selectedClientName
+    );
+
+    if (selectedClient) {
+      setClientName(selectedClientName);
+      setContactName(selectedClient.name);
+      setContactNumber(selectedClient.number);
+      setEmail(selectedClient.email);
+      setAddress(selectedClient.address);
+      setCountry(selectedClient.country);
+    }
+  };
+
   console.log("client data seting outside", clientUserName);
 
   const steps = [
@@ -111,7 +124,7 @@ const AddClient = () => {
         <MuiDropDown
           required={true}
           value={clientData.name}
-          //   defaultValue={reduxData?.accountType || ""}
+          defaultValue={clientName || ""}
           onChange={onChangeClientName}
           options={clientUserName}
           label="Client Name"
