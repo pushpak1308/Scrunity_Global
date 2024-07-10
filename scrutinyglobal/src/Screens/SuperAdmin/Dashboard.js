@@ -148,31 +148,10 @@ const Dashboard = () => {
   console.log("response outside the function",responseData);
   console.log("userDataNew outside the function",userDataNew);
 
-  // useEffect(() => {}, [approved]);
+  useEffect(() => {}, [approved]);
 
-  const handleApprove = (id,accountType) => {
-
-    const approvedData = {
-      userId : id,
-      accountType : accountType,
-      successURL: "",
-      terminateURL: "",
-      quotaFullURL: "",
-      securityTerminateURL: "",
-      description: ""
-
-    }
-    fetch("http://localhost:8080/ScrutinyGlobal/setroletouser", {
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(approvedData),
-    })
-      .then(function (response) {
-        return response.json();
-      })
+  const handleApprove = () => {
+    setApproved(!approved);
     console.log("user is approved");
   };
 
@@ -215,15 +194,11 @@ const Dashboard = () => {
         return approved ? (
           <MuiContainedButton
             buttonText={"Approved"}
-            onClick={() => handleApprove(params.row.id,params.row.accountType)}
+            onClickFunction={handleApprove}
             type={"button"}
           />
         ) : (
-          <Button
-            variant="outlined"
-            color="primary"
-            onClick={() => handleApprove(params.row.id,params.row.accountType)}
-          >
+          <Button variant="outlined" color="primary" onClick={handleApprove}>
             Approve
           </Button>
         );
@@ -404,7 +379,7 @@ const Dashboard = () => {
         </Grid>
       </Grid>
       <Grid item md={12}>
-        <MuiDataGrid rows={userDataNew} columns={columns} getRowId={(row) => row.id}/>
+        <MuiDataGrid rows={userDataNew} columns={columns} />
       </Grid>
     </Grid>
   );

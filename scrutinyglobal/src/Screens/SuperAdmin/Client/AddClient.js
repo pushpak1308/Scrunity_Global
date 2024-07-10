@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 import { Grid, Paper, Typography } from "@mui/material";
 import StepForm from "../../../Components/StepForm/Index";
 import { MuiTextField } from "../../../MuiComponents/MuiTextField/Index";
@@ -71,48 +71,14 @@ const AddClient = () => {
   const onChangeIndustry = (e) => {
     setIndustry(e.target.value);
   };
-
-  const [accountType, setAccountType] = useState("CLIENT");
-  const [clientData,setClientData] = useState([]);
-  const [clientUserName,setClientUserName] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:8080/ScrutinyGlobal/getUserList", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "accountType":["user"],
-        "aprove":false
-      })
-    })
-      .then(function (res) {
-        return res.json();
-      })
-      .then(function(data){
-        console.log("data of client : ",data)
-        setClientData(data);
-        setClientUserName(data.map((element) => {
-          return element.name;
-        }))
-        console.log("client data seting ", clientData);
-      });
-  }, []);
-
-  console.log("client data seting outside", clientUserName);
-
-
-
   const steps = [
     [
       <Grid item>
         <MuiDropDown
-          value={clientData.name}
+          value={clientName}
           //   defaultValue={reduxData?.accountType || ""}
           onChange={onChangeClientName}
-          options={clientUserName}
+          options={["User", "Premium", "Vendor"]}
           label="Client Name"
           className="forAddClient"
         />

@@ -61,7 +61,6 @@ const StepForm = ({
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      
     })
       .then((res) => {
         return res.json();
