@@ -391,10 +391,10 @@ const Dashboard = () => {
             image={Group}
           />
         </Grid>
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} md={4}>
           <InfoCard title="Leads Approved" value="20" subtitle="This week" />
         </Grid>
-        <Grid item xs={12} md={3}>
+        <Grid item md={4}>
           <InfoCard
             title="Ongoing Projects"
             value="50"
