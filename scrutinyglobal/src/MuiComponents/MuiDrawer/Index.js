@@ -44,7 +44,7 @@ export default function MuiDrawer({ active }) {
           width: drawerWidth,
           flexShrink: 0,
           "& .MuiDrawer-paper": {
-            width: drawerWidth,
+            width: "17.5%",
             boxSizing: "border-box",
           },
         }}
