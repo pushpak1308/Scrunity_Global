@@ -27,8 +27,8 @@ const Projects = () => {
     {
       field: "status",
       headerName: "Status",
-      width: 170,
-      // headerAlign: "center",
+      width: 130,
+      headerAlign: "center",
       editable: true,
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
@@ -60,7 +60,7 @@ const Projects = () => {
       field: "projectName",
       headerName: "Project Name",
       align: "center",
-      width: 110,
+      width: 180,
       headerAlign: "center",
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
@@ -68,7 +68,7 @@ const Projects = () => {
     {
       field: "clientName",
       headerName: "Client Name",
-      width: 160,
+      width: 180,
       align: "center",
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
@@ -77,7 +77,7 @@ const Projects = () => {
     {
       field: "projectHead",
       headerName: "Project Head",
-      width: 160,
+      width: 180,
       align: "center",
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
@@ -86,7 +86,7 @@ const Projects = () => {
     {
       field: "audienceType",
       headerName: "Audience Type",
-      width: 160,
+      width: 170,
       align: "center",
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
@@ -104,7 +104,7 @@ const Projects = () => {
     {
       field: "billingCurrency",
       headerName: "Billing Currency",
-      width: 160,
+      width: 170,
       align: "center",
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
@@ -123,7 +123,7 @@ const Projects = () => {
       field: "startDate",
       headerName: "Start Date",
       align: "center",
-      width: 160,
+      width: 170,
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
       headerAlign: "center",
@@ -132,7 +132,7 @@ const Projects = () => {
       field: "endDate",
       headerName: "End Date",
       align: "center",
-      width: 160,
+      width: 170,
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
       headerAlign: "center",
@@ -141,7 +141,7 @@ const Projects = () => {
       field: "projectBudget",
       headerName: "Project Budget",
       align: "center",
-      width: 160,
+      width: 170,
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
       headerAlign: "center",
@@ -149,7 +149,7 @@ const Projects = () => {
     {
       field: "spoc",
       headerName: "Pre Sales SPOC",
-      width: 160,
+      width: 170,
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
       headerAlign: "center",
@@ -158,7 +158,7 @@ const Projects = () => {
     {
       field: "IR",
       headerName: "IR%",
-      width: 160,
+      width: 170,
       align: "center",
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
@@ -277,13 +277,7 @@ const Projects = () => {
             PROJECT LIST
           </Paper>
         </Grid>
-        <Grid
-          item
-          container
-          md={5}
-          justifyContent="space-evenly"
-          // alignItems="center"
-        >
+        <Grid item container justifyContent="flex-end" spacing={2} md={7}>
           <Grid item>
             <Button
               variant="outlined"
@@ -295,7 +289,7 @@ const Projects = () => {
                 <DescriptionOutlinedIcon color="success" fontSize="large" />
               }
             >
-              Send RFQ
+              Assign Vendor
             </Button>
           </Grid>
           <Grid item>
@@ -326,7 +320,7 @@ const Projects = () => {
         </Grid>
       </Grid>
 
-      <Grid item md={12}>
+      <Grid item className="client-list-datagrid">
         <MuiDataGrid
           rows={rows}
           columns={columns}

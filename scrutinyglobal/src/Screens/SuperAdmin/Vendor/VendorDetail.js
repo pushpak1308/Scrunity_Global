@@ -7,7 +7,7 @@ import { Grid, Switch, Typography } from "@mui/material";
 import LabelValueCard from "../../../Components/LabelValueCard/Index";
 import { selectedRow } from "../../../Store/Slice/rowSelectionSlice";
 
-const ClientDetail = () => {
+const VendorDetail = () => {
   const dataArray = useSelector(selectedRow);
   console.log("selectedRows11 :>> ", dataArray[0]);
   const [isEditable, setIsEditable] = useState(false);
@@ -20,7 +20,12 @@ const ClientDetail = () => {
   const content = (
     <Grid container className="client-detail-grid">
       <Grid item md={11.5} textAlign="right">
-        <EditIcon color="primary" fontSize="large" onClick={handleEditClick} />
+        <EditIcon
+          color="primary"
+          fontSize="large"
+          cursor="pointer"
+          onClick={handleEditClick}
+        />
       </Grid>
       <Grid item className="section-heading">
         Contact Information
@@ -232,4 +237,4 @@ const ClientDetail = () => {
   return <Layout content={content} navbarHeading="VENDOR DETAILS" />;
 };
 
-export default ClientDetail;
+export default VendorDetail;

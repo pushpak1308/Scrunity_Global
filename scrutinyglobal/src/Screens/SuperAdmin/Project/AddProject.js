@@ -3,9 +3,10 @@ import { Grid, Paper } from "@mui/material";
 import StepForm from "../../../Components/StepForm/Index";
 import { MuiTextField } from "../../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../../MuiComponents/MuiDropDown/Index";
-import CustomModal from "../../../MuiComponents/MuiModal/Index";
 import Layout from "../Layout";
 import "../Client/Style.css";
+import tickFrame from "../../../Images/ModalImages/tickFrame.png";
+import CrossFrame from "../../../Images/ModalImages/CrossFrame.png";
 import "./Style.css";
 import { Add as AddIcon } from "@mui/icons-material";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
@@ -13,6 +14,7 @@ import MuiDataGrid from "../../../MuiComponents/MuiDataGrid/Index";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectAddProjectStep } from "../../../Store/Slice/stepSlice";
+import SuccessErrorModal from "../../../Components/SuccesErrorModal/Index";
 
 const AddProject = () => {
   const navigate = useNavigate();
@@ -29,9 +31,10 @@ const AddProject = () => {
   const [description, setDescription] = useState("");
   const [spoc, setSpoc] = useState("");
   const [billingCurrency, setBillingCurrency] = useState("");
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [document, setDocument] = useState(null);
   const [country, setCountry] = useState("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
 
   const onChangeClientName = (e) => {
     setClientName(e.target.value);
@@ -95,13 +98,14 @@ const AddProject = () => {
   });
 
   const [columns, setColumns] = useState([
-    { field: "id" },
+    { field: "id", headerClassName: "add-project-header" },
     {
       field: "country",
       headerName: "Country",
       width: 100,
       align: "center",
       headerAlign: "center",
+      headerClassName: "add-project-header",
     },
     {
       field: "IR",
@@ -109,6 +113,7 @@ const AddProject = () => {
       width: 70,
       align: "center",
       headerAlign: "center",
+      headerClassName: "add-project-header",
     },
     {
       field: "LOI",
@@ -117,6 +122,7 @@ const AddProject = () => {
       width: 80,
       align: "center",
       headerAlign: "center",
+      headerClassName: "add-project-header",
     },
     {
       field: "completesNeeded",
@@ -124,13 +130,43 @@ const AddProject = () => {
       width: 150,
       align: "center",
       headerAlign: "center",
+      headerClassName: "add-project-header",
     },
+    // {
+    //   field: "completesNeeded",
+    //   headerName: "Completes needed",
+    //   width: 100,
+    //   align: "center",
+    //   headerAlign: "center",
+    //   headerClassName: "custom-header",
+    //   renderHeader: () => (
+    //     <span>
+    //       Completes<br />needed
+    //     </span>
+    //   ),
+    // },
     {
       field: "completesFeasable",
       headerName: "Completes Feasable",
       width: 150,
       align: "center",
       headerAlign: "center",
+      headerClassName: "add-project-header",
+    },
+    {
+      field: "costPerSurvey",
+      headerName: "Cost/Survey",
+      width: 120,
+      align: "center",
+      headerAlign: "center",
+      headerClassName: "add-project-header",
+    },
+    {
+      field: "surveyLink",
+      headerName: "Survey Link",
+      width: 150,
+      headerAlign: "center",
+      headerClassName: "add-project-header",
     },
   ]);
 
@@ -142,6 +178,8 @@ const AddProject = () => {
       LOI: "10",
       completesNeeded: "200",
       completesFeasable: "180",
+      costPerSurvey: "Rs 45",
+      surveyLink: "example.link.com",
     },
     {
       id: "2",
@@ -150,6 +188,8 @@ const AddProject = () => {
       LOI: "10",
       completesNeeded: "200",
       completesFeasable: "180",
+      costPerSurvey: "Rs 45",
+      surveyLink: "example.link.com",
     },
     {
       id: "3",
@@ -352,7 +392,7 @@ const AddProject = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item>
+        <Grid item className="add-client-datagrid">
           <MuiDataGrid
             rows={rows}
             columns={columns}
@@ -374,7 +414,7 @@ const AddProject = () => {
     setShowSuccessModal(!showSuccessModal);
   };
 
-  const handleGotToWaitingScreen = () => {
+  const handleGoToProjectList = () => {
     navigate("/projects");
   };
 
@@ -441,12 +481,25 @@ const AddProject = () => {
         </Grid>
       </Grid>
       <Grid item>
-        <CustomModal
+        <SuccessErrorModal
           show={showSuccessModal}
           handleClose={handleClose}
-          heading="Project Saved 🎉"
-          buttonPrimaryText="View"
-          handleModalButtonClick={handleGotToWaitingScreen}
+          imageSrc={tickFrame}
+          clientName={projectName}
+          isSuccess={true}
+          text={"has been saved. You can view the details on Projects screen."}
+          buttonPrimaryText="Ok"
+          handleModalButtonClick={handleGoToProjectList}
+        />
+        <SuccessErrorModal
+          show={showErrorModal}
+          handleClose={handleClose}
+          imageSrc={CrossFrame}
+          clientName={projectName}
+          isSuccess={false}
+          text={"could not be saved due to some reason.Please try again"}
+          buttonPrimaryText="Ok"
+          handleModalButtonClick={handleGoToProjectList}
         />
       </Grid>
     </Grid>

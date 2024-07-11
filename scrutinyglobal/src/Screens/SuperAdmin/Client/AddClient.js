@@ -333,7 +333,6 @@ const AddClient = () => {
             imageSrc={tickFrame}
             clientName={clientName}
             isSuccess={true}
-            heading="Successful !!"
             text={"has been saved. You can view the details on Clients screen."}
             buttonPrimaryText="Ok"
             handleModalButtonClick={handleGoToClientList}
@@ -344,7 +343,6 @@ const AddClient = () => {
             imageSrc={CrossFrame}
             clientName={clientName}
             isSuccess={false}
-            heading="Error !!"
             text={"could not be saved due to some reason.Please try again"}
             buttonPrimaryText="Ok"
             handleModalButtonClick={handleGoToClientList}

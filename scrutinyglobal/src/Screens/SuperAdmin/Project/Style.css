@@ -23,6 +23,10 @@
   border-top-right-radius: 10px !important;
 }
 
+.add-client-datagrid {
+  width: 100%;
+}
+
 .datagrid-label {
   font-family: "Arimo";
   font-size: 1rem !important;
@@ -32,6 +36,11 @@
 
 .accordion-section {
   padding: 2rem;
+}
+
+.add-project-header {
+  background: #31baf4;
+  color: white;
 }
 
 .accepted-RFQ-table {

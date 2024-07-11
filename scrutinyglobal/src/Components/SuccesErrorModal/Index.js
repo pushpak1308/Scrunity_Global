@@ -11,7 +11,6 @@ const SuccessErrorModal = ({
   clientName,
   isSuccess,
   buttonSecondaryText,
-  heading,
   text,
   buttonPrimaryText,
   handleModalButtonClick,
@@ -43,7 +42,9 @@ const SuccessErrorModal = ({
         </Grid>
 
         <Grid item>
-          <Typography className="modal-heading">{heading}</Typography>
+          <Typography className="modal-heading">
+            {isSuccess ? "Successful !!" : "Error !!"}
+          </Typography>
         </Grid>
         <Grid item container>
           <Typography className="modal-content-text">
