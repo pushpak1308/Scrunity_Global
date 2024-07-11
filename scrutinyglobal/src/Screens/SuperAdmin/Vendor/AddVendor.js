@@ -419,11 +419,6 @@ const AddVendor = () => {
 
   const content = (
     <Grid container alignItems="center" justifyContent="center">
-      <Grid item className="heading-grid">
-        <Paper elevation={0} className="screenHeading">
-          Add Vendor
-        </Paper>
-      </Grid>
       <Grid
         item
         container
@@ -432,6 +427,11 @@ const AddVendor = () => {
         justifyContent="center"
         alignItems="center"
       >
+        <Grid item className="heading-grid">
+          <Paper elevation={0} className="screenHeading">
+            Add Vendor
+          </Paper>
+        </Grid>
         <Grid item className="fixed-heading">
           {getHeading()}
         </Grid>

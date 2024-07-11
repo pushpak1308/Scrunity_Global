@@ -58,7 +58,6 @@ const ResetPassword = ({}) => {
         type="password"
         value={newPassword}
         label="New Password"
-        sx={{ mt: 3, fontWeight: 550, fontSize: "2.5vh" }}
         onChange={onChangeNewPassword}
       />
 
@@ -67,7 +66,6 @@ const ResetPassword = ({}) => {
         type="password"
         value={confirmPassword}
         label="Confirm Password"
-        sx={{ mt: 3, fontWeight: 550, fontSize: "2.5vh" }}
         onChange={onChangeConfirmPassword}
       />
 

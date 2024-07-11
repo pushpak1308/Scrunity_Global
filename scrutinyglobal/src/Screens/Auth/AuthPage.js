@@ -4,6 +4,8 @@ import {
   CardContent,
   CardMedia,
   Grid,
+  Paper,
+  Stack,
   Typography,
 } from "@mui/material";
 import backgroundImage from "../../Images/AuthImages/background.png";
@@ -22,42 +24,27 @@ const AuthPage = ({
   return (
     <Grid className="main-container">
       <Grid item container className="container" md={10}>
-        <Grid
-          item
-          xs={12}
-          md={5}
-          display={{ xs: "none", md: "flex" }}
-          className="flex-and-center"
-        >
-          <Card
-            elevation={0}
-            // className="image-card"
-            //background color issue!!!
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              flexDirection: "column",
-              backgroundColor: "transparent",
-              boxShadow: "none",
-            }}
-          >
-            <CardContent sx={{ mb: 2 }}>
-              <div className="vollkorn-hello">Hello !Welcome to </div>
-              <div className="vollkorn-scrutiny">Srutiny Global</div>
-            </CardContent>
-
-            <CardMedia
-              component="img"
-              image={backgroundImage}
+        <Grid item container md={5} justifyContent="center" alignItems="center">
+          <Grid item container justifyContent="center" alignItems="center">
+            <Grid item>
+              <Typography className="vollkorn-hello">
+                Hello !Welcome to{" "}
+              </Typography>
+              <Typography className="vollkorn-scrutiny">
+                Srutiny Global
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid item container justifyContent="center" alignItems="center">
+            <img
+              src={backgroundImage}
+              alt="scrutiny-global"
               className="image"
             />
-
-            <CardContent sx={{ mt: 2 }}>
-              <div className="vollkorn-body">
-                A Panel for project management
-              </div>
-            </CardContent>
-          </Card>
+          </Grid>
+          <Grid item className="vollkorn-body">
+            A Panel for project management
+          </Grid>
         </Grid>
         <Grid item xs={12} md={7}>
           <Card className="card-form-container">
@@ -65,18 +52,22 @@ const AuthPage = ({
               <Typography className="vollkorn-Login">{heading}</Typography>
             </CardContent>
             <CardMedia component="img" image={logo} className="logo-image" />
-            <CardContent
-              sx={{ mx: { xs: 3, sm: 7, md: 13 } }}
-              className="card-form"
-            >
+            <CardContent sx={{ mx: 13 }} className="card-form">
               {form}
             </CardContent>
             <Grid container className="flex-and-center" sx={{ mb: 2 }}>
               <CardActions className="arimo-input-label cardAction-container">
-                {cardActionText}
-                <Link to={`/${cardActionLinkTo}`} className="cardAction-link">
-                  {cardActionLinkText}
-                </Link>
+                <Stack direction="row" spacing={1}>
+                  <Paper elevation={0}> {cardActionText}</Paper>
+                  <Paper elevation={0}>
+                    <Link
+                      to={`/${cardActionLinkTo}`}
+                      className="cardAction-link"
+                    >
+                      {cardActionLinkText}
+                    </Link>
+                  </Paper>
+                </Stack>
               </CardActions>
             </Grid>
           </Card>

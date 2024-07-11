@@ -195,6 +195,7 @@ export default function MuiDrawer({ active }) {
             icon={<PeopleAltOutlinedIcon color="action" />}
           />
           <LinkButton
+            link="login"
             text="Logout"
             icon={<PeopleAltOutlinedIcon color="error" />}
             className="logout"

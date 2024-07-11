@@ -3,7 +3,6 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Paper,
 } from "@mui/material";
 
 import { styled } from "@mui/system";
@@ -13,7 +12,7 @@ import { Link } from "react-router-dom";
 
 const StyledListItemText = styled(ListItemText)(({ theme, isActive }) => ({
   fontFamily: "Arimo",
-  fontSize: "1rem",
+  fontSize: "80%",
   fontWeight: isActive ? "700" : "400",
   textDecoration: "none",
   color: isActive ? "#31BAF4" : "",

@@ -301,11 +301,6 @@ const AddClient = () => {
 
   const content = (
     <Grid container alignItems="center" justifyContent="center">
-      <Grid item className="heading-grid">
-        <Paper elevation={0} className="screenHeading">
-          Add a New Client
-        </Paper>
-      </Grid>
       <Grid
         item
         container
@@ -314,8 +309,13 @@ const AddClient = () => {
         justifyContent="center"
         alignItems="center"
       >
+        <Grid item className="heading-grid">
+          <Paper elevation={0} className="screenHeading">
+            Add a New Client
+          </Paper>
+        </Grid>
         <Grid item>
-          <Paper elevation={2} className="form-sub-grid">
+          <Paper elevation={6} className="form-sub-grid">
             <StepForm
               steps={steps}
               onSave={handleSave}

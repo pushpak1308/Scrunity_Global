@@ -28,8 +28,6 @@ const ForgotPassword = (props) => {
     navigate("/resetPassword");
   };
 
-  const style = { mt: 3, fontWeight: 550, fontSize: "2.5vh" };
-
   const form = (
     <form onSubmit={handleSubmit}>
       {isItEmail ? (
@@ -38,7 +36,6 @@ const ForgotPassword = (props) => {
           type="text"
           value={email}
           label="Email"
-          sx={style}
           onChange={onChangeEmail}
         />
       ) : (
@@ -47,13 +44,11 @@ const ForgotPassword = (props) => {
           type="text"
           value={number}
           label="Number"
-          sx={style}
           onChange={onChangeNumber}
         />
       )}
 
       <FormHelperText
-        sx={{ mb: 6 }}
         className="arimo-input-label helperText"
         onClick={() => setIsItEmail(!isItEmail)}
       >

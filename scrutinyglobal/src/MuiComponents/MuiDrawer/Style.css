@@ -1,10 +1,10 @@
 .avatarLogo {
-  width: 30%;
-  margin: 1rem;
+  width: 27%;
+  margin: 0.5rem;
 }
 
 .userDetails {
-  margin: 1rem;
+  margin: 0.7rem;
 }
 
 .sidebar-grid {
@@ -22,7 +22,7 @@
 }
 
 .list-grid {
-  padding-top: 2rem;
+  padding-top: 1.5rem;
 }
 
 .logout {
@@ -31,7 +31,7 @@
 }
 
 .subList {
-  padding-left: 2rem;
+  padding-left: 1.5rem;
 }
 
 .list-button :active {
