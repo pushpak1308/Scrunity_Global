@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Paper } from "@mui/material";
+import { Grid, Paper, Typography } from "@mui/material";
 import StepForm from "../../../Components/StepForm/Index";
 import { MuiTextField } from "../../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../../MuiComponents/MuiDropDown/Index";
-import CustomModal from "../../../MuiComponents/MuiModal/Index";
 import Layout from "../Layout";
+import tickFrame from "../../../Images/ModalImages/tickFrame.png";
+import CrossFrame from "../../../Images/ModalImages/CrossFrame.png";
 import "./Style.css";
 import { useNavigate } from "react-router-dom";
+import SuccessErrorModal from "../../../Components/SuccesErrorModal/Index";
 
 const AddClient = () => {
   const navigate = useNavigate();
@@ -25,6 +27,7 @@ const AddClient = () => {
   const [accountType, setAccountType] = useState("");
   const [industry, setIndustry] = useState("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
 
   const onChangeCountry = (e) => {
     setCountry(e.target.value);
@@ -324,12 +327,26 @@ const AddClient = () => {
           </Paper>
         </Grid>
         <Grid item>
-          <CustomModal
+          <SuccessErrorModal
             show={showSuccessModal}
             handleClose={handleClose}
-            heading="Client is Saved !!"
-            colorHeading="success"
-            buttonPrimaryText="View"
+            imageSrc={tickFrame}
+            clientName={clientName}
+            isSuccess={true}
+            heading="Successful !!"
+            text={"has been saved. You can view the details on Clients screen."}
+            buttonPrimaryText="Ok"
+            handleModalButtonClick={handleGoToClientList}
+          />
+          <SuccessErrorModal
+            show={showErrorModal}
+            handleClose={handleClose}
+            imageSrc={CrossFrame}
+            clientName={clientName}
+            isSuccess={false}
+            heading="Error !!"
+            text={"could not be saved due to some reason.Please try again"}
+            buttonPrimaryText="Ok"
             handleModalButtonClick={handleGoToClientList}
           />
         </Grid>

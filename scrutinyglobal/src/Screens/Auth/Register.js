@@ -184,6 +184,7 @@ const Register = () => {
       <CustomModal
         show={show2}
         handleClose={handleClose}
+        defaultImage={true}
         heading="Registration Successful 🎉"
         buttonPrimaryText="Continue"
         handleModalButtonClick={handleGotToWaitingScreen}

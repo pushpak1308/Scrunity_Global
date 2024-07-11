@@ -1,18 +1,6 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  FormHelperText,
-  Grid,
-  Modal,
-  Typography,
-} from "@mui/material";
+import { Box } from "@mui/material";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import logo from "../../logo_sg.png";
+import { useNavigate } from "react-router-dom";
 import "../Auth/Style.css";
 import { MuiTextField } from "../../MuiComponents/MuiTextField/Index";
 import AuthPage from "./AuthPage";
@@ -39,12 +27,6 @@ const ResetPassword = ({}) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setShow(true);
-  };
-
-  const handleModalButtonClick = () => {
-    setShow(false);
-    navigate("/login");
-    // setView("login");
   };
 
   const handleClose = () => {
@@ -80,15 +62,23 @@ const ResetPassword = ({}) => {
     </form>
   );
 
+  const handleGoToLogin = () => {
+    navigate("/login");
+  };
+
   const additionalComponent = (
     <MuiModal
       show={show}
+      defaultImage={true}
       handleClose={handleClose}
-      heading={"Password Successfully changed 🎉"}
+      heading={
+        <>
+          Password Successfully
+          <br /> changed 🎉
+        </>
+      }
       buttonPrimaryText="Go to Log In"
-      buttonAction={() => {
-        console.log("Navigating to login");
-      }}
+      handleModalButtonClick={handleGoToLogin}
     />
   );
 

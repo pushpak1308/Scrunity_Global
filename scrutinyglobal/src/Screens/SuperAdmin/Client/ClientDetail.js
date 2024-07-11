@@ -26,7 +26,12 @@ const ClientDetail = () => {
   const content = (
     <Grid container className="client-detail-grid">
       <Grid item md={11.5} textAlign="right">
-        <EditIcon color="primary" fontSize="large" onClick={handleEditClick} />
+        <EditIcon
+          color="primary"
+          fontSize="large"
+          cursor="pointer"
+          onClick={handleEditClick}
+        />
       </Grid>
       <Grid item className="section-heading">
         Contact Information

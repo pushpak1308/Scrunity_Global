@@ -1,6 +1,5 @@
 import React from "react";
 import { Typography, Modal, IconButton, Grid } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import modalImage from "../../Images/AuthImages/modalImage.svg";
 import CustomContainedButton from "../MuiContainedButton/Index";
@@ -14,20 +13,17 @@ const MuiModal = ({
   content,
   buttonPrimaryText,
   buttonSecondaryText,
-  buttonAction,
   handleModalButtonClick,
   additionalContent,
   customHeaderStyle,
-  colorHeading,
+  defaultImage,
 }) => {
-  const navigate = useNavigate();
-
   const handlePrimaryButton = () => {
-    if (buttonAction) {
-      navigate("/login");
-    } else {
-      handleModalButtonClick();
-    }
+    // if (buttonAction) {
+    //   navigate("/login");
+    // } else {
+    handleModalButtonClick();
+    // }
   };
 
   const handleSecondaryButton = () => {
@@ -48,11 +44,7 @@ const MuiModal = ({
               <Typography
                 variant="h6"
                 component="h2"
-                className={`modal-headingText ${
-                  colorHeading === "success"
-                    ? "heading-success"
-                    : "heading-error"
-                }`}
+                className="modal-headingText "
               >
                 {heading}
               </Typography>
@@ -71,7 +63,7 @@ const MuiModal = ({
           >
             {content}
           </Typography>
-          {buttonAction && (
+          {defaultImage && (
             <Grid item className="modal-item modal-image" sx={{ mt: 4 }}>
               <img src={modalImage} alt="success" className="modal-image2" />
             </Grid>

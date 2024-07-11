@@ -42,7 +42,7 @@ const Clients = () => {
       headerName: "Client Name",
       align: "center",
       type: "text",
-      width: 110,
+      width: 190,
       headerAlign: "center",
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
@@ -50,7 +50,7 @@ const Clients = () => {
     {
       field: "contactName",
       headerName: "Contact Name",
-      width: 160,
+      width: 170,
       align: "center",
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
@@ -60,7 +60,7 @@ const Clients = () => {
       field: "contactNumber",
       headerName: "Contact Number",
       sortable: false,
-      width: 160,
+      width: 170,
       align: "center",
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
@@ -70,7 +70,7 @@ const Clients = () => {
       field: "email",
       headerName: "Email",
       sortable: false,
-      width: 160,
+      width: 190,
       align: "center",
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
@@ -80,7 +80,7 @@ const Clients = () => {
       field: "websiteLink",
       headerName: "Website Link",
       sortable: false,
-      width: 160,
+      width: 170,
       align: "center",
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
@@ -90,7 +90,7 @@ const Clients = () => {
       field: "address",
       headerName: "Address",
       sortable: false,
-      width: 160,
+      width: 170,
       align: "center",
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
@@ -121,7 +121,7 @@ const Clients = () => {
       headerName: "Industry",
       align: "center",
       sortable: false,
-      width: 160,
+      width: 170,
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
       headerAlign: "center",
@@ -189,7 +189,7 @@ const Clients = () => {
             CLIENT LIST
           </Paper>
         </Grid>
-        <Grid item container justifyContent="space-evenly" md={6}>
+        <Grid item container justifyContent="flex-end" spacing={2} md={7}>
           <Grid item>
             <Button
               variant="outlined"
@@ -230,7 +230,7 @@ const Clients = () => {
         </Grid>
       </Grid>
 
-      <Grid item md={12}>
+      <Grid item className="client-list-datagrid">
         <MuiDataGrid
           rows={rows}
           columns={columns}

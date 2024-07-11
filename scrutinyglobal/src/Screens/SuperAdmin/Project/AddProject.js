@@ -288,11 +288,10 @@ const AddProject = () => {
       </Grid>,
       <Grid item>
         <MuiTextField
-          type="file"
-          value={document}
-          label="Document(id any)"
-          placeholder=""
-          onChange={onChangeDocument}
+          type="text"
+          value={description}
+          label="Description"
+          onChange={onChangeDescription}
           className="forAddClient"
         />
       </Grid>,
@@ -321,10 +320,11 @@ const AddProject = () => {
       </Grid>,
       <Grid item>
         <MuiTextField
-          type="text"
-          value={description}
-          label="Description"
-          onChange={onChangeDescription}
+          type="file"
+          value={document}
+          label="Document(id any)"
+          placeholder=""
+          onChange={onChangeDocument}
           className="forAddClient"
         />
       </Grid>,
@@ -379,6 +379,42 @@ const AddProject = () => {
   };
 
   const content = (
+    // <Grid container alignItems="center" justifyContent="center">
+    //   <Grid
+    //     item
+    //     container
+    //     md={7}
+    //     className="form-grid"
+    //     justifyContent="center"
+    //     alignItems="center"
+    //   >
+    //     <Grid item className="heading-grid">
+    //       <Paper elevation={0} className="screenHeading">
+    //         Add Project
+    //       </Paper>
+    //     </Grid>
+    //     <Grid item container>
+    //       <Grid item className="fixed-heading">
+    //         {currentStep > 2
+    //           ? "Sampling Requirements"
+    //           : "Project Specifications"}
+    //       </Grid>
+    //       {/* <Paper elevation={2} className="fixing-height"> */}
+    //       <Paper elevation={2} className="form-sub-grid">
+    //         <StepForm steps={steps} onSave={handleSave} />
+    //       </Paper>
+    //     </Grid>
+    //   </Grid>
+    //   <Grid item>
+    //     <CustomModal
+    //       show={showSuccessModal}
+    //       handleClose={handleClose}
+    //       heading="Project Saved 🎉"
+    //       buttonPrimaryText="View"
+    //       handleModalButtonClick={handleGotToWaitingScreen}
+    //     />
+    //   </Grid>
+    // </Grid>
     <Grid container alignItems="center" justifyContent="center">
       <Grid
         item
@@ -393,11 +429,12 @@ const AddProject = () => {
             Add Project
           </Paper>
         </Grid>
-        <Grid item className="fixed-heading">
-          {currentStep > 2 ? "Sampling Requirements" : "Project Specifications"}
-        </Grid>
-        <Grid item>
-          {/* <Paper elevation={2} className="fixing-height"> */}
+        <Grid item container className="content-grid">
+          <Grid item className="fixed-heading">
+            {currentStep > 2
+              ? "Sampling Requirements"
+              : "Project Specifications"}
+          </Grid>
           <Paper elevation={2} className="form-sub-grid">
             <StepForm steps={steps} onSave={handleSave} />
           </Paper>

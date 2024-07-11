@@ -16,11 +16,13 @@
 }
 
 .heading-grid2 {
-  width: 100%;
+  width: 97% !important;
   height: 25vh;
   display: flex;
   align-items: center;
   padding-bottom: 1rem;
+  margin-left: 3% !important;
+  margin-right: 3% !important;
 }
 
 .form-grid {
@@ -32,10 +34,14 @@
 .form-sub-grid {
   padding: 1.2rem;
   height: 60vh;
-  width: 85vh;
+  width: 100%; /* Match the width of the content-grid */
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.content-grid {
+  width: 85vh; /* Same width for heading and form */
 }
 
 .client-button {
@@ -46,7 +52,7 @@
     0px 22.29px 13.23px 0px #00000008, 0px 39.7px 16.02px 0px #00000003,
     0px 61.98px 17.41px 0px #00000000;
   font-family: "Arimo" !important;
-  font-size: 1.2rem !important;
+  /* font-size: 1.2rem !important; */
   font-weight: 700 !important;
   line-height: 18.4px;
   text-align: center;
@@ -106,4 +112,12 @@
   padding-top: 0.4rem;
   padding-left: 2rem;
   color: #3a3a3b;
+}
+
+.client-list-datagrid {
+  width: 97%;
+  margin: 2% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
