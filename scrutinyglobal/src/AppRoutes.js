@@ -14,6 +14,7 @@ import ClientDetail from "./Screens/SuperAdmin/Client/ClientDetail";
 import AddProject from "./Screens/SuperAdmin/Project/AddProject";
 import Projects from "./Screens/SuperAdmin/Project/Projects";
 import ProjectDetail from "./Screens/SuperAdmin/Project/ProjectDetails";
+import AssignVendor from "./Screens/SuperAdmin/Project/AssignVendor";
 // import VendorRFQ from "./Screens/SuperAdmin/Project/VendorRFQ";
 import AddVendor from "./Screens/SuperAdmin/Vendor/AddVendor";
 import Vendors from "./Screens/SuperAdmin/Vendor/Vendors";
@@ -37,6 +38,7 @@ const WithoutTokenRoutes = () => {
         <Route exact path="/vendors" element={<Vendors />} />
         <Route exact path="/projects" element={<Projects />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
+        <Route exact path="/assignVendor/:id" element={<AssignVendor />} />
         <Route exact path="/invoice" element={<Invoice />} />
         <Route exact path="/add-client" element={<AddClient />} />
         <Route exact path="/add-vendor" element={<AddVendor />} />

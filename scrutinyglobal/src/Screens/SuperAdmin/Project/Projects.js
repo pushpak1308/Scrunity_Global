@@ -261,6 +261,9 @@ const Projects = () => {
     dispatch(setSelectedRows(selectedRowData));
   };
 
+  const handleAssignVendor = () => {
+    navigate(`/assignVendor/${checkedRows[0].id}`);
+  };
   console.log("Selected Rows:", checkedRows);
 
   const content = (
@@ -282,7 +285,7 @@ const Projects = () => {
             <Button
               variant="outlined"
               color="error"
-              //   onClick={handleAddProject}
+              onClick={handleAssignVendor}
               className="client-button add-class"
               disabled={checkedRows.length === 0}
               startIcon={
