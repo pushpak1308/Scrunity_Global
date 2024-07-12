@@ -157,12 +157,12 @@ const Clients = () => {
         justifyContent="space-between"
         alignItems="end"
       >
-        <Grid item md={8}>
+        <Grid item>
           <Paper elevation={0} className="screenHeading">
             VENDORS LIST
           </Paper>
         </Grid>
-        <Grid item container justifyContent="space-evenly" md={4}>
+        <Grid item container justifyContent="flex-end" spacing={2} md={7}>
           <Grid item>
             <Button
               variant="outlined"
@@ -191,7 +191,7 @@ const Clients = () => {
         </Grid>
       </Grid>
 
-      <Grid item md={12}>
+      <Grid item className="client-list-datagrid">
         <MuiDataGrid
           rows={rows}
           columns={columns}

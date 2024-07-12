@@ -13,10 +13,6 @@
   text-wrap: wrap;
 }
 
-.dataGrid-cell {
-  white-space: normal !important;
-  word-wrap: break-word !important;
-}
 .dataGrid-header-accordion {
   color: black;
   font-weight: bold;

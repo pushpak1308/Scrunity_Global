@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Layout from "../Layout";
 import { useSelector } from "react-redux";
 import EditIcon from "@mui/icons-material/Edit";
-import { Grid, Switch, Typography } from "@mui/material";
+import { Box, Grid, Switch, Typography } from "@mui/material";
 import LabelValueCard from "../../../Components/LabelValueCard/Index";
 import { selectedRow } from "../../../Store/Slice/rowSelectionSlice";
 
@@ -119,7 +119,7 @@ const VendorDetail = () => {
         </Grid>
       </Grid>
 
-      <Grid item className="section-heading">
+      {/* <Grid item className="section-heading">
         Redirect Links
       </Grid>
       <Grid item container md={6}>
@@ -157,7 +157,7 @@ const VendorDetail = () => {
             disabled={!isEditable}
           />
         </Grid>
-      </Grid>
+      </Grid> */}
 
       <Grid item className="section-heading">
         Comapny & Bank Details
@@ -210,7 +210,12 @@ const VendorDetail = () => {
             />
           </Grid>
         </Grid>
-        <Grid item container spacing={5}>
+        <Grid
+          item
+          container
+          spacing={5}
+          className="add-margin-below active-inactive-grid"
+        >
           <Grid item md={6}>
             <LabelValueCard
               label="Account Type"

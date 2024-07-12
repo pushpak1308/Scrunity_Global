@@ -3,12 +3,14 @@ import { Grid, Paper } from "@mui/material";
 import StepForm from "../../../Components/StepForm/Index";
 import { MuiTextField } from "../../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../../MuiComponents/MuiDropDown/Index";
-import CustomModal from "../../../MuiComponents/MuiModal/Index";
+import tickFrame from "../../../Images/ModalImages/tickFrame.png";
+import CrossFrame from "../../../Images/ModalImages/CrossFrame.png";
 import Layout from "../Layout";
 import "../Client/Style.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectAddVendorStep } from "../../../Store/Slice/stepSlice";
+import SuccessErrorModal from "../../../Components/SuccesErrorModal/Index";
 
 const AddVendor = () => {
   const navigate = useNavigate();
@@ -28,6 +30,7 @@ const AddVendor = () => {
   const [ifsc, setIfsc] = useState("");
   const [accountType, setAccountType] = useState("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
   const [document, setDocument] = useState(null);
   const [country, setCountry] = useState("");
 
@@ -446,12 +449,24 @@ const AddVendor = () => {
         </Grid>
       </Grid>
       <Grid item>
-        <CustomModal
+        <SuccessErrorModal
           show={showSuccessModal}
           handleClose={handleClose}
-          colorHeading="success"
-          heading="Vendor is Saved !!"
-          buttonPrimaryText="View"
+          imageSrc={tickFrame}
+          clientName={vendorName}
+          isSuccess={true}
+          text={"has been saved. You can view the details on Clients screen."}
+          buttonPrimaryText="Ok"
+          handleModalButtonClick={handleGoToVendors}
+        />
+        <SuccessErrorModal
+          show={showErrorModal}
+          handleClose={handleClose}
+          imageSrc={CrossFrame}
+          clientName={vendorName}
+          isSuccess={false}
+          text={"could not be saved due to some reason.Please try again"}
+          buttonPrimaryText="Ok"
           handleModalButtonClick={handleGoToVendors}
         />
       </Grid>
