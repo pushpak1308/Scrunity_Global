@@ -324,37 +324,7 @@ const AddVendor = () => {
         />
       </Grid>,
     ],
-    [
-      <Grid item>
-        <MuiTextField
-          type="text"
-          required={true}
-          value={registrationNo}
-          label="Registration Number"
-          onChange={onChangeRegistrationNo}
-          className="forAddClient"
-        />
-      </Grid>,
-      <Grid item>
-        <MuiTextField
-          type="text"
-          required={true}
-          value={panNo}
-          label="PAN Number"
-          onChange={onChangePanNumber}
-          className="forAddClient"
-        />
-      </Grid>,
-      <Grid item>
-        <MuiTextField
-          type="file"
-          value={document}
-          label="Document (if any)"
-          onChange={onChangeDocument}
-          className="forAddClient"
-        />
-      </Grid>,
-    ],
+
     [
       <Grid item>
         <MuiTextField
@@ -402,6 +372,37 @@ const AddVendor = () => {
             />
           </Grid>
         </Grid>
+      </Grid>,
+    ],
+    [
+      <Grid item>
+        <MuiTextField
+          type="text"
+          required={true}
+          value={registrationNo}
+          label="Registration Number"
+          onChange={onChangeRegistrationNo}
+          className="forAddClient"
+        />
+      </Grid>,
+      <Grid item>
+        <MuiTextField
+          type="text"
+          required={true}
+          value={panNo}
+          label="PAN Number"
+          onChange={onChangePanNumber}
+          className="forAddClient"
+        />
+      </Grid>,
+      <Grid item>
+        <MuiTextField
+          type="file"
+          value={document}
+          label="Document (if any)"
+          onChange={onChangeDocument}
+          className="forAddClient"
+        />
       </Grid>,
     ],
   ];

@@ -2,28 +2,44 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import Layout from "../Layout";
-import { Button, Grid, Typography } from "@mui/material";
+import { Grid, Paper, Typography } from "@mui/material";
 import LabelValueCard from "../../../Components/LabelValueCard/Index";
 import "../Client/Style.css";
-import MuiDataGrid from "../../../MuiComponents/MuiDataGrid/Index";
 import { useSelector } from "react-redux";
 import { selectedRow } from "../../../Store/Slice/rowSelectionSlice";
-import MuiAccordion from "../../../MuiComponents/MuiAccordion/Index";
-import { MuiDropDown } from "../../../MuiComponents/MuiDropDown/Index";
 
 const ProjectDetail = () => {
   const dataArray = useSelector(selectedRow);
   const [isEditable, setIsEditable] = useState(false);
-  const [vendorSeleted, setVendorSelected] = useState("");
   const { id } = useParams();
 
-  const onChangeVendor = (event) => {
-    event.preventDefault();
-    setVendorSelected(event.target.value);
-  };
   const handleEditClick = () => {
     setIsEditable(!isEditable);
   };
+
+  const cardArray = [
+    {
+      vendorName: "Vendor Name",
+      successURL: "exampleURL.com",
+      terminateURL: "exampleURL.com",
+      quotafullURL: "exampleURL.com",
+      costPerSurvey: "45",
+    },
+    {
+      vendorName: "Vendor Name",
+      successURL: "exampleURL.com",
+      terminateURL: "exampleURL.com",
+      quotafullURL: "exampleURL.com",
+      costPerSurvey: "45",
+    },
+    {
+      vendorName: "Vendor Name",
+      successURL: "exampleURL.com",
+      terminateURL: "exampleURL.com",
+      quotafullURL: "exampleURL.com",
+      costPerSurvey: "45",
+    },
+  ];
 
   const content = (
     <Grid container className="client-detail-grid">
@@ -157,6 +173,55 @@ const ProjectDetail = () => {
 
       <Grid item className="section-heading">
         Assigned Vendors
+      </Grid>
+      <Grid item className="assignVendor-parent-container">
+        {cardArray.map((item, index) => (
+          <Grid
+            item
+            container
+            md={7}
+            key={index}
+            className="assign-vendor-container"
+          >
+            {/* <Paper elevation={5} > */}
+            <Grid item>
+              <Typography className="vendor-name">{item.vendorName}</Typography>
+            </Grid>
+            <Grid item container alignItems="center">
+              <Grid item>
+                <Typography className="vendor-name"> Success URL:</Typography>
+              </Grid>
+              <Grid item>
+                <Typography> {item.successURL}</Typography>
+              </Grid>
+            </Grid>
+            <Grid item container alignItems="center">
+              <Grid item>
+                <Typography className="vendor-name"> Quotafull URL:</Typography>
+              </Grid>
+              <Grid item>
+                <Typography> {item.quotafullURL}</Typography>
+              </Grid>
+            </Grid>
+            <Grid item container alignItems="center">
+              <Grid item>
+                <Typography className="vendor-name"> Terminate URL:</Typography>
+              </Grid>
+              <Grid item>
+                <Typography> {item.terminateURL}</Typography>
+              </Grid>
+            </Grid>
+            <Grid item container alignItems="center">
+              <Grid item>
+                <Typography className="vendor-name"> Cost/survey:</Typography>
+              </Grid>
+              <Grid item>
+                <Typography>Rs {item.costPerSurvey}</Typography>
+              </Grid>
+            </Grid>
+            {/* </Paper> */}
+          </Grid>
+        ))}
       </Grid>
     </Grid>
   );
