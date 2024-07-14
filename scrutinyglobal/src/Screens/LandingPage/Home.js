@@ -5,6 +5,7 @@ import homeImage from "../../Images/LandingImages/homeImages/homeImage.png";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import MuiContainedButton from "./../../MuiComponents/MuiContainedButton/Index";
 import CardComponentIcon from "../../MuiComponents/MuiCards/CardComponentIcon";
+import { Link } from "react-scroll";
 
 const Home = () => {
   return (
@@ -25,11 +26,19 @@ const Home = () => {
             your dedicated partners, transforming accurate and relevant
             information into actionable truths that drive your success.
           </Typography>
-          <MuiContainedButton
-            buttonText={"Get Started"}
-            type={"button"}
-            endIcon={<ArrowForwardIcon />}
-          />
+          <Link
+            activeClass="active"
+            smooth
+            duration={1000}
+            to="about"
+            offset={-25} // Apply offset only for "Contact"
+          >
+            <MuiContainedButton
+              buttonText={"Get Started"}
+              type={"button"}
+              endIcon={<ArrowForwardIcon />}
+            />
+          </Link>
         </Grid>
         <Grid item md={6} className="home-image">
           <img src={homeImage} alt="home Image" />

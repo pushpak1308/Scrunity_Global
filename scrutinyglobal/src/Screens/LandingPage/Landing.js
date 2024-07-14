@@ -20,7 +20,7 @@ const Landing = (props) => {
     <Grid>
       <AppBar component="nav" className="navBar">
         <Toolbar>
-          <Avatar alt="SG logo" src={logo} />
+          <Avatar alt="SG logo" src={logo} className="navbar-logo" />
           <Typography className="navLogo-text">SG</Typography>
           <Grid container className="navList">
             {navItems.map((item) => (
@@ -32,7 +32,13 @@ const Landing = (props) => {
                     <Button className="navButtons">{item}</Button>
                   </RouteLink>
                 ) : (
-                  <Link activeClass="active" smooth spy to={item.toLowerCase()}>
+                  <Link
+                    activeClass="active"
+                    smooth
+                    spy
+                    to={item.toLowerCase()}
+                    offset={item === "Contact" ? -90 : -25}
+                  >
                     <Button className="navButtons">{item}</Button>
                   </Link>
                 )}

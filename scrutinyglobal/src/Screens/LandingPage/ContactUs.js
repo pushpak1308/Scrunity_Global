@@ -21,6 +21,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 import "./Style.css";
+import { Link } from "react-scroll";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -44,6 +45,15 @@ const ContactUs = () => {
     // Handle form submission logic here
     console.log(formData);
   };
+
+  const usefulLinks = [
+    { text: "Home", link: "home" },
+    { text: "About Us", link: "about" },
+    { text: "Services", link: "services" },
+    { text: "Terms of Service", link: "" },
+    { text: "Privacy Policy", link: "" },
+  ];
+
   return (
     <Grid container id="contact" className="about-grid">
       <Grid item className="contact-us-grid">
@@ -136,7 +146,7 @@ const ContactUs = () => {
                   onChange={handleChange}
                 />
               </Grid>
-              <Grid item xs={12} md={11}>
+              {/* <Grid item xs={12} md={11}>
                 <FormControlLabel
                   className="captcha-box"
                   control={
@@ -147,8 +157,8 @@ const ContactUs = () => {
                     />
                   }
                   label="I am not a robot"
-                />
-              </Grid>
+                /> 
+              </Grid>*/}
               <Grid item xs={12} md={11} display="flex" justifyContent="center">
                 <MuiContainedButton type="submit" buttonText="Send Message" />
               </Grid>
@@ -186,18 +196,30 @@ const ContactUs = () => {
         <Grid item xs={12} md={4} justifyContent="center">
           <Typography className="contactUs2-heading">USEFUL LINKS</Typography>
           <List>
-            {[
-              "Home",
-              "About Us",
-              "Services",
-              "Terms of Service",
-              "Privacy Policy",
-            ].map((text) => (
-              <ListItem key={text}>
+            {usefulLinks.map((item) => (
+              <ListItem key={item.text}>
                 <ListItemIcon>
                   <ArrowForwardIosIcon fontSize="small" color="disabled" />
                 </ListItemIcon>
-                <ListItemText className="contactUs2-text" primary={text} />
+                {item.link ? (
+                  <Link
+                    activeClass="active"
+                    smooth
+                    spy
+                    to={item.link}
+                    offset={-25}
+                  >
+                    <ListItemText
+                      className="contactUs2-text"
+                      primary={item.text}
+                    />
+                  </Link>
+                ) : (
+                  <ListItemText
+                    className="contactUs2-text"
+                    primary={item.text}
+                  />
+                )}
               </ListItem>
             ))}
           </List>
