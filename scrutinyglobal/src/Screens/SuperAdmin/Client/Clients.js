@@ -1,5 +1,5 @@
 import { Button, Grid, Paper, Switch } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setSelectedRows } from "../../../Store/Slice/rowSelectionSlice";
 import Layout from "../Layout";
@@ -161,6 +161,92 @@ const Clients = () => {
     },
   ];
 
+  const [responseData, setResponseData] = useState([]);
+  const [userDataNew, setUserDataNew] = useState([]);
+  let userData = {
+    id: [],
+    role: [],
+    approval: [],
+    username: [],
+    number: [],
+    email: [],
+    birthdate: [],
+    address: [],
+    country: [],
+    state: [],
+    city: [],
+    zipCode: [],
+    profession: [],
+    ipAddress: [],
+    accountType: [],
+    salary: [],
+  };
+
+
+
+  useEffect(() => {
+    getClientData();
+  }, []);
+
+  function getClientData() {
+    fetch("http://localhost:8080/ScrutinyGlobal/getListAsAcountType?accountType=client", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        setResponseData(data);
+        console.log("response Data",data)
+      })
+      .catch(function (error) {
+        console.error("Error fetching data:", error);
+      });
+  }
+
+  useEffect(() => {
+    setUserDataNew(convertData(responseData));
+  }, [responseData]);
+  function convertData(data) {
+    console.log(data);
+    data.map((element) => userData.id.push(element.user_id));
+    data.map((element) => userData.username.push(element.name));
+    data.map((element) => userData.number.push(element.number));
+    data.map((element) => userData.country.push(element.country));
+    data.map((element) => userData.accountType.push(element.accountType));
+    data.map((element) => userData.approval.push(element.approval));
+    data.map((element) => userData.email.push(element.email));
+    data.map((element) => userData.profession.push(element.profession));
+    data.map((element) => userData.birthdate.push(element.dob));
+    data.map((element) => userData.ipAddress.push("undefined"));
+    data.map((element) => userData.address.push(element.address));
+    data.map((element) => userData.city.push(element.city));
+    data.map((element) => userData.role.push(""));
+    data.map((element) => userData.salary.push(element.monthlySalary));
+    data.map((element) => userData.state.push(element.state));
+    data.map((element) => userData.zipCode.push(element.zipcode));
+    console.log("userData", userData);
+
+    let userDataConverted = [];
+    const keys = Object.keys(userData);
+    const numObjects = userData[keys[0]].length;
+    for (let i = 0; i < numObjects; i++) {
+      const newObj = {};
+      keys.forEach((key) => {
+        newObj[key] = userData[key][i];
+      });
+      userDataConverted = [...userDataConverted, newObj];
+    }
+    console.log("userDataNew", userDataConverted);
+    return userDataConverted;
+  }
+
+  
+
   const handleRowClick = () => {
     navigate(`/client/${checkedRows[0].id}`);
   };
@@ -232,7 +318,8 @@ const Clients = () => {
 
       <Grid item className="client-list-datagrid">
         <MuiDataGrid
-          rows={rows}
+          rows={userDataNew}
+          getRowId={(row) => row.id}
           columns={columns}
           checkboxSelection={true}
           onRowSelectionModelChange={handleRowSelection}
