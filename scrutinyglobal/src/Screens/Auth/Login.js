@@ -49,7 +49,6 @@ const Login = (props) => {
   const form = (
     <form>
       <MuiTextField
-        name="username"
         type="text"
         value={username}
         label="Email or Number"
@@ -57,7 +56,6 @@ const Login = (props) => {
       />
 
       <MuiTextField
-        name="password"
         type="password"
         value={password}
         label="Password"
@@ -72,7 +70,7 @@ const Login = (props) => {
       <Grid display="flex" justifyContent="center" alignItems="center">
         <MuiContainedButton
           type={"submit"}
-          width={{ md: "40%" }}
+          width={"40%"}
           buttonText={"Log In"}
           onClickFunction={handleSubmit}
         />

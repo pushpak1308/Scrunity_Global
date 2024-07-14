@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../Layout";
 import { Grid } from "@mui/material";
-import { MuiDropDown } from "../../../MuiComponents/MuiDropDown/Index";
+import MuiMultiSelectDropdown from "../../../MuiComponents/MuiMultiSelectDropdown/Index"; // Update the import to the correct path
 
 const AssignVendor = () => {
   const [selectedVendors, setSelectedVendors] = useState([]);
@@ -33,19 +33,22 @@ const AssignVendor = () => {
     },
   ];
 
-  const handleVendorChange = (newValue) => {
-    setSelectedVendors(newValue);
+  const handleVendorChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setSelectedVendors(typeof value === "string" ? value.split(",") : value);
   };
 
   const content = (
     <Grid container>
       <Grid item>
-        {/* <MuiDropDown
+        <MuiMultiSelectDropdown
+          label={"Vendor"}
           value={selectedVendors}
           onChange={handleVendorChange}
-          options={vendors}
-          label="Select Vendors"
-        /> */}
+          options={vendors.map((item) => item.vendorName)}
+        />
       </Grid>
     </Grid>
   );
