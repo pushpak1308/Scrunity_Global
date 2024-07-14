@@ -3,7 +3,7 @@ import { Grid } from "@mui/material";
 import { MuiTextField } from "../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../MuiComponents/MuiDropDown/Index";
 import CustomContainedButton from "../../MuiComponents/MuiContainedButton/Index";
-import axios from "axios";
+// import axios from "axios";
 import { useSelector } from "react-redux";
 
 const StepForm = ({
@@ -50,10 +50,8 @@ const StepForm = ({
   } = onChangeHandlers;
 
   const reduxData = useSelector((state) => state.user);
-  console.log("reduxData111 :>> ", reduxData);
 
   const [countriesData, setCountriesData] = useState([""]);
-  let countryData = [""];
   useEffect(() => {
     fetch("http://localhost:8080/ScrutinyGlobal/getCountries", {
       method: "GET",
@@ -61,7 +59,6 @@ const StepForm = ({
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      
     })
       .then((res) => {
         return res.json();
@@ -72,7 +69,7 @@ const StepForm = ({
             return element.countryName;
           })
         );
-        console.log("countries data seting ", countriesData);
+        // console.log("countries data seting ", countriesData);
       });
   }, []);
 
@@ -242,7 +239,6 @@ const StepForm = ({
             <Grid container spacing={2}>
               <Grid item xs={12} md={6}>
                 <MuiTextField
-                  name="zipcode"
                   type="text"
                   value={zipcode}
                   label="Zip Code"
@@ -289,7 +285,6 @@ const StepForm = ({
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <MuiDropDown
-              name="profession"
               value={profession}
               onChange={onChangeProfession}
               defaultValue={reduxData?.profession || ""}
@@ -302,7 +297,6 @@ const StepForm = ({
 
           <Grid item xs={12}>
             <MuiTextField
-              name="experience"
               value={experience}
               defaultValue={reduxData?.experience || ""}
               onChange={onChangeExperience}
@@ -314,7 +308,6 @@ const StepForm = ({
 
           <Grid item xs={12}>
             <MuiTextField
-              name="monthlySalary"
               type="text"
               value={monthlySalary}
               label="Monthly Salary"
