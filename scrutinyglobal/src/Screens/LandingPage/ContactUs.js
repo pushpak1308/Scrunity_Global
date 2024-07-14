@@ -45,13 +45,18 @@ const ContactUs = () => {
     console.log(formData);
   };
   return (
-    <Grid container id="contact" className="about-grid ">
+    <Grid container id="contact" className="about-grid">
       <Grid item className="contact-us-grid">
-        <Typography className="contact-us" gutterBottom>
-          Contact Us
-        </Typography>
+        <Typography className="contact-us">Contact us</Typography>
       </Grid>
-      <Grid item container spacing={3} className="contactus-grid">
+      <Grid
+        item
+        container
+        spacing={3}
+        justifyContent="center"
+        alignItems="center"
+        className="contactus-form-grid"
+      >
         <Grid item xs={12} md={3}>
           <Stack spacing={2}>
             <Grid item className="contactUs1-smallbox">

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Typography, Button, Stack, Paper } from "@mui/material";
+import { Grid, Typography, Stack } from "@mui/material";
 import aboutImage from "./../../Images/LandingImages/AboutImages/aboutImage.png";
 import cardImage1 from "./../../Images/LandingImages/AboutImages/CardImage/cardImage1.png";
 import cardImage2 from "./../../Images/LandingImages/AboutImages/CardImage/cardImage2.png";
@@ -14,12 +14,12 @@ import aboutImage4 from "./../../Images/LandingImages/AboutImages/aboutImage4.pn
 import CheckBoxWithText from "../../MuiComponents/MuiCards/CheckBoxWithText";
 import MuiTab from "../../MuiComponents/MuiTab/Index";
 import CheckIcon from "@mui/icons-material/Check";
-import FairPricing from "../../Images/LandingImages/AboutImages/CardImage/fairPricing.png";
-import accuracy from "../../Images/LandingImages/AboutImages/CardImage/accuracy.png";
-import commitment from "../../Images/LandingImages/AboutImages/CardImage/commitment.png";
-import comprehensiveSupport from "../../Images/LandingImages/AboutImages/CardImage/comprehensiveSupport.png";
-import expertInsights from "../../Images/LandingImages/AboutImages/CardImage/expertInsights.png";
-import tailoredSolution from "../../Images/LandingImages/AboutImages/CardImage/tailoredSolution.png";
+// import FairPricing from "../../Images/LandingImages/AboutImages/CardImage/fairPricing.png";
+// import accuracy from "../../Images/LandingImages/AboutImages/CardImage/accuracy.png";
+// import commitment from "../../Images/LandingImages/AboutImages/CardImage/commitment.png";
+// import comprehensiveSupport from "../../Images/LandingImages/AboutImages/CardImage/comprehensiveSupport.png";
+// import expertInsights from "../../Images/LandingImages/AboutImages/CardImage/expertInsights.png";
+// import tailoredSolution from "../../Images/LandingImages/AboutImages/CardImage/tailoredSolution.png";
 import "./Style.css";
 import WhyChooseUsCard from "../../Components/WhyChooseUsCard/Index";
 
@@ -270,7 +270,7 @@ const About = () => {
         justifyContent="center"
         className="aboutSection1"
       >
-        <Grid item xs={12} md={6} className="aboutSectionText1">
+        <Grid item md={6} className="aboutSectionText1">
           <Typography className="about-section-heading1" gutterBottom>
             Something About Us
           </Typography>
@@ -308,8 +308,8 @@ const About = () => {
             endIcon={<ArrowForwardIcon />}
           />
         </Grid>
-        <Grid item xs={12} md={6}>
-          <img src={aboutImage} alt="About Image" className="aboutImage1" />
+        <Grid item md={6}>
+          <img src={aboutImage} alt="About" className="aboutImage1" />
         </Grid>
       </Grid>
       <Grid item>
@@ -319,7 +319,7 @@ const About = () => {
               WHY{" "}
               <Typography
                 component="span"
-                className="about-section-scrutinyGlobal"
+                className="about-section-scrutinyGlobal2"
               >
                 SCRUTINY GLOBAL
               </Typography>
@@ -385,7 +385,14 @@ const About = () => {
         </Grid>
       </Grid>
 
-      <Grid item container spacing={2} className="aboutSection3">
+      <Grid
+        item
+        container
+        spacing={2}
+        justifyContent="center"
+        alignItems="center"
+        className="aboutSection3"
+      >
         <Grid item xs={12} md={6}>
           <Typography className="aboutSection3-heading">
             Quality you can Trust
@@ -397,18 +404,12 @@ const About = () => {
         </Grid>
       </Grid>
       <Grid item className="contact-us-grid">
-        <Typography className="contact-us" gutterBottom>
-          Why choose us?
-        </Typography>
+        <Typography className="contact-us">Why choose us?</Typography>
       </Grid>
 
       <Grid container spacing={2}>
         <Grid item xs={12} md={6} className="flex-and-center ">
-          <img
-            src={aboutImage4}
-            alt="features"
-            style={{ maxWidth: "100%", height: "auto" }}
-          />
+          <img src={aboutImage4} alt="features" />
         </Grid>
         <Grid item container xs={12} md={6}>
           {whyChooseUstextArray.map((item, index) => (

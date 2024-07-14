@@ -267,7 +267,7 @@ const Services = () => {
 
   return (
     <Grid container id="services" className="about-grid ">
-      <Grid item className="addMargin">
+      <Grid item>
         <CenteredTextSection
           image={aboutImage}
           title={"SERVICES"}
@@ -303,7 +303,7 @@ const Services = () => {
       </Grid>
 
       <Grid item container spacing={2}>
-        <Grid item xs={12} className="accordion-array-grid">
+        <Grid item xs={12}>
           <MuiAccordion content={accordionArray} />
         </Grid>
       </Grid>

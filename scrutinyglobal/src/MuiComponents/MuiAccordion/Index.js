@@ -8,14 +8,9 @@ import "./Style.css";
 
 export default function MuiAccordion({ content }) {
   return (
-    <Grid className="accordion-container">
+    <Grid>
       {content.map((item, index) => (
-        <Accordion
-          key={index}
-          className="accordion"
-          elevation={0}
-          defaultExpanded={item.defaultOpen}
-        >
+        <Accordion key={index} elevation={0} className="accordion-container">
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls={`panel${index}-content`}

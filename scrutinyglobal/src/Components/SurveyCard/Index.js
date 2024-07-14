@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography, Button, Grid } from "@mui/material";
-import ForumIcon from "@mui/icons-material/Forum";
+// import ForumIcon from "@mui/icons-material/Forum";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import "./Style.css";
 
@@ -11,12 +11,12 @@ const SurveyCard = ({ title1, title2, content, color, number }) => {
       spacing={2}
       className={`survey-card-${number}`}
       justifyContent="center"
-      alignItems="center"
+      // alignItems="center"
     >
-      <Grid item xs={12} textAlign="center">
+      {/* <Grid item xs={12} textAlign="center">
         <ForumIcon className="icon" color={color} fontSize="large" />
-      </Grid>
-      <Grid item xs={12}>
+      </Grid> */}
+      <Grid item xs={12} className="title-section">
         <Typography align="center" className="title1-text">
           {title1}
         </Typography>

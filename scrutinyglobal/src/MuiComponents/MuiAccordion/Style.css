@@ -1,8 +1,6 @@
-.accordion {
-  /* margin: 1.2rem;
-  padding: 0.3rem; */
+.accordion-container {
+  margin-bottom: 1rem;
 }
-
 .accordion-summary-expanded {
   font-family: "Arimo", sans-serif !important;
   padding: 1rem;
@@ -11,5 +9,5 @@
 
 .accordion-summary,
 .accordion-details {
-  font-family: "Arimo", sans-serif;
+  font-family: "Arimo", sans-serif !important;
 }

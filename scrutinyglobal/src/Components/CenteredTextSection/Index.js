@@ -14,8 +14,10 @@ const CenteredTextSection = ({ image, title, subtitle }) => {
         <img src={image} alt="About" className="centered-text-image" />
       </Grid>
       <Grid item container md={6}>
-        <Grid item xs={10}>
-          <Typography className="title">{title}</Typography>
+        <Grid item xs={12}>
+          <Typography className="title" component="div">
+            {title}
+          </Typography>
         </Grid>
         <Grid item xs={12}>
           <Typography className="subtitle">{subtitle}</Typography>

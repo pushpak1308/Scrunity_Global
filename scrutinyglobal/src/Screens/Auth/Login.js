@@ -76,11 +76,13 @@ const Login = (props) => {
         />
       </Grid>
 
-      <Grid item container justifyContent="center" alignItems="center">
+      <Grid container justifyContent="center" alignItems="center">
         <ArrowBackIcon className="goBackHome" />
-        <Paper elevation={0} className="goBackHome">
-          Go back to Home
-        </Paper>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <Paper elevation={0} className="goBackHome">
+            Go back to Home
+          </Paper>
+        </Link>
       </Grid>
     </form>
   );

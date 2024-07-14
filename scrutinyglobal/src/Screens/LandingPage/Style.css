@@ -52,14 +52,15 @@
 }
 .iconCardGrid {
   height: 12vh;
-  background-color: #cbf9ff;
+  margin-top: 3% !important;
+  background-color: #ebfdff;
 }
 
 .main-container-landing {
-  padding-top: 0.5rem;
+  /* padding-top: 0.5rem; */
   padding-left: 12%;
   padding-right: 12%;
-  height: 100vh;
+  height: 95vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,10 +95,8 @@
 }
 
 .contact-us-grid {
-  height: 7vh;
-  display: flex; /* Added to ensure children align properly */
-  align-items: center; /* Vertically center the child elements */
-  justify-content: center; /* Horizontally center the child elements if needed */
+  height: 100%;
+  padding: 2rem;
 }
 
 .contact-us {
@@ -105,18 +104,12 @@
   font-weight: 600 !important;
   font-size: 2rem !important;
   text-align: center;
-  padding: 2rem;
-  margin: 2rem;
 }
 .aboutSection1 {
   /* background-color: #def3f5; */
   padding: 3rem;
 }
 
-.accordion-array-grid {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
 .about-section-heading1 {
   font-family: "Vollkorn", serif !important;
   font-weight: 500 !important;
@@ -127,6 +120,13 @@
   font-family: "Vollkorn", serif !important;
   font-weight: 600 !important;
   font-size: 1.7rem !important;
+  color: rgba(16, 210, 244, 0.77) !important;
+}
+
+.about-section-scrutinyGlobal2 {
+  font-family: "Vollkorn", serif !important;
+  font-weight: 600 !important;
+  font-size: 2rem !important;
   color: rgba(16, 210, 244, 0.77) !important;
 }
 
@@ -153,12 +153,14 @@
 
 .aboutImage2 {
   width: 100%;
-  height: 100%;
+  /* display: ;
+  justify-content: center; */
 }
 
 .aboutSection3 {
-  height: 100vh;
-  padding-top: 10vh;
+  height: 100%;
+  padding-bottom: 5%;
+  padding-top: 5%;
 }
 
 .aboutSection3-heading {
@@ -190,7 +192,7 @@
 }
 
 .footerSection {
-  height: 15vh;
+  height: 100%;
   padding: 2rem;
 }
 
@@ -206,8 +208,9 @@
 }
 
 .contactUs2 {
-  height: 55vh;
+  height: 100%;
   padding: 2rem;
+  margin-top: 5% !important;
   background-color: aliceblue;
 }
 
@@ -235,9 +238,8 @@
   flex-direction: row-reverse;
 }
 
-.contactus-grid {
-  min-height: 90vh;
-  padding-left: 3rem;
+.contactus-form-grid {
+  height: 100%;
 }
 
 .smallBox-heading {
