@@ -81,10 +81,16 @@
 }
 
 .assignVendor-list-datagrid {
-  max-width: 90%;
+  /* width: auto; */
+  margin-left: 2rem !important;
 }
 /* 
 .quotation-dropdown {
   width: 80%;
   padding: 2rem;
 } */
+
+.multi-select-grid {
+  margin-left: 5rem !important;
+  width: 100%;
+}

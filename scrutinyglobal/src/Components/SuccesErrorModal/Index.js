@@ -46,7 +46,7 @@ const SuccessErrorModal = ({
             {isSuccess ? "Successful !!" : "Error !!"}
           </Typography>
         </Grid>
-        <Grid item container>
+        <Grid item container justifyContent="center">
           <Typography className="modal-content-text">
             {clientName ? clientName : "(Client Name)"} {text}
           </Typography>
