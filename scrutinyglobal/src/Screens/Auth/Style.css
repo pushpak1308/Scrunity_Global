@@ -2,9 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 70%;
   background-color: #e1f9fe;
   box-shadow: 4px 10px 14.5px 0px #6fdbf529;
+  padding: 3% !important;
 }
 
 .container {

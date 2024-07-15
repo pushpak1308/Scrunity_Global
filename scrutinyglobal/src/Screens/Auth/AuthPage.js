@@ -23,7 +23,7 @@ const AuthPage = ({
 }) => {
   return (
     <Grid className="main-container">
-      <Grid item container className="container" md={10}>
+      <Grid item container className="container" md={9}>
         <Grid item container md={5} justifyContent="center" alignItems="center">
           <Grid item container justifyContent="center" alignItems="center">
             <Grid item>
