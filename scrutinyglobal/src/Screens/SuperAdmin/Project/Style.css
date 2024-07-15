@@ -79,6 +79,10 @@
 .assignVendor-parent-container {
   margin-bottom: 10vh;
 }
+
+.assignVendor-list-datagrid {
+  max-width: 90%;
+}
 /* 
 .quotation-dropdown {
   width: 80%;

@@ -194,7 +194,13 @@ export default function MuiDrawer({ active }) {
         <List>
           <LinkButton
             text="Profile"
-            icon={<PeopleAltOutlinedIcon color="action" />}
+            icon={
+              <PeopleAltOutlinedIcon
+                color={active === "USER PROFILE" ? "primary" : "action"}
+              />
+            }
+            link="profile"
+            active={active === "USER PROFILE"}
           />
           <LinkButton
             text="Settings"
