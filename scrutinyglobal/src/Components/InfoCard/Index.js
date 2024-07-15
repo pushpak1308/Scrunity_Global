@@ -4,7 +4,7 @@ import { PieChart } from "@mui/x-charts/PieChart";
 import "./Style.css";
 
 const InfoCard = ({ title, value, subtitle, image }) => {
-  const pieParams = { height: 160, width: 230 };
+  const pieParams = { height: 150, width: 215 };
 
   const chart = (
     <PieChart

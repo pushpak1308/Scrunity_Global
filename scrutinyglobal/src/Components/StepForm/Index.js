@@ -35,14 +35,35 @@ const StepForm = ({ steps, onSave, formType }) => {
       case "add-project":
         dispatch(setAddProjectStep(currentStep + stepChange));
         break;
-      default:
+      case "add-vendor":
         dispatch(setAddVendorStep(currentStep + stepChange));
+        break;
+      default:
+        dispatch(setAddClientStep(0));
+        dispatch(setAddProjectStep(0));
+        dispatch(setAddVendorStep(0));
+    }
+  };
+
+  const resetStep = () => {
+    switch (formType) {
+      case "add-client":
+        dispatch(setAddClientStep(0));
+        break;
+      case "add-project":
+        dispatch(setAddProjectStep(0));
+        break;
+      default:
+        dispatch(setAddVendorStep(0));
     }
   };
 
   const handleNext = () => updateStep(1);
   const handlePrev = () => updateStep(-1);
-  const handleSave = () => onSave(formData);
+  const handleSave = () => {
+    onSave(formData);
+    resetStep();
+  };
 
   const isLastStep = currentStep === steps.length - 1;
 

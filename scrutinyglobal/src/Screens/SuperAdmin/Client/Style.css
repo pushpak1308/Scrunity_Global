@@ -4,8 +4,8 @@
   font-weight: 600;
   text-align: left;
   color: #5b5b5b !important;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
 
 .heading-grid {
@@ -29,7 +29,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 3% !important;
+  margin-top: 1% !important;
 }
 .form-sub-grid {
   padding: 1.2rem;

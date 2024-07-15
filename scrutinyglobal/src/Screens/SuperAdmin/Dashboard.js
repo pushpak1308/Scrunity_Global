@@ -171,7 +171,7 @@ const Dashboard = () => {
   const [columns, setColumns] = useState([
     {
       field: "id",
-      headerName: "S.No.",
+      headerName: "User id",
       width: 120,
       align: "center",
       headerAlign: "center",
@@ -249,7 +249,7 @@ const Dashboard = () => {
       renderCell: (params) => (
         <MuiDropDown
           defaultValue="Vendor"
-          options={["Vendor", "Admin", "User"]}
+          options={["Vendor", "Admin", "Client"]}
           onChange={onChangeRole}
         />
       ),

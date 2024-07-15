@@ -18,16 +18,18 @@
 
 .sidebar-text {
   color: #5b5b5b;
+  font-size: 100%;
   text-decoration: none;
 }
 
 .list-grid {
-  padding-top: 1.5rem;
+  /* padding-top: 1.5%; */
 }
 
 .logout {
   color: #f10808;
   text-decoration: none;
+  font-size: 100%;
 }
 
 .subList {

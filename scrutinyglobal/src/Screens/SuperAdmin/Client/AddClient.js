@@ -290,12 +290,12 @@ const AddClient = () => {
 
   const handleSave = (formData) => {
     // Save form data
-    setShowSuccessModal(!showSuccessModal);
+    setShowSuccessModal(true);
     console.log("Form Data:", formData);
   };
 
   const handleClose = () => {
-    setShowSuccessModal(!showSuccessModal);
+    setShowSuccessModal(false);
   };
 
   const handleGoToClientList = () => {
