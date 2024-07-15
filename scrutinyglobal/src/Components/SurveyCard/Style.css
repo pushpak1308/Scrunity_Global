@@ -4,7 +4,7 @@
 
 .survey-card-1 {
   transition: background-color 0.3s, color 0.3s;
-  min-height: 110vh;
+  min-height: 100%;
   max-width: 58vh;
   padding: 2rem;
   margin: 2rem;
@@ -12,7 +12,7 @@
 }
 .survey-card-2 {
   transition: background-color 0.3s, color 0.3s;
-  min-height: 70vh;
+  min-height: 100%;
   max-width: 58vh;
   padding: 2rem;
   margin: 2rem;
