@@ -122,22 +122,21 @@ const AddClient = () => {
     }
   };
 
-  const clientFormData = [
+  const clientFormData = 
     {
-      userId: userId,
-      accountType: accountType,
-      successURL: "",
-      terminateURL: "",
-      quotaFullURL: "",
-      securityTerminateURL: "",
-      contactName: contactName,
-      contactEmail: email,
-      alternateNumber: alternateContactNumber,
-      website: websiteLink,
-      industry: industry,
-      description: "",
-    },
-  ];
+      "userId": userId,
+      "accountType": "client",
+      "successURL": "",
+      "terminateURL": "",
+      "quotaFullURL": "",
+      "securityTerminateURL": "",
+      "contactName": contactName,
+      "contactEmail": email,
+      "alternateNumber": alternateContactNumber,
+      "website": websiteLink,
+      "industry": industry,
+      "description": "",
+    };
   //setClientFormData
   // console.log('object :>> ', object);
   console.log("client data seting outside", clientUserName);
@@ -289,9 +288,18 @@ const AddClient = () => {
   ];
 
   const handleSave = (formData) => {
-    // Save form data
+
+    
+
+    fetch("http://localhost:8080/ScrutinyGlobal/setroletouser", {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(clientFormData),
+    });
     setShowSuccessModal(true);
-    console.log("Form Data:", formData);
   };
 
   const handleClose = () => {

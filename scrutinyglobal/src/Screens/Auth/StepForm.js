@@ -151,7 +151,7 @@ const StepForm = ({
               value={accountType}
               defaultValue={reduxData?.accountType || ""}
               onChange={onChangeAccountType}
-              options={["Client", "Premium", "Vendor"]}
+              options={["Client", "Admin", "Vendor"]}
               label="Account Type"
               className="forRegister"
             />

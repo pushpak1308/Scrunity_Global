@@ -167,8 +167,8 @@ const Clients = () => {
     id: [],
     role: [],
     approval: [],
-    username: [],
-    number: [],
+    clientName: [],
+    contactNumber: [],
     email: [],
     birthdate: [],
     address: [],
@@ -180,6 +180,9 @@ const Clients = () => {
     ipAddress: [],
     accountType: [],
     salary: [],
+    contactName: [],
+    websiteLink: [],
+    industry: []
   };
 
 
@@ -214,18 +217,19 @@ const Clients = () => {
   function convertData(data) {
     console.log(data);
     data.map((element) => userData.id.push(element.user_id));
-    data.map((element) => userData.username.push(element.name));
-    data.map((element) => userData.number.push(element.number));
+    data.map((element) => userData.clientName.push(element.name));
+    data.map((element) => userData.websiteLink.push(element.website));
+    data.map((element) => userData.industry.push(element.industry));
+    data.map((element) => userData.contactName.push(element.contact_name));
+    data.map((element) => userData.contactNumber.push(element.number));
     data.map((element) => userData.country.push(element.country));
     data.map((element) => userData.accountType.push(element.accountType));
     data.map((element) => userData.approval.push(element.approval));
     data.map((element) => userData.email.push(element.email));
     data.map((element) => userData.profession.push(element.profession));
     data.map((element) => userData.birthdate.push(element.dob));
-    data.map((element) => userData.ipAddress.push("undefined"));
     data.map((element) => userData.address.push(element.address));
     data.map((element) => userData.city.push(element.city));
-    data.map((element) => userData.role.push(""));
     data.map((element) => userData.salary.push(element.monthlySalary));
     data.map((element) => userData.state.push(element.state));
     data.map((element) => userData.zipCode.push(element.zipcode));
@@ -252,9 +256,7 @@ const Clients = () => {
   };
   const handleRowSelection = (newRowSelectionModel) => {
     setRowSelectionModel(newRowSelectionModel);
-    const selectedRowData = newRowSelectionModel.map((id) =>
-      rows.find((row) => row.id === id)
-    );
+    const selectedRowData = rows.find((row) => row.id === newRowSelectionModel[0] )
     setCheckedRows(selectedRowData);
     dispatch(setSelectedRows(selectedRowData));
   };
