@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70%;
+  height: 100vh;
   background-color: #e1f9fe;
   box-shadow: 4px 10px 14.5px 0px #6fdbf529;
   padding: 3% !important;
@@ -31,10 +31,10 @@
 
 .arimo-input-label {
   font-family: "Arimo", sans-serif !important;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-top: 5.5%;
+  margin-bottom: 3.5%;
   font-weight: 550;
-  font-size: 2.2vh;
+  font-size: 97% !important;
 }
 
 .vollkorn-hello {
@@ -110,24 +110,23 @@
 }
 
 .cardAction-container {
-  font-size: 2vh;
+  font-size: 90% !important;
 }
 
 .helperText {
   cursor: pointer;
   font-weight: 200;
-  font-size: 0.9rem !important;
-  margin-bottom: 2rem !important;
-  margin-top: 1rem !important;
+  font-size: 90% !important;
+  margin-bottom: 6% !important;
+  margin-top: 3% !important;
   text-decoration: none !important;
 }
 
 .goBackHome {
-  margin-top: 1.5rem;
+  margin-top: 1.2rem;
   font-family: "Arimo";
-  font-size: 1.2rem;
+  font-size: 100%;
   font-weight: 700;
-  line-height: 20.7px;
   text-align: center;
   color: #7885ee !important;
   text-decoration: none !important;

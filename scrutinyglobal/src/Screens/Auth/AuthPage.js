@@ -55,7 +55,7 @@ const AuthPage = ({
             <CardContent sx={{ mx: 13 }} className="card-form">
               {form}
             </CardContent>
-            <Grid container className="flex-and-center" sx={{ mb: 2 }}>
+            <Grid container className="flex-and-center" sx={{ mb: 1 }}>
               <CardActions className="arimo-input-label cardAction-container">
                 <Stack direction="row" spacing={1}>
                   <Paper elevation={0}> {cardActionText}</Paper>
