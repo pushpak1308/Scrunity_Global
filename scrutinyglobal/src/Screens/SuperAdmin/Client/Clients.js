@@ -192,7 +192,7 @@ const Clients = () => {
   }, []);
 
   function getClientData() {
-    fetch("http://localhost:8080/ScrutinyGlobal/getListAsAcountType?accountType=client", {
+    fetch("http://localhost:8080/ScrutinyGlobal/getListAsAccountType?accountType=client", {
       method: "GET",
       headers: {
         Accept: "application/json",
