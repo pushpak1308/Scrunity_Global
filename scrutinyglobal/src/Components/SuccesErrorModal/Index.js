@@ -10,6 +10,7 @@ const SuccessErrorModal = ({
   imageSrc,
   clientName,
   isSuccess,
+  heading,
   buttonSecondaryText,
   text,
   buttonPrimaryText,
@@ -20,7 +21,8 @@ const SuccessErrorModal = ({
   };
 
   const handleSecondaryButton = () => {
-    handleClose();
+    // handleClose();
+    handleModalButtonClick();
   };
 
   return (
@@ -42,9 +44,13 @@ const SuccessErrorModal = ({
         </Grid>
 
         <Grid item>
-          <Typography className="modal-heading">
-            {isSuccess ? "Successful !!" : "Error !!"}
-          </Typography>
+          {heading ? (
+            <Typography className="modal-heading">{heading}</Typography>
+          ) : (
+            <Typography className="modal-heading">
+              {isSuccess ? "Successful !!" : "Error !!"}
+            </Typography>
+          )}
         </Grid>
         <Grid item container justifyContent="center">
           <Typography className="modal-content-text">
@@ -59,6 +65,7 @@ const SuccessErrorModal = ({
               onClickFunction={handleSecondaryButton}
               buttonText={buttonSecondaryText}
               width={true}
+              className={"orange-waiting-button"}
             />
           )}
           {buttonPrimaryText && (

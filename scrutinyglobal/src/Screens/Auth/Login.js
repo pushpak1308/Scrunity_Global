@@ -3,13 +3,16 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Style.css";
 import { MuiTextField } from "../../MuiComponents/MuiTextField/Index";
+import WaitingModal from "../../Images/ModalImages/WaitingModal.png";
 import AuthPage from "./AuthPage";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
+import SuccessErrorModal from "../../Components/SuccesErrorModal/Index";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showWaitingModal, setShowWaitingModal] = useState(false);
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
@@ -44,6 +47,18 @@ const Login = (props) => {
       }
       return response.json();
     });
+  };
+
+  const handleWaitingModal = () => {
+    setShowWaitingModal(true);
+  };
+
+  const handleGoToLogin = () => {
+    navigate("/login");
+  };
+
+  const handleClose = () => {
+    setShowWaitingModal(false);
   };
 
   const form = (
@@ -87,6 +102,21 @@ const Login = (props) => {
     </form>
   );
 
+  const additionalComponent = (
+    <SuccessErrorModal
+      show={showWaitingModal}
+      handleClose={handleClose}
+      imageSrc={WaitingModal}
+      heading={"Oops !! Waiting Approval."}
+      clientName={"Your"}
+      text={
+        " approval request has not been accepted yet. Once you are approved try logging in again. Thanks for waiting."
+      }
+      buttonSecondaryText="Ok"
+      handleModalButtonClick={handleGoToLogin}
+    />
+  );
+
   return (
     <AuthPage
       form={form}
@@ -94,6 +124,7 @@ const Login = (props) => {
       cardActionLinkTo={"register"}
       cardActionText={"Are you new? "}
       heading={"Login"}
+      additionalComponent={additionalComponent}
     />
   );
 };
