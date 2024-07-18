@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Paper } from "@mui/material";
 import StepForm from "../../../Components/StepForm/Index";
 import { MuiTextField } from "../../../MuiComponents/MuiTextField/Index";
@@ -100,6 +100,36 @@ const AddVendor = () => {
     setDocument(file);
   };
 
+
+  const [vendorUserName, setVendorUserName] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/ScrutinyGlobal/getUserList", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        accountType: ["vendor"],
+        aprove: false,
+      }),
+    })
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (data) {
+        console.log("data of client : ", data);
+        setVendorData(data);
+        setVendorUserName(
+          data.map((element) => {
+            return element.name;
+          })
+        );
+        console.log("client data seting ", vendorData);
+      });
+  }, []);
+
   const getHeading = () => {
     if (currentStep === 0 || currentStep === 1) {
       return "Vendor Details";
@@ -194,14 +224,14 @@ const AddVendor = () => {
   const steps = [
     [
       <Grid item>
-        <MuiTextField
-          type="text"
-          value={vendorName}
-          label="Vendor Name"
+          <MuiDropDown
           required={true}
-          // defaultValue={reduxData?.city || ""}
+          value={vendorName}
+          defaultValue={vendorName || ""}
           onChange={onChangeVendorName}
-          className="forAddProject"
+          options={vendorUserName}
+          label="Vendor Name"
+          className="forAddClient"
         />
       </Grid>,
       <Grid item>
