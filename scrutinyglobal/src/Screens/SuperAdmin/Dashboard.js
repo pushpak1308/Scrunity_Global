@@ -250,13 +250,16 @@ const Dashboard = () => {
       align: "center",
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
-      renderCell: (params) => (
-        <MuiDropDown
-          defaultValue="Vendor"
-          options={["Vendor", "Admin", "Client"]}
-          onChange={onChangeRole}
-        />
-      ),
+      renderCell: (params) => {
+        console.log("hi====", params.row);
+        return (
+          <MuiDropDown
+            defaultValue="Vendor"
+            options={["Vendor", "Admin", "Client"]}
+            onChange={onChangeRole}
+          />
+        );
+      },
     },
     {
       field: "birthdate",

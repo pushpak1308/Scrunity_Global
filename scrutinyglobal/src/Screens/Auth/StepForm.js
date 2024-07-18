@@ -85,6 +85,7 @@ const StepForm = ({
           <Grid item xs={12}>
             <MuiTextField
               type="text"
+              required={true}
               value={name}
               defaultValue={reduxData?.name || ""}
               label="Name"
@@ -97,6 +98,7 @@ const StepForm = ({
             <MuiTextField
               type="text"
               value={email}
+              required={true}
               defaultValue={reduxData?.email || ""}
               label="Email"
               onChange={onChangeEmail}
@@ -109,6 +111,7 @@ const StepForm = ({
                 <MuiTextField
                   type="password"
                   value={password}
+                  required={true}
                   label="Password"
                   defaultValue={reduxData?.password || ""}
                   onChange={onChangePassword}
@@ -119,6 +122,7 @@ const StepForm = ({
                 <MuiTextField
                   type="password"
                   value={confirmPassword}
+                  required={true}
                   label="Confirm Password"
                   defaultValue={reduxData?.confirmPassword || ""}
                   onChange={onChangeConfirmPassword}
@@ -149,6 +153,7 @@ const StepForm = ({
           <Grid item xs={12}>
             <MuiDropDown
               value={accountType}
+              required={true}
               defaultValue={reduxData?.accountType || ""}
               onChange={onChangeAccountType}
               options={["Client", "Admin", "Vendor"]}
@@ -161,6 +166,7 @@ const StepForm = ({
             <MuiTextField
               type="text"
               value={number}
+              required={true}
               defaultValue={reduxData?.number || ""}
               label="Number"
               onChange={onChangeNumber}
@@ -170,6 +176,7 @@ const StepForm = ({
           <Grid item xs={12}>
             <MuiTextField
               type="date"
+              required={true}
               value={birthdate}
               label="Birth Date"
               defaultValue={reduxData?.dob || ""}
@@ -204,6 +211,7 @@ const StepForm = ({
           <Grid item xs={12}>
             <MuiTextField
               type="text"
+              required={true}
               value={address}
               label="Address"
               defaultValue={reduxData?.address || ""}
@@ -216,6 +224,7 @@ const StepForm = ({
               <Grid item xs={12} md={6}>
                 <MuiTextField
                   type="text"
+                  required={true}
                   value={city}
                   label="City"
                   defaultValue={reduxData?.city || ""}
@@ -227,6 +236,7 @@ const StepForm = ({
                 <MuiTextField
                   type="text"
                   value={state}
+                  required={true}
                   label="State/Province"
                   defaultValue={reduxData?.state || ""}
                   onChange={onChangeState}
@@ -240,6 +250,7 @@ const StepForm = ({
               <Grid item xs={12} md={6}>
                 <MuiTextField
                   type="text"
+                  required={true}
                   value={zipcode}
                   label="Zip Code"
                   defaultValue={reduxData?.zipcode || ""}
@@ -250,6 +261,7 @@ const StepForm = ({
               <Grid item xs={12} md={6}>
                 <MuiDropDown
                   value={country}
+                  required={true}
                   onChange={onChangeCountry}
                   defaultValue={reduxData?.country || ""}
                   options={countryOptions()} // Example options
@@ -285,6 +297,7 @@ const StepForm = ({
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <MuiDropDown
+              required={true}
               value={profession}
               onChange={onChangeProfession}
               defaultValue={reduxData?.profession || ""}
@@ -298,6 +311,7 @@ const StepForm = ({
           <Grid item xs={12}>
             <MuiTextField
               value={experience}
+              required={true}
               defaultValue={reduxData?.experience || ""}
               onChange={onChangeExperience}
               type="text"
@@ -309,6 +323,7 @@ const StepForm = ({
           <Grid item xs={12}>
             <MuiTextField
               type="text"
+              required={true}
               value={monthlySalary}
               label="Monthly Salary"
               placeholder={"50,000"}
