@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../Layout";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
@@ -8,12 +8,34 @@ import { Button, Grid, Paper } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
 import { useDispatch } from "react-redux";
 import { setSelectedRows } from "../../../Store/Slice/rowSelectionSlice";
+import { rowsMetaStateInitializer } from "@mui/x-data-grid/internals";
 
 const Projects = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [rowSelectionModel, setRowSelectionModel] = useState([]);
   const [checkedRows, setCheckedRows] = useState([]);
+  const [responseData, setResponseData] =  useState([]);
+  const [surveyResponseData, setSurveyResponseData] = useState([]);
+  const [projectDetailsData, setProjectDetailsData] = useState([]);
+
+  let projectData = {
+    id: [],
+    status: [],
+    projectName: [],
+    clientName: [],
+    projectHead: [],
+    audienceType: [],
+    country: [],
+    billingCurrency: [],
+    contactName: [],
+    startDate: [],
+    endDate: [],
+    projectBudget: [],
+    SPOC: [],
+    IR: [],
+    LOI: [],
+};
 
   const [columns, setColumns] = useState([
     {
@@ -175,6 +197,89 @@ const Projects = () => {
     // },
   ]);
 
+  
+
+
+  useEffect(() => {
+    getProjectData();
+    getSurveyLinkData();
+  }, []);
+
+  function getSurveyLinkData(){
+    fetch("http://localhost:8080/ScrutinyGlobal/getSurveyDetails" , {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      setSurveyResponseData(data);
+      console.log("response Data",data)
+    })
+    .catch(function (error) {
+      console.error("Error fetching data:", error);
+    });
+  }
+
+
+  function getProjectData(){
+    fetch("http://localhost:8080/ScrutinyGlobal/getProjectList" , {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      setResponseData(data);
+      console.log("response Data",data)
+    })
+    .catch(function (error) {
+      console.error("Error fetching data:", error);
+    });
+  }
+
+  useEffect(() => {
+    setProjectDetailsData(convertData(responseData));
+  }, [responseData]);
+
+  function convertData(projectdetailsData){
+    projectdetailsData.map((element) => projectData.id.push(element.project_id));
+    projectdetailsData.map((element) => projectData.projectName.push(element.project_name));
+    projectDetailsData.map((element) => projectData.startDate.push(element.project_start_time));
+    projectDetailsData.map((element) => projectData.clientName.push(element.name));
+    projectDetailsData.map((element) => projectData.projectHead.push(element.projectspoc));
+    projectDetailsData.map((element) => projectData.audienceType.push(element.audience_type));
+    projectDetailsData.map((element) => projectData.country.push(element.country));
+    
+
+
+
+
+    console.log(projectData);  
+
+    let projectDataConverted = [];
+    const keys = Object.keys(projectData);
+    const numObjects = projectData[keys[0]].length;
+    for (let i = 0; i < numObjects; i++) {
+      const newObj = {};
+      keys.forEach((key) => {
+        newObj[key] = projectData[key][i];
+      });
+      projectDataConverted = [...projectDataConverted, newObj];
+    }
+    console.log("projectDataConverted", projectDataConverted);
+    return projectDataConverted;
+  }
+  
+
   const [columnVisibilityModel, setColumnVisibilityModel] = useState({
     id: false,
   });
@@ -325,7 +430,8 @@ const Projects = () => {
 
       <Grid item className="client-list-datagrid">
         <MuiDataGrid
-          rows={rows}
+          rows={projectDetailsData}
+          getRowId={(row) => row.id}
           columns={columns}
           checkboxSelection={true}
           onRowSelectionModelChange={handleRowSelection}
