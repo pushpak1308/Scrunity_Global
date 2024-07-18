@@ -231,7 +231,7 @@ const AddClient = () => {
           value={status}
           //   defaultValue={reduxData?.accountType || ""}
           onChange={onChangeStatus}
-          options={["status 1", "status 2", "status 3"]}
+          options={["Active", "Inactive"]}
           label="Status"
           className="forAddClient"
         />
