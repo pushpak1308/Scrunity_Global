@@ -84,7 +84,7 @@ const AddClient = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        accountType: ["user"],
+        accountType: ["client"],
         aprove: false,
       }),
     })
