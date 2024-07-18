@@ -201,7 +201,7 @@ const AddVendor = () => {
           required={true}
           // defaultValue={reduxData?.city || ""}
           onChange={onChangeVendorName}
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
       <Grid item>
@@ -212,7 +212,7 @@ const AddVendor = () => {
           label="Email"
           // defaultValue={reduxData?.city || ""}
           onChange={onChangeEmail}
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
       <Grid item>
@@ -225,7 +225,7 @@ const AddVendor = () => {
               label="Contact Number"
               // defaultValue={reduxData?.city || ""}
               onChange={onChangeContactNumber}
-              className="forAddClient"
+              className="forAddProject"
             />
           </Grid>
           <Grid item md={6}>
@@ -235,7 +235,7 @@ const AddVendor = () => {
               label="Alternate Contact Number"
               // defaultValue={reduxData?.state || ""}
               onChange={onChangeAlternateContactNumber}
-              className="forAddClient"
+              className="forAddProject"
             />
           </Grid>
         </Grid>
@@ -250,7 +250,7 @@ const AddVendor = () => {
           required={true}
           // defaultValue={reduxData?.city || ""}
           onChange={onChangeAddress}
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
       <Grid item>
@@ -263,7 +263,7 @@ const AddVendor = () => {
               label="Contact Number"
               // defaultValue={reduxData?.city || ""}
               onChange={onChangeContactNumber}
-              className="forAddClient"
+              className="forAddProject"
             />
           </Grid>
           <Grid item md={6}>
@@ -273,7 +273,7 @@ const AddVendor = () => {
               label="Alternate Contact Number"
               // defaultValue={reduxData?.state || ""}
               onChange={onChangeAlternateContactNumber}
-              className="forAddClient"
+              className="forAddProject"
             />
           </Grid>
         </Grid>
@@ -288,7 +288,7 @@ const AddVendor = () => {
           placeholder="India , USA"
           options={["India", "USA", "Europe"]}
           label="Country"
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
     ],
@@ -300,7 +300,7 @@ const AddVendor = () => {
           label="Success URL"
           required={true}
           onChange={onChangeSuccessURL}
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
       <Grid item>
@@ -308,9 +308,9 @@ const AddVendor = () => {
           type="text"
           required={true}
           value={terminateURL}
-          label="Success URL"
+          label="Terminate URL"
           onChange={onChangeTerminateURL}
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
       <Grid item>
@@ -318,9 +318,9 @@ const AddVendor = () => {
           type="text"
           required={true}
           value={quotafulURL}
-          label="Success URL"
+          label="Quotafull URL"
           onChange={onChangeQuotafulURL}
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
     ],
@@ -334,7 +334,7 @@ const AddVendor = () => {
           label="Bank Branch Address"
           // defaultValue={reduxData?.city || ""}
           onChange={onChangeBankBranchAddress}
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
       <Grid item>
@@ -345,7 +345,7 @@ const AddVendor = () => {
           label="Account Number"
           // defaultValue={reduxData?.state || ""}
           onChange={onChangeAccountNumber}
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
       <Grid item>
@@ -358,7 +358,7 @@ const AddVendor = () => {
               placeholder="Current"
               options={["Current", "Salary"]}
               label="Account Type"
-              className="forAddClient"
+              className="forAddProject"
             />
           </Grid>
           <Grid item md={6}>
@@ -368,7 +368,7 @@ const AddVendor = () => {
               label="IFSC Code"
               // defaultValue={reduxData?.state || ""}
               onChange={onChangeIFSCCode}
-              className="forAddClient"
+              className="forAddProject"
             />
           </Grid>
         </Grid>
@@ -382,7 +382,7 @@ const AddVendor = () => {
           value={registrationNo}
           label="Registration Number"
           onChange={onChangeRegistrationNo}
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
       <Grid item>
@@ -392,7 +392,7 @@ const AddVendor = () => {
           value={panNo}
           label="PAN Number"
           onChange={onChangePanNumber}
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
       <Grid item>
@@ -401,7 +401,7 @@ const AddVendor = () => {
           value={document}
           label="Document (if any)"
           onChange={onChangeDocument}
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
     ],

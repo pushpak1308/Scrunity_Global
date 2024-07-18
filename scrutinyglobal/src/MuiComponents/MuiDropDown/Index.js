@@ -22,7 +22,6 @@ export const MuiDropDown = ({
         id={`${name}-autocomplete`}
         value={value}
         size="small"
-        // className={className ? className : "arimo-input-label"}
         defaultValue={defaultValue}
         onChange={(event, newValue) => {
           onChange({
@@ -39,6 +38,7 @@ export const MuiDropDown = ({
             placeholder={label}
             variant="standard"
             size="small"
+            className={className ? className : "arimo-input-label"}
             // InputProps={{
             //   ...params.InputProps,
             //   style: { paddingLeft: "10px" },

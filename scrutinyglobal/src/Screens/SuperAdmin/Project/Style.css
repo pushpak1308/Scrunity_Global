@@ -81,8 +81,8 @@
 }
 
 .assignVendor-list-datagrid {
-  /* width: auto; */
-  margin-left: 2rem !important;
+  width: 98%;
+  /* margin-left: 2rem !important; */
 }
 /* 
 .quotation-dropdown {

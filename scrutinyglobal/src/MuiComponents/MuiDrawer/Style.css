@@ -4,7 +4,16 @@
 }
 
 .userDetails {
-  margin: 0.7rem;
+  /* margin-left: 2% !important; */
+}
+
+.userDetails-text {
+  font-size: 85% !important;
+  padding-left: 2%;
+}
+
+.userDetails-photo {
+  padding-left: 2%;
 }
 
 .sidebar-grid {
@@ -18,8 +27,10 @@
 
 .sidebar-text {
   color: #5b5b5b;
+  font-family: "Arimo" !important;
   font-size: 100%;
-  text-decoration: none;
+  font-weight: 400 !important;
+  text-decoration: none !important;
 }
 
 .list-grid {

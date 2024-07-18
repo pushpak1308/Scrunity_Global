@@ -45,7 +45,7 @@ const Profile = () => {
   };
 
   const content = (
-    <Grid container className="client-detail-grid">
+    <Grid container className="profile-detail-grid">
       <Grid item md={11.5} textAlign="right">
         <MuiContainedButton
           type={"submit"}

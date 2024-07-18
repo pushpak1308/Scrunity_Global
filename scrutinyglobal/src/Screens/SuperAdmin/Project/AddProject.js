@@ -277,7 +277,7 @@ const AddProject = () => {
           label="Project Name"
           // defaultValue={reduxData?.city || ""}
           onChange={onChangeProjectName}
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
       <Grid item>
@@ -287,7 +287,7 @@ const AddProject = () => {
           onChange={onChangeClientName}
           options={["Client", "Premium", "Vendor"]}
           label="Client Name"
-          className="forAddClient"
+          className="forAddProject"
         /> */}
         <MuiTextField
           type="text"
@@ -295,7 +295,7 @@ const AddProject = () => {
           label="Client Name"
           // defaultValue={reduxData?.city || ""}
           onChange={onChangeClientName}
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
       <Grid item>
@@ -307,7 +307,7 @@ const AddProject = () => {
               label="Contact Number"
               // defaultValue={reduxData?.city || ""}
               onChange={onChangeContactNumber}
-              className="forAddClient"
+              className="forAddProject"
             />
           </Grid>
           <Grid item md={5}>
@@ -317,7 +317,7 @@ const AddProject = () => {
               label="Alternate Contact Number"
               // defaultValue={reduxData?.state || ""}
               onChange={onChangeAlternateContactNumber}
-              className="forAddClient"
+              className="forAddProject"
             />
           </Grid>
         </Grid>
@@ -334,7 +334,7 @@ const AddProject = () => {
               // defaultValue={reduxData?.city || ""}
               onChange={onChangeStartDate}
               placeholder="01-07-2024"
-              className="forAddClient"
+              className="forAddProject"
             />
           </Grid>
           <Grid item md={5}>
@@ -345,7 +345,7 @@ const AddProject = () => {
               // defaultValue={reduxData?.city || ""}
               onChange={onChangeEndDate}
               placeholder="01-07-2024"
-              className="forAddClient"
+              className="forAddProject"
             />
           </Grid>
         </Grid>
@@ -357,7 +357,7 @@ const AddProject = () => {
           value={projectHead}
           label="Project Head"
           onChange={onChangeProjectHead}
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
       <Grid item>
@@ -367,7 +367,7 @@ const AddProject = () => {
           label="Pre Sales SPOC"
           // defaultValue={reduxData?.state || ""}
           onChange={onChangeSPOC}
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
     ],
@@ -380,7 +380,7 @@ const AddProject = () => {
           placeholder="College Students"
           options={["College Students", "audienceType 2", "audienceType 3"]}
           label="Audience Type"
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
       <Grid item>
@@ -390,7 +390,7 @@ const AddProject = () => {
           label="Project Budget"
           placeholder="Ex 40,000"
           onChange={onChangeProjectBudget}
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
       <Grid item>
@@ -399,7 +399,7 @@ const AddProject = () => {
           value={description}
           label="Description"
           onChange={onChangeDescription}
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
     ],
@@ -412,7 +412,7 @@ const AddProject = () => {
           placeholder="USD"
           options={["USD", "INR", "EURO"]}
           label="Billing Currency"
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
       <Grid item>
@@ -422,7 +422,7 @@ const AddProject = () => {
           onChange={onChangeCountry}
           options={["USA", "INDIA", "EUROPE"]}
           label="Country"
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
       <Grid item>
@@ -432,7 +432,7 @@ const AddProject = () => {
           label="Document(id any)"
           placeholder=""
           onChange={onChangeDocument}
-          className="forAddClient"
+          className="forAddProject"
         />
       </Grid>,
     ],
@@ -464,6 +464,7 @@ const AddProject = () => {
             rows={rows}
             columns={columns}
             checkboxSelection={true}
+            disablePagination={true}
             columnVisibilityModel={columnVisibilityModel}
           />
         </Grid>
