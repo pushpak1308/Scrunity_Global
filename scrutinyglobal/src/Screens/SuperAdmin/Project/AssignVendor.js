@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Layout from "../Layout";
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography, TextField } from "@mui/material";
 import tickFrame from "../../../Images/ModalImages/tickFrame.png";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import EditIcon from "@mui/icons-material/Edit";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import MuiMultiSelectDropdown from "../../../MuiComponents/MuiMultiSelectDropdown/Index";
 import MuiDataGrid from "../../../MuiComponents/MuiDataGrid/Index";
@@ -13,6 +14,7 @@ const AssignVendor = () => {
   const [selectedVendors, setSelectedVendors] = useState([]);
   const [selectedRowIds, setSelectedRowIds] = useState([]);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [edit, setEdit] = useState(false);
   const navigate = useNavigate();
 
   const vendors = [
@@ -35,71 +37,13 @@ const AssignVendor = () => {
     {
       id: 3,
       vendorName: "Vendor 3",
-      successURL: "exampleURL.com",
+      successURL:
+        "exampleURL.comexampleURL.comexampleURL.comexampleURL.comexampleURL.comexampleURL.com",
       terminateURL: "exampleURL.com",
       quotafullURL: "exampleURL.com",
       costPerSurvey: "45",
     },
   ];
-
-  const [columns] = useState([
-    {
-      field: "id",
-      headerName: "S.No.",
-      width: 95,
-      align: "center",
-      cellClassName: "dataGrid-cell",
-      headerClassName: "dataGrid-header",
-    },
-    {
-      field: "vendorName",
-      headerName: "Vendor Name",
-      width: 180,
-      align: "center",
-      headerClassName: "dataGrid-header",
-      cellClassName: "dataGrid-cell",
-      headerAlign: "center",
-    },
-    {
-      field: "successURL",
-      headerName: "Success URL",
-      width: 190,
-      editable: true,
-      align: "center",
-      headerClassName: "dataGrid-header",
-      cellClassName: "dataGrid-cell",
-      headerAlign: "center",
-    },
-    {
-      field: "quotafullURL",
-      headerName: "Quotafull URL",
-      width: 190,
-      align: "center",
-      editable: true,
-      headerClassName: "dataGrid-header",
-      cellClassName: "dataGrid-cell",
-      headerAlign: "center",
-    },
-    {
-      field: "terminateURL",
-      headerName: "Terminate URL",
-      width: 190,
-      align: "center",
-      editable: true,
-      headerClassName: "dataGrid-header",
-      cellClassName: "dataGrid-cell",
-      headerAlign: "center",
-    },
-    {
-      field: "costPerSurvey",
-      headerName: "Cost/Survey",
-      width: 170,
-      align: "center",
-      headerClassName: "dataGrid-header",
-      cellClassName: "dataGrid-cell",
-      headerAlign: "center",
-    },
-  ]);
 
   const handleVendorChange = (event) => {
     const {
@@ -116,6 +60,14 @@ const AssignVendor = () => {
     setSelectedRowIds([]);
   };
 
+  const handleEditChange = (id, field, value) => {
+    setSelectedVendors((prevVendors) =>
+      prevVendors.map((vendor) =>
+        vendor.id === id ? { ...vendor, [field]: value } : vendor
+      )
+    );
+  };
+
   const handleDelete = () => {
     const remainingVendors = selectedVendors.filter(
       (vendor) => !selectedRowIds.includes(vendor.id)
@@ -124,11 +76,12 @@ const AssignVendor = () => {
     setSelectedRowIds([]);
   };
 
-  console.log("selectedRowIds for delete :>> ", selectedRowIds);
-  console.log("selectedVendors in table :>> ", selectedVendors);
-
   const handleSave = () => {
     setShowSuccessModal(true);
+  };
+
+  const handleEdit = () => {
+    setEdit(!edit);
   };
 
   const handleModalButtonClick = () => {
@@ -138,6 +91,125 @@ const AssignVendor = () => {
   const handleClose = () => {
     setShowSuccessModal(false);
   };
+
+  const columns = [
+    {
+      field: "id",
+      headerName: "S.No.",
+      width: 95,
+      align: "center",
+      cellClassName: "dataGrid-cell",
+      headerClassName: "dataGrid-header",
+    },
+    {
+      field: "link",
+      headerName: "Copy Link",
+      width: 100,
+      align: "center",
+      cellClassName: "dataGrid-cell",
+      headerClassName: "dataGrid-header",
+      renderCell: (params) => (
+        <DescriptionOutlinedIcon
+          color="primary"
+          style={{ cursor: "pointer" }}
+        />
+      ),
+    },
+    {
+      field: "vendorName",
+      headerName: "Vendor Name",
+      width: 180,
+      align: "center",
+      headerClassName: "dataGrid-header",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+    },
+    {
+      field: "successURL",
+      headerName: "Success URL",
+      width: 190,
+      align: "left",
+      headerClassName: "dataGrid-header",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+      renderCell: (params) =>
+        edit ? (
+          <TextField
+            value={params.value}
+            variant="standard"
+            onChange={(e) =>
+              handleEditChange(params.id, params.field, e.target.value)
+            }
+          />
+        ) : (
+          params.value
+        ),
+    },
+    {
+      field: "quotafullURL",
+      headerName: "Quotafull URL",
+      width: 190,
+      align: "left",
+      headerClassName: "dataGrid-header",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+      renderCell: (params) =>
+        edit ? (
+          <TextField
+            value={params.value}
+            variant="standard"
+            onChange={(e) =>
+              handleEditChange(params.id, params.field, e.target.value)
+            }
+          />
+        ) : (
+          params.value
+        ),
+    },
+    {
+      field: "terminateURL",
+      headerName: "Terminate URL",
+      width: 190,
+      align: "left",
+      headerClassName: "dataGrid-header",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+      renderCell: (params) =>
+        edit ? (
+          <TextField
+            variant="standard"
+            value={params.value}
+            onChange={(e) =>
+              handleEditChange(params.id, params.field, e.target.value)
+            }
+          />
+        ) : (
+          params.value
+        ),
+    },
+    {
+      field: "costPerSurvey",
+      headerName: "Cost/Survey",
+      width: 170,
+      align: "center",
+      headerClassName: "dataGrid-header",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+
+      renderCell: (params) =>
+        edit ? (
+          <TextField
+            variant="standard"
+            value={params.value}
+            onChange={(e) =>
+              handleEditChange(params.id, params.field, e.target.value)
+            }
+          />
+        ) : (
+          params.value
+        ),
+    },
+  ];
 
   return (
     <Layout
@@ -160,6 +232,18 @@ const AssignVendor = () => {
             alignItems="end"
           >
             <Grid item container justifyContent="flex-end" spacing={2} md={12}>
+              <Grid item>
+                <Button
+                  variant="outlined"
+                  color="error"
+                  onClick={handleEdit}
+                  className="client-button export-class"
+                  startIcon={<EditIcon color="primary" fontSize="large" />}
+                  disabled={selectedVendors.length === 0}
+                >
+                  Edit
+                </Button>
+              </Grid>
               <Grid item>
                 <Button
                   variant="outlined"

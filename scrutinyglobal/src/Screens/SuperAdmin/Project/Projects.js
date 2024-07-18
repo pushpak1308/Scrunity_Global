@@ -155,24 +155,24 @@ const Projects = () => {
       headerAlign: "center",
       align: "center",
     },
-    {
-      field: "IR",
-      headerName: "IR%",
-      width: 170,
-      align: "center",
-      cellClassName: "dataGrid-cell",
-      headerClassName: "dataGrid-header",
-      headerAlign: "center",
-    },
-    {
-      field: "LOI",
-      headerName: "LOI",
-      width: 160,
-      align: "center",
-      headerClassName: "dataGrid-header",
-      cellClassName: "dataGrid-cell",
-      headerAlign: "center",
-    },
+    // {
+    //   field: "IR",
+    //   headerName: "IR%",
+    //   width: 170,
+    //   align: "center",
+    //   cellClassName: "dataGrid-cell",
+    //   headerClassName: "dataGrid-header",
+    //   headerAlign: "center",
+    // },
+    // {
+    //   field: "LOI",
+    //   headerName: "LOI",
+    //   width: 160,
+    //   align: "center",
+    //   headerClassName: "dataGrid-header",
+    //   cellClassName: "dataGrid-cell",
+    //   headerAlign: "center",
+    // },
   ]);
 
   const [columnVisibilityModel, setColumnVisibilityModel] = useState({
@@ -193,8 +193,8 @@ const Projects = () => {
       endDate: "01-07-24",
       projectBudget: "Rs 40,000",
       SPOC: "",
-      IR: "10",
-      LOI: "10",
+      // IR: "10",
+      // LOI: "10",
     },
     {
       id: 2,
@@ -210,8 +210,8 @@ const Projects = () => {
       endDate: "01-07-24",
       projectBudget: "Rs 40,000",
       SPOC: "",
-      IR: "10",
-      LOI: "10",
+      // IR: "10",
+      // LOI: "10",
     },
     {
       id: 3,
@@ -227,8 +227,8 @@ const Projects = () => {
       endDate: "01-07-24",
       projectBudget: "Rs 40,000",
       SPOC: "",
-      IR: "10",
-      LOI: "10",
+      // IR: "10",
+      // LOI: "10",
     },
     {
       id: 4,
@@ -244,8 +244,8 @@ const Projects = () => {
       endDate: "01-07-24",
       projectBudget: "Rs 40,000",
       SPOC: "",
-      IR: "10",
-      LOI: "10",
+      // IR: "10",
+      // LOI: "10",
     },
   ];
 

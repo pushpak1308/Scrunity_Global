@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import InvoiceImage from "./../../Images/Invoice/InvoiceImage.svg";
 import "./Style.css";
 import { MuiDropDown } from "../../MuiComponents/MuiDropDown/Index";
@@ -34,9 +34,9 @@ const Invoice = () => {
   const onChangeDate = (e) => {
     setDate(e.target.value);
   };
-  const onChangeTotalNoofSurveys = (e) => {
-    setTotalNoofSurveys(e.target.value);
-  };
+  // const onChangeTotalNoofSurveys = (e) => {
+  //   setTotalNoofSurveys(e.target.value);
+  // };
   const onChangeSuccessfulSurveys = (e) => {
     setSuccessfulSurveys(e.target.value);
   };
@@ -103,13 +103,20 @@ const Invoice = () => {
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <MuiDropDown
+                    <MuiTextField
+                      type="text"
+                      value={currency}
+                      label="Currency"
+                      onChange={onChangeCurrency}
+                      className="forRegister"
+                    />
+                    {/* <MuiDropDown
                       value={currency}
                       onChange={onChangeCurrency}
                       options={["currency 1", "currency 2", "currency 3"]} // Example options
                       label="Currency"
                       className="forRegister"
-                    />
+                    /> */}
                   </Grid>
                 </Grid>
                 <Grid container spacing={3} className="addPadding">

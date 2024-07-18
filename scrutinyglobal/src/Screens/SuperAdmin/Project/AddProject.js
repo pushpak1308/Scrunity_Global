@@ -281,12 +281,20 @@ const AddProject = () => {
         />
       </Grid>,
       <Grid item>
-        <MuiDropDown
+        {/* <MuiDropDown
           value={clientName}
           //   defaultValue={reduxData?.accountType || ""}
           onChange={onChangeClientName}
-          options={["User", "Premium", "Vendor"]}
+          options={["Client", "Premium", "Vendor"]}
           label="Client Name"
+          className="forAddClient"
+        /> */}
+        <MuiTextField
+          type="text"
+          value={clientName}
+          label="Client Name"
+          // defaultValue={reduxData?.city || ""}
+          onChange={onChangeClientName}
           className="forAddClient"
         />
       </Grid>,
@@ -499,7 +507,11 @@ const AddProject = () => {
               : "Project Specifications"}
           </Grid>
           <Paper elevation={2} className="form-sub-grid">
-            <StepForm steps={steps} onSave={handleSave} />
+            <StepForm
+              steps={steps}
+              onSave={handleSave}
+              formType={"add-project"}
+            />
           </Paper>
         </Grid>
       </Grid>
@@ -528,13 +540,7 @@ const AddProject = () => {
     </Grid>
   );
 
-  return (
-    <Layout
-      content={content}
-      navbarHeading="ADD PROJECT"
-      formType="add-project"
-    />
-  );
+  return <Layout content={content} navbarHeading="ADD PROJECT" />;
 };
 
 export default AddProject;
