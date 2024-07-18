@@ -1,5 +1,5 @@
 import { Button, Grid, Paper, Switch } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import { useDispatch } from "react-redux";
 import { setSelectedRows } from "../../../Store/Slice/rowSelectionSlice";
 import Layout from "../Layout";
@@ -14,6 +14,30 @@ const Clients = () => {
   const navigate = useNavigate();
   const [rowSelectionModel, setRowSelectionModel] = useState([]);
   const [checkedRows, setCheckedRows] = useState([]);
+  const [responseData,setResponseData] = useState([]);
+  const [userDataNew, setUserDataNew] = useState([]);
+  let userData = {
+    id: [],
+    role: [],
+    approval: [],
+    vendorName: [],
+    contactNumber: [],
+    alternateContactNumber:[],
+    email: [],
+    birthdate: [],
+    address: [],
+    country: [],
+    state: [],
+    city: [],
+    pincode: [],
+    profession: [],
+    ipAddress: [],
+    accountType: [],
+    salary: [],
+    contactName: [],
+    websiteLink: [],
+    industry: []
+  };
 
   const [columns, setColumns] = useState([
     {
@@ -109,6 +133,70 @@ const Clients = () => {
     id: false,
   });
 
+  useEffect(() => {
+    getClientData();
+  }, []);
+
+  function getClientData() {
+    fetch("http://localhost:8080/ScrutinyGlobal/getListAsAccountType?accountType=vendor", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        setResponseData(data);
+        console.log("response Data",data)
+      })
+      .catch(function (error) {
+        console.error("Error fetching data:", error);
+      });
+  }
+
+  useEffect(() => {
+    setUserDataNew(convertData(responseData));
+  }, [responseData]);
+  function convertData(data) {
+    console.log(data);
+    data.map((element) => userData.id.push(element.user_id));
+    data.map((element) => userData.vendorName.push(element.name));
+    data.map((element) => userData.websiteLink.push(element.website));
+    data.map((element) => userData.alternateContactNumber.push(element.alternate_number));
+    data.map((element) => userData.industry.push(element.industry));
+    data.map((element) => userData.contactName.push(element.contact_name));
+    data.map((element) => userData.contactNumber.push(element.number));
+    data.map((element) => userData.country.push(element.country));
+    data.map((element) => userData.accountType.push(element.accountType));
+    data.map((element) => userData.approval.push(element.approval));
+    data.map((element) => userData.email.push(element.email));
+    data.map((element) => userData.profession.push(element.profession));
+    data.map((element) => userData.birthdate.push(element.dob));
+    data.map((element) => userData.address.push(element.address));
+    data.map((element) => userData.city.push(element.city));
+    data.map((element) => userData.salary.push(element.monthlySalary));
+    data.map((element) => userData.state.push(element.state));
+    data.map((element) => userData.pincode.push(element.zipcode));
+    console.log("userData", userData);
+
+    let userDataConverted = [];
+    const keys = Object.keys(userData);
+    const numObjects = userData[keys[0]].length;
+    for (let i = 0; i < numObjects; i++) {
+      const newObj = {};
+      keys.forEach((key) => {
+        newObj[key] = userData[key][i];
+      });
+      userDataConverted = [...userDataConverted, newObj];
+    }
+    console.log("userDataNew", userDataConverted);
+    return userDataConverted;
+  }
+
+
   const rows = [
     {
       id: 1,
@@ -193,7 +281,7 @@ const Clients = () => {
 
       <Grid item className="client-list-datagrid">
         <MuiDataGrid
-          rows={rows}
+          rows={userDataNew}
           columns={columns}
           checkboxSelection={true}
           onRowSelectionModelChange={handleRowSelection}
