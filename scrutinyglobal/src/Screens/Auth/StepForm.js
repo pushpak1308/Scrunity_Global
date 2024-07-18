@@ -87,7 +87,7 @@ const StepForm = ({
               type="text"
               value={name}
               defaultValue={reduxData?.name || ""}
-              label="Name"
+              label="Organization Name"
               onChange={onChangeName}
               className="forRegister"
             />
