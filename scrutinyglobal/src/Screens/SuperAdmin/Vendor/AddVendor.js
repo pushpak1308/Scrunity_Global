@@ -33,13 +33,46 @@ const AddVendor = () => {
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [document, setDocument] = useState(null);
   const [country, setCountry] = useState("");
+  const [userId, setUserId] = useState("");
+
+  const vendorFormData = 
+    {
+        "userId":userId,
+        "accountType":"vendor",
+        "successURL":successURL,
+        "terminateURL":terminateURL,
+        "quotaFullURL":quotafulURL,
+        "securityTerminateURL": "not seding anything for now",
+        "registerationNumber":registrationNo,
+        "panNumber":panNo ,
+        "bankBranchAddress":bankBranchAddress,
+        "accountNumber": accountNo,
+        "ifscCode": ifsc,
+        "accountType":"vendor",
+        "contactName": vendorName,
+        "contactEmail":email,
+        "alternateNumber":alternateContactNumber,
+        "website":"not for vendor",
+        "industry": "not for vendor",
+        "description":"not for vendor"
+
+  }
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
   };
 
   const onChangeVendorName = (e) => {
-    setVendorName(e.target.value);
+    const selectedVendorName = e.target.value;
+    setVendorName(selectedVendorName);
+    const selectedVendor = vendorData.find(
+      (Vendor) => Vendor.name === selectedVendorName
+    );
+
+    if(selectedVendor)
+      {
+        setUserId(selectedVendor.userId);
+      }
   };
 
   const onChangeContactNumber = (e) => {
@@ -101,6 +134,7 @@ const AddVendor = () => {
   };
 
 
+  const [vendorData, setVendorData] = useState([]);
   const [vendorUserName, setVendorUserName] = useState([]);
 
   useEffect(() => {
@@ -439,6 +473,16 @@ const AddVendor = () => {
 
   const handleSave = (formData) => {
     // Save form data
+    fetch("http://localhost:8080/ScrutinyGlobal/setroletouser", {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(vendorFormData),
+    });
+    // setShowSuccessModal(true);
+    
     setShowSuccessModal(!showSuccessModal);
     console.log("Form Data:", formData);
   };
