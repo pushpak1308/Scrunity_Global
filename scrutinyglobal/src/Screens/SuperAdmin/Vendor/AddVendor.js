@@ -35,28 +35,26 @@ const AddVendor = () => {
   const [country, setCountry] = useState("");
   const [userId, setUserId] = useState("");
 
-  const vendorFormData = 
-    {
-        "userId":userId,
-        "accountType":"vendor",
-        "successURL":successURL,
-        "terminateURL":terminateURL,
-        "quotaFullURL":quotafulURL,
-        "securityTerminateURL": "not seding anything for now",
-        "registerationNumber":registrationNo,
-        "panNumber":panNo ,
-        "bankBranchAddress":bankBranchAddress,
-        "accountNumber": accountNo,
-        "ifscCode": ifsc,
-        "accountType":"vendor",
-        "contactName": vendorName,
-        "contactEmail":email,
-        "alternateNumber":alternateContactNumber,
-        "website":"not for vendor",
-        "industry": "not for vendor",
-        "description":"not for vendor"
-
-  }
+  const vendorFormData = {
+    userId: userId,
+    accountType: "vendor",
+    successURL: successURL,
+    terminateURL: terminateURL,
+    quotaFullURL: quotafulURL,
+    securityTerminateURL: "not seding anything for now",
+    registerationNumber: registrationNo,
+    panNumber: panNo,
+    bankBranchAddress: bankBranchAddress,
+    accountNumber: accountNo,
+    ifscCode: ifsc,
+    accountType: "vendor",
+    contactName: vendorName,
+    contactEmail: email,
+    alternateNumber: alternateContactNumber,
+    website: "not for vendor",
+    industry: "not for vendor",
+    description: "not for vendor",
+  };
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -69,10 +67,14 @@ const AddVendor = () => {
       (Vendor) => Vendor.name === selectedVendorName
     );
 
-    if(selectedVendor)
-      {
-        setUserId(selectedVendor.userId);
-      }
+    console.log("selectedVendor :>> ", selectedVendor);
+
+    if (selectedVendor) {
+      setUserId(selectedVendor.userId);
+      setEmail(selectedVendor.email);
+      setContactNumber(selectedVendor.number);
+      setCountry(selectedVendor.country);
+    }
   };
 
   const onChangeContactNumber = (e) => {
@@ -133,7 +135,6 @@ const AddVendor = () => {
     setDocument(file);
   };
 
-
   const [vendorData, setVendorData] = useState([]);
   const [vendorUserName, setVendorUserName] = useState([]);
 
@@ -160,7 +161,7 @@ const AddVendor = () => {
             return element.name;
           })
         );
-        console.log("client data seting ", vendorData);
+        console.log("vendor data seting ", vendorData);
       });
   }, []);
 
@@ -258,7 +259,7 @@ const AddVendor = () => {
   const steps = [
     [
       <Grid item>
-          <MuiDropDown
+        <MuiDropDown
           required={true}
           value={vendorName}
           defaultValue={vendorName || ""}
@@ -482,7 +483,7 @@ const AddVendor = () => {
       body: JSON.stringify(vendorFormData),
     });
     // setShowSuccessModal(true);
-    
+
     setShowSuccessModal(!showSuccessModal);
     console.log("Form Data:", formData);
   };

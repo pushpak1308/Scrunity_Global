@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Paper } from "@mui/material";
+import { Grid, Paper, TextField } from "@mui/material";
 import StepForm from "../../../Components/StepForm/Index";
 import { MuiTextField } from "../../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../../MuiComponents/MuiDropDown/Index";
@@ -15,15 +15,21 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectAddProjectStep } from "../../../Store/Slice/stepSlice";
 import SuccessErrorModal from "../../../Components/SuccesErrorModal/Index";
+import { selectedRow } from "../../../Store/Slice/rowSelectionSlice";
+// import EditIcon from "@mui/icons-material/Edit";
 
 const AddProject = () => {
+  const clientData = useSelector(selectedRow);
   const navigate = useNavigate();
   const currentStep = useSelector(selectAddProjectStep);
-  const [clientName, setClientName] = useState("");
+  // const [edit, setEdit] = useState(false);
+  const [clientName, setClientName] = useState(clientData[0]?.clientName || "");
   const [projectName, setProjectName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [contactNumber, setContactNumber] = useState("");
+  const [contactNumber, setContactNumber] = useState(
+    clientData[0]?.contactNumber || ""
+  );
   const [alternateContactNumber, setAlternateContactNumber] = useState("");
   const [audienceType, setAudienceType] = useState("");
   const [projectHead, setProjectHead] = useState("");
@@ -32,9 +38,14 @@ const AddProject = () => {
   const [spoc, setSpoc] = useState("");
   const [billingCurrency, setBillingCurrency] = useState("");
   const [document, setDocument] = useState(null);
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState(clientData[0]?.country || "");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
+  // console.log("edit :>> ", edit);
+
+  // const handleEdit = () => {
+  //   setEdit(true);
+  // };
 
   const onChangeClientName = (e) => {
     setClientName(e.target.value);
@@ -97,6 +108,12 @@ const AddProject = () => {
     id: false,
   });
 
+  const handleEditChange = (id, field, value) => {
+    setRows((prevRows) =>
+      prevRows.map((row) => (row.id === id ? { ...row, [field]: value } : row))
+    );
+  };
+
   const [columns, setColumns] = useState([
     { field: "id", headerClassName: "add-project-header" },
     {
@@ -132,19 +149,6 @@ const AddProject = () => {
       headerAlign: "center",
       headerClassName: "add-project-header",
     },
-    // {
-    //   field: "completesNeeded",
-    //   headerName: "Completes needed",
-    //   width: 100,
-    //   align: "center",
-    //   headerAlign: "center",
-    //   headerClassName: "custom-header",
-    //   renderHeader: () => (
-    //     <span>
-    //       Completes<br />needed
-    //     </span>
-    //   ),
-    // },
     {
       field: "completesFeasable",
       headerName: "Completes Feasable",
@@ -157,9 +161,23 @@ const AddProject = () => {
       field: "costPerSurvey",
       headerName: "Cost/Survey",
       width: 120,
-      align: "center",
       headerAlign: "center",
+      cellClassName: "dataGrid-cell",
       headerClassName: "add-project-header",
+      renderCell: (params) => (
+        // edit ? (
+        <TextField
+          size="small"
+          value={params.value}
+          variant="standard"
+          onChange={(e) => {
+            handleEditChange(params.id, params.field, e.target.value);
+          }}
+        />
+      ),
+      // ) : (
+      //   params.value
+      // ),
     },
     {
       field: "surveyLink",
@@ -169,67 +187,7 @@ const AddProject = () => {
       headerClassName: "add-project-header",
     },
   ]);
-  // const [columns, setColumns] = useState([
-  //   { field: "id", headerClassName: "add-project-header" },
-  //   {
-  //     field: "country",
-  //     headerName: "Country",
-  //     flex: 1,
-  //     align: "center",
-  //     headerAlign: "center",
-  //     headerClassName: "add-project-header",
-  //   },
-  //   {
-  //     field: "IR",
-  //     headerName: "IR%",
-  //     flex: 0.7,
-  //     align: "center",
-  //     headerAlign: "center",
-  //     headerClassName: "add-project-header",
-  //   },
-  //   {
-  //     field: "LOI",
-  //     headerName: "LOI(min)",
-  //     type: "number",
-  //     flex: 0.8,
-  //     align: "center",
-  //     headerAlign: "center",
-  //     headerClassName: "add-project-header",
-  //   },
-  //   {
-  //     field: "completesNeeded",
-  //     headerName: "Completes needed",
-  //     flex: 1.5,
-  //     align: "center",
-  //     headerAlign: "center",
-  //     headerClassName: "add-project-header",
-  //   },
-  //   {
-  //     field: "completesFeasable",
-  //     headerName: "Completes Feasable",
-  //     flex: 1.5,
-  //     align: "center",
-  //     headerAlign: "center",
-  //     headerClassName: "add-project-header",
-  //   },
-  //   {
-  //     field: "costPerSurvey",
-  //     headerName: "Cost/Survey",
-  //     flex: 1.2,
-  //     align: "center",
-  //     headerAlign: "center",
-  //     headerClassName: "add-project-header",
-  //   },
-  //   {
-  //     field: "surveyLink",
-  //     headerName: "Survey Link",
-  //     flex: 1.5,
-  //     headerAlign: "center",
-  //     headerClassName: "add-project-header",
-  //   },
-  // ]);
-
-  const rows = [
+  const [rows, setRows] = useState([
     {
       id: "1",
       country: "India",
@@ -266,7 +224,7 @@ const AddProject = () => {
       completesNeeded: "200",
       completesFeasable: "180",
     },
-  ];
+  ]);
 
   const steps = [
     [
@@ -281,14 +239,6 @@ const AddProject = () => {
         />
       </Grid>,
       <Grid item>
-        {/* <MuiDropDown
-          value={clientName}
-          //   defaultValue={reduxData?.accountType || ""}
-          onChange={onChangeClientName}
-          options={["Client", "Premium", "Vendor"]}
-          label="Client Name"
-          className="forAddProject"
-        /> */}
         <MuiTextField
           type="text"
           value={clientName}
@@ -451,6 +401,9 @@ const AddProject = () => {
             justifyContent="flex-end"
             alignItems="center"
           >
+            <Grid item>
+              {/* <EditIcon color="primary" onClick={handleEdit} /> */}
+            </Grid>
             <Grid item>
               <AddIcon />
             </Grid>

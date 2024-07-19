@@ -12,6 +12,7 @@ import Layout from "./Layout";
 import MuiDataGrid from "../../MuiComponents/MuiDataGrid/Index";
 
 const Dashboard = () => {
+  // localStorage.clear();
   const [approved, setApproved] = useState(false);
   const [responseData, setResponseData] = useState([]);
   const [userDataNew, setUserDataNew] = useState([]);

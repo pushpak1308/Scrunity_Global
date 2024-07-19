@@ -24,16 +24,16 @@ const LinkButton = ({
   className = "sidebar-text",
   active,
 }) => (
-  <ListItem key={text} disablePadding>
-    <StyledListItemButton isActive={active}>
-      <ListItemIcon>{icon}</ListItemIcon>
-      <Link to={`/${link}`} className={className}>
+  <Link to={`/${link}`} className={className}>
+    <ListItem key={text} disablePadding>
+      <StyledListItemButton isActive={active}>
+        <ListItemIcon>{icon}</ListItemIcon>
         <Paper isActive={active} className={className}>
           {text}
         </Paper>
-      </Link>
-    </StyledListItemButton>
-  </ListItem>
+      </StyledListItemButton>
+    </ListItem>
+  </Link>
 );
 
 export default LinkButton;
