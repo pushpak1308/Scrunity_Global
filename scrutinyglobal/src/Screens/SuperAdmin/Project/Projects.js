@@ -15,7 +15,7 @@ const Projects = () => {
   const navigate = useNavigate();
   const [rowSelectionModel, setRowSelectionModel] = useState([]);
   const [checkedRows, setCheckedRows] = useState([]);
-  const [responseData, setResponseData] =  useState([]);
+  const [responseData, setResponseData] = useState([]);
   const [surveyResponseData, setSurveyResponseData] = useState([]);
   const [projectDetailsData, setProjectDetailsData] = useState([]);
 
@@ -35,7 +35,7 @@ const Projects = () => {
     SPOC: [],
     IR: [],
     LOI: [],
-};
+  };
 
   const [columns, setColumns] = useState([
     {
@@ -177,93 +177,81 @@ const Projects = () => {
       headerAlign: "center",
       align: "center",
     },
-    // {
-    //   field: "IR",
-    //   headerName: "IR%",
-    //   width: 170,
-    //   align: "center",
-    //   cellClassName: "dataGrid-cell",
-    //   headerClassName: "dataGrid-header",
-    //   headerAlign: "center",
-    // },
-    // {
-    //   field: "LOI",
-    //   headerName: "LOI",
-    //   width: 160,
-    //   align: "center",
-    //   headerClassName: "dataGrid-header",
-    //   cellClassName: "dataGrid-cell",
-    //   headerAlign: "center",
-    // },
   ]);
-
-  
-
 
   useEffect(() => {
     getProjectData();
     getSurveyLinkData();
   }, []);
 
-  function getSurveyLinkData(){
-    fetch("http://localhost:8080/ScrutinyGlobal/getSurveyDetails" , {
+  function getSurveyLinkData() {
+    fetch("http://localhost:8080/ScrutinyGlobal/getSurveyDetails", {
       method: "GET",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
     })
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      setSurveyResponseData(data);
-      console.log("response Data",data)
-    })
-    .catch(function (error) {
-      console.error("Error fetching data:", error);
-    });
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        setSurveyResponseData(data);
+        console.log("response Data", data);
+      })
+      .catch(function (error) {
+        console.error("Error fetching data:", error);
+      });
   }
 
-
-  function getProjectData(){
-    fetch("http://localhost:8080/ScrutinyGlobal/getProjectList" , {
+  function getProjectData() {
+    fetch("http://localhost:8080/ScrutinyGlobal/getProjectList", {
       method: "GET",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
     })
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      setResponseData(data);
-      console.log("response Data",data)
-    })
-    .catch(function (error) {
-      console.error("Error fetching data:", error);
-    });
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        setResponseData(data);
+        console.log("response Data", data);
+      })
+      .catch(function (error) {
+        console.error("Error fetching data:", error);
+      });
   }
 
   useEffect(() => {
     setProjectDetailsData(convertData(responseData));
   }, [responseData]);
 
-  function convertData(projectdetailsData){
-    projectdetailsData.map((element) => projectData.id.push(element.project_id));
-    projectdetailsData.map((element) => projectData.projectName.push(element.project_name));
-    projectDetailsData.map((element) => projectData.startDate.push(element.project_start_time));
-    projectDetailsData.map((element) => projectData.clientName.push(element.name));
-    projectDetailsData.map((element) => projectData.projectHead.push(element.projectspoc));
-    projectDetailsData.map((element) => projectData.audienceType.push(element.audience_type));
-    projectDetailsData.map((element) => projectData.country.push(element.country));
-    
+  function convertData(projectdetailsData) {
+    projectdetailsData.map((element) =>
+      projectData.id.push(element.project_id)
+    );
+    projectdetailsData.map((element) =>
+      projectData.projectName.push(element.project_name)
+    );
+    projectDetailsData.map((element) =>
+      projectData.startDate.push(element.project_start_time)
+    );
+    projectDetailsData.map((element) =>
+      projectData.clientName.push(element.name)
+    );
+    projectDetailsData.map((element) =>
+      projectData.projectHead.push(element.projectspoc)
+    );
+    projectDetailsData.map((element) =>
+      projectData.audienceType.push(element.audience_type)
+    );
+    projectDetailsData.map((element) =>
+      projectData.country.push(element.country)
+    );
 
-
-
-
-    console.log(projectData);  
+    console.log(projectData);
 
     let projectDataConverted = [];
     const keys = Object.keys(projectData);
@@ -278,7 +266,6 @@ const Projects = () => {
     console.log("projectDataConverted", projectDataConverted);
     return projectDataConverted;
   }
-  
 
   const [columnVisibilityModel, setColumnVisibilityModel] = useState({
     id: false,

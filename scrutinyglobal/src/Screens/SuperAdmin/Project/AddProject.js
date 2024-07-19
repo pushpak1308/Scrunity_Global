@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Grid, Paper, TextField } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Grid, IconButton, Paper, TextField } from "@mui/material";
 import StepForm from "../../../Components/StepForm/Index";
 import { MuiTextField } from "../../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../../MuiComponents/MuiDropDown/Index";
@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import { selectAddProjectStep } from "../../../Store/Slice/stepSlice";
 import SuccessErrorModal from "../../../Components/SuccesErrorModal/Index";
 import { selectedRow } from "../../../Store/Slice/rowSelectionSlice";
+import MuiMultiSelectDropdown from "../../../MuiComponents/MuiMultiSelectDropdown/Index";
 // import EditIcon from "@mui/icons-material/Edit";
 
 const AddProject = () => {
@@ -38,7 +39,11 @@ const AddProject = () => {
   const [spoc, setSpoc] = useState("");
   const [billingCurrency, setBillingCurrency] = useState("");
   const [document, setDocument] = useState(null);
-  const [country, setCountry] = useState(clientData[0]?.country || "");
+  const [countriesData, setCountriesData] = useState([]);
+  const [selectedCountries, setSelectedCountries] = useState(
+    clientData[0]?.country ? [clientData[0].country] : []
+  );
+  const [selectedRowIds, setSelectedRowIds] = useState([]);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   // console.log("edit :>> ", edit);
@@ -95,8 +100,11 @@ const AddProject = () => {
     setBillingCurrency(e.target.value);
   };
 
-  const onChangeCountry = (e) => {
-    setCountry(e.target.value);
+  const onChangeCountry = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setSelectedCountries(typeof value === "string" ? value.split(",") : value);
   };
 
   const onChangeDocument = (event) => {
@@ -119,6 +127,7 @@ const AddProject = () => {
     {
       field: "country",
       headerName: "Country",
+      cellClassName: "dataGrid-cell",
       width: 100,
       align: "center",
       headerAlign: "center",
@@ -129,8 +138,19 @@ const AddProject = () => {
       headerName: "IR%",
       width: 70,
       align: "center",
+      cellClassName: "dataGrid-cell",
       headerAlign: "center",
       headerClassName: "add-project-header",
+      renderCell: (params) => (
+        <TextField
+          size="small"
+          value={params.value}
+          variant="standard"
+          onChange={(e) =>
+            handleEditChange(params.id, params.field, e.target.value)
+          }
+        />
+      ),
     },
     {
       field: "LOI",
@@ -138,16 +158,38 @@ const AddProject = () => {
       type: "number",
       width: 80,
       align: "center",
+      cellClassName: "dataGrid-cell",
       headerAlign: "center",
       headerClassName: "add-project-header",
+      renderCell: (params) => (
+        <TextField
+          size="small"
+          value={params.value}
+          variant="standard"
+          onChange={(e) =>
+            handleEditChange(params.id, params.field, e.target.value)
+          }
+        />
+      ),
     },
     {
       field: "completesNeeded",
       headerName: "Completes needed",
       width: 150,
       align: "center",
+      cellClassName: "dataGrid-cell",
       headerAlign: "center",
       headerClassName: "add-project-header",
+      renderCell: (params) => (
+        <TextField
+          size="small"
+          value={params.value}
+          variant="standard"
+          onChange={(e) =>
+            handleEditChange(params.id, params.field, e.target.value)
+          }
+        />
+      ),
     },
     {
       field: "completesFeasable",
@@ -155,7 +197,18 @@ const AddProject = () => {
       width: 150,
       align: "center",
       headerAlign: "center",
+      cellClassName: "dataGrid-cell",
       headerClassName: "add-project-header",
+      renderCell: (params) => (
+        <TextField
+          size="small"
+          value={params.value}
+          variant="standard"
+          onChange={(e) =>
+            handleEditChange(params.id, params.field, e.target.value)
+          }
+        />
+      ),
     },
     {
       field: "costPerSurvey",
@@ -165,66 +218,90 @@ const AddProject = () => {
       cellClassName: "dataGrid-cell",
       headerClassName: "add-project-header",
       renderCell: (params) => (
-        // edit ? (
         <TextField
           size="small"
           value={params.value}
           variant="standard"
-          onChange={(e) => {
-            handleEditChange(params.id, params.field, e.target.value);
-          }}
+          onChange={(e) =>
+            handleEditChange(params.id, params.field, e.target.value)
+          }
         />
       ),
-      // ) : (
-      //   params.value
-      // ),
     },
     {
       field: "surveyLink",
       headerName: "Survey Link",
       width: 150,
+      cellClassName: "dataGrid-cell",
       headerAlign: "center",
       headerClassName: "add-project-header",
+      renderCell: (params) => (
+        <TextField
+          size="small"
+          value={params.value}
+          variant="standard"
+          onChange={(e) =>
+            handleEditChange(params.id, params.field, e.target.value)
+          }
+        />
+      ),
     },
   ]);
-  const [rows, setRows] = useState([
-    {
-      id: "1",
-      country: "India",
-      IR: "12",
-      LOI: "10",
-      completesNeeded: "200",
-      completesFeasable: "180",
-      costPerSurvey: "Rs 45",
-      surveyLink: "example.link.com",
-    },
-    {
-      id: "2",
-      country: "India",
-      IR: "12",
-      LOI: "10",
-      completesNeeded: "200",
-      completesFeasable: "180",
-      costPerSurvey: "Rs 45",
-      surveyLink: "example.link.com",
-    },
-    {
-      id: "3",
-      country: "India",
-      IR: "12",
-      LOI: "10",
-      completesNeeded: "200",
-      completesFeasable: "180",
-    },
-    {
-      id: "4",
-      country: "India",
-      IR: "12",
-      LOI: "10",
-      completesNeeded: "200",
-      completesFeasable: "180",
-    },
-  ]);
+
+  const [rows, setRows] = useState(
+    selectedCountries.map((country, index) => ({
+      id: (index + 1).toString(),
+      country,
+      IR: "",
+      LOI: "",
+      completesNeeded: "",
+      completesFeasable: "",
+      costPerSurvey: "",
+      surveyLink: "",
+    }))
+  );
+
+  useEffect(() => {
+    fetch("http://localhost:8080/ScrutinyGlobal/getCountries", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setCountriesData(
+          data.map((element) => {
+            return element.countryName;
+          })
+        );
+      });
+  }, []);
+
+  useEffect(() => {
+    setRows(
+      selectedCountries.map((country, index) => ({
+        id: (index + 1).toString(),
+        country,
+        IR: "",
+        LOI: "",
+        completesNeeded: "",
+        completesFeasable: "",
+        costPerSurvey: "",
+        surveyLink: "",
+      }))
+    );
+  }, [selectedCountries]);
+
+  const handleDeleteRows = () => {
+    const newRows = rows.filter((row) => !selectedRowIds.includes(row.id));
+    setRows(newRows);
+    setSelectedRowIds([]);
+  };
+  console.log("selectedRowIds :>> ", selectedRowIds);
 
   const steps = [
     [
@@ -366,12 +443,12 @@ const AddProject = () => {
         />
       </Grid>,
       <Grid item>
-        <MuiDropDown
-          value={country}
-          //   defaultValue={reduxData?.accountType || ""}
+        <MuiMultiSelectDropdown
+          label={"Country"}
+          placeholder={"(Select more countries)"}
+          value={selectedCountries}
           onChange={onChangeCountry}
-          options={["USA", "INDIA", "EUROPE"]}
-          label="Country"
+          options={countriesData}
           className="forAddProject"
         />
       </Grid>,
@@ -408,7 +485,9 @@ const AddProject = () => {
               <AddIcon />
             </Grid>
             <Grid item>
-              <DeleteOutlinedIcon color="error" />
+              <IconButton onClick={handleDeleteRows}>
+                <DeleteOutlinedIcon color="error" />
+              </IconButton>
             </Grid>
           </Grid>
         </Grid>
@@ -419,6 +498,10 @@ const AddProject = () => {
             checkboxSelection={true}
             disablePagination={true}
             columnVisibilityModel={columnVisibilityModel}
+            onRowSelectionModelChange={(newSelection) => {
+              console.log("Hi");
+              setSelectedRowIds(newSelection);
+            }}
           />
         </Grid>
       </Grid>,

@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectAddVendorStep } from "../../../Store/Slice/stepSlice";
 import SuccessErrorModal from "../../../Components/SuccesErrorModal/Index";
+import MuiMultiSelectDropdown from "../../../MuiComponents/MuiMultiSelectDropdown/Index";
 
 const AddVendor = () => {
   const navigate = useNavigate();
@@ -32,7 +33,9 @@ const AddVendor = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [document, setDocument] = useState(null);
-  const [country, setCountry] = useState("");
+  const [countriesData, setCountriesData] = useState([]);
+  const [selectedCountries, setSelectedCountries] = useState([]);
+  const [status, setStatus] = useState("");
   const [userId, setUserId] = useState("");
 
   const vendorFormData = {
@@ -73,7 +76,9 @@ const AddVendor = () => {
       setUserId(selectedVendor.userId);
       setEmail(selectedVendor.email);
       setContactNumber(selectedVendor.number);
-      setCountry(selectedVendor.country);
+      setSelectedCountries(
+        selectedVendor.country ? [selectedVendor.country] : []
+      );
     }
   };
 
@@ -125,13 +130,19 @@ const AddVendor = () => {
     setAccountType(e.target.value);
   };
 
-  const onChangeCountry = (e) => {
-    setCountry(e.target.value);
+  const onChangeStatus = (e) => {
+    setStatus(e.target.value);
+  };
+
+  const onChangeCountry = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setSelectedCountries(typeof value === "string" ? value.split(",") : value);
   };
 
   const onChangeDocument = (event) => {
     const file = event.target.files[0];
-    console.log("file :>> ", file);
     setDocument(file);
   };
 
@@ -165,6 +176,26 @@ const AddVendor = () => {
       });
   }, []);
 
+  useEffect(() => {
+    fetch("http://localhost:8080/ScrutinyGlobal/getCountries", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setCountriesData(
+          data.map((element) => {
+            return element.countryName;
+          })
+        );
+      });
+  }, []);
+
   const getHeading = () => {
     if (currentStep === 0 || currentStep === 1) {
       return "Vendor Details";
@@ -176,85 +207,6 @@ const AddVendor = () => {
       return "";
     }
   };
-
-  const [columnVisibilityModel, setColumnVisibilityModel] = useState({
-    id: false,
-  });
-
-  const [columns, setColumns] = useState([
-    { field: "id" },
-    {
-      field: "country",
-      headerName: "Country",
-      width: 100,
-      align: "center",
-      headerAlign: "center",
-    },
-    {
-      field: "IR",
-      headerName: "IR%",
-      width: 70,
-      align: "center",
-      headerAlign: "center",
-    },
-    {
-      field: "LOI",
-      headerName: "LOI(min)",
-      type: "number",
-      width: 80,
-      align: "center",
-      headerAlign: "center",
-    },
-    {
-      field: "completesNeeded",
-      headerName: "Completes needed",
-      width: 150,
-      align: "center",
-      headerAlign: "center",
-    },
-    {
-      field: "completesFeasable",
-      headerName: "Completes Feasable",
-      width: 150,
-      align: "center",
-      headerAlign: "center",
-    },
-  ]);
-
-  const rows = [
-    {
-      id: "1",
-      country: "India",
-      IR: "12",
-      LOI: "10",
-      completesNeeded: "200",
-      completesFeasable: "180",
-    },
-    {
-      id: "2",
-      country: "India",
-      IR: "12",
-      LOI: "10",
-      completesNeeded: "200",
-      completesFeasable: "180",
-    },
-    {
-      id: "3",
-      country: "India",
-      IR: "12",
-      LOI: "10",
-      completesNeeded: "200",
-      completesFeasable: "180",
-    },
-    {
-      id: "4",
-      country: "India",
-      IR: "12",
-      LOI: "10",
-      completesNeeded: "200",
-      completesFeasable: "180",
-    },
-  ];
 
   const steps = [
     [
@@ -343,18 +295,29 @@ const AddVendor = () => {
           </Grid>
         </Grid>
       </Grid>,
-
       <Grid item>
-        <MuiDropDown
-          value={country}
-          required={true}
-          //   defaultValue={reduxData?.accountType || ""}
-          onChange={onChangeCountry}
-          placeholder="India , USA"
-          options={["India", "USA", "Europe"]}
-          label="Country"
-          className="forAddProject"
-        />
+        <Grid container spacing={2}>
+          <Grid item md={6}>
+            <MuiMultiSelectDropdown
+              label={"Country"}
+              placeholder={"(Select more countries)"}
+              value={selectedCountries}
+              onChange={onChangeCountry}
+              options={countriesData}
+              className="forAddProject"
+            />
+          </Grid>
+          <Grid item md={6}>
+            <MuiDropDown
+              value={status}
+              //   defaultValue={reduxData?.accountType || ""}
+              onChange={onChangeStatus}
+              options={["Initiated", "Running", "Completed", "Cancelled"]}
+              label="Status"
+              className="forAddProject"
+            />
+          </Grid>
+        </Grid>
       </Grid>,
     ],
     [

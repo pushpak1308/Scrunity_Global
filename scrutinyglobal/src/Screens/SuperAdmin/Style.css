@@ -52,7 +52,7 @@
   margin-top: 1rem !important;
   margin-bottom: 0.5rem !important;
   margin-right: 1rem !important;
-  width: 70%;
+  width: 80%;
 }
 
 .profile-card2-heading {
@@ -78,7 +78,7 @@
 }
 
 .profile-card-1 {
-  width: 45%;
+  width: 60%;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   border: 0.77px solid #c8c8c8;
@@ -104,6 +104,7 @@
   font-weight: 700 !important;
   text-align: center;
   color: #268e3e;
-  width: 55%;
+  width: 75%;
   margin-top: 3.2rem !important;
+  cursor: pointer;
 }

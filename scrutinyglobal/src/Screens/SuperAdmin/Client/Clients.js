@@ -34,7 +34,13 @@ const Clients = () => {
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
       renderCell: (params) => {
-        return <Switch checked={params.value === "Yes"} color="success" />;
+        return (
+          <Switch
+            checked={params?.value === "Yes"}
+            defaultChecked
+            color="success"
+          />
+        );
       },
     },
     {
@@ -182,29 +188,30 @@ const Clients = () => {
     salary: [],
     contactName: [],
     websiteLink: [],
-    industry: []
+    industry: [],
   };
-
-
 
   useEffect(() => {
     getClientData();
   }, []);
 
   function getClientData() {
-    fetch("http://localhost:8080/ScrutinyGlobal/getListAsAccountType?accountType=client", {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      "http://localhost:8080/ScrutinyGlobal/getListAsAccountType?accountType=client",
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
         setResponseData(data);
-        console.log("response Data",data)
+        console.log("response Data", data);
       })
       .catch(function (error) {
         console.error("Error fetching data:", error);
@@ -248,8 +255,6 @@ const Clients = () => {
     console.log("userDataNew", userDataConverted);
     return userDataConverted;
   }
-
-  
 
   const handleRowClick = () => {
     navigate(`/client/${checkedRows[0].id}`);

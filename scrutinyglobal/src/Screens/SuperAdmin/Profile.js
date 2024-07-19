@@ -61,7 +61,7 @@ const Profile = () => {
         <Grid
           item
           container
-          md={6}
+          md={5}
           //   justifyContent="center"
           //   alignItems="center"
           direction="column"
@@ -88,7 +88,7 @@ const Profile = () => {
             <Typography className="change-password">Change Password</Typography>
           </Grid>
         </Grid>
-        <Grid item container md={6}>
+        <Grid item container md={7}>
           <Grid item md={12} className="profile-card-2">
             <Typography className="profile-card2-heading" gutterBottom>
               Personal Details

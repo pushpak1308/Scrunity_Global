@@ -211,119 +211,126 @@ const AssignVendor = () => {
     },
   ];
 
-  return (
-    <Layout
-      content={
-        <Grid container md={12} spacing={2}>
-          <Grid item md={6} className="multi-select-grid">
-            <MuiMultiSelectDropdown
-              label={"Vendor"}
-              value={selectedVendors.map((vendor) => vendor.vendorName)}
-              onChange={handleVendorChange}
-              options={vendors.map((item) => item.vendorName)}
-            />
-          </Grid>
-
-          <Grid
-            item
-            container
-            className="heading-grid2"
-            justifyContent="space-between"
-            alignItems="end"
-          >
-            <Grid item container justifyContent="flex-end" spacing={2} md={12}>
-              <Grid item>
-                <Button
-                  variant="outlined"
-                  color="error"
-                  onClick={handleEdit}
-                  className="client-button export-class"
-                  startIcon={<EditIcon color="primary" fontSize="large" />}
-                  disabled={selectedVendors.length === 0}
-                >
-                  Edit
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button
-                  variant="outlined"
-                  color="error"
-                  onClick={handleSave}
-                  className="client-button add-class"
-                  startIcon={
-                    <DescriptionOutlinedIcon color="success" fontSize="large" />
-                  }
-                  disabled={selectedVendors.length === 0}
-                >
-                  Save
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button
-                  variant="outlined"
-                  color="error"
-                  onClick={handleDelete}
-                  className="client-button delete-class"
-                  disabled={selectedRowIds.length === 0}
-                  startIcon={
-                    <DeleteOutlinedIcon color="error" fontSize="large" />
-                  }
-                >
-                  Delete
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
-
-          {selectedVendors.length > 0 ? (
-            <Grid
-              item
-              container
-              md={12}
-              justifyContent="center"
-              alignItems="center"
-            >
-              <Grid item className="assignVendor-list-datagrid">
-                <MuiDataGrid
-                  rows={selectedVendors}
-                  columns={columns}
-                  checkboxSelection
-                  onRowSelectionModelChange={(newSelection) => {
-                    console.log("Hi");
-                    setSelectedRowIds(newSelection);
-                  }}
-                />
-              </Grid>
-            </Grid>
-          ) : (
-            <Grid
-              item
-              container
-              md={11}
-              justifyContent="center"
-              alignItems="center"
-            >
-              <Typography variant="h6">No vendor selected yet.</Typography>
-            </Grid>
-          )}
-
+  const content = (
+    <Grid container md={12} spacing={2}>
+      <Grid
+        item
+        container
+        className="heading-grid2"
+        justifyContent="space-between"
+        alignItems="end"
+      >
+        <Grid item md={5}>
+          <MuiMultiSelectDropdown
+            label={"Vendor"}
+            value={selectedVendors.map((vendor) => vendor.vendorName)}
+            onChange={handleVendorChange}
+            options={vendors.map((item) => item.vendorName)}
+          />
+        </Grid>
+        <Grid
+          item
+          container
+          justifyContent="flex-end"
+          alignItems="end"
+          spacing={2}
+          md={7}
+        >
           <Grid item>
-            <SuccessErrorModal
-              show={showSuccessModal}
-              handleClose={handleClose}
-              imageSrc={tickFrame}
-              clientName={"Vendor"}
-              isSuccess={true}
-              text={"has been successfully assigned."}
-              buttonPrimaryText="Ok"
-              handleModalButtonClick={handleModalButtonClick}
+            <Button
+              variant="outlined"
+              color="error"
+              onClick={handleEdit}
+              className="client-button export-class"
+              startIcon={<EditIcon color="primary" fontSize="large" />}
+              disabled={selectedVendors.length === 0}
+            >
+              Edit
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              variant="outlined"
+              color="error"
+              onClick={handleSave}
+              className="client-button add-class"
+              startIcon={
+                <DescriptionOutlinedIcon color="success" fontSize="large" />
+              }
+              disabled={selectedVendors.length === 0}
+            >
+              Save
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              variant="outlined"
+              color="error"
+              onClick={handleDelete}
+              className="client-button delete-class"
+              disabled={selectedRowIds.length === 0}
+              startIcon={<DeleteOutlinedIcon color="error" fontSize="large" />}
+            >
+              Delete
+            </Button>
+          </Grid>
+        </Grid>
+      </Grid>
+
+      {selectedVendors.length > 0 ? (
+        <Grid
+          item
+          container
+          md={12}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Grid item className="assignVendor-list-datagrid">
+            <MuiDataGrid
+              rows={selectedVendors}
+              columns={columns}
+              checkboxSelection
+              onRowSelectionModelChange={(newSelection) => {
+                console.log("Hi");
+                setSelectedRowIds(newSelection);
+              }}
             />
           </Grid>
         </Grid>
-      }
-      navbarHeading="ASSIGN VENDOR"
-    />
+      ) : (
+        <Grid
+          item
+          container
+          md={11}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Typography
+            variant="h6"
+            textAlign="center"
+            className="assignVendor-list-datagrid"
+          >
+            No vendor selected yet.
+          </Typography>
+        </Grid>
+      )}
+
+      <Grid item>
+        <SuccessErrorModal
+          show={showSuccessModal}
+          handleClose={handleClose}
+          imageSrc={tickFrame}
+          clientName={"Vendor"}
+          isSuccess={true}
+          text={"has been successfully assigned."}
+          buttonPrimaryText="Ok"
+          handleModalButtonClick={handleModalButtonClick}
+        />
+      </Grid>
+    </Grid>
   );
+
+  return <Layout content={content} navbarHeading="ASSIGN VENDOR" />;
 };
 
 export default AssignVendor;
