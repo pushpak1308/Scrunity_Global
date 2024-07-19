@@ -36,8 +36,8 @@ const Clients = () => {
       renderCell: (params) => {
         return (
           <Switch
-            checked={params?.value === "Yes"}
-            defaultChecked
+            // checked
+            defaultChecked={params?.value === "Yes"}
             color="success"
           />
         );

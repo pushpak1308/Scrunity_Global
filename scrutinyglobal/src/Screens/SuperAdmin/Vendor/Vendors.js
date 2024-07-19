@@ -1,5 +1,5 @@
 import { Button, Grid, Paper, Switch } from "@mui/material";
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setSelectedRows } from "../../../Store/Slice/rowSelectionSlice";
 import Layout from "../Layout";
@@ -14,7 +14,7 @@ const Clients = () => {
   const navigate = useNavigate();
   const [rowSelectionModel, setRowSelectionModel] = useState([]);
   const [checkedRows, setCheckedRows] = useState([]);
-  const [responseData,setResponseData] = useState([]);
+  const [responseData, setResponseData] = useState([]);
   const [userDataNew, setUserDataNew] = useState([]);
   let userData = {
     id: [],
@@ -22,7 +22,7 @@ const Clients = () => {
     approval: [],
     vendorName: [],
     contactNumber: [],
-    alternateContactNumber:[],
+    alternateContactNumber: [],
     email: [],
     birthdate: [],
     address: [],
@@ -36,7 +36,7 @@ const Clients = () => {
     salary: [],
     contactName: [],
     websiteLink: [],
-    industry: []
+    industry: [],
   };
 
   const [columns, setColumns] = useState([
@@ -55,7 +55,9 @@ const Clients = () => {
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
       renderCell: (params) => {
-        return <Switch checked={params.value === "Yes"} color="success" />;
+        return (
+          <Switch defaultChecked={params.value === "Yes"} color="success" />
+        );
       },
     },
     {
@@ -138,19 +140,22 @@ const Clients = () => {
   }, []);
 
   function getClientData() {
-    fetch("http://localhost:8080/ScrutinyGlobal/getListAsAccountType?accountType=vendor", {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      "http://localhost:8080/ScrutinyGlobal/getListAsAccountType?accountType=vendor",
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
         setResponseData(data);
-        console.log("response Data",data)
+        console.log("response Data", data);
       })
       .catch(function (error) {
         console.error("Error fetching data:", error);
@@ -165,7 +170,9 @@ const Clients = () => {
     data.map((element) => userData.id.push(element.user_id));
     data.map((element) => userData.vendorName.push(element.name));
     data.map((element) => userData.websiteLink.push(element.website));
-    data.map((element) => userData.alternateContactNumber.push(element.alternate_number));
+    data.map((element) =>
+      userData.alternateContactNumber.push(element.alternate_number)
+    );
     data.map((element) => userData.industry.push(element.industry));
     data.map((element) => userData.contactName.push(element.contact_name));
     data.map((element) => userData.contactNumber.push(element.number));
@@ -195,7 +202,6 @@ const Clients = () => {
     console.log("userDataNew", userDataConverted);
     return userDataConverted;
   }
-
 
   const rows = [
     {

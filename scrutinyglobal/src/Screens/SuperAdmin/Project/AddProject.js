@@ -465,7 +465,7 @@ const AddProject = () => {
     ],
     [
       <Grid container justifyContent="center" alignItems="center" spacing={2}>
-        <Grid item container xs={12}>
+        <Grid item container alignItems="center" xs={12}>
           <Grid item md={10}>
             <Paper elevation={0} className="datagrid-label">
               Based on your country selection:
@@ -479,10 +479,9 @@ const AddProject = () => {
             alignItems="center"
           >
             <Grid item>
-              {/* <EditIcon color="primary" onClick={handleEdit} /> */}
-            </Grid>
-            <Grid item>
-              <AddIcon />
+              <IconButton>
+                <AddIcon />
+              </IconButton>
             </Grid>
             <Grid item>
               <IconButton onClick={handleDeleteRows}>

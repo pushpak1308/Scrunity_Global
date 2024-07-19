@@ -12,7 +12,6 @@ import Layout from "./Layout";
 import MuiDataGrid from "../../MuiComponents/MuiDataGrid/Index";
 
 const Dashboard = () => {
-  // localStorage.clear();
   const [approved, setApproved] = useState(false);
   const [responseData, setResponseData] = useState([]);
   const [userDataNew, setUserDataNew] = useState([]);
@@ -144,8 +143,6 @@ const Dashboard = () => {
   console.log("response outside the function", responseData);
   console.log("userDataNew outside the function", userDataNew);
 
-  // useEffect(() => {}, [approved]);
-
   const handleApprove = (id, accountType) => {
     const approvedData = {
       userId: id,
@@ -171,6 +168,7 @@ const Dashboard = () => {
     // console.log("approvedData :>> ", approvedData);
 
     console.log("user is approved");
+    setApproved(!approved);
   };
 
   const [columns, setColumns] = useState([
@@ -367,6 +365,8 @@ const Dashboard = () => {
   const onChangeRole = () => {
     console.log("onChange called ");
   };
+
+  useEffect(() => {}, [approved]);
 
   function getRowId(userDataNew) {
     return userDataNew.id;

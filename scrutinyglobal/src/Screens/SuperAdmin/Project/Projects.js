@@ -169,7 +169,7 @@ const Projects = () => {
       headerAlign: "center",
     },
     {
-      field: "spoc",
+      field: "SPOC",
       headerName: "Pre Sales SPOC",
       width: 170,
       cellClassName: "dataGrid-cell",
@@ -225,32 +225,29 @@ const Projects = () => {
   }
 
   useEffect(() => {
+    console.log("responseData", responseData);
     setProjectDetailsData(convertData(responseData));
   }, [responseData]);
 
   function convertData(projectdetailsData) {
-    projectdetailsData.map((element) =>
-      projectData.id.push(element.project_id)
-    );
-    projectdetailsData.map((element) =>
-      projectData.projectName.push(element.project_name)
-    );
-    projectDetailsData.map((element) =>
-      projectData.startDate.push(element.project_start_time)
-    );
-    projectDetailsData.map((element) =>
-      projectData.clientName.push(element.name)
-    );
-    projectDetailsData.map((element) =>
-      projectData.projectHead.push(element.projectspoc)
-    );
-    projectDetailsData.map((element) =>
-      projectData.audienceType.push(element.audience_type)
-    );
-    projectDetailsData.map((element) =>
-      projectData.country.push(element.country)
-    );
+    for (const key in projectData) {
+      projectData[key] = [];
+    }
 
+    projectdetailsData.forEach((element) => {
+      projectData.id.push(element.project_id);
+      projectData.projectName.push(element.project_name);
+      projectData.startDate.push(element.project_start_time);
+      projectData.clientName.push(element.name);
+      projectData.projectHead.push(element.project_head_id);
+      projectData.audienceType.push(element.audience_type);
+      projectData.country.push(element.country);
+      projectData.billingCurrency.push(element.billing_currency);
+      projectData.contactName.push(element.contact_name);
+      projectData.endDate.push(element.project_end_time);
+      projectData.projectBudget.push(element.project_minimum_fee);
+      projectData.SPOC.push(element.pre_salespoc);
+    });
     console.log(projectData);
 
     let projectDataConverted = [];
@@ -261,9 +258,9 @@ const Projects = () => {
       keys.forEach((key) => {
         newObj[key] = projectData[key][i];
       });
-      projectDataConverted = [...projectDataConverted, newObj];
+      projectDataConverted.push(newObj);
     }
-    console.log("projectDataConverted", projectDataConverted);
+
     return projectDataConverted;
   }
 
