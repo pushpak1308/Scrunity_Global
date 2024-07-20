@@ -41,12 +41,17 @@ const Login = (props) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(loginData),
-    }).then(function (response) {
-      if (response.status === 200) {
-        navigate("/dashboard");
-      }
-      return response.json();
-    });
+    })
+      .then(function (response) {
+        if (response.status === 200) {
+          navigate("/dashboard");
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        handleWaitingModal();
+        console.log("error :>> ", error);
+      });
   };
 
   const handleWaitingModal = () => {

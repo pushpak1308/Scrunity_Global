@@ -302,11 +302,11 @@ const About = () => {
             project is a success.
           </Typography>
 
-          <MuiContainedButton
+          {/* <MuiContainedButton
             buttonText={"Read More"}
             type={"button"}
             endIcon={<ArrowForwardIcon />}
-          />
+          /> */}
         </Grid>
         <Grid item md={6}>
           <img src={aboutImage} alt="About" className="aboutImage1" />
