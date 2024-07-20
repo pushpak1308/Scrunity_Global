@@ -8,6 +8,7 @@ import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import MuiDataGrid from "../../../MuiComponents/MuiDataGrid/Index";
 import { useNavigate } from "react-router-dom";
+import { API_PREFIX } from "../../../config";
 
 const Clients = () => {
   const dispatch = useDispatch();
@@ -140,16 +141,13 @@ const Clients = () => {
   }, []);
 
   function getClientData() {
-    fetch(
-      "http://localhost:8080/ScrutinyGlobal/getListAsAccountType?accountType=vendor",
-      {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    fetch(`${API_PREFIX}getListAsAccountType?accountType=vendor`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
       .then(function (response) {
         return response.json();
       })

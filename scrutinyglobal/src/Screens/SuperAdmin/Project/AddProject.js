@@ -17,6 +17,7 @@ import { selectAddProjectStep } from "../../../Store/Slice/stepSlice";
 import SuccessErrorModal from "../../../Components/SuccesErrorModal/Index";
 import { selectedRow } from "../../../Store/Slice/rowSelectionSlice";
 import MuiMultiSelectDropdown from "../../../MuiComponents/MuiMultiSelectDropdown/Index";
+import { API_PREFIX } from "../../../config";
 // import EditIcon from "@mui/icons-material/Edit";
 
 const AddProject = () => {
@@ -262,7 +263,7 @@ const AddProject = () => {
   );
 
   useEffect(() => {
-    fetch("http://localhost:8080/ScrutinyGlobal/getCountries", {
+    fetch(`${API_PREFIX}getCountries`, {
       method: "GET",
       headers: {
         Accept: "application/json",

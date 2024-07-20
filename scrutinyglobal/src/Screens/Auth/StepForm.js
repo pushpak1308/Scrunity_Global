@@ -5,6 +5,7 @@ import { MuiDropDown } from "../../MuiComponents/MuiDropDown/Index";
 import CustomContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 // import axios from "axios";
 import { useSelector } from "react-redux";
+import { API_PREFIX } from "../../config";
 
 const StepForm = ({
   formStep,
@@ -53,7 +54,7 @@ const StepForm = ({
 
   const [countriesData, setCountriesData] = useState([""]);
   useEffect(() => {
-    fetch("http://localhost:8080/ScrutinyGlobal/getCountries", {
+    fetch(`${API_PREFIX}getCountries`, {
       method: "GET",
       headers: {
         Accept: "application/json",

@@ -7,6 +7,7 @@ import CustomModal from "../../MuiComponents/MuiModal/Index";
 import OtpModal from "../../Components/OtpModal/Index";
 import { useSelector, useDispatch } from "react-redux";
 import { selectFormData, setField } from "../../Store/Slice/userSlice";
+import { API_PREFIX } from "../../config";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -102,7 +103,7 @@ const Register = () => {
     setShow(true);
     console.log("submit");
     console.log("otp data :- ", otpVerificationData);
-    fetch("http://localhost:8080/ScrutinyGlobal/otpsend", {
+    fetch(`${API_PREFIX}otpsend`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -123,7 +124,7 @@ const Register = () => {
   const handleModalButtonClick = () => {
     setShow2(true);
     const userData = formData;
-    fetch("http://localhost:8080/ScrutinyGlobal/saveRegisterUser", {
+    fetch(`${API_PREFIX}saveRegisterUser`, {
       // mode: 'no-cors',
       method: "POST",
       headers: {

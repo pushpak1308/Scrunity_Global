@@ -9,6 +9,7 @@ import CircleIcon from "@mui/icons-material/Circle";
 import { useDispatch } from "react-redux";
 import { setSelectedRows } from "../../../Store/Slice/rowSelectionSlice";
 import { rowsMetaStateInitializer } from "@mui/x-data-grid/internals";
+import { API_PREFIX } from "../../../config";
 
 const Projects = () => {
   const dispatch = useDispatch();
@@ -52,9 +53,14 @@ const Projects = () => {
       width: 130,
       headerAlign: "center",
       editable: true,
+      // align: "center",
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
+      type: "singleSelect",
+      valueOptions: ["Initiated", "Running", "Completed", "Cancelled"],
       renderCell: (params) => {
+        const status = params.value || "Initiated";
+
         const getColor = (status) => {
           switch (status) {
             case "Completed":
@@ -70,11 +76,12 @@ const Projects = () => {
           }
         };
         return (
-          <>
-            <CircleIcon fontSize="small" color={getColor(params.value)} />
-
-            <Paper elevation={0}>{params.value}</Paper>
-          </>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <CircleIcon fontSize="small" color={getColor(status)} />
+            <Paper elevation={0} style={{ marginLeft: 8 }}>
+              {status}
+            </Paper>
+          </div>
         );
       },
     },
@@ -185,7 +192,7 @@ const Projects = () => {
   }, []);
 
   function getSurveyLinkData() {
-    fetch("http://localhost:8080/ScrutinyGlobal/getSurveyDetails", {
+    fetch(`${API_PREFIX}getSurveyDetails`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -205,7 +212,7 @@ const Projects = () => {
   }
 
   function getProjectData() {
-    fetch("http://localhost:8080/ScrutinyGlobal/getProjectList", {
+    fetch(`${API_PREFIX}getProjectList`, {
       method: "GET",
       headers: {
         Accept: "application/json",

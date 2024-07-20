@@ -10,6 +10,7 @@ import Group from "../../Images/Dashboard/Group.png";
 import Vector from "../../Images/Dashboard/Vector.png";
 import Layout from "./Layout";
 import MuiDataGrid from "../../MuiComponents/MuiDataGrid/Index";
+import { API_PREFIX } from "../../config";
 
 const Dashboard = () => {
   const [approved, setApproved] = useState(false);
@@ -79,7 +80,7 @@ const Dashboard = () => {
   }, []);
 
   function getUserData() {
-    fetch("http://localhost:8080/ScrutinyGlobal/getUserList", {
+    fetch(`${API_PREFIX}getUserList`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -155,7 +156,7 @@ const Dashboard = () => {
       securityTerminateURL: "",
       description: "",
     };
-    fetch("http://localhost:8080/ScrutinyGlobal/setroletouser", {
+    fetch(`${API_PREFIX}setroletouser`, {
       method: "PUT",
       headers: {
         Accept: "application/json",

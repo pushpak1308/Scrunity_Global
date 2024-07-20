@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { selectAddVendorStep } from "../../../Store/Slice/stepSlice";
 import SuccessErrorModal from "../../../Components/SuccesErrorModal/Index";
 import MuiMultiSelectDropdown from "../../../MuiComponents/MuiMultiSelectDropdown/Index";
+import { API_PREFIX } from "../../../config";
 
 const AddVendor = () => {
   const navigate = useNavigate();
@@ -150,7 +151,7 @@ const AddVendor = () => {
   const [vendorUserName, setVendorUserName] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/ScrutinyGlobal/getUserList", {
+    fetch(`${API_PREFIX}getUserList`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -177,7 +178,7 @@ const AddVendor = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:8080/ScrutinyGlobal/getCountries", {
+    fetch(`${API_PREFIX}getCountries`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -437,7 +438,7 @@ const AddVendor = () => {
 
   const handleSave = (formData) => {
     // Save form data
-    fetch("http://localhost:8080/ScrutinyGlobal/setroletouser", {
+    fetch(`${API_PREFIX}setroletouser`, {
       method: "PUT",
       headers: {
         Accept: "application/json",

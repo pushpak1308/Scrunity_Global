@@ -9,6 +9,7 @@ import CrossFrame from "../../../Images/ModalImages/CrossFrame.png";
 import "./Style.css";
 import { useNavigate } from "react-router-dom";
 import SuccessErrorModal from "../../../Components/SuccesErrorModal/Index";
+import { API_PREFIX } from "../../../config";
 
 const AddClient = () => {
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ const AddClient = () => {
   const [clientUserName, setClientUserName] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/ScrutinyGlobal/getUserList", {
+    fetch(`${API_PREFIX}getUserList`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -122,21 +123,20 @@ const AddClient = () => {
     }
   };
 
-  const clientFormData = 
-    {
-      "userId": userId,
-      "accountType": "client",
-      "successURL": "",
-      "terminateURL": "",
-      "quotaFullURL": "",
-      "securityTerminateURL": "",
-      "contactName": contactName,
-      "contactEmail": email,
-      "alternateNumber": alternateContactNumber,
-      "website": websiteLink,
-      "industry": industry,
-      "description": "",
-    };
+  const clientFormData = {
+    userId: userId,
+    accountType: "client",
+    successURL: "",
+    terminateURL: "",
+    quotaFullURL: "",
+    securityTerminateURL: "",
+    contactName: contactName,
+    contactEmail: email,
+    alternateNumber: alternateContactNumber,
+    website: websiteLink,
+    industry: industry,
+    description: "",
+  };
   //setClientFormData
   // console.log('object :>> ', object);
   console.log("client data seting outside", clientUserName);
@@ -288,10 +288,7 @@ const AddClient = () => {
   ];
 
   const handleSave = (formData) => {
-
-    
-
-    fetch("http://localhost:8080/ScrutinyGlobal/setroletouser", {
+    fetch(`${API_PREFIX}setroletouser`, {
       method: "PUT",
       headers: {
         Accept: "application/json",
