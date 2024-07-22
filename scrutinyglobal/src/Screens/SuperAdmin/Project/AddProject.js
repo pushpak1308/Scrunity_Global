@@ -122,11 +122,12 @@ const AddProject = () => {
     );
   };
 
-  const [columns, setColumns] = useState([
-    { field: "id", headerClassName: "add-project-header" },
+  const columns = [
+    { field: "id", editable: false, headerClassName: "add-project-header" },
     {
       field: "country",
       headerName: "Country",
+      editable: false,
       cellClassName: "dataGrid-cell",
       width: 100,
       align: "center",
@@ -137,6 +138,7 @@ const AddProject = () => {
       field: "IR",
       headerName: "IR%",
       width: 70,
+      editable: false,
       align: "center",
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
@@ -158,6 +160,7 @@ const AddProject = () => {
       type: "number",
       width: 80,
       align: "center",
+      editable: false,
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
       headerClassName: "add-project-header",
@@ -177,6 +180,7 @@ const AddProject = () => {
       headerName: "Completes needed",
       width: 150,
       align: "center",
+      editable: false,
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
       headerClassName: "add-project-header",
@@ -196,6 +200,7 @@ const AddProject = () => {
       headerName: "Completes Feasable",
       width: 150,
       align: "center",
+      editable: false,
       headerAlign: "center",
       cellClassName: "dataGrid-cell",
       headerClassName: "add-project-header",
@@ -214,6 +219,7 @@ const AddProject = () => {
       field: "costPerSurvey",
       headerName: "Cost/Survey",
       width: 120,
+      editable: false,
       headerAlign: "center",
       cellClassName: "dataGrid-cell",
       headerClassName: "add-project-header",
@@ -232,6 +238,7 @@ const AddProject = () => {
       field: "surveyLink",
       headerName: "Survey Link",
       width: 150,
+      editable: false,
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
       headerClassName: "add-project-header",
@@ -246,7 +253,7 @@ const AddProject = () => {
         />
       ),
     },
-  ]);
+  ];
 
   const [rows, setRows] = useState(
     selectedCountries.map((country, index) => ({

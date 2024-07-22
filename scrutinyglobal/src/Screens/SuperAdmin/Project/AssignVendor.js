@@ -97,6 +97,7 @@ const AssignVendor = () => {
       field: "id",
       headerName: "S.No.",
       width: 95,
+      editable: false,
       align: "center",
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
@@ -105,6 +106,7 @@ const AssignVendor = () => {
       field: "link",
       headerName: "Copy Link",
       width: 100,
+      editable: false,
       align: "center",
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
@@ -119,6 +121,7 @@ const AssignVendor = () => {
       field: "vendorName",
       headerName: "Vendor Name",
       width: 180,
+      editable: false,
       align: "center",
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
@@ -128,6 +131,7 @@ const AssignVendor = () => {
       field: "successURL",
       headerName: "Success URL",
       width: 190,
+      editable: false,
       align: "left",
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
@@ -150,6 +154,7 @@ const AssignVendor = () => {
       headerName: "Quotafull URL",
       width: 190,
       align: "left",
+      editable: false,
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
@@ -171,6 +176,7 @@ const AssignVendor = () => {
       headerName: "Terminate URL",
       width: 190,
       align: "left",
+      editable: false,
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
@@ -192,6 +198,7 @@ const AssignVendor = () => {
       headerName: "Cost/Survey",
       width: 170,
       align: "center",
+      editable: false,
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
@@ -212,7 +219,7 @@ const AssignVendor = () => {
   ];
 
   const content = (
-    <Grid container md={12} spacing={2}>
+    <Grid container spacing={2}>
       <Grid
         item
         container
@@ -278,13 +285,7 @@ const AssignVendor = () => {
       </Grid>
 
       {selectedVendors.length > 0 ? (
-        <Grid
-          item
-          container
-          md={12}
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Grid item container justifyContent="center" alignItems="center">
           <Grid item className="assignVendor-list-datagrid">
             <MuiDataGrid
               rows={selectedVendors}
@@ -297,13 +298,7 @@ const AssignVendor = () => {
           </Grid>
         </Grid>
       ) : (
-        <Grid
-          item
-          container
-          md={11}
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Grid item container justifyContent="center" alignItems="center">
           <Typography
             variant="h6"
             textAlign="center"

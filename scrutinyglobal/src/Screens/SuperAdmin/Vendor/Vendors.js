@@ -40,10 +40,11 @@ const Clients = () => {
     industry: [],
   };
 
-  const [columns, setColumns] = useState([
+  const columns = [
     {
       field: "id",
       headerName: "",
+      editable: false,
       headerClassName: "dataGrid-header",
     },
     {
@@ -63,6 +64,7 @@ const Clients = () => {
     },
     {
       field: "vendorName",
+      editable: false,
       headerName: "Vendor Name",
       align: "center",
       type: "text",
@@ -75,6 +77,7 @@ const Clients = () => {
       field: "email",
       headerName: "Email",
       sortable: false,
+      editable: false,
       width: 200,
       align: "center",
       headerClassName: "dataGrid-header",
@@ -83,6 +86,7 @@ const Clients = () => {
     },
     {
       field: "contactNumber",
+      editable: false,
       headerName: "Contact Number",
       sortable: false,
       width: 190,
@@ -93,6 +97,7 @@ const Clients = () => {
     },
     {
       field: "altContactNumber",
+      editable: false,
       headerName: "Alt. Contact Number",
       width: 210,
       align: "center",
@@ -102,6 +107,7 @@ const Clients = () => {
     },
     {
       field: "address",
+      editable: false,
       headerName: "Address",
       sortable: false,
       width: 170,
@@ -113,6 +119,7 @@ const Clients = () => {
     {
       field: "city",
       headerName: "City",
+      editable: false,
       align: "center",
       sortable: false,
       width: 160,
@@ -122,6 +129,7 @@ const Clients = () => {
     },
     {
       field: "pincode",
+      editable: false,
       headerName: "Pincode",
       sortable: false,
       width: 160,
@@ -130,7 +138,7 @@ const Clients = () => {
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
     },
-  ]);
+  ];
 
   const [columnVisibilityModel, setColumnVisibilityModel] = useState({
     id: false,

@@ -23,6 +23,7 @@ const Clients = () => {
     {
       field: "id",
       headerName: "",
+      editable: false,
       headerClassName: "dataGrid-header",
     },
     {
@@ -30,7 +31,6 @@ const Clients = () => {
       headerName: "Status",
       width: 150,
       headerAlign: "center",
-      editable: true,
       align: "center",
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
@@ -38,7 +38,7 @@ const Clients = () => {
         return (
           <Switch
             // checked
-            defaultChecked={params?.value === "Yes"}
+            defaultChecked
             color="success"
           />
         );
@@ -50,6 +50,7 @@ const Clients = () => {
       align: "center",
       type: "text",
       width: 190,
+      editable: false,
       headerAlign: "center",
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
@@ -58,6 +59,7 @@ const Clients = () => {
       field: "contactName",
       headerName: "Contact Name",
       width: 170,
+      editable: false,
       align: "center",
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
@@ -68,6 +70,7 @@ const Clients = () => {
       headerName: "Contact Number",
       sortable: false,
       width: 170,
+      editable: false,
       align: "center",
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
@@ -78,6 +81,7 @@ const Clients = () => {
       headerName: "Email",
       sortable: false,
       width: 190,
+      editable: false,
       align: "center",
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
@@ -88,6 +92,7 @@ const Clients = () => {
       headerName: "Website Link",
       sortable: false,
       width: 170,
+      editable: false,
       align: "center",
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
@@ -98,6 +103,7 @@ const Clients = () => {
       headerName: "Address",
       sortable: false,
       width: 170,
+      editable: false,
       align: "center",
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
@@ -108,6 +114,7 @@ const Clients = () => {
       headerName: "Country",
       sortable: false,
       width: 160,
+      editable: false,
       align: "center",
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
@@ -119,6 +126,7 @@ const Clients = () => {
       align: "center",
       sortable: false,
       width: 160,
+      editable: false,
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
       headerAlign: "center",
@@ -127,6 +135,7 @@ const Clients = () => {
       field: "industry",
       headerName: "Industry",
       align: "center",
+      editable: false,
       sortable: false,
       width: 170,
       cellClassName: "dataGrid-cell",
@@ -138,35 +147,6 @@ const Clients = () => {
   const [columnVisibilityModel, setColumnVisibilityModel] = useState({
     id: false,
   });
-
-  // const rows = [
-  //   {
-  //     id: 1,
-  //     status: "Yes",
-  //     clientName: "clientName",
-  //     contactName: "contactName",
-  //     contactNumber: "123456789",
-  //     email: "daniel@gmail.com",
-  //     websiteLink: "exampleLink.com",
-  //     address: "street 20",
-  //     country: "india",
-  //     currency: "INR",
-  //     industry: "HealthCare",
-  //   },
-  //   {
-  //     id: 2,
-  //     status: "No",
-  //     clientName: "clientName",
-  //     contactName: "contactName",
-  //     contactNumber: "123456789",
-  //     email: "daniel@gmail.com",
-  //     websiteLink: "exampleLink.com",
-  //     address: "street 20",
-  //     country: "india",
-  //     currency: "INR",
-  //     industry: "HealthCare",
-  //   },
-  // ];
 
   const [responseData, setResponseData] = useState([]);
   const [userDataNew, setUserDataNew] = useState([]);

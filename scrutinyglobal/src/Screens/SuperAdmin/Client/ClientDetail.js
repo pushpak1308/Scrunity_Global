@@ -41,11 +41,7 @@ const ClientDetail = () => {
           <Grid item className="one-in-a-row">
             <LabelValueCard
               label={"Client Name"}
-              value={
-                dataArray[0]?.clientName
-                  ? dataArray[0]?.clientName
-                  : "ScrutinyGlobal"
-              }
+              value={dataArray[0]?.clientName ? dataArray[0]?.clientName : ""}
               disabled={!isEditable}
             />
           </Grid>
@@ -54,11 +50,7 @@ const ClientDetail = () => {
           <Grid item md={6}>
             <LabelValueCard
               label="Contact Name"
-              value={
-                dataArray[0]?.contactName
-                  ? dataArray[0]?.contactName
-                  : "ScrutinyGlobal"
-              }
+              value={dataArray[0]?.contactName ? dataArray[0]?.contactName : ""}
               disabled={!isEditable}
             />
           </Grid>
@@ -66,9 +58,7 @@ const ClientDetail = () => {
             <LabelValueCard
               label="Alt. Contact Name"
               value={
-                dataArray[0]?.altContactName
-                  ? dataArray[0]?.altContactName
-                  : "ScrutinyGlobal"
+                dataArray[0]?.altContactName ? dataArray[0]?.altContactName : ""
               }
               disabled={!isEditable}
             />
@@ -79,9 +69,7 @@ const ClientDetail = () => {
             <LabelValueCard
               label="Contact Number"
               value={
-                dataArray[0]?.contactNumber
-                  ? dataArray[0]?.contactNumber
-                  : "ScrutinyGlobal"
+                dataArray[0]?.contactNumber ? dataArray[0]?.contactNumber : ""
               }
               disabled={!isEditable}
             />
@@ -92,7 +80,7 @@ const ClientDetail = () => {
               value={
                 dataArray[0]?.altContactNumber
                   ? dataArray[0]?.altContactNumber
-                  : "ScrutinyGlobal"
+                  : ""
               }
               disabled={!isEditable}
             />
@@ -103,9 +91,7 @@ const ClientDetail = () => {
             <LabelValueCard
               label={"Email"}
               value={
-                dataArray[0]?.email
-                  ? dataArray[0]?.email
-                  : "scrutinyglobal0987@gmail.com"
+                dataArray[0]?.email ? dataArray[0]?.email : "0987@gmail.com"
               }
               disabled={!isEditable}
             />
@@ -117,7 +103,7 @@ const ClientDetail = () => {
               value={
                 dataArray[0]?.websiteLink
                   ? dataArray[0]?.websiteLink
-                  : "www.scrutinyglobal.com"
+                  : "www..com"
               }
               disabled={!isEditable}
             />
@@ -133,9 +119,7 @@ const ClientDetail = () => {
           <Grid item className="one-in-a-row">
             <LabelValueCard
               label={"Address"}
-              value={
-                dataArray[0]?.address ? dataArray[0]?.address : "ScrutinyGlobal"
-              }
+              value={dataArray[0]?.address ? dataArray[0]?.address : ""}
               disabled={!isEditable}
             />
           </Grid>
@@ -144,20 +128,14 @@ const ClientDetail = () => {
           <Grid item md={6}>
             <LabelValueCard
               label="Country"
-              value={
-                dataArray[0]?.country ? dataArray[0]?.country : "ScrutinyGlobal"
-              }
+              value={dataArray[0]?.country ? dataArray[0]?.country : ""}
               disabled={!isEditable}
             />
           </Grid>
           <Grid item md={6}>
             <LabelValueCard
               label="Currency"
-              value={
-                dataArray[0]?.currency
-                  ? dataArray[0]?.currency
-                  : "ScrutinyGlobal"
-              }
+              value={dataArray[0]?.currency ? dataArray[0]?.currency : ""}
               disabled={!isEditable}
             />
           </Grid>
@@ -166,11 +144,7 @@ const ClientDetail = () => {
           <Grid item className="one-in-a-row">
             <LabelValueCard
               label={"Industry"}
-              value={
-                dataArray[0]?.industry
-                  ? dataArray[0]?.industry
-                  : "ScrutinyGlobal"
-              }
+              value={dataArray[0]?.industry ? dataArray[0]?.industry : ""}
               disabled={!isEditable}
             />
           </Grid>
