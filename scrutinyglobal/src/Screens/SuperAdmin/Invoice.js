@@ -9,18 +9,17 @@ import InvoiceModal from "../../Components/InvoiceModal/Index";
 import Layout from "./Layout";
 
 const Invoice = () => {
-  const [client, setClient] = useState("");
+  const [vendor, setVendor] = useState("");
   const [project, setProject] = useState("");
   const [country, setCountry] = useState("");
   const [currency, setCurrency] = useState("");
   const [date, setDate] = useState("");
-  const [totalNoofSurveys, setTotalNoofSurveys] = useState("");
   const [successfulSurveys, setSuccessfulSurveys] = useState("");
   const [costPerSurvey, setCostPerSurvey] = useState("");
   const [show, setShow] = useState(false);
 
-  const onChangeClient = (e) => {
-    setClient(e.target.value);
+  const onChangeVendor = (e) => {
+    setVendor(e.target.value);
   };
   const onChangeProject = (e) => {
     setProject(e.target.value);
@@ -34,9 +33,6 @@ const Invoice = () => {
   const onChangeDate = (e) => {
     setDate(e.target.value);
   };
-  // const onChangeTotalNoofSurveys = (e) => {
-  //   setTotalNoofSurveys(e.target.value);
-  // };
   const onChangeSuccessfulSurveys = (e) => {
     setSuccessfulSurveys(e.target.value);
   };
@@ -66,10 +62,10 @@ const Invoice = () => {
               <form onSubmit={handleSubmit}>
                 <Grid item xs={12} className="addPadding">
                   <MuiDropDown
-                    value={client}
-                    onChange={onChangeClient}
+                    value={vendor}
+                    onChange={onChangeVendor}
                     options={["client 1", "client 2", "client 3"]} // Example options
-                    label="Client"
+                    label="Vendor"
                     className="forRegister"
                   />
                 </Grid>
@@ -174,10 +170,9 @@ const Invoice = () => {
       <InvoiceModal
         show={show}
         handleClose={handleClose}
-        ClientName={client}
+        ClientName={vendor}
         costPerSurvey={costPerSurvey}
         successfulSurveys={successfulSurveys}
-        totalNoofSurveys={totalNoofSurveys}
       />
     </>
   );

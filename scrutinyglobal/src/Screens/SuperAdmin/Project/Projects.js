@@ -8,7 +8,6 @@ import { Button, Grid, Paper } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
 import { useDispatch } from "react-redux";
 import { setSelectedRows } from "../../../Store/Slice/rowSelectionSlice";
-import { rowsMetaStateInitializer } from "@mui/x-data-grid/internals";
 import { API_PREFIX } from "../../../config";
 
 const Projects = () => {
@@ -38,7 +37,7 @@ const Projects = () => {
     LOI: [],
   };
 
-  const [columns, setColumns] = useState([
+  const columns = [
     {
       field: "id",
       headerName: "S.No.",
@@ -184,7 +183,7 @@ const Projects = () => {
       headerAlign: "center",
       align: "center",
     },
-  ]);
+  ];
 
   useEffect(() => {
     getProjectData();
@@ -204,7 +203,7 @@ const Projects = () => {
       })
       .then(function (data) {
         setSurveyResponseData(data);
-        console.log("response Data", data);
+        // console.log("response Data", data);
       })
       .catch(function (error) {
         console.error("Error fetching data:", error);
@@ -224,7 +223,7 @@ const Projects = () => {
       })
       .then(function (data) {
         setResponseData(data);
-        console.log("response Data", data);
+        // console.log("response Data", data);
       })
       .catch(function (error) {
         console.error("Error fetching data:", error);
@@ -232,7 +231,7 @@ const Projects = () => {
   }
 
   useEffect(() => {
-    console.log("responseData", responseData);
+    // console.log("responseData", responseData);
     setProjectDetailsData(convertData(responseData));
   }, [responseData]);
 
@@ -255,7 +254,7 @@ const Projects = () => {
       projectData.projectBudget.push(element.project_minimum_fee);
       projectData.SPOC.push(element.pre_salespoc);
     });
-    console.log(projectData);
+    // console.log(projectData);
 
     let projectDataConverted = [];
     const keys = Object.keys(projectData);
@@ -345,22 +344,23 @@ const Projects = () => {
     },
   ];
 
-  const handleRowClick = (params) => {
-    navigate(`/project/${checkedRows[0].id}`);
+  const handleRowClick = () => {
+    navigate(`/project/${checkedRows[0].project_id}`);
   };
+
   const handleRowSelection = (newRowSelectionModel) => {
     setRowSelectionModel(newRowSelectionModel);
     const selectedRowData = newRowSelectionModel.map((id) =>
-      rows.find((row) => row.id === id)
+      responseData.find((row) => row.project_id === id)
     );
     setCheckedRows(selectedRowData);
     dispatch(setSelectedRows(selectedRowData));
   };
 
   const handleAssignVendor = () => {
-    navigate(`/assignVendor/${checkedRows[0].id}`);
+    navigate(`/assignVendor/${checkedRows[0].project_id}`);
   };
-  console.log("Selected Rows:", checkedRows);
+  // console.log("Selected Rows:", checkedRows);
 
   const content = (
     <Grid container>

@@ -291,7 +291,6 @@ const AssignVendor = () => {
               columns={columns}
               checkboxSelection
               onRowSelectionModelChange={(newSelection) => {
-                console.log("Hi");
                 setSelectedRowIds(newSelection);
               }}
             />

@@ -28,7 +28,7 @@ const AddClient = () => {
   const [accountType, setAccountType] = useState("");
   const [industry, setIndustry] = useState("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [showErrorModal, setShowErrorModal] = useState(false);
+  // const [showErrorModal, setShowErrorModal] = useState(false);
 
   const onChangeCountry = (e) => {
     setCountry(e.target.value);
@@ -93,14 +93,14 @@ const AddClient = () => {
         return res.json();
       })
       .then(function (data) {
-        console.log("data of client : ", data);
+        // console.log("data of client : ", data);
         setClientData(data);
         setClientUserName(
           data.map((element) => {
             return element.name;
           })
         );
-        console.log("client data seting ", clientData);
+        // console.log("client data seting ", clientData);
       });
   }, []);
 
@@ -139,7 +139,7 @@ const AddClient = () => {
   };
   //setClientFormData
   // console.log('object :>> ', object);
-  console.log("client data seting outside", clientUserName);
+  // console.log("client data seting outside", clientUserName);
 
   const steps = [
     [
@@ -343,7 +343,7 @@ const AddClient = () => {
             handleModalButtonClick={handleGoToClientList}
           />
           <SuccessErrorModal
-            show={showErrorModal}
+            // show={showErrorModal}
             handleClose={handleClose}
             imageSrc={CrossFrame}
             clientName={clientName}

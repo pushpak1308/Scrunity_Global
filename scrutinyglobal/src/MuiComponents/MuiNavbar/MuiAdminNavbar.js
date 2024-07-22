@@ -2,7 +2,6 @@ import React from "react";
 import {
   AppBar,
   Toolbar,
-  Typography,
   Grid,
   TextField,
   InputAdornment,
@@ -16,7 +15,7 @@ const NavBar = ({ navbarHeading }) => {
   return (
     <AppBar position="static" className="adminNavbar">
       <Toolbar>
-        <Grid item direction="column">
+        <Grid item>
           <Paper elevation={0} className="navbarText-1">
             {navbarHeading}
           </Paper>

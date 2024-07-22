@@ -5,9 +5,7 @@ import cardImage1 from "./../../Images/LandingImages/AboutImages/CardImage/cardI
 import cardImage2 from "./../../Images/LandingImages/AboutImages/CardImage/cardImage2.png";
 import cardImage3 from "./../../Images/LandingImages/AboutImages/CardImage/cardImage3.png";
 import CardComponentImage from "../../MuiComponents/MuiCards/CardComponentImage";
-import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 import CenteredTextSection from "../../Components/CenteredTextSection/Index";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import aboutImage2 from "./../../Images/LandingImages/AboutImages/aboutImage2.png";
 import aboutImage3 from "./../../Images/LandingImages/AboutImages/aboutImage3.png";
 import aboutImage4 from "./../../Images/LandingImages/AboutImages/aboutImage4.png";
@@ -372,7 +370,7 @@ const About = () => {
         alignItems="center"
         className="aboutSection2"
       >
-        <Grid item xs={12} sm={12} md={6} spacing={2}>
+        <Grid item xs={12} sm={12} md={6}>
           <img src={aboutImage2} alt="features" className="aboutImage2" />
         </Grid>
 

@@ -50,7 +50,7 @@ const Login = (props) => {
       })
       .catch((error) => {
         handleWaitingModal();
-        console.log("error :>> ", error);
+        console.error(error);
       });
   };
 

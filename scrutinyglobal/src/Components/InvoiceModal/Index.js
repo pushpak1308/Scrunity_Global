@@ -13,7 +13,6 @@ const InvoiceModal = ({
   show,
   handleClose,
   ClientName,
-  totalNoofSurveys,
   successfulSurveys,
   costPerSurvey,
 }) => {

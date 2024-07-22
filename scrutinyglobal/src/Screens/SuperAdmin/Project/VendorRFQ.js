@@ -128,7 +128,6 @@ const VendorRFQ = () => {
     );
   };
 
-  console.log("selectedRows :>> ", selectedRows);
   return (
     <Grid container className="client-detail-grid">
       <Grid item className="section-heading">

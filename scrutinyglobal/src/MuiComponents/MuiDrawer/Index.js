@@ -70,7 +70,7 @@ export default function MuiDrawer({ active }) {
             <Grid item className="userDetails-photo">
               <Avatar alt={userDetails.name} src={userDetails.avatar} />
             </Grid>
-            <Grid item direction="column">
+            <Grid item>
               <Typography component="div" className="userDetails-text">
                 {userDetails.name}
               </Typography>

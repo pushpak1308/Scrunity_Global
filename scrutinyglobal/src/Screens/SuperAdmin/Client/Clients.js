@@ -19,7 +19,7 @@ const Clients = () => {
   const handleAddProject = () => {
     navigate("/add-project");
   };
-  const [columns, setColumns] = useState([
+  const columns = [
     {
       field: "id",
       headerName: "",
@@ -133,40 +133,40 @@ const Clients = () => {
       headerClassName: "dataGrid-header",
       headerAlign: "center",
     },
-  ]);
+  ];
 
   const [columnVisibilityModel, setColumnVisibilityModel] = useState({
     id: false,
   });
 
-  const rows = [
-    {
-      id: 1,
-      status: "Yes",
-      clientName: "clientName",
-      contactName: "contactName",
-      contactNumber: "123456789",
-      email: "daniel@gmail.com",
-      websiteLink: "exampleLink.com",
-      address: "street 20",
-      country: "india",
-      currency: "INR",
-      industry: "HealthCare",
-    },
-    {
-      id: 2,
-      status: "No",
-      clientName: "clientName",
-      contactName: "contactName",
-      contactNumber: "123456789",
-      email: "daniel@gmail.com",
-      websiteLink: "exampleLink.com",
-      address: "street 20",
-      country: "india",
-      currency: "INR",
-      industry: "HealthCare",
-    },
-  ];
+  // const rows = [
+  //   {
+  //     id: 1,
+  //     status: "Yes",
+  //     clientName: "clientName",
+  //     contactName: "contactName",
+  //     contactNumber: "123456789",
+  //     email: "daniel@gmail.com",
+  //     websiteLink: "exampleLink.com",
+  //     address: "street 20",
+  //     country: "india",
+  //     currency: "INR",
+  //     industry: "HealthCare",
+  //   },
+  //   {
+  //     id: 2,
+  //     status: "No",
+  //     clientName: "clientName",
+  //     contactName: "contactName",
+  //     contactNumber: "123456789",
+  //     email: "daniel@gmail.com",
+  //     websiteLink: "exampleLink.com",
+  //     address: "street 20",
+  //     country: "india",
+  //     currency: "INR",
+  //     industry: "HealthCare",
+  //   },
+  // ];
 
   const [responseData, setResponseData] = useState([]);
   const [userDataNew, setUserDataNew] = useState([]);
@@ -209,7 +209,7 @@ const Clients = () => {
       })
       .then(function (data) {
         setResponseData(data);
-        console.log("response Data", data);
+        // console.log("response Data", data);
       })
       .catch(function (error) {
         console.error("Error fetching data:", error);
@@ -220,7 +220,7 @@ const Clients = () => {
     setUserDataNew(convertData(responseData));
   }, [responseData]);
   function convertData(data) {
-    console.log(data);
+    // console.log(data);
     data.map((element) => userData.id.push(element.user_id));
     data.map((element) => userData.clientName.push(element.name));
     data.map((element) => userData.websiteLink.push(element.website));
@@ -238,7 +238,7 @@ const Clients = () => {
     data.map((element) => userData.salary.push(element.monthlySalary));
     data.map((element) => userData.state.push(element.state));
     data.map((element) => userData.zipCode.push(element.zipcode));
-    console.log("userData", userData);
+    // console.log("userData", userData);
 
     let userDataConverted = [];
     const keys = Object.keys(userData);
@@ -250,7 +250,7 @@ const Clients = () => {
       });
       userDataConverted = [...userDataConverted, newObj];
     }
-    console.log("userDataNew", userDataConverted);
+    // console.log("userDataNew", userDataConverted);
     return userDataConverted;
   }
 
@@ -266,7 +266,7 @@ const Clients = () => {
     dispatch(setSelectedRows(selectedRowData));
   };
 
-  console.log("Selected Rows:", checkedRows);
+  // console.log("Selected Rows:", checkedRows);
 
   const content = (
     <Grid container>

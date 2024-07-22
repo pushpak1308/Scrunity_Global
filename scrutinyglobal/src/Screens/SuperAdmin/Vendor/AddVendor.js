@@ -32,7 +32,7 @@ const AddVendor = () => {
   const [ifsc, setIfsc] = useState("");
   const [accountType, setAccountType] = useState("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [showErrorModal, setShowErrorModal] = useState(false);
+  // const [showErrorModal, setShowErrorModal] = useState(false);
   const [document, setDocument] = useState(null);
   const [countriesData, setCountriesData] = useState([]);
   const [selectedCountries, setSelectedCountries] = useState([]);
@@ -51,7 +51,6 @@ const AddVendor = () => {
     bankBranchAddress: bankBranchAddress,
     accountNumber: accountNo,
     ifscCode: ifsc,
-    accountType: "vendor",
     contactName: vendorName,
     contactEmail: email,
     alternateNumber: alternateContactNumber,
@@ -70,8 +69,6 @@ const AddVendor = () => {
     const selectedVendor = vendorData.find(
       (Vendor) => Vendor.name === selectedVendorName
     );
-
-    console.log("selectedVendor :>> ", selectedVendor);
 
     if (selectedVendor) {
       setUserId(selectedVendor.userId);
@@ -166,14 +163,14 @@ const AddVendor = () => {
         return res.json();
       })
       .then(function (data) {
-        console.log("data of client : ", data);
+        // console.log("data of client : ", data);
         setVendorData(data);
         setVendorUserName(
           data.map((element) => {
             return element.name;
           })
         );
-        console.log("vendor data seting ", vendorData);
+        // console.log("vendor data seting ", vendorData);
       });
   }, []);
 
@@ -449,7 +446,7 @@ const AddVendor = () => {
     // setShowSuccessModal(true);
 
     setShowSuccessModal(!showSuccessModal);
-    console.log("Form Data:", formData);
+    // console.log("Form Data:", formData);
   };
 
   const handleClose = () => {
@@ -500,7 +497,7 @@ const AddVendor = () => {
           handleModalButtonClick={handleGoToVendors}
         />
         <SuccessErrorModal
-          show={showErrorModal}
+          // show={showErrorModal}
           handleClose={handleClose}
           imageSrc={CrossFrame}
           clientName={vendorName}

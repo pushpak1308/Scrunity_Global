@@ -9,7 +9,6 @@ import { selectedRow } from "../../../Store/Slice/rowSelectionSlice";
 
 const VendorDetail = () => {
   const dataArray = useSelector(selectedRow);
-  console.log("selectedRows11 :>> ", dataArray[0]);
   const [isEditable, setIsEditable] = useState(false);
   const { id } = useParams();
 

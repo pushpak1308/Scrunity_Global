@@ -153,7 +153,7 @@ const Clients = () => {
       })
       .then(function (data) {
         setResponseData(data);
-        console.log("response Data", data);
+        // console.log("response Data", data);
       })
       .catch(function (error) {
         console.error("Error fetching data:", error);
@@ -164,7 +164,7 @@ const Clients = () => {
     setUserDataNew(convertData(responseData));
   }, [responseData]);
   function convertData(data) {
-    console.log(data);
+    // console.log(data);
     data.map((element) => userData.id.push(element.user_id));
     data.map((element) => userData.vendorName.push(element.name));
     data.map((element) => userData.websiteLink.push(element.website));
@@ -185,7 +185,7 @@ const Clients = () => {
     data.map((element) => userData.salary.push(element.monthlySalary));
     data.map((element) => userData.state.push(element.state));
     data.map((element) => userData.pincode.push(element.zipcode));
-    console.log("userData", userData);
+    // console.log("userData", userData);
 
     let userDataConverted = [];
     const keys = Object.keys(userData);
@@ -197,7 +197,7 @@ const Clients = () => {
       });
       userDataConverted = [...userDataConverted, newObj];
     }
-    console.log("userDataNew", userDataConverted);
+    // console.log("userDataNew", userDataConverted);
     return userDataConverted;
   }
 
@@ -238,7 +238,7 @@ const Clients = () => {
     dispatch(setSelectedRows(selectedRowData));
   };
 
-  console.log("Selected Rows:", checkedRows);
+  // console.log("Selected Rows:", checkedRows);
 
   const content = (
     <Grid container>

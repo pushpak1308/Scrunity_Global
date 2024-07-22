@@ -5,22 +5,21 @@ import AuthPage from "./AuthPage";
 import StepForm from "./StepForm";
 import CustomModal from "../../MuiComponents/MuiModal/Index";
 import OtpModal from "../../Components/OtpModal/Index";
-import { useSelector, useDispatch } from "react-redux";
-import { selectFormData, setField } from "../../Store/Slice/userSlice";
+import { useDispatch } from "react-redux";
+import { setField } from "../../Store/Slice/userSlice";
 import { API_PREFIX } from "../../config";
 
 const Register = () => {
   const navigate = useNavigate();
   const [formStep, setFormStep] = useState(0);
-  const [id, setId] = useState(0);
+  // const [id, setId] = useState(0);
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
   const [otp, setOtp] = useState("");
   const [verifyMethod, setVerifyMethod] = useState("email");
 
   const dispatch = useDispatch();
-  const formDataRegister = useSelector(selectFormData);
-  console.log("formDataRegister :>> ", formDataRegister);
+  // const formDataRegister = useSelector(selectFormData);
 
   const [otpVerificationData, setOtpVerificationData] = useState({
     email: "",
@@ -49,35 +48,38 @@ const Register = () => {
     onChangeName: (e) => {
       dispatch(setField({ field: "name", value: e.target.value }));
       setFormData({ ...formData, name: e.target.value });
-      setId(13);
+      // setId(13);
     },
-    onChangeEmail: (e) => (
-      setFormData({ ...formData, email: e.target.value }),
-      dispatch(setField({ field: "email", value: e.target.value })),
-      setOtpVerificationData({ ...otpVerificationData, email: e.target.value })
-    ),
+    onChangeEmail: (e) => {
+      setFormData({ ...formData, email: e.target.value });
+      dispatch(setField({ field: "email", value: e.target.value }));
+      setOtpVerificationData({ ...otpVerificationData, email: e.target.value });
+    },
 
-    onChangePassword: (e) => (
-      dispatch(setField({ field: "password", value: e.target.value })),
-      setFormData({ ...formData, password: e.target.value })
-    ),
-    onChangeConfirmPassword: (e) => (
-      setFormData({ ...formData, confirmPassword: e.target.value }),
-      dispatch(setField({ field: "confirmPassword", value: e.target.value }))
-    ),
-    onChangeNumber: (e) => (
-      setFormData({ ...formData, number: e.target.value }),
-      dispatch(setField({ field: "number", value: e.target.value })),
-      setOtpVerificationData({ ...otpVerificationData, number: e.target.value })
-    ),
-    onChangeBirthdate: (e) => (
-      setFormData({ ...formData, dob: e.target.value }),
-      dispatch(setField({ field: "dob", value: e.target.value }))
-    ),
-    onChangeAddress: (e) => (
-      setFormData({ ...formData, address: e.target.value }),
-      dispatch(setField({ field: "address", value: e.target.value }))
-    ),
+    onChangePassword: (e) => {
+      dispatch(setField({ field: "password", value: e.target.value }));
+      setFormData({ ...formData, password: e.target.value });
+    },
+    onChangeConfirmPassword: (e) => {
+      setFormData({ ...formData, confirmPassword: e.target.value });
+      dispatch(setField({ field: "confirmPassword", value: e.target.value }));
+    },
+    onChangeNumber: (e) => {
+      setFormData({ ...formData, number: e.target.value });
+      dispatch(setField({ field: "number", value: e.target.value }));
+      setOtpVerificationData({
+        ...otpVerificationData,
+        number: e.target.value,
+      });
+    },
+    onChangeBirthdate: (e) => {
+      setFormData({ ...formData, dob: e.target.value });
+      dispatch(setField({ field: "dob", value: e.target.value }));
+    },
+    onChangeAddress: (e) => {
+      setFormData({ ...formData, address: e.target.value });
+      dispatch(setField({ field: "address", value: e.target.value }));
+    },
     onChangeCity: (e) => setFormData({ ...formData, city: e.target.value }),
     onChangeState: (e) => setFormData({ ...formData, state: e.target.value }),
     onChangeZipcode: (e) =>
@@ -101,8 +103,6 @@ const Register = () => {
 
   const handleSubmit = () => {
     setShow(true);
-    console.log("submit");
-    console.log("otp data :- ", otpVerificationData);
     fetch(`${API_PREFIX}otpsend`, {
       method: "POST",
       headers: {

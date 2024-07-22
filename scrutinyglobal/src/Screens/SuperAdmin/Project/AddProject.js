@@ -46,7 +46,7 @@ const AddProject = () => {
   );
   const [selectedRowIds, setSelectedRowIds] = useState([]);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [showErrorModal, setShowErrorModal] = useState(false);
+  // const [showErrorModal, setShowErrorModal] = useState(false);
   // console.log("edit :>> ", edit);
 
   // const handleEdit = () => {
@@ -110,7 +110,6 @@ const AddProject = () => {
 
   const onChangeDocument = (event) => {
     const file = event.target.files[0];
-    console.log("file :>> ", file);
     setDocument(file);
   };
   const [columnVisibilityModel, setColumnVisibilityModel] = useState({
@@ -302,7 +301,6 @@ const AddProject = () => {
     setRows(newRows);
     setSelectedRowIds([]);
   };
-  console.log("selectedRowIds :>> ", selectedRowIds);
 
   const steps = [
     [
@@ -499,7 +497,6 @@ const AddProject = () => {
             disablePagination={true}
             columnVisibilityModel={columnVisibilityModel}
             onRowSelectionModelChange={(newSelection) => {
-              console.log("Hi");
               setSelectedRowIds(newSelection);
             }}
           />
@@ -511,7 +508,7 @@ const AddProject = () => {
   const handleSave = (formData) => {
     // Save form data
     setShowSuccessModal(!showSuccessModal);
-    console.log("Form Data:", formData);
+    // console.log("Form Data:", formData);
   };
 
   const handleClose = () => {
@@ -564,7 +561,7 @@ const AddProject = () => {
           handleModalButtonClick={handleGoToProjectList}
         />
         <SuccessErrorModal
-          show={showErrorModal}
+          // show={showErrorModal}
           handleClose={handleClose}
           imageSrc={CrossFrame}
           clientName={projectName}
