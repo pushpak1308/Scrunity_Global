@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import Layout from "../Layout";
 import { useSelector } from "react-redux";
 import EditIcon from "@mui/icons-material/Edit";
-import { Box, Grid, Switch, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import LabelValueCard from "../../../Components/LabelValueCard/Index";
 import { selectedRow } from "../../../Store/Slice/rowSelectionSlice";
 
 const VendorDetail = () => {
   const dataArray = useSelector(selectedRow);
   const [isEditable, setIsEditable] = useState(false);
-  const { id } = useParams();
+  // const { id } = useParams();
 
   const handleEditClick = () => {
     setIsEditable(!isEditable);

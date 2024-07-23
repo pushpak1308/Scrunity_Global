@@ -80,6 +80,15 @@
   padding-top: 1.7rem;
 }
 
+.vollkorn-Login-mobile {
+  font-family: "Vollkorn", serif !important;
+  font-weight: 700 !important;
+  font-style: normal;
+  font-size: 3.7vh !important;
+  text-align: center;
+  padding-top: 2rem;
+}
+
 .logo-image {
   width: 8vh !important;
   position: absolute;
@@ -92,6 +101,15 @@
   border-bottom-right-radius: 0;
   border-top-left-radius: 10% !important;
   border-bottom-left-radius: 10% !important;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-form-container-mobile {
+  /* border-radius: 0; */
   height: 100%;
   position: relative;
   display: flex;

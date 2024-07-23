@@ -18,4 +18,11 @@
 .centered-text-image {
   /* height: 50%; */
   width: 86%;
+  /* display: block; 
+  margin-left: auto;
+  margin-right: auto; */
+}
+
+.add-margin-above {
+  margin-top: 10% !important;
 }

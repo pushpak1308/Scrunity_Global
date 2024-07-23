@@ -58,10 +58,10 @@
   height: 55vh;
 }
 .iconCardGrid {
-  height: 15vh;
+  height: auto;
   margin-top: 4% !important;
   background-color: #ebfdff;
-  /* padding: 2%; */
+  padding: 1%;
 }
 
 .main-container-landing {

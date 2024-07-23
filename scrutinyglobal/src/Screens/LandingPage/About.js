@@ -1,5 +1,11 @@
 import React from "react";
-import { Grid, Typography, Stack } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  Stack,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import aboutImage from "./../../Images/LandingImages/AboutImages/aboutImage.png";
 import cardImage1 from "./../../Images/LandingImages/AboutImages/CardImage/cardImage1.png";
 import cardImage2 from "./../../Images/LandingImages/AboutImages/CardImage/cardImage2.png";
@@ -258,6 +264,9 @@ const About = () => {
     },
   ];
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <Grid container id="about" className="about-grid ">
       <Grid
@@ -266,7 +275,7 @@ const About = () => {
         spacing={2}
         alignItems="center"
         justifyContent="center"
-        className="aboutSection1"
+        className={!isMobile ? "aboutSection1" : ""}
       >
         <Grid item md={6} className="aboutSectionText1">
           <Typography className="about-section-heading1" gutterBottom>
@@ -328,7 +337,13 @@ const About = () => {
           image={aboutImage}
         />
       </Grid>
-      <Grid item container spacing={2}>
+      <Grid
+        item
+        container
+        justifyContent="center"
+        alignItems="center"
+        spacing={2}
+      >
         <Grid item xs={12} sm={12} md={4}>
           <CardComponentImage
             image={cardImage1}

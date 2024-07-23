@@ -18,7 +18,7 @@ const Home = () => {
         alignItems="center"
         className="home-sub-grid"
       >
-        <Grid item md={6} className="item-grid">
+        <Grid item md={6} xs={12} className="item-grid">
           <Typography className="vollkorn-heading">SCRUTINY GLOBAL</Typography>
 
           <Typography className="monsterrat-subheading-paragraph" gutterBottom>
@@ -31,7 +31,7 @@ const Home = () => {
             smooth
             duration={1000}
             to="about"
-            offset={-25} // Apply offset only for "Contact"
+            offset={-25}
           >
             <MuiContainedButton
               buttonText={"Get Started"}
@@ -40,7 +40,7 @@ const Home = () => {
             />
           </Link>
         </Grid>
-        <Grid item md={6} className="home-image">
+        <Grid item md={6} xs={12} className="home-image">
           <img src={homeImage} alt="home Image" />
         </Grid>
       </Grid>
@@ -51,16 +51,16 @@ const Home = () => {
         justifyContent="space-evenly"
         className="iconCardGrid"
       >
-        <Grid item>
+        <Grid item xs={12} md={3}>
           <CardComponentIcon title="2234" text="Happy Clients" />
         </Grid>
-        <Grid item>
+        <Grid item xs={12} md={3}>
           <CardComponentIcon title="1000" text="Projects" />
         </Grid>
-        <Grid item>
+        <Grid item xs={12} md={3}>
           <CardComponentIcon title="1454" text="Hours Of Support" />
         </Grid>
-        <Grid item>
+        <Grid item xs={12} md={3}>
           <CardComponentIcon title="2345" text="Hardworkers" />
         </Grid>
       </Grid>
