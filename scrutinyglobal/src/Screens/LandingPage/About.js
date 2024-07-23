@@ -15,6 +15,8 @@ import CenteredTextSection from "../../Components/CenteredTextSection/Index";
 import aboutImage2 from "./../../Images/LandingImages/AboutImages/aboutImage2.png";
 import aboutImage3 from "./../../Images/LandingImages/AboutImages/aboutImage3.png";
 import aboutImage4 from "./../../Images/LandingImages/AboutImages/aboutImage4.png";
+import aboutImage5 from "./../../Images/LandingImages/AboutImages/aboutImage5.jpg";
+import aboutImage6 from "./../../Images/LandingImages/AboutImages/aboutImage6.jpg";
 import CheckBoxWithText from "../../MuiComponents/MuiCards/CheckBoxWithText";
 import MuiTab from "../../MuiComponents/MuiTab/Index";
 import CheckIcon from "@mui/icons-material/Check";
@@ -334,7 +336,7 @@ const About = () => {
             </>
           }
           subtitle="We recognize the importance of expediency and thus, operate with swiftness and efficacy to ensure the punctual delivery of your outcomes, as delineated by the following aspects."
-          image={aboutImage}
+          image={aboutImage5}
         />
       </Grid>
       <Grid
@@ -367,34 +369,109 @@ const About = () => {
         </Grid>
       </Grid>
 
-      <Grid item xs={12}>
-        <CenteredTextSection
-          image={aboutImage}
-          title={"Our Features"}
-          subtitle={
-            "We offers the powerful survey features for any research need"
-          }
-        />
-      </Grid>
-
       <Grid
-        item
         container
-        spacing={2}
-        justifyContent="center"
-        alignItems="center"
-        className="aboutSection2"
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
       >
-        <Grid item xs={12} sm={12} md={6}>
-          <img src={aboutImage2} alt="features" className="aboutImage2" />
+        <Grid item>
+          <CenteredTextSection
+            image={aboutImage6}
+            title={"Our Features"}
+            subtitle={
+              "We offers the powerful survey features for any research need"
+            }
+          />
         </Grid>
-
-        <Grid item container spacing={2} xs={12} sm={12} md={6}>
-          {featuresTextArray.map((text, index) => (
-            <Grid item xs={12} sm={6} md={6} key={index}>
-              <CheckBoxWithText text={text} />
+        {/* <Grid item>
+          <img src={aboutImage} alt="features" className="aboutImage2" />
+        </Grid>
+        <Grid item>Our Features</Grid> */}
+        {/* <Grid item>
+          <Grid
+            container
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-between"
+            paddingBottom={"30px"}
+          >
+            <Grid item>
+              <CheckBoxWithText text={"text"} />
             </Grid>
-          ))}
+            <Grid item>
+              <CheckBoxWithText text={"text"} />
+            </Grid>
+            <Grid item marginBottom={"10px"}>
+              <CheckBoxWithText text={"text"} />
+            </Grid>
+            <Grid item>
+              <CheckBoxWithText text={"text"} />
+            </Grid>
+            <Grid item>
+              <CheckBoxWithText text={"text"} />
+            </Grid>
+            <Grid item>
+              <CheckBoxWithText text={"text"} />
+            </Grid>
+            <Grid item>
+              <CheckBoxWithText text={"text"} />
+            </Grid>
+          </Grid>
+        </Grid> */}
+        .
+        <Grid
+          item
+          container
+          spacing={2}
+          justifyContent="center"
+          alignItems="center"
+          className="aboutSection2"
+        >
+          <Grid item xs={12} sm={12} md={6}>
+            <img src={aboutImage2} alt="features" className="aboutImage2" />
+          </Grid>
+          {/* {!isMobile && (
+            <Grid item container spacing={2} xs={12} sm={12} md={6}>
+              {featuresTextArray.map((text, index) => (
+                <Grid item xs={12} sm={6} md={6} key={index}>
+                  <CheckBoxWithText text={text} />
+                </Grid>
+              ))}
+            </Grid>
+          )}
+
+          {isMobile && (
+            <Grid item>
+              <Grid
+                container
+                display="flex"
+                flexDirection="column"
+                justifyContent="space-between"
+                paddingBottom={"30px"}
+              >
+                {featuresTextArray.map((text, index) => (
+                  <Grid item marginBottom={"10px"} key={index}>
+                    <CheckBoxWithText text={text} />
+                  </Grid>
+                ))}
+              </Grid>
+            </Grid>
+          )} */}
+          <Grid item xs={12} sm={12} md={6}>
+            <Grid
+              container
+              spacing={2}
+              // className="provide-height"
+              direction={isMobile ? "column" : "row"}
+            >
+              {featuresTextArray.map((text, index) => (
+                <Grid item xs={12} sm={6} md={6} key={index} marginBottom="2%">
+                  <CheckBoxWithText text={text} />
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
 
@@ -406,11 +483,15 @@ const About = () => {
         alignItems="center"
         className="aboutSection3"
       >
-        <Grid item xs={12} md={6}>
-          <Typography className="aboutSection3-heading">
-            Quality you can Trust
-          </Typography>
-          <MuiTab tabs={tabs} />
+        <Grid item container xs={12} md={6}>
+          <Grid item>
+            <Typography className="aboutSection3-heading">
+              Quality you can Trust
+            </Typography>
+          </Grid>
+          <Grid item>
+            <MuiTab tabs={tabs} />
+          </Grid>
         </Grid>
         <Grid item xs={12} md={6}>
           <img src={aboutImage3} alt="features" className="aboutImage2" />

@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 import "./Style.css";
 import homeImage from "../../Images/LandingImages/homeImages/homeImage.png";
@@ -8,6 +8,9 @@ import CardComponentIcon from "../../MuiComponents/MuiCards/CardComponentIcon";
 import { Link } from "react-scroll";
 
 const Home = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <Grid container className="main-container-landing ">
       <Grid
@@ -44,26 +47,28 @@ const Home = () => {
           <img src={homeImage} alt="home Image" />
         </Grid>
       </Grid>
-      <Grid
-        item
-        container
-        alignItems="center"
-        justifyContent="space-evenly"
-        className="iconCardGrid"
-      >
-        <Grid item xs={12} md={3}>
-          <CardComponentIcon title="2234" text="Happy Clients" />
+      {!isMobile && (
+        <Grid
+          item
+          container
+          alignItems="center"
+          justifyContent="space-evenly"
+          className="iconCardGrid"
+        >
+          <Grid item xs={12} md={3}>
+            <CardComponentIcon title="2234" text="Happy Clients" />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <CardComponentIcon title="1000" text="Projects" />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <CardComponentIcon title="1454" text="Hours Of Support" />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <CardComponentIcon title="2345" text="Hardworkers" />
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={3}>
-          <CardComponentIcon title="1000" text="Projects" />
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <CardComponentIcon title="1454" text="Hours Of Support" />
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <CardComponentIcon title="2345" text="Hardworkers" />
-        </Grid>
-      </Grid>
+      )}
     </Grid>
   );
 };

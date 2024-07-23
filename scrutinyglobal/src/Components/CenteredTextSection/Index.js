@@ -14,11 +14,11 @@ const CenteredTextSection = ({ image, title, subtitle }) => {
       className="center-text"
       spacing={2}
     >
-      {!isMobile && (
-        <Grid item md={6}>
-          <img src={image} alt="About" className="centered-text-image" />
-        </Grid>
-      )}
+      {/* {!isMobile && ( */}
+      <Grid item md={6} xs={12}>
+        <img src={image} alt="About" className="centered-text-image" />
+      </Grid>
+      {/* )} */}
       <Grid
         item
         container

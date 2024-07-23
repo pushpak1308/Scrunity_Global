@@ -12,6 +12,8 @@ import {
   Toolbar,
   Avatar,
   IconButton,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import Home from "./Home";
 import About from "./About";
@@ -34,6 +36,9 @@ const Landing = (props) => {
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const drawer = (
     <Grid onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
@@ -75,7 +80,11 @@ const Landing = (props) => {
       <CssBaseline />
       <AppBar component="nav" className="navBar">
         <Toolbar>
-          <Avatar alt="SG logo" src={logo} className="navbar-logo" />
+          <Avatar
+            alt="SG logo"
+            src={logo}
+            className={isMobile ? "navbar-logo-mobile" : "navbar-logo"}
+          />
           <Typography className="navLogo-text">SG</Typography>
 
           <IconButton
