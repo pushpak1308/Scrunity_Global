@@ -148,9 +148,9 @@ const Landing = (props) => {
         <section id="services">
           <Services />
         </section>
-        {/* <section id="contact">
+        <section id="contact">
           <ContactUs />
-        </section> */}
+        </section>
       </Grid>
     </Grid>
   );

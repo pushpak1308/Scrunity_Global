@@ -421,8 +421,8 @@ const About = () => {
       </Grid>
 
       <Grid container spacing={2}>
-        <Grid item xs={12} md={6} className="flex-and-center ">
-          <img src={aboutImage4} alt="features" />
+        <Grid item xs={12} sm={12} md={6}>
+          <img src={aboutImage4} alt="features" className="aboutImage3" />
         </Grid>
         <Grid item container xs={12} md={6}>
           {whyChooseUstextArray.map((item, index) => (
