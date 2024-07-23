@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Layout from "../Layout";
 import { Button, Grid, Typography, TextField } from "@mui/material";
 import tickFrame from "../../../Images/ModalImages/tickFrame.png";
@@ -9,12 +9,21 @@ import MuiMultiSelectDropdown from "../../../MuiComponents/MuiMultiSelectDropdow
 import MuiDataGrid from "../../../MuiComponents/MuiDataGrid/Index";
 import SuccessErrorModal from "../../../Components/SuccesErrorModal/Index";
 import { useNavigate } from "react-router-dom";
+import { API_PREFIX } from "../../../config";
 
 const AssignVendor = () => {
   const [selectedVendors, setSelectedVendors] = useState([]);
   const [selectedRowIds, setSelectedRowIds] = useState([]);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [edit, setEdit] = useState(false);
+  const [vendorId,setVendorId] = useState(0);
+  const [vendorName,setVendorName] = useState("");
+  const [successURL,setSuccessURL] = useState("");
+  const [terminateURL,setTerminateURL] = useState("");
+  const [quotaFullURL,setQuotafulURL] = useState("");
+  const [costPerSurvey,setCostPerSurvey] = useState("");
+  const [responseData, setResponseData] = useState([]);
+  const [userDataNew, setUserDataNew] = useState([]);
   const navigate = useNavigate();
 
   const vendors = [
@@ -45,6 +54,63 @@ const AssignVendor = () => {
     },
   ];
 
+  const vendorGridData = {
+      id: [],
+      vendorName: [],
+      successURL: [],
+      terminateURL: [],
+      quotafullURL: [],
+      costPerSurvey: [],
+  }
+
+  useEffect(() => {
+    getClientData();
+  }, []);
+
+  function getClientData() {
+    fetch(`${API_PREFIX}getListAsAccountType?accountType=vendor`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        setResponseData(data);
+        // console.log("response Data", data);
+      })
+      .catch(function (error) {
+        console.error("Error fetching data:", error);
+      });
+  }
+
+  useEffect(() => {
+    setUserDataNew(convertData(responseData));
+  }, [responseData]);
+  function convertData(data) {
+    // console.log(data);
+    data.map((element) => vendorGridData.id.push(element.user_id));
+    data.map((element) => vendorGridData.vendorName.push(element.name));
+    data.map((element) => vendorGridData.successURL.push(element.successurl));
+    data.map((element) => vendorGridData.terminateURL.push(element.terminateurl));
+    data.map((element) => vendorGridData.quotafullURL.push(element.quota_fullurl));
+     
+
+    let userDataConverted = [];
+    const keys = Object.keys(vendorGridData);
+    const numObjects = vendorGridData[keys[0]].length;
+    for (let i = 0; i < numObjects; i++) {
+      const newObj = {};
+      keys.forEach((key) => {
+        newObj[key] = vendorGridData[key][i];
+      });
+      userDataConverted = [...userDataConverted, newObj];
+    }
+  }
+
   const handleVendorChange = (event) => {
     const {
       target: { value },
@@ -55,8 +121,9 @@ const AssignVendor = () => {
     const updatedSelectedVendors = selectedVendorNames.map((vendorName) =>
       vendors.find((vendor) => vendor.vendorName === vendorName)
     );
+    // const selectedVendorList = userDataNew.map((vendor) => vendor.vendorName === value);
 
-    setSelectedVendors(updatedSelectedVendors);
+    setSelectedVendors(event.target.value);
     setSelectedRowIds([]);
   };
 
@@ -218,6 +285,7 @@ const AssignVendor = () => {
     },
   ];
 
+
   const content = (
     <Grid container spacing={2}>
       <Grid
@@ -230,9 +298,9 @@ const AssignVendor = () => {
         <Grid item md={5}>
           <MuiMultiSelectDropdown
             label={"Vendor"}
-            value={selectedVendors.map((vendor) => vendor.vendorName)}
+            value={selectedVendors}
             onChange={handleVendorChange}
-            options={vendors.map((item) => item.vendorName)}
+            options={vendorGridData.vendorName.map((vendor) => ({value: vendor ,  label : vendor}))}
           />
         </Grid>
         <Grid
