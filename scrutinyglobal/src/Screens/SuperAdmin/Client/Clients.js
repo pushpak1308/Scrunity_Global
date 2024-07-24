@@ -263,7 +263,7 @@ const Clients = () => {
       <Grid
         item
         container
-        className={isMobile ? "heading-grid2-mobile" : "heading-grid2"}
+        className={"heading-grid2"}
         justifyContent="space-between"
         alignItems="end"
       >
@@ -272,15 +272,8 @@ const Clients = () => {
             CLIENT LIST
           </Paper>
         </Grid>
-        <Grid
-          item
-          container
-          justifyContent="flex-end"
-          spacing={2}
-          md={7}
-          xs={12}
-        >
-          <Grid item xs={12} display="flex" justifyContent={"flex-end"}>
+        <Grid item container justifyContent="flex-end" spacing={2} md={7}>
+          <Grid item>
             <Button
               variant="outlined"
               color="error"
@@ -292,7 +285,7 @@ const Clients = () => {
               Add Project
             </Button>
           </Grid>
-          <Grid item xs={12} display="flex" justifyContent={"flex-end"}>
+          <Grid item>
             <Button
               variant="outlined"
               color="error"
@@ -306,7 +299,7 @@ const Clients = () => {
               View Details
             </Button>
           </Grid>
-          <Grid item xs={12} display="flex" justifyContent={"flex-end"}>
+          <Grid item>
             <Button
               variant="outlined"
               color="error"
