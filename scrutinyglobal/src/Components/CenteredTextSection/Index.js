@@ -11,20 +11,13 @@ const CenteredTextSection = ({ image, title, subtitle }) => {
       container
       justifyContent="center"
       alignItems="center"
-      className="center-text"
+      className={isMobile ? "center-text-mobile" : "center-text"}
       spacing={2}
     >
-      {/* {!isMobile && ( */}
       <Grid item md={6} xs={12}>
         <img src={image} alt="About" className="centered-text-image" />
       </Grid>
-      {/* )} */}
-      <Grid
-        item
-        container
-        md={isMobile ? 12 : 6}
-        className={isMobile ? "add-margin-above" : ""}
-      >
+      <Grid item container md={isMobile ? 12 : 6}>
         <Grid item xs={12}>
           <Typography className="title" component="div">
             {title}

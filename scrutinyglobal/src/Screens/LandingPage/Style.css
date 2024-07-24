@@ -64,6 +64,9 @@
 .home-sub-grid {
   height: 55vh;
 }
+.home-sub-grid-mobile {
+  height: 99vh;
+}
 .iconCardGrid {
   height: auto;
   margin-top: 4% !important;
@@ -110,8 +113,9 @@
 }
 
 .contact-us-grid {
-  height: 100%;
-  padding: 2rem;
+  /* height: 100%; */
+  margin-top: 7% !important;
+  margin-bottom: 5% !important;
 }
 
 .contact-us {
@@ -164,6 +168,7 @@
 
 .aboutSection2 {
   height: 100%;
+  margin-bottom: 8% !important;
 }
 
 .aboutImage2 {
@@ -180,8 +185,6 @@
 
 .aboutSection3 {
   height: 100%;
-  padding-bottom: 5%;
-  padding-top: 5%;
 }
 
 .aboutSection3-heading {

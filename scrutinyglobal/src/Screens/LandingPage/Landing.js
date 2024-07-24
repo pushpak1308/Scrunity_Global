@@ -59,7 +59,7 @@ const Landing = (props) => {
                   smooth
                   spy
                   to={item.toLowerCase()}
-                  offset={item === "Contact" ? -90 : -25}
+                  offset={item === "Contact" || item === "About" ? -90 : -25}
                 >
                   <Button className="navButtons">{item}</Button>
                 </Link>

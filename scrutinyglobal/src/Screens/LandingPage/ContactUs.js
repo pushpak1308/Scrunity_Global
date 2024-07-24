@@ -7,6 +7,8 @@ import {
   Stack,
   TextField,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import React, { useState } from "react";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
@@ -22,6 +24,9 @@ import "./Style.css";
 import { Link } from "react-scroll";
 
 const ContactUs = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -144,19 +149,6 @@ const ContactUs = () => {
                   onChange={handleChange}
                 />
               </Grid>
-              {/* <Grid item xs={12} md={11}>
-                <FormControlLabel
-                  className="captcha-box"
-                  control={
-                    <Checkbox
-                      name="recaptcha"
-                      checked={formData.recaptcha}
-                      onChange={handleChange}
-                    />
-                  }
-                  label="I am not a robot"
-                /> 
-              </Grid>*/}
               <Grid item xs={12} md={11} display="flex" justifyContent="center">
                 <MuiContainedButton type="submit" buttonText="Send Message" />
               </Grid>
@@ -165,7 +157,7 @@ const ContactUs = () => {
         </Grid>
       </Grid>
       <Grid item container xs={12} md={12} className="contactUs2">
-        <Grid item xs={12} md={5}>
+        <Grid item xs={12} md={5} marginBottom={isMobile ? "10%" : "0"}>
           <Grid item container alignItems="center">
             <img src={logo} alt="logo" className="companyLogo" />
             <Typography className="contactUs2-heading" gutterBottom>
@@ -191,7 +183,13 @@ const ContactUs = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={12} md={4} justifyContent="center">
+        <Grid
+          item
+          xs={12}
+          md={4}
+          justifyContent="center"
+          marginBottom={isMobile ? "10%" : "0"}
+        >
           <Typography className="contactUs2-heading">USEFUL LINKS</Typography>
           <List>
             {usefulLinks.map((item) => (

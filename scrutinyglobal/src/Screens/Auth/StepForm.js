@@ -297,14 +297,15 @@ const StepForm = ({
       return (
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <MuiDropDown
+            <MuiTextField
               required={true}
               value={profession}
               onChange={onChangeProfession}
               defaultValue={reduxData?.profession || ""}
-              options={["profession1", "profession2", "profession2"]} // Example options
+              // options={["profession1", "profession2", "profession2"]} // Example options
               placeholder={"Ex: Software Developer"}
               label="Profession"
+              type="text"
               className="forRegister"
             />
           </Grid>

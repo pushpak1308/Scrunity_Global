@@ -277,7 +277,7 @@ const About = () => {
         spacing={2}
         alignItems="center"
         justifyContent="center"
-        className={!isMobile ? "aboutSection1" : ""}
+        className={!isMobile ? "aboutSection1" : "home-sub-grid-mobile"}
       >
         <Grid item md={6} className="aboutSectionText1">
           <Typography className="about-section-heading1" gutterBottom>
@@ -346,21 +346,21 @@ const About = () => {
         alignItems="center"
         spacing={2}
       >
-        <Grid item xs={12} sm={12} md={4}>
+        <Grid item xs={12} sm={12} md={4} className="same-height-card">
           <CardComponentImage
             image={cardImage1}
             title="Diversity in Departments"
             text="Our prowess is multi-faceted. We excel in Quantitative and Qualitative research, conduct Online Surveys, gauge Public Opinion, curate meticulous Data Collections, dissect Media intricacies, and unravel profound Covid-19 Insights. This versatility tailors our platform for clients in pursuit of diverse viewpoints or specific market niches."
           />
         </Grid>
-        <Grid item xs={12} sm={12} md={4}>
+        <Grid item xs={12} sm={12} md={4} className="same-height-card">
           <CardComponentImage
             image={cardImage2}
             title="Global Reach"
             text="Seizing opportunities on a global scale, we empower our clients to connect with respondents spanning the farthest reaches. We specialize in procuring top-tier responses from the most elusive participants – be it IT professionals, HR experts, Finance wizards, Sales mavens, or even esteemed C-Level executives and department heads."
           />
         </Grid>
-        <Grid item xs={12} sm={12} md={4}>
+        <Grid item xs={12} sm={12} md={4} className="same-height-card">
           <CardComponentImage
             image={cardImage3}
             title="Multiple Target Platforms"
@@ -384,42 +384,7 @@ const About = () => {
             }
           />
         </Grid>
-        {/* <Grid item>
-          <img src={aboutImage} alt="features" className="aboutImage2" />
-        </Grid>
-        <Grid item>Our Features</Grid> */}
-        {/* <Grid item>
-          <Grid
-            container
-            display="flex"
-            flexDirection="column"
-            justifyContent="space-between"
-            paddingBottom={"30px"}
-          >
-            <Grid item>
-              <CheckBoxWithText text={"text"} />
-            </Grid>
-            <Grid item>
-              <CheckBoxWithText text={"text"} />
-            </Grid>
-            <Grid item marginBottom={"10px"}>
-              <CheckBoxWithText text={"text"} />
-            </Grid>
-            <Grid item>
-              <CheckBoxWithText text={"text"} />
-            </Grid>
-            <Grid item>
-              <CheckBoxWithText text={"text"} />
-            </Grid>
-            <Grid item>
-              <CheckBoxWithText text={"text"} />
-            </Grid>
-            <Grid item>
-              <CheckBoxWithText text={"text"} />
-            </Grid>
-          </Grid>
-        </Grid> */}
-        .
+
         <Grid
           item
           container
@@ -431,40 +396,9 @@ const About = () => {
           <Grid item xs={12} sm={12} md={6}>
             <img src={aboutImage2} alt="features" className="aboutImage2" />
           </Grid>
-          {/* {!isMobile && (
-            <Grid item container spacing={2} xs={12} sm={12} md={6}>
-              {featuresTextArray.map((text, index) => (
-                <Grid item xs={12} sm={6} md={6} key={index}>
-                  <CheckBoxWithText text={text} />
-                </Grid>
-              ))}
-            </Grid>
-          )}
 
-          {isMobile && (
-            <Grid item>
-              <Grid
-                container
-                display="flex"
-                flexDirection="column"
-                justifyContent="space-between"
-                paddingBottom={"30px"}
-              >
-                {featuresTextArray.map((text, index) => (
-                  <Grid item marginBottom={"10px"} key={index}>
-                    <CheckBoxWithText text={text} />
-                  </Grid>
-                ))}
-              </Grid>
-            </Grid>
-          )} */}
           <Grid item xs={12} sm={12} md={6}>
-            <Grid
-              container
-              spacing={2}
-              // className="provide-height"
-              direction={isMobile ? "column" : "row"}
-            >
+            <Grid container spacing={2} direction={isMobile ? "column" : "row"}>
               {featuresTextArray.map((text, index) => (
                 <Grid item xs={12} sm={6} md={6} key={index} marginBottom="2%">
                   <CheckBoxWithText text={text} />

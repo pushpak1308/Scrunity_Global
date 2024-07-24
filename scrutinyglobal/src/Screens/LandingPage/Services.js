@@ -289,7 +289,14 @@ const Services = () => {
           </Grid>
         ))}
       </Grid>
-      <Grid item container className="contact-us-grid">
+      <Grid
+        item
+        container
+        display={"flex"}
+        justifyContent="center"
+        alignItems="center"
+        className="contact-us-grid"
+      >
         <Grid item md={12}>
           <Typography className="contact-us" component="div" gutterBottom>
             F.A.Q

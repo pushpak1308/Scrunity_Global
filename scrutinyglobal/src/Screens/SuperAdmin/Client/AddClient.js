@@ -274,12 +274,13 @@ const AddClient = () => {
         </Grid>
       </Grid>,
       <Grid item>
-        <MuiDropDown
+        <MuiTextField
+          type="text"
           value={industry}
           required={true}
           //   defaultValue={reduxData?.accountType || ""}
           onChange={onChangeIndustry}
-          options={["industry 1", "industry 2", "industry 3"]}
+          // options={["industry 1", "industry 2", "industry 3"]}
           label="Industry"
           className="forAddClient"
         />

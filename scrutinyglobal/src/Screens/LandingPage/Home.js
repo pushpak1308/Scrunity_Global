@@ -19,7 +19,7 @@ const Home = () => {
         spacing={3}
         justifyContent="center"
         alignItems="center"
-        className="home-sub-grid"
+        className={isMobile ? "home-sub-grid-mobile" : "home-sub-grid"}
       >
         <Grid item md={6} xs={12} className="item-grid">
           <Typography className="vollkorn-heading">SCRUTINY GLOBAL</Typography>
