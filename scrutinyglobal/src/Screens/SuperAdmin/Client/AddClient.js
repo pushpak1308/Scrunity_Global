@@ -323,7 +323,10 @@ const AddClient = () => {
         alignItems="center"
       >
         <Grid item className="heading-grid">
-          <Paper elevation={0} className="screenHeading">
+          <Paper
+            elevation={0}
+            className={isMobile ? "screenHeading-mobile" : "screenHeading"}
+          >
             Add a New Client
           </Paper>
         </Grid>

@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../Layout";
 import { Button, Grid, Typography, TextField } from "@mui/material";
 import tickFrame from "../../../Images/ModalImages/tickFrame.png";
@@ -16,12 +16,12 @@ const AssignVendor = () => {
   const [selectedRowIds, setSelectedRowIds] = useState([]);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [vendorId,setVendorId] = useState(0);
-  const [vendorName,setVendorName] = useState("");
-  const [successURL,setSuccessURL] = useState("");
-  const [terminateURL,setTerminateURL] = useState("");
-  const [quotaFullURL,setQuotafulURL] = useState("");
-  const [costPerSurvey,setCostPerSurvey] = useState("");
+  const [vendorId, setVendorId] = useState(0);
+  const [vendorName, setVendorName] = useState("");
+  const [successURL, setSuccessURL] = useState("");
+  const [terminateURL, setTerminateURL] = useState("");
+  const [quotaFullURL, setQuotafulURL] = useState("");
+  const [costPerSurvey, setCostPerSurvey] = useState("");
   const [responseData, setResponseData] = useState([]);
   const [userDataNew, setUserDataNew] = useState([]);
   const navigate = useNavigate();
@@ -55,13 +55,13 @@ const AssignVendor = () => {
   ];
 
   const vendorGridData = {
-      id: [],
-      vendorName: [],
-      successURL: [],
-      terminateURL: [],
-      quotafullURL: [],
-      costPerSurvey: [],
-  }
+    id: [],
+    vendorName: [],
+    successURL: [],
+    terminateURL: [],
+    quotafullURL: [],
+    costPerSurvey: [],
+  };
 
   useEffect(() => {
     getClientData();
@@ -95,9 +95,12 @@ const AssignVendor = () => {
     data.map((element) => vendorGridData.id.push(element.user_id));
     data.map((element) => vendorGridData.vendorName.push(element.name));
     data.map((element) => vendorGridData.successURL.push(element.successurl));
-    data.map((element) => vendorGridData.terminateURL.push(element.terminateurl));
-    data.map((element) => vendorGridData.quotafullURL.push(element.quota_fullurl));
-     
+    data.map((element) =>
+      vendorGridData.terminateURL.push(element.terminateurl)
+    );
+    data.map((element) =>
+      vendorGridData.quotafullURL.push(element.quota_fullurl)
+    );
 
     let userDataConverted = [];
     const keys = Object.keys(vendorGridData);
@@ -285,7 +288,6 @@ const AssignVendor = () => {
     },
   ];
 
-
   const content = (
     <Grid container spacing={2}>
       <Grid
@@ -295,12 +297,15 @@ const AssignVendor = () => {
         justifyContent="space-between"
         alignItems="end"
       >
-        <Grid item md={5}>
+        <Grid item md={5} xs={12}>
           <MuiMultiSelectDropdown
             label={"Vendor"}
             value={selectedVendors}
             onChange={handleVendorChange}
-            options={vendorGridData.vendorName.map((vendor) => ({value: vendor ,  label : vendor}))}
+            options={vendorGridData.vendorName.map((vendor) => ({
+              value: vendor,
+              label: vendor,
+            }))}
           />
         </Grid>
         <Grid
@@ -310,8 +315,9 @@ const AssignVendor = () => {
           alignItems="end"
           spacing={2}
           md={7}
+          xs={12}
         >
-          <Grid item>
+          <Grid item display="flex" justifyContent={"flex-end"}>
             <Button
               variant="outlined"
               color="error"
@@ -323,7 +329,7 @@ const AssignVendor = () => {
               Edit
             </Button>
           </Grid>
-          <Grid item>
+          <Grid item display="flex" justifyContent={"flex-end"}>
             <Button
               variant="outlined"
               color="error"
@@ -337,7 +343,7 @@ const AssignVendor = () => {
               Save
             </Button>
           </Grid>
-          <Grid item>
+          <Grid item display="flex" justifyContent={"flex-end"}>
             <Button
               variant="outlined"
               color="error"

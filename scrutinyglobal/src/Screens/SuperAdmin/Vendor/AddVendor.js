@@ -471,7 +471,10 @@ const AddVendor = () => {
         alignItems="center"
       >
         <Grid item className="heading-grid">
-          <Paper elevation={0} className="screenHeading">
+          <Paper
+            elevation={0}
+            className={isMobile ? "screenHeading-mobile" : "screenHeading"}
+          >
             Add Vendor
           </Paper>
         </Grid>
