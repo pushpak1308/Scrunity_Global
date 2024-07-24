@@ -8,10 +8,11 @@ import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import MuiMultiSelectDropdown from "../../../MuiComponents/MuiMultiSelectDropdown/Index";
 import MuiDataGrid from "../../../MuiComponents/MuiDataGrid/Index";
 import SuccessErrorModal from "../../../Components/SuccesErrorModal/Index";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { API_PREFIX } from "../../../config";
 
 const AssignVendor = () => {
+  const projectId = useParams();
   const [selectedVendors, setSelectedVendors] = useState([]);
   const [selectedRowIds, setSelectedRowIds] = useState([]);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -22,7 +23,7 @@ const AssignVendor = () => {
   const [terminateURL, setTerminateURL] = useState("");
   const [quotaFullURL, setQuotafulURL] = useState("");
   const [costPerSurvey, setCostPerSurvey] = useState("");
-  const [projectId, setProjectId] = useState("");
+  // const [projectId, setProjectId] = useState("");
   const [responseData, setResponseData] = useState([]);
   const [userDataNew, setUserDataNew] = useState([]);
   const navigate = useNavigate();
