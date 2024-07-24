@@ -132,12 +132,13 @@ const AssignVendor = () => {
       successURL: vendor.successURL,
       terminateURL: vendor.terminateURL,
       quotaFullURL: vendor.quotafullURL,
+      securityTerminateURL: "null",
       rate: vendor.costPerSurvey,
     }));
     // clo;
     const saveVendorDetails = [
       {
-        projectId: projectId,
+        projectId: projectId.id,
         venderMappingDetails: vendorMappingDetails,
       },
     ];
@@ -149,7 +150,7 @@ const AssignVendor = () => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(saveVendorDetails),
+      body: JSON.stringify(saveVendorDetails[0]),
     });
     setShowSuccessModal(true);
   };

@@ -9,7 +9,7 @@ import InvoiceModal from "../../Components/InvoiceModal/Index";
 import Layout from "./Layout";
 
 const Invoice = () => {
-  const [vendor, setVendor] = useState("");
+  const [client, setclient] = useState("");
   const [project, setProject] = useState("");
   const [country, setCountry] = useState("");
   const [currency, setCurrency] = useState("");
@@ -20,7 +20,7 @@ const Invoice = () => {
 
   const isMobile = useMediaQuery("(max-width:600px)");
 
-  const onChangeVendor = (e) => setVendor(e.target.value);
+  const onChangeclient = (e) => setclient(e.target.value);
   const onChangeProject = (e) => setProject(e.target.value);
   const onChangeCountry = (e) => setCountry(e.target.value);
   const onChangeCurrency = (e) => setCurrency(e.target.value);
@@ -47,20 +47,20 @@ const Invoice = () => {
           <Paper elevation={isMobile ? 0 : 2} className="invoice-form">
             <form onSubmit={handleSubmit}>
               <Grid item xs={12} className="addPadding">
-                <MuiDropDown
-                  value={vendor}
-                  onChange={onChangeVendor}
-                  options={["client 1", "client 2", "client 3"]}
-                  label="Vendor"
+              <MuiDropDown
+                  value={project}
+                  onChange={onChangeProject}
+                  options={["project 1", "project 2", "project 3"]}
+                  label="Project"
                   className="forRegister"
                 />
               </Grid>
               <Grid item xs={12} className="addPadding">
                 <MuiDropDown
-                  value={project}
-                  onChange={onChangeProject}
-                  options={["project 1", "project 2", "project 3"]}
-                  label="Project"
+                  value={client}
+                  onChange={onChangeclient}
+                  options={["client 1", "client 2", "client 3"]}
+                  label="Client"
                   className="forRegister"
                 />
               </Grid>
@@ -149,7 +149,7 @@ const Invoice = () => {
       <InvoiceModal
         show={show}
         handleClose={handleClose}
-        ClientName={vendor}
+        ClientName={client}
         costPerSurvey={costPerSurvey}
         successfulSurveys={successfulSurveys}
       />
