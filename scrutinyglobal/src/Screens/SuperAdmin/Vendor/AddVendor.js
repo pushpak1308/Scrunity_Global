@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Paper } from "@mui/material";
+import { Grid, Paper, useMediaQuery, useTheme } from "@mui/material";
 import StepForm from "../../../Components/StepForm/Index";
 import { MuiTextField } from "../../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../../MuiComponents/MuiDropDown/Index";
@@ -208,7 +208,7 @@ const AddVendor = () => {
 
   const steps = [
     [
-      <Grid item>
+      <Grid item xs={12}>
         <MuiDropDown
           required={true}
           value={vendorName}
@@ -219,7 +219,7 @@ const AddVendor = () => {
           className="forAddClient"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="text"
           value={email}
@@ -230,9 +230,9 @@ const AddVendor = () => {
           className="forAddProject"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <Grid container spacing={2}>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <MuiTextField
               type="text"
               required={true}
@@ -243,7 +243,7 @@ const AddVendor = () => {
               className="forAddProject"
             />
           </Grid>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <MuiTextField
               type="text"
               value={alternateContactNumber}
@@ -257,7 +257,7 @@ const AddVendor = () => {
       </Grid>,
     ],
     [
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="text"
           value={address}
@@ -268,9 +268,9 @@ const AddVendor = () => {
           className="forAddProject"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <Grid container spacing={2}>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <MuiTextField
               type="text"
               required={true}
@@ -281,7 +281,7 @@ const AddVendor = () => {
               className="forAddProject"
             />
           </Grid>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <MuiTextField
               type="text"
               value={alternateContactNumber}
@@ -293,9 +293,9 @@ const AddVendor = () => {
           </Grid>
         </Grid>
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <Grid container spacing={2}>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <MuiMultiSelectDropdown
               label={"Country"}
               placeholder={"(Select more countries)"}
@@ -305,7 +305,7 @@ const AddVendor = () => {
               className="forAddProject"
             />
           </Grid>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <MuiDropDown
               value={status}
               //   defaultValue={reduxData?.accountType || ""}
@@ -319,7 +319,7 @@ const AddVendor = () => {
       </Grid>,
     ],
     [
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="text"
           value={successURL}
@@ -329,7 +329,7 @@ const AddVendor = () => {
           className="forAddProject"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="text"
           required={true}
@@ -339,7 +339,7 @@ const AddVendor = () => {
           className="forAddProject"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="text"
           required={true}
@@ -352,7 +352,7 @@ const AddVendor = () => {
     ],
 
     [
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="text"
           required={true}
@@ -363,7 +363,7 @@ const AddVendor = () => {
           className="forAddProject"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="text"
           required={true}
@@ -374,9 +374,9 @@ const AddVendor = () => {
           className="forAddProject"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <Grid container spacing={2}>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <MuiDropDown
               value={accountType}
               //   defaultValue={reduxData?.accountType || ""}
@@ -387,7 +387,7 @@ const AddVendor = () => {
               className="forAddProject"
             />
           </Grid>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <MuiTextField
               type="text"
               value={ifsc}
@@ -401,7 +401,7 @@ const AddVendor = () => {
       </Grid>,
     ],
     [
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="text"
           required={true}
@@ -411,7 +411,7 @@ const AddVendor = () => {
           className="forAddProject"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="text"
           required={true}
@@ -421,7 +421,7 @@ const AddVendor = () => {
           className="forAddProject"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="file"
           value={document}
@@ -456,12 +456,15 @@ const AddVendor = () => {
   const handleGoToVendors = () => {
     navigate("/vendors");
   };
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const content = (
     <Grid container alignItems="center" justifyContent="center">
       <Grid
         item
         container
+        xs={12}
         md={7}
         className="form-grid"
         justifyContent="center"
@@ -472,11 +475,14 @@ const AddVendor = () => {
             Add Vendor
           </Paper>
         </Grid>
-        <Grid item className="fixed-heading">
+        <Grid
+          item
+          className={isMobile ? "fixed-heading-mobile" : "fixed-heading"}
+        >
           {getHeading()}
         </Grid>
         <Grid item>
-          <Paper elevation={2} className="form-sub-grid">
+          <Paper elevation={isMobile ? 0 : 2} className="form-sub-grid">
             <StepForm
               steps={steps}
               onSave={handleSave}

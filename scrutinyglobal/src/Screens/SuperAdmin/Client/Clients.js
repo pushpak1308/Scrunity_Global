@@ -1,4 +1,11 @@
-import { Button, Grid, Paper, Switch } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Paper,
+  Switch,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setSelectedRows } from "../../../Store/Slice/rowSelectionSlice";
@@ -248,12 +255,15 @@ const Clients = () => {
 
   // console.log("Selected Rows:", checkedRows);
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   const content = (
     <Grid container>
       <Grid
         item
         container
-        className="heading-grid2"
+        className={isMobile ? "heading-grid2-mobile" : "heading-grid2"}
         justifyContent="space-between"
         alignItems="end"
       >
@@ -262,8 +272,15 @@ const Clients = () => {
             CLIENT LIST
           </Paper>
         </Grid>
-        <Grid item container justifyContent="flex-end" spacing={2} md={7}>
-          <Grid item>
+        <Grid
+          item
+          container
+          justifyContent="flex-end"
+          spacing={2}
+          md={7}
+          xs={12}
+        >
+          <Grid item xs={12} display="flex" justifyContent={"flex-end"}>
             <Button
               variant="outlined"
               color="error"
@@ -275,7 +292,7 @@ const Clients = () => {
               Add Project
             </Button>
           </Grid>
-          <Grid item>
+          <Grid item xs={12} display="flex" justifyContent={"flex-end"}>
             <Button
               variant="outlined"
               color="error"
@@ -289,7 +306,7 @@ const Clients = () => {
               View Details
             </Button>
           </Grid>
-          <Grid item>
+          <Grid item xs={12} display="flex" justifyContent={"flex-end"}>
             <Button
               variant="outlined"
               color="error"

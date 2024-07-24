@@ -257,12 +257,19 @@ const Clients = () => {
         justifyContent="space-between"
         alignItems="end"
       >
-        <Grid item>
+        <Grid item xs={12}>
           <Paper elevation={0} className="screenHeading">
             VENDORS LIST
           </Paper>
         </Grid>
-        <Grid item container justifyContent="flex-end" spacing={2} md={7}>
+        <Grid
+          item
+          container
+          justifyContent="flex-end"
+          xs={12}
+          spacing={2}
+          md={7}
+        >
           <Grid item>
             <Button
               variant="outlined"

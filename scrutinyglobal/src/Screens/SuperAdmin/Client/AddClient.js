@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Paper } from "@mui/material";
+import { Grid, Paper, useMediaQuery, useTheme } from "@mui/material";
 import StepForm from "../../../Components/StepForm/Index";
 import { MuiTextField } from "../../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../../MuiComponents/MuiDropDown/Index";
@@ -143,7 +143,7 @@ const AddClient = () => {
 
   const steps = [
     [
-      <Grid item>
+      <Grid item xs={12}>
         <MuiDropDown
           required={true}
           value={clientData.name}
@@ -154,9 +154,9 @@ const AddClient = () => {
           className="forAddClient"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <Grid container spacing={2}>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <MuiTextField
               type="text"
               required={true}
@@ -167,7 +167,7 @@ const AddClient = () => {
               className="forAddClient"
             />
           </Grid>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <MuiTextField
               type="text"
               value={alternateContactName}
@@ -179,9 +179,9 @@ const AddClient = () => {
           </Grid>
         </Grid>
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <Grid container spacing={2}>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <MuiTextField
               type="text"
               required={true}
@@ -192,7 +192,7 @@ const AddClient = () => {
               className="forAddClient"
             />
           </Grid>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <MuiTextField
               type="text"
               value={alternateContactNumber}
@@ -206,7 +206,7 @@ const AddClient = () => {
       </Grid>,
     ],
     [
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="text"
           value={email}
@@ -216,7 +216,7 @@ const AddClient = () => {
           className="forAddClient"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="text"
           value={websiteLink}
@@ -226,7 +226,7 @@ const AddClient = () => {
           className="forAddClient"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <MuiDropDown
           value={status}
           //   defaultValue={reduxData?.accountType || ""}
@@ -238,7 +238,7 @@ const AddClient = () => {
       </Grid>,
     ],
     [
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="text"
           value={address}
@@ -248,9 +248,9 @@ const AddClient = () => {
           className="forAddClient"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <Grid container spacing={2}>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <MuiTextField
               type="text"
               required={true}
@@ -261,7 +261,7 @@ const AddClient = () => {
               className="forAddClient"
             />
           </Grid>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <MuiTextField
               type="text"
               value={currency}
@@ -273,7 +273,7 @@ const AddClient = () => {
           </Grid>
         </Grid>
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="text"
           value={industry}
@@ -308,11 +308,15 @@ const AddClient = () => {
     navigate("/clients");
   };
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   const content = (
     <Grid container alignItems="center" justifyContent="center">
       <Grid
         item
         container
+        xs={12}
         md={7}
         className="form-grid"
         justifyContent="center"
@@ -324,7 +328,7 @@ const AddClient = () => {
           </Paper>
         </Grid>
         <Grid item>
-          <Paper elevation={6} className="form-sub-grid">
+          <Paper elevation={isMobile ? 0 : 6} className="form-sub-grid">
             <StepForm
               steps={steps}
               onSave={handleSave}

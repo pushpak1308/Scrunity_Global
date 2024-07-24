@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Grid, IconButton, Paper, TextField } from "@mui/material";
+import {
+  Grid,
+  IconButton,
+  Paper,
+  TextField,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import StepForm from "../../../Components/StepForm/Index";
 import { MuiTextField } from "../../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../../MuiComponents/MuiDropDown/Index";
@@ -44,6 +51,9 @@ const AddProject = () => {
   const [selectedCountries, setSelectedCountries] = useState(
     clientData[0]?.country ? [clientData[0].country] : []
   );
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   const [selectedRowIds, setSelectedRowIds] = useState([]);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   // const [showErrorModal, setShowErrorModal] = useState(false);
@@ -311,7 +321,7 @@ const AddProject = () => {
 
   const steps = [
     [
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="text"
           value={projectName}
@@ -321,7 +331,7 @@ const AddProject = () => {
           className="forAddProject"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="text"
           value={clientName}
@@ -331,9 +341,9 @@ const AddProject = () => {
           className="forAddProject"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <Grid container spacing={2} justifyContent="space-between">
-          <Grid item md={5}>
+          <Grid item xs={12} md={5}>
             <MuiTextField
               type="text"
               value={contactNumber}
@@ -343,7 +353,7 @@ const AddProject = () => {
               className="forAddProject"
             />
           </Grid>
-          <Grid item md={5}>
+          <Grid item xs={12} md={5}>
             <MuiTextField
               type="text"
               value={alternateContactNumber}
@@ -357,9 +367,9 @@ const AddProject = () => {
       </Grid>,
     ],
     [
-      <Grid item>
+      <Grid item xs={12}>
         <Grid container spacing={2} justifyContent="space-between">
-          <Grid item md={5}>
+          <Grid item xs={12} md={5}>
             <MuiTextField
               type="date"
               value={startDate}
@@ -370,7 +380,7 @@ const AddProject = () => {
               className="forAddProject"
             />
           </Grid>
-          <Grid item md={5}>
+          <Grid item xs={12} md={5}>
             <MuiTextField
               type="date"
               value={endDate}
@@ -384,7 +394,7 @@ const AddProject = () => {
         </Grid>
       </Grid>,
 
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="text"
           value={projectHead}
@@ -393,7 +403,7 @@ const AddProject = () => {
           className="forAddProject"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="text"
           value={spoc}
@@ -405,7 +415,7 @@ const AddProject = () => {
       </Grid>,
     ],
     [
-      <Grid item>
+      <Grid item xs={12}>
         <MuiDropDown
           value={audienceType}
           //   defaultValue={reduxData?.accountType || ""}
@@ -416,7 +426,7 @@ const AddProject = () => {
           className="forAddProject"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="text"
           value={projectBudget}
@@ -426,7 +436,7 @@ const AddProject = () => {
           className="forAddProject"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="text"
           value={description}
@@ -437,7 +447,7 @@ const AddProject = () => {
       </Grid>,
     ],
     [
-      <Grid item>
+      <Grid item xs={12}>
         <MuiDropDown
           value={billingCurrency}
           //   defaultValue={reduxData?.accountType || ""}
@@ -448,7 +458,7 @@ const AddProject = () => {
           className="forAddProject"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <MuiMultiSelectDropdown
           label={"Country"}
           placeholder={"(Select more countries)"}
@@ -458,7 +468,7 @@ const AddProject = () => {
           className="forAddProject"
         />
       </Grid>,
-      <Grid item>
+      <Grid item xs={12}>
         <MuiTextField
           type="file"
           value={document}
@@ -472,7 +482,7 @@ const AddProject = () => {
     [
       <Grid container justifyContent="center" alignItems="center" spacing={2}>
         <Grid item container alignItems="center" xs={12}>
-          <Grid item md={10}>
+          <Grid item xs={8} md={10}>
             <Paper elevation={0} className="datagrid-label">
               Based on your country selection:
             </Paper>
@@ -481,6 +491,7 @@ const AddProject = () => {
             item
             container
             md={2}
+            xs={4}
             justifyContent="flex-end"
             alignItems="center"
           >
@@ -496,7 +507,7 @@ const AddProject = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item className="add-client-datagrid">
+        <Grid item xs={12} className="add-client-datagrid">
           <MuiDataGrid
             rows={rows}
             columns={columns}
@@ -531,6 +542,7 @@ const AddProject = () => {
       <Grid
         item
         container
+        xs={12}
         md={7}
         className="form-grid"
         justifyContent="center"
@@ -542,12 +554,15 @@ const AddProject = () => {
           </Paper>
         </Grid>
         <Grid item container className="content-grid">
-          <Grid item className="fixed-heading">
+          <Grid
+            item
+            className={isMobile ? "fixed-heading-mobile" : "fixed-heading"}
+          >
             {currentStep > 2
               ? "Sampling Requirements"
               : "Project Specifications"}
           </Grid>
-          <Paper elevation={2} className="form-sub-grid">
+          <Paper elevation={isMobile ? 0 : 2} className="form-sub-grid">
             <StepForm
               steps={steps}
               onSave={handleSave}
