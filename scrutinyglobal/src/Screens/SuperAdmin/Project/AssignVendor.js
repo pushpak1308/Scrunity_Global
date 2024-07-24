@@ -22,17 +22,10 @@ const AssignVendor = () => {
   const [terminateURL, setTerminateURL] = useState("");
   const [quotaFullURL, setQuotafulURL] = useState("");
   const [costPerSurvey, setCostPerSurvey] = useState("");
-  const [projectId,setProjectId] = useState("");
+  const [projectId, setProjectId] = useState("");
   const [responseData, setResponseData] = useState([]);
   const [userDataNew, setUserDataNew] = useState([]);
   const navigate = useNavigate();
-
-  const saveVendorDetais = [
-    {
-      projectId : projectId,
-
-    }
-  ]
 
   const vendorGridData = {
     id: [],
@@ -61,7 +54,6 @@ const AssignVendor = () => {
       .then(function (data) {
         setResponseData(data);
         // console.log("response Data", data);
-        
       })
       .catch(function (error) {
         console.error("Error fetching data:", error);
@@ -93,13 +85,12 @@ const AssignVendor = () => {
       });
       userDataConverted = [...userDataConverted, newObj];
     }
-    console.log("testing",userDataNew);
-    
+    console.log("testing", userDataNew);
+
     return userDataConverted;
   }
 
-  console.log("testing outside",userDataNew);
-  
+  console.log("testing outside", userDataNew);
 
   const handleVendorChange = (event) => {
     const {
@@ -115,7 +106,7 @@ const AssignVendor = () => {
 
     setSelectedVendors(updatedSelectedVendors);
     setSelectedRowIds([]);
-    console.log("testing selectedVendors",selectedVendors);
+    console.log("testing selectedVendors", selectedVendors);
   };
 
   const handleEditChange = (id, field, value) => {
@@ -135,6 +126,21 @@ const AssignVendor = () => {
   };
 
   const handleSave = () => {
+    const vendorMappingDetails = selectedVendors.map((vendor) => ({
+      venderId: vendor.id,
+      successURL: vendor.successURL,
+      terminateURL: vendor.terminateURL,
+      quotaFullURL: vendor.quotafullURL,
+      rate: vendor.costPerSurvey,
+    }));
+    // clo;
+    const saveVendorDetails = [
+      {
+        projectId: projectId,
+        venderMappingDetails: vendorMappingDetails,
+      },
+    ];
+
     fetch(`${API_PREFIX}saveVenderDetails`, {
       // mode: 'no-cors',
       method: "POST",
@@ -142,7 +148,7 @@ const AssignVendor = () => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(selectedVendors),
+      body: JSON.stringify(saveVendorDetails),
     });
     setShowSuccessModal(true);
   };
