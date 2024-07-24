@@ -28,6 +28,7 @@ const AssignVendor = () => {
   const [userDataNew, setUserDataNew] = useState([]);
   const navigate = useNavigate();
 
+  console.log("projectId :>> ", projectId);
   const vendorGridData = {
     id: [],
     vendorName: [],
