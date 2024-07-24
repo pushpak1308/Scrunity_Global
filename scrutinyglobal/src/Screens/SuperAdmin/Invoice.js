@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Paper } from "@mui/material";
+import { Grid, Paper, useMediaQuery } from "@mui/material";
 import InvoiceImage from "./../../Images/Invoice/InvoiceImage.svg";
 import "./Style.css";
 import { MuiDropDown } from "../../MuiComponents/MuiDropDown/Index";
@@ -18,127 +18,105 @@ const Invoice = () => {
   const [costPerSurvey, setCostPerSurvey] = useState("");
   const [show, setShow] = useState(false);
 
-  const onChangeVendor = (e) => {
-    setVendor(e.target.value);
-  };
-  const onChangeProject = (e) => {
-    setProject(e.target.value);
-  };
-  const onChangeCountry = (e) => {
-    setCountry(e.target.value);
-  };
-  const onChangeCurrency = (e) => {
-    setCurrency(e.target.value);
-  };
-  const onChangeDate = (e) => {
-    setDate(e.target.value);
-  };
-  const onChangeSuccessfulSurveys = (e) => {
-    setSuccessfulSurveys(e.target.value);
-  };
-  const onChangeCostPerSurvey = (e) => {
-    setCostPerSurvey(e.target.value);
-  };
+  const isMobile = useMediaQuery("(max-width:600px)");
 
-  const handleSubmit = () => {
+  const onChangeVendor = (e) => setVendor(e.target.value);
+  const onChangeProject = (e) => setProject(e.target.value);
+  const onChangeCountry = (e) => setCountry(e.target.value);
+  const onChangeCurrency = (e) => setCurrency(e.target.value);
+  const onChangeDate = (e) => setDate(e.target.value);
+  const onChangeSuccessfulSurveys = (e) => setSuccessfulSurveys(e.target.value);
+  const onChangeCostPerSurvey = (e) => setCostPerSurvey(e.target.value);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setShow(true);
   };
 
-  const handleClose = () => {
-    setShow(false);
-  };
+  const handleClose = () => setShow(false);
 
   const content = (
-    <>
-      <Grid container className="dashboard-container">
-        <Grid
-          className="sub-container"
-          container
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          <Grid item xs={12} md={5}>
-            <Paper elevation={2} className="invoice-form">
-              <form onSubmit={handleSubmit}>
-                <Grid item xs={12} className="addPadding">
-                  <MuiDropDown
-                    value={vendor}
-                    onChange={onChangeVendor}
-                    options={["client 1", "client 2", "client 3"]} // Example options
-                    label="Vendor"
-                    className="forRegister"
-                  />
-                </Grid>
-                <Grid item xs={12} className="addPadding">
-                  <MuiDropDown
-                    value={project}
-                    onChange={onChangeProject}
-                    options={["project 1", "project 2", "project 3"]} // Example options
-                    label="Project"
-                    className="forRegister"
-                  />
-                </Grid>
-                <Grid item xs={12} className="addPadding">
+    <Grid container className="dashboard-container">
+      <Grid
+        container
+        className={isMobile ? "" : "sub-container"}
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Grid item xs={12} md={5}>
+          <Paper elevation={isMobile ? 0 : 2} className="invoice-form">
+            <form onSubmit={handleSubmit}>
+              <Grid item xs={12} className="addPadding">
+                <MuiDropDown
+                  value={vendor}
+                  onChange={onChangeVendor}
+                  options={["client 1", "client 2", "client 3"]}
+                  label="Vendor"
+                  className="forRegister"
+                />
+              </Grid>
+              <Grid item xs={12} className="addPadding">
+                <MuiDropDown
+                  value={project}
+                  onChange={onChangeProject}
+                  options={["project 1", "project 2", "project 3"]}
+                  label="Project"
+                  className="forRegister"
+                />
+              </Grid>
+              <Grid item xs={12} className="addPadding">
+                <MuiTextField
+                  type="date"
+                  value={date}
+                  label="Select Date"
+                  placeholder="01-02-2001"
+                  onChange={onChangeDate}
+                  className="forRegister"
+                />
+              </Grid>
+              <Grid container spacing={3} className="addPadding">
+                <Grid item xs={12} md={6}>
                   <MuiTextField
-                    type="date"
-                    value={date}
-                    label="Select Date"
-                    placeholder={"01-02-2001"}
-                    onChange={onChangeDate}
+                    type="text"
+                    value={country}
+                    label="Country"
+                    onChange={onChangeCountry}
                     className="forRegister"
                   />
                 </Grid>
-                <Grid container spacing={3} className="addPadding">
-                  <Grid item xs={12} md={6}>
-                    <MuiTextField
-                      type="text"
-                      value={country}
-                      label="Country"
-                      onChange={onChangeCountry}
-                      className="forRegister"
-                    />
-                  </Grid>
-                  <Grid item xs={12} md={6}>
-                    <MuiTextField
-                      type="text"
-                      value={currency}
-                      label="Currency"
-                      onChange={onChangeCurrency}
-                      className="forRegister"
-                    />
-                    {/* <MuiDropDown
-                      value={currency}
-                      onChange={onChangeCurrency}
-                      options={["currency 1", "currency 2", "currency 3"]} // Example options
-                      label="Currency"
-                      className="forRegister"
-                    /> */}
-                  </Grid>
+                <Grid item xs={12} md={6}>
+                  <MuiTextField
+                    type="text"
+                    value={currency}
+                    label="Currency"
+                    onChange={onChangeCurrency}
+                    className="forRegister"
+                  />
                 </Grid>
-                <Grid container spacing={3} className="addPadding">
-                  <Grid item xs={12} md={6}>
-                    <MuiTextField
-                      name="successfulSurveys"
-                      type="text"
-                      value={successfulSurveys}
-                      label="Successful Surveys"
-                      onChange={onChangeSuccessfulSurveys}
-                      className="forRegister"
-                    />
-                  </Grid>
-                  <Grid item xs={12} md={6}>
-                    <MuiTextField
-                      name="costPerSurvey"
-                      type="text"
-                      value={costPerSurvey}
-                      label="Cost/Survey"
-                      placeholder="Ex: Rs 40"
-                      onChange={onChangeCostPerSurvey}
-                      className="forRegister"
-                    />
-                  </Grid>
+              </Grid>
+              <Grid container spacing={3} className="addPadding">
+                <Grid item xs={12} md={6}>
+                  <MuiTextField
+                    name="successfulSurveys"
+                    type="text"
+                    value={successfulSurveys}
+                    label="Successful Surveys"
+                    onChange={onChangeSuccessfulSurveys}
+                    className="forRegister"
+                  />
                 </Grid>
-              </form>
+                <Grid item xs={12} md={6}>
+                  <MuiTextField
+                    name="costPerSurvey"
+                    type="text"
+                    value={costPerSurvey}
+                    label="Cost/Survey"
+                    placeholder="Ex: Rs 40"
+                    onChange={onChangeCostPerSurvey}
+                    className="forRegister"
+                  />
+                </Grid>
+              </Grid>
               <Grid
                 container
                 justifyContent="space-evenly"
@@ -147,25 +125,26 @@ const Invoice = () => {
               >
                 <Grid item>
                   <MuiContainedButton
-                    buttonText={"Generate Invoice"}
-                    onClickFunction={handleSubmit}
+                    buttonText="Generate Invoice"
                     type="submit"
                   />
                 </Grid>
                 <Grid item>
                   <MuiContainedButton
-                    buttonText={"Generate PO"}
+                    buttonText="Generate PO"
                     onClickFunction={handleSubmit}
                     type="button"
                   />
                 </Grid>
               </Grid>
-            </Paper>
-          </Grid>
-          <Grid item xs={12} md={6}>
+            </form>
+          </Paper>
+        </Grid>
+        {!isMobile && (
+          <Grid item md={6}>
             <img src={InvoiceImage} alt="invoice" className="invoiceImage" />
           </Grid>
-        </Grid>
+        )}
       </Grid>
       <InvoiceModal
         show={show}
@@ -174,7 +153,7 @@ const Invoice = () => {
         costPerSurvey={costPerSurvey}
         successfulSurveys={successfulSurveys}
       />
-    </>
+    </Grid>
   );
 
   return <Layout content={content} navbarHeading="SALES MODULE" />;

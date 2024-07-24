@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import Layout from "../Layout";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import LabelValueCard from "../../../Components/LabelValueCard/Index";
 import "../Client/Style.css";
 import { useSelector } from "react-redux";
@@ -10,7 +10,6 @@ import { selectedRow } from "../../../Store/Slice/rowSelectionSlice";
 const ProjectDetail = () => {
   const dataArray = useSelector(selectedRow);
   const [isEditable, setIsEditable] = useState(false);
-  // const { id } = useParams();
 
   const handleEditClick = () => {
     setIsEditable(!isEditable);
@@ -26,12 +25,28 @@ const ProjectDetail = () => {
       quotafullURL: "exampleURL.com",
       costPerSurvey: "45",
     },
-    // Add more vendors as needed
+    {
+      vendorName: "Vendor Name",
+      successURL: "exampleURL.com",
+      terminateURL: "exampleURL.com",
+      quotafullURL: "exampleURL.com",
+      costPerSurvey: "45",
+    },
+    {
+      vendorName: "Vendor Name",
+      successURL: "exampleURL.com",
+      terminateURL: "exampleURL.com",
+      quotafullURL: "exampleURL.com",
+      costPerSurvey: "45",
+    },
   ];
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   const content = (
-    <Grid container className="client-detail-grid">
-      <Grid item md={11.5} textAlign="right">
+    <Grid container className="client-detail-grid" spacing={2}>
+      <Grid item xs={12} md={11.5} textAlign="right">
         <EditIcon
           color="primary"
           fontSize="large"
@@ -39,12 +54,12 @@ const ProjectDetail = () => {
           onClick={handleEditClick}
         />
       </Grid>
-      <Grid item className="section-heading">
+      <Grid item xs={12} className="section-heading">
         Project & Client Information
       </Grid>
-      <Grid item container md={10}>
-        <Grid item container md={8}>
-          <Grid item className="one-in-a-row">
+      <Grid item container xs={12} md={10} spacing={2}>
+        <Grid item xs={12} md={8}>
+          <Grid item xs={12} className={isMobile ? "" : "one-in-a-row"}>
             <LabelValueCard
               label={"Project Name"}
               disabled={!isEditable}
@@ -53,7 +68,7 @@ const ProjectDetail = () => {
               }
             />
           </Grid>
-          <Grid item className="one-in-a-row">
+          <Grid item xs={12} className={isMobile ? "" : "one-in-a-row"}>
             <LabelValueCard
               label={"Client Name"}
               value={dataArray[0]?.clientName ? dataArray[0]?.clientName : ""}
@@ -61,15 +76,15 @@ const ProjectDetail = () => {
             />
           </Grid>
         </Grid>
-        <Grid item container spacing={5}>
-          <Grid item md={6}>
+        <Grid item container xs={12} spacing={2}>
+          <Grid item xs={12} md={6}>
             <LabelValueCard
               label="Contact Number"
               value={dataArray[0]?.number ? dataArray[0]?.number : ""}
               disabled={!isEditable}
             />
           </Grid>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <LabelValueCard
               label="Alt. Contact Number"
               value={
@@ -81,8 +96,8 @@ const ProjectDetail = () => {
             />
           </Grid>
         </Grid>
-        <Grid item container spacing={5}>
-          <Grid item md={6}>
+        <Grid item container xs={12} spacing={2}>
+          <Grid item xs={12} md={6}>
             <LabelValueCard
               label="Start Date"
               value={
@@ -93,7 +108,7 @@ const ProjectDetail = () => {
               disabled={!isEditable}
             />
           </Grid>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <LabelValueCard
               label="End Date"
               value={
@@ -105,8 +120,8 @@ const ProjectDetail = () => {
             />
           </Grid>
         </Grid>
-        <Grid item container spacing={5}>
-          <Grid item md={6}>
+        <Grid item container xs={12} spacing={2}>
+          <Grid item xs={12} md={6}>
             <LabelValueCard
               label="Project Head"
               value={
@@ -117,7 +132,7 @@ const ProjectDetail = () => {
               disabled={!isEditable}
             />
           </Grid>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <LabelValueCard
               label="Pre Sales SPOC"
               value={
@@ -127,8 +142,8 @@ const ProjectDetail = () => {
             />
           </Grid>
         </Grid>
-        <Grid item container spacing={5}>
-          <Grid item md={6}>
+        <Grid item container xs={12} spacing={2}>
+          <Grid item xs={12} md={6}>
             <LabelValueCard
               label="Audience Type"
               value={
@@ -137,7 +152,7 @@ const ProjectDetail = () => {
               disabled={!isEditable}
             />
           </Grid>
-          <Grid item md={6}>
+          <Grid item xs={12} md={6}>
             <LabelValueCard
               label="Project Budget"
               value={
@@ -151,10 +166,10 @@ const ProjectDetail = () => {
         </Grid>
       </Grid>
 
-      <Grid item className="section-heading">
+      <Grid item xs={12} className="section-heading">
         Assigned Vendors
       </Grid>
-      <Grid item className="assignVendor-parent-container">
+      <Grid item xs={12} className="assignVendor-parent-container">
         {vendorLength === 0 ? (
           <Typography textAlign={"center"}>No vendors assigned yet</Typography>
         ) : (
@@ -162,16 +177,17 @@ const ProjectDetail = () => {
             <Grid
               item
               container
-              md={7}
+              xs={12}
+              md={9}
               key={index}
-              className="assign-vendor-container"
+              className={isMobile ? "" : "assign-vendor-container"}
             >
-              <Grid item>
+              <Grid item xs={12}>
                 <Typography className="vendor-name">
                   {item.vendorName}
                 </Typography>
               </Grid>
-              <Grid item container alignItems="center">
+              <Grid item container alignItems="center" xs={12}>
                 <Grid item>
                   <Typography className="vendor-name"> Success URL:</Typography>
                 </Grid>
@@ -179,7 +195,7 @@ const ProjectDetail = () => {
                   <Typography> {item.successURL}</Typography>
                 </Grid>
               </Grid>
-              <Grid item container alignItems="center">
+              <Grid item container alignItems="center" xs={12}>
                 <Grid item>
                   <Typography className="vendor-name">
                     {" "}
@@ -190,7 +206,7 @@ const ProjectDetail = () => {
                   <Typography> {item.quotafullURL}</Typography>
                 </Grid>
               </Grid>
-              <Grid item container alignItems="center">
+              <Grid item container alignItems="center" xs={12}>
                 <Grid item>
                   <Typography className="vendor-name">
                     {" "}
@@ -201,7 +217,7 @@ const ProjectDetail = () => {
                   <Typography> {item.terminateURL}</Typography>
                 </Grid>
               </Grid>
-              <Grid item container alignItems="center">
+              <Grid item container alignItems="center" xs={12}>
                 <Grid item>
                   <Typography className="vendor-name"> Cost/survey:</Typography>
                 </Grid>

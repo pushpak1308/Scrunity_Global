@@ -4,7 +4,7 @@ import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import { useNavigate } from "react-router-dom";
 import MuiDataGrid from "../../../MuiComponents/MuiDataGrid/Index";
-import { Button, Grid, Paper } from "@mui/material";
+import { Button, Grid, Paper, useMediaQuery, useTheme } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
 import { useDispatch } from "react-redux";
 import { setSelectedRows } from "../../../Store/Slice/rowSelectionSlice";
@@ -18,6 +18,8 @@ const Projects = () => {
   const [responseData, setResponseData] = useState([]);
   const [surveyResponseData, setSurveyResponseData] = useState([]);
   const [projectDetailsData, setProjectDetailsData] = useState([]);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   let projectData = {
     id: [],
@@ -379,7 +381,7 @@ const Projects = () => {
       <Grid
         item
         container
-        className="heading-grid2"
+        className={isMobile ? "heading-grid2-mobile" : "heading-grid2"}
         justifyContent="space-between"
         alignItems="end"
       >
@@ -388,8 +390,15 @@ const Projects = () => {
             PROJECT LIST
           </Paper>
         </Grid>
-        <Grid item container justifyContent="flex-end" spacing={2} md={7}>
-          <Grid item>
+        <Grid
+          item
+          container
+          justifyContent="flex-end"
+          spacing={2}
+          xs={12}
+          md={7}
+        >
+          <Grid item xs={12} display="flex" justifyContent={"flex-end"}>
             <Button
               variant="outlined"
               color="error"
@@ -403,7 +412,7 @@ const Projects = () => {
               Assign Vendor
             </Button>
           </Grid>
-          <Grid item>
+          <Grid item xs={12} display="flex" justifyContent={"flex-end"}>
             <Button
               variant="outlined"
               color="error"
@@ -417,7 +426,7 @@ const Projects = () => {
               View Details
             </Button>
           </Grid>
-          <Grid item>
+          <Grid item xs={12} display="flex" justifyContent={"flex-end"}>
             <Button
               variant="outlined"
               color="error"
