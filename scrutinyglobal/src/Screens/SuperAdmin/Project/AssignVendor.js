@@ -22,37 +22,17 @@ const AssignVendor = () => {
   const [terminateURL, setTerminateURL] = useState("");
   const [quotaFullURL, setQuotafulURL] = useState("");
   const [costPerSurvey, setCostPerSurvey] = useState("");
+  const [projectId,setProjectId] = useState("");
   const [responseData, setResponseData] = useState([]);
   const [userDataNew, setUserDataNew] = useState([]);
   const navigate = useNavigate();
 
-  const vendors = [
+  const saveVendorDetais = [
     {
-      id: 1,
-      vendorName: "Vendor 1",
-      successURL: "exampleURL.com",
-      terminateURL: "exampleURL.com",
-      quotafullURL: "exampleURL.com",
-      costPerSurvey: "45",
-    },
-    {
-      id: 2,
-      vendorName: "Vendor 2",
-      successURL: "exampleURL.com",
-      terminateURL: "exampleURL.com",
-      quotafullURL: "exampleURL.com",
-      costPerSurvey: "45",
-    },
-    {
-      id: 3,
-      vendorName: "Vendor 3",
-      successURL:
-        "exampleURL.comexampleURL.comexampleURL.comexampleURL.comexampleURL.comexampleURL.com",
-      terminateURL: "exampleURL.com",
-      quotafullURL: "exampleURL.com",
-      costPerSurvey: "45",
-    },
-  ];
+      projectId : projectId,
+
+    }
+  ]
 
   const vendorGridData = {
     id: [],
@@ -64,10 +44,10 @@ const AssignVendor = () => {
   };
 
   useEffect(() => {
-    getClientData();
+    getVendorData();
   }, []);
 
-  function getClientData() {
+  function getVendorData() {
     fetch(`${API_PREFIX}getListAsAccountType?accountType=vendor`, {
       method: "GET",
       headers: {
@@ -81,6 +61,7 @@ const AssignVendor = () => {
       .then(function (data) {
         setResponseData(data);
         // console.log("response Data", data);
+        
       })
       .catch(function (error) {
         console.error("Error fetching data:", error);
@@ -112,7 +93,13 @@ const AssignVendor = () => {
       });
       userDataConverted = [...userDataConverted, newObj];
     }
+    console.log("testing",userDataNew);
+    
+    return userDataConverted;
   }
+
+  console.log("testing outside",userDataNew);
+  
 
   const handleVendorChange = (event) => {
     const {
@@ -122,12 +109,13 @@ const AssignVendor = () => {
     const selectedVendorNames =
       typeof value === "string" ? value.split(",") : value;
     const updatedSelectedVendors = selectedVendorNames.map((vendorName) =>
-      vendors.find((vendor) => vendor.vendorName === vendorName)
+      userDataNew.find((vendor) => vendor.vendorName === vendorName)
     );
     // const selectedVendorList = userDataNew.map((vendor) => vendor.vendorName === value);
 
-    setSelectedVendors(event.target.value);
+    setSelectedVendors(updatedSelectedVendors);
     setSelectedRowIds([]);
+    console.log("testing selectedVendors",selectedVendors);
   };
 
   const handleEditChange = (id, field, value) => {
@@ -147,6 +135,15 @@ const AssignVendor = () => {
   };
 
   const handleSave = () => {
+    fetch(`${API_PREFIX}saveVenderDetails`, {
+      // mode: 'no-cors',
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(selectedVendors),
+    });
     setShowSuccessModal(true);
   };
 
@@ -286,6 +283,29 @@ const AssignVendor = () => {
           params.value
         ),
     },
+    {
+      field: "Target Surveys",
+      headerName: "Target Surveys",
+      width: 190,
+      align: "center",
+      editable: false,
+      headerClassName: "dataGrid-header",
+      cellClassName: "dataGrid-cell",
+      headerAlign: "center",
+
+      renderCell: (params) =>
+        edit ? (
+          <TextField
+            variant="standard"
+            value={params.value}
+            onChange={(e) =>
+              handleEditChange(params.id, params.field, e.target.value)
+            }
+          />
+        ) : (
+          params.value
+        ),
+    },
   ];
 
   const content = (
@@ -300,12 +320,9 @@ const AssignVendor = () => {
         <Grid item md={5} xs={12}>
           <MuiMultiSelectDropdown
             label={"Vendor"}
-            value={selectedVendors}
+            value={selectedVendors.map((vendor) => vendor.vendorName)}
             onChange={handleVendorChange}
-            options={vendorGridData.vendorName.map((vendor) => ({
-              value: vendor,
-              label: vendor,
-            }))}
+            options={userDataNew.map((element) => element.vendorName)}
           />
         </Grid>
         <Grid
