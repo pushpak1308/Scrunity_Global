@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import Layout from "../Layout";
 import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
@@ -41,14 +41,14 @@ const ProjectDetail = () => {
       });
   }
   const vendorGridData = {
-    vendorName:[],
+    vendorName: [],
     successURL: [],
     terminateURL: [],
     quotafullURL: [],
     costPerSurvey: [],
-  }
+  };
 
-  const [userDataNew,setUserDataNew] = useState([]);
+  const [userDataNew, setUserDataNew] = useState([]);
   useEffect(() => {
     setUserDataNew(convertData(responseData));
   }, [responseData]);

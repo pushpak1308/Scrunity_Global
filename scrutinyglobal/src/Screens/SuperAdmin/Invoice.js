@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, Paper, useMediaQuery } from "@mui/material";
 import InvoiceImage from "./../../Images/Invoice/InvoiceImage.svg";
 import "./Style.css";
@@ -7,9 +7,10 @@ import { MuiTextField } from "../../MuiComponents/MuiTextField/Index";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 import InvoiceModal from "../../Components/InvoiceModal/Index";
 import Layout from "./Layout";
+import { API_PREFIX } from "../../config";
 
 const Invoice = () => {
-  const [client, setclient] = useState("");
+  const [client, setClient] = useState("");
   const [project, setProject] = useState("");
   const [country, setCountry] = useState("");
   const [currency, setCurrency] = useState("");
@@ -17,10 +18,24 @@ const Invoice = () => {
   const [successfulSurveys, setSuccessfulSurveys] = useState("");
   const [costPerSurvey, setCostPerSurvey] = useState("");
   const [show, setShow] = useState(false);
+  const [responseData, setResponseData] = useState(false);
+  const [projectOptions, setProjectOptions] = useState([]);
+  const [clientOptions, setClientOptions] = useState([]);
 
   const isMobile = useMediaQuery("(max-width:600px)");
 
-  const onChangeclient = (e) => setclient(e.target.value);
+  const onChangeClient = (e) => {
+    const selectedClient = e.target.value;
+    setClient(selectedClient);
+
+    const clientData = responseData.find(
+      (client) =>
+        client.contact_name === selectedClient || client.name === selectedClient
+    );
+    if (clientData) {
+      setCountry(clientData.country);
+    }
+  };
   const onChangeProject = (e) => setProject(e.target.value);
   const onChangeCountry = (e) => setCountry(e.target.value);
   const onChangeCurrency = (e) => setCurrency(e.target.value);
@@ -32,6 +47,34 @@ const Invoice = () => {
     e.preventDefault();
     setShow(true);
   };
+
+  useEffect(() => {
+    getProjectData();
+  }, []);
+
+  function getProjectData() {
+    fetch(`${API_PREFIX}getProjectList`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        setResponseData(data);
+        const projectNames = data.map((project) => project.project_name);
+        const clientNames = data.map((client) => client.name);
+        setProjectOptions(projectNames);
+        setClientOptions(clientNames);
+        // console.log("response Data", data);
+      })
+      .catch(function (error) {
+        console.error("Error fetching data:", error);
+      });
+  }
 
   const handleClose = () => setShow(false);
 
@@ -47,10 +90,10 @@ const Invoice = () => {
           <Paper elevation={isMobile ? 0 : 2} className="invoice-form">
             <form onSubmit={handleSubmit}>
               <Grid item xs={12} className="addPadding">
-              <MuiDropDown
+                <MuiDropDown
                   value={project}
                   onChange={onChangeProject}
-                  options={["project 1", "project 2", "project 3"]}
+                  options={projectOptions}
                   label="Project"
                   className="forRegister"
                 />
@@ -58,8 +101,8 @@ const Invoice = () => {
               <Grid item xs={12} className="addPadding">
                 <MuiDropDown
                   value={client}
-                  onChange={onChangeclient}
-                  options={["client 1", "client 2", "client 3"]}
+                  onChange={onChangeClient}
+                  options={clientOptions}
                   label="Client"
                   className="forRegister"
                 />
