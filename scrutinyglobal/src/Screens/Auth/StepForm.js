@@ -143,7 +143,12 @@ const StepForm = ({
               type="button"
               onClickFunction={incrementFormStep}
               buttonText={"Next"}
-              disabled={confirmPassword !== password || password === ""}
+              disabled={
+                confirmPassword !== password ||
+                password === "" ||
+                email === "" ||
+                name === ""
+              }
             />
           </Grid>
         </Grid>
@@ -202,6 +207,7 @@ const StepForm = ({
               type="button"
               onClickFunction={incrementFormStep}
               buttonText={"Next"}
+              disabled={accountType === "" || number === "" || birthdate === ""}
             />
           </Grid>
         </Grid>
@@ -289,6 +295,13 @@ const StepForm = ({
               type="button"
               onClickFunction={incrementFormStep}
               buttonText={"Next"}
+              disabled={
+                country === "" ||
+                zipcode === "" ||
+                state === "" ||
+                city === "" ||
+                address === ""
+              }
             />
           </Grid>
         </Grid>
@@ -350,6 +363,9 @@ const StepForm = ({
               type="button"
               onClickFunction={onClick}
               buttonText={"Save"}
+              disabled={
+                profession === "" || experience === "" || monthlySalary === ""
+              }
             />
           </Grid>
         </Grid>

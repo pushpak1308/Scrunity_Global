@@ -405,7 +405,7 @@ const Dashboard = () => {
           />
         </Grid>
       </Grid>
-      <Grid item md={12}>
+      <Grid item className="dashboard-list-datagrid">
         <MuiDataGrid
           rows={userDataNew}
           columns={columns}
