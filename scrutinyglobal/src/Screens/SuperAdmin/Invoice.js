@@ -172,13 +172,13 @@ const Invoice = () => {
                     type="submit"
                   />
                 </Grid>
-                <Grid item>
+                {/* <Grid item>
                   <MuiContainedButton
                     buttonText="Generate PO"
                     onClickFunction={handleSubmit}
                     type="button"
                   />
-                </Grid>
+                </Grid> */}
               </Grid>
             </form>
           </Paper>
