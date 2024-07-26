@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Grid } from "@mui/material";
+import { Button, Divider, Grid, useMediaQuery, useTheme } from "@mui/material";
 import InfoCard from "../../Components/InfoCard/Index";
 import "./Style.css";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
@@ -10,6 +10,7 @@ import Vector from "../../Images/Dashboard/Vector.png";
 import Layout from "./Layout";
 import MuiDataGrid from "../../MuiComponents/MuiDataGrid/Index";
 import { API_PREFIX } from "../../config";
+import InfoCardMobile from "../../MobileComponent/InfoCardMobile/Index";
 
 const Dashboard = () => {
   const [approved, setApproved] = useState(false);
@@ -382,34 +383,66 @@ const Dashboard = () => {
   //   return userDataNew.id;
   // }
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   const content = (
     <Grid container className="dashboard-container">
-      <Grid item container justifyContent="space-between" alignItems="center">
-        <Grid item xs={12} md={3}>
-          <InfoCard
-            title="New Leads"
-            value="21"
-            subtitle="This week"
-            image={Group}
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <InfoCard title="Leads Approved" value="20" subtitle="This week" />
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <InfoCard
-            title="Ongoing Projects"
-            value="50"
-            subtitle="CAWI"
-            image={Vector}
-          />
-        </Grid>
+      <Grid
+        item
+        container
+        justifyContent="space-between"
+        alignItems="center"
+        className={isMobile ? "infomobile-container" : ""}
+      >
+        {isMobile ? (
+          <>
+            <Grid item xs={3}>
+              <InfoCardMobile title="20+" text="New Leads this week" />
+            </Grid>
+            <Divider orientation="vertical" variant="middle" flexItem />
+            <Grid item xs={3}>
+              <InfoCardMobile title="20+" text="Leads approved" />
+            </Grid>
+            <Divider orientation="vertical" variant="middle" flexItem />
+            <Grid item xs={3}>
+              <InfoCardMobile title="50+" text="Ongoing Projects" />
+            </Grid>
+          </>
+        ) : (
+          <>
+            <Grid item md={3}>
+              <InfoCard
+                title="New Leads"
+                value="21"
+                subtitle="This week"
+                image={Group}
+              />
+            </Grid>
+            <Grid item md={4}>
+              <InfoCard
+                title="Leads Approved"
+                value="20"
+                subtitle="This week"
+              />
+            </Grid>
+            <Grid item md={3}>
+              <InfoCard
+                title="Ongoing Projects"
+                value="50"
+                subtitle="CAWI"
+                image={Vector}
+              />
+            </Grid>
+          </>
+        )}
       </Grid>
       <Grid item className="dashboard-list-datagrid">
         <MuiDataGrid
           rows={userDataNew}
           columns={columns}
           getRowId={(row) => row.id}
+          disablePagination={isMobile}
         />
       </Grid>
     </Grid>

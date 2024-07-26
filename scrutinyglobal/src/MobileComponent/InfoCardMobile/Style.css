@@ -1,0 +1,24 @@
+.title-mobile {
+  font-family: "Arimo" !important;
+  font-size: 200% !important;
+  font-weight: 700 !important;
+  line-height: 34.2px;
+  text-align: center;
+  color: #31baf4;
+  /* padding-left: 8%; */
+}
+
+.text-mobile {
+  font-family: "Arimo" !important;
+  font-size: 90% !important;
+  font-weight: 400 !important;
+  line-height: 14.96px;
+  text-align: center;
+  color: #000000;
+  margin-top: 8%;
+}
+
+.infoCard-mobile {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

@@ -43,6 +43,7 @@ const MuiDataGrid = ({
     pageSize: disablePagination ? rows.length : PAGE_SIZE,
     page: 0,
   });
+  console.log("disablePagination :>> ", disablePagination);
 
   return (
     <Grid container className="data-grid-container">

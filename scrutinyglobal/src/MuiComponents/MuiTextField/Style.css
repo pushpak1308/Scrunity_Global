@@ -32,7 +32,8 @@
 .forAddProject {
   font-family: "Arimo" !important;
   font-size: 100% !important;
-  font-weight: 400 !important;
+  font-weight: 600 !important;
   padding: 0.5rem !important;
   width: 100%;
+  color: black !important;
 }

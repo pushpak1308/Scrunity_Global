@@ -1,6 +1,7 @@
 import {
   Button,
   Grid,
+  IconButton,
   Paper,
   Switch,
   useMediaQuery,
@@ -272,43 +273,81 @@ const Clients = () => {
             CLIENT LIST
           </Paper>
         </Grid>
-        <Grid item container justifyContent="flex-end" spacing={2} md={7}>
+        <Grid
+          item
+          container
+          justifyContent="flex-end"
+          alignItems="center"
+          spacing={2}
+          md={7}
+        >
           <Grid item>
-            <Button
-              variant="outlined"
-              color="error"
-              onClick={handleAddProject}
-              className="client-button add-class"
-              disabled={checkedRows.length === 0}
-              startIcon={<AddIcon color="success" fontSize="large" />}
-            >
-              Add Project
-            </Button>
+            {isMobile ? (
+              <IconButton
+                onClick={handleAddProject}
+                disabled={checkedRows.length === 0}
+                className="mobile-button"
+              >
+                <AddIcon color="success" />
+              </IconButton>
+            ) : (
+              <Button
+                variant="outlined"
+                color="error"
+                onClick={handleAddProject}
+                className="client-button add-class"
+                disabled={checkedRows.length === 0}
+                startIcon={<AddIcon color="success" fontSize="large" />}
+              >
+                Add Project
+              </Button>
+            )}
           </Grid>
           <Grid item>
-            <Button
-              variant="outlined"
-              color="error"
-              onClick={handleRowClick}
-              className="client-button export-class"
-              disabled={checkedRows.length === 0}
-              startIcon={
-                <DescriptionOutlinedIcon color="primary" size="large" />
-              }
-            >
-              View Details
-            </Button>
+            {isMobile ? (
+              <IconButton
+                onClick={handleRowClick}
+                disabled={checkedRows.length === 0}
+                className="mobile-button"
+              >
+                <DescriptionOutlinedIcon color="primary" />
+              </IconButton>
+            ) : (
+              <Button
+                variant="outlined"
+                color="error"
+                onClick={handleRowClick}
+                className="client-button export-class"
+                disabled={checkedRows.length === 0}
+                startIcon={
+                  <DescriptionOutlinedIcon color="primary" size="large" />
+                }
+              >
+                View Details
+              </Button>
+            )}
           </Grid>
           <Grid item>
-            <Button
-              variant="outlined"
-              color="error"
-              className="client-button delete-class"
-              disabled={checkedRows.length === 0}
-              startIcon={<DeleteOutlinedIcon color="error" fontSize="large" />}
-            >
-              Delete
-            </Button>
+            {isMobile ? (
+              <IconButton
+                disabled={checkedRows.length === 0}
+                className="mobile-button"
+              >
+                <DeleteOutlinedIcon color="error" />
+              </IconButton>
+            ) : (
+              <Button
+                variant="outlined"
+                color="error"
+                className="client-button delete-class"
+                disabled={checkedRows.length === 0}
+                startIcon={
+                  <DeleteOutlinedIcon color="error" fontSize="large" />
+                }
+              >
+                Delete
+              </Button>
+            )}
           </Grid>
         </Grid>
       </Grid>

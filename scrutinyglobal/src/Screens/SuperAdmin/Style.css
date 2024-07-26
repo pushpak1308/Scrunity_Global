@@ -15,12 +15,17 @@
 }
 
 .dashboard-container {
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .materialIcon {
   font-size: 5rem;
+}
+
+.infomobile-container {
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
 }
 
 /* Invoice */
