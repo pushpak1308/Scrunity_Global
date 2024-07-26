@@ -4,7 +4,14 @@ import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import { useNavigate } from "react-router-dom";
 import MuiDataGrid from "../../../MuiComponents/MuiDataGrid/Index";
-import { Button, Grid, Paper, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Button,
+  Grid,
+  IconButton,
+  Paper,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
 import { useDispatch } from "react-redux";
 import { setSelectedRows } from "../../../Store/Slice/rowSelectionSlice";
@@ -120,7 +127,7 @@ const Projects = () => {
     {
       field: "audienceType",
       headerName: "Audience Type",
-      width: 170,
+      width: 200,
       align: "center",
       editable: false,
       headerClassName: "dataGrid-header",
@@ -140,7 +147,7 @@ const Projects = () => {
     {
       field: "billingCurrency",
       headerName: "Billing Currency",
-      width: 170,
+      width: 200,
       align: "center",
       editable: false,
       headerClassName: "dataGrid-header",
@@ -152,7 +159,7 @@ const Projects = () => {
       align: "center",
       editable: false,
       headerName: "Contact Name",
-      width: 160,
+      width: 190,
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
       headerAlign: "center",
@@ -182,7 +189,7 @@ const Projects = () => {
       headerName: "Project Budget",
       align: "center",
       editable: false,
-      width: 170,
+      width: 190,
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
       headerAlign: "center",
@@ -191,7 +198,7 @@ const Projects = () => {
       field: "SPOC",
       editable: false,
       headerName: "Pre Sales SPOC",
-      width: 170,
+      width: 200,
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
       headerAlign: "center",
@@ -287,76 +294,6 @@ const Projects = () => {
   const [columnVisibilityModel, setColumnVisibilityModel] = useState({
     id: false,
   });
-  const rows = [
-    {
-      id: 1,
-      status: "Completed",
-      projectName: "Example Name",
-      clientName: "Client/Org Name",
-      projectHead: "projectHead",
-      audienceType: "projectHead",
-      country: "india",
-      billingCurrency: "INR",
-      contactName: "8595060044",
-      startDate: "01-07-24",
-      endDate: "01-07-24",
-      projectBudget: "Rs 40,000",
-      SPOC: "",
-      // IR: "10",
-      // LOI: "10",
-    },
-    {
-      id: 2,
-      status: "Running",
-      projectName: "Example Name",
-      clientName: "Client/Org Name",
-      projectHead: "projectHead",
-      audienceType: "projectHead",
-      country: "india",
-      billingCurrency: "INR",
-      contactName: "8595060044",
-      startDate: "01-07-24",
-      endDate: "01-07-24",
-      projectBudget: "Rs 40,000",
-      SPOC: "",
-      // IR: "10",
-      // LOI: "10",
-    },
-    {
-      id: 3,
-      status: "Initiated",
-      projectName: "Example Name",
-      clientName: "Client/Org Name",
-      projectHead: "projectHead",
-      audienceType: "projectHead",
-      country: "india",
-      billingCurrency: "INR",
-      contactName: "8595060044",
-      startDate: "01-07-24",
-      endDate: "01-07-24",
-      projectBudget: "Rs 40,000",
-      SPOC: "",
-      // IR: "10",
-      // LOI: "10",
-    },
-    {
-      id: 4,
-      status: "Cancelled",
-      projectName: "Example Name",
-      clientName: "Client/Org Name",
-      projectHead: "projectHead",
-      audienceType: "projectHead",
-      country: "india",
-      billingCurrency: "INR",
-      contactName: "8595060044",
-      startDate: "01-07-24",
-      endDate: "01-07-24",
-      projectBudget: "Rs 40,000",
-      SPOC: "",
-      // IR: "10",
-      // LOI: "10",
-    },
-  ];
 
   const handleRowClick = () => {
     navigate(`/project/${checkedRows[0].project_id}`);
@@ -381,12 +318,16 @@ const Projects = () => {
       <Grid
         item
         container
-        className={"heading-grid2"}
+        className={isMobile ? "heading-grid2-mobile" : "heading-grid2"}
+        jclassName={"heading-grid2"}
         justifyContent="space-between"
         alignItems="end"
       >
         <Grid item>
-          <Paper elevation={0} className="screenHeading">
+          <Paper
+            elevation={0}
+            className={isMobile ? "screenHeading-mobile" : "screenHeading"}
+          >
             PROJECT LIST
           </Paper>
         </Grid>
@@ -399,43 +340,74 @@ const Projects = () => {
           md={7}
         >
           <Grid item>
-            <Button
-              variant="outlined"
-              color="error"
-              onClick={handleAssignVendor}
-              className="client-button add-class"
-              disabled={checkedRows.length === 0}
-              startIcon={
-                <DescriptionOutlinedIcon color="success" fontSize="large" />
-              }
-            >
-              Assign Vendor
-            </Button>
+            {isMobile ? (
+              <IconButton
+                onClick={handleAssignVendor}
+                disabled={checkedRows.length === 0}
+                className="mobile-button success-background"
+              >
+                <DescriptionOutlinedIcon color="success" />
+              </IconButton>
+            ) : (
+              <Button
+                variant="outlined"
+                color="success"
+                onClick={handleAssignVendor}
+                className="client-button add-class"
+                disabled={checkedRows.length === 0}
+                startIcon={
+                  <DescriptionOutlinedIcon color="success" fontSize="large" />
+                }
+              >
+                Assign Vendor
+              </Button>
+            )}
           </Grid>
           <Grid item>
-            <Button
-              variant="outlined"
-              color="error"
-              onClick={handleRowClick}
-              className="client-button export-class"
-              disabled={checkedRows.length === 0}
-              startIcon={
-                <DescriptionOutlinedIcon color="primary" size="large" />
-              }
-            >
-              View Details
-            </Button>
+            {isMobile ? (
+              <IconButton
+                onClick={handleRowClick}
+                disabled={checkedRows.length === 0}
+                className="mobile-button primary-background"
+              >
+                <DescriptionOutlinedIcon color="primary" />
+              </IconButton>
+            ) : (
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={handleRowClick}
+                className="client-button export-class"
+                disabled={checkedRows.length === 0}
+                startIcon={
+                  <DescriptionOutlinedIcon color="primary" size="large" />
+                }
+              >
+                View Details
+              </Button>
+            )}
           </Grid>
           <Grid item>
-            <Button
-              variant="outlined"
-              color="error"
-              disabled={checkedRows.length === 0}
-              className="client-button delete-class"
-              startIcon={<DeleteOutlinedIcon color="error" fontSize="large" />}
-            >
-              Delete
-            </Button>
+            {isMobile ? (
+              <IconButton
+                disabled={checkedRows.length === 0}
+                className="mobile-button error-background"
+              >
+                <DeleteOutlinedIcon color="error" />
+              </IconButton>
+            ) : (
+              <Button
+                variant="outlined"
+                color="error"
+                disabled={checkedRows.length === 0}
+                className="client-button delete-class"
+                startIcon={
+                  <DeleteOutlinedIcon color="error" fontSize="large" />
+                }
+              >
+                Delete
+              </Button>
+            )}
           </Grid>
         </Grid>
       </Grid>

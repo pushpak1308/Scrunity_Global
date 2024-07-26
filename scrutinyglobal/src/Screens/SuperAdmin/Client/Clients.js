@@ -66,7 +66,7 @@ const Clients = () => {
     {
       field: "contactName",
       headerName: "Contact Name",
-      width: 170,
+      width: 200,
       editable: false,
       align: "center",
       headerClassName: "dataGrid-header",
@@ -77,7 +77,7 @@ const Clients = () => {
       field: "contactNumber",
       headerName: "Contact Number",
       sortable: false,
-      width: 170,
+      width: 200,
       editable: false,
       align: "center",
       headerClassName: "dataGrid-header",
@@ -264,12 +264,15 @@ const Clients = () => {
       <Grid
         item
         container
-        className={"heading-grid2"}
+        className={isMobile ? "heading-grid2-mobile" : "heading-grid2"}
         justifyContent="space-between"
         alignItems="end"
       >
         <Grid item>
-          <Paper elevation={0} className="screenHeading">
+          <Paper
+            elevation={0}
+            className={isMobile ? "screenHeading-mobile" : "screenHeading"}
+          >
             CLIENT LIST
           </Paper>
         </Grid>
@@ -286,7 +289,7 @@ const Clients = () => {
               <IconButton
                 onClick={handleAddProject}
                 disabled={checkedRows.length === 0}
-                className="mobile-button"
+                className="mobile-button success-background"
               >
                 <AddIcon color="success" />
               </IconButton>
@@ -308,7 +311,7 @@ const Clients = () => {
               <IconButton
                 onClick={handleRowClick}
                 disabled={checkedRows.length === 0}
-                className="mobile-button"
+                className="mobile-button primary-background"
               >
                 <DescriptionOutlinedIcon color="primary" />
               </IconButton>
@@ -331,7 +334,7 @@ const Clients = () => {
             {isMobile ? (
               <IconButton
                 disabled={checkedRows.length === 0}
-                className="mobile-button"
+                className="mobile-button error-background"
               >
                 <DeleteOutlinedIcon color="error" />
               </IconButton>

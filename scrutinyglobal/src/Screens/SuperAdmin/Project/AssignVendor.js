@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../Layout";
-import { Button, Grid, Typography, TextField } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Typography,
+  TextField,
+  useTheme,
+  useMediaQuery,
+  IconButton,
+} from "@mui/material";
 import tickFrame from "../../../Images/ModalImages/tickFrame.png";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import EditIcon from "@mui/icons-material/Edit";
@@ -15,6 +23,7 @@ const AssignVendor = () => {
   const projectId = useParams();
   const [selectedVendors, setSelectedVendors] = useState([]);
   const [selectedRowIds, setSelectedRowIds] = useState([]);
+  const [editableRowId, setEditableRowId] = useState(null);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [edit, setEdit] = useState(false);
   const [vendorId, setVendorId] = useState(0);
@@ -118,6 +127,13 @@ const AssignVendor = () => {
       )
     );
   };
+  const handleEdit = (rowId) => {
+    if (editableRowId === rowId) {
+      setEditableRowId(null); // If the row is already editable, toggle it off
+    } else {
+      setEditableRowId(rowId); // Set the current row as editable
+    }
+  };
 
   const handleDelete = () => {
     const remainingVendors = selectedVendors.filter(
@@ -156,10 +172,6 @@ const AssignVendor = () => {
     setShowSuccessModal(true);
   };
 
-  const handleEdit = () => {
-    setEdit(!edit);
-  };
-
   const handleModalButtonClick = () => {
     navigate("/projects");
   };
@@ -172,17 +184,19 @@ const AssignVendor = () => {
     {
       field: "id",
       headerName: "S.No.",
-      width: 95,
+      width: 120,
       editable: false,
       align: "center",
+      headerAlign: "center",
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
     },
     {
       field: "link",
       headerName: "Copy Link",
-      width: 100,
+      width: 160,
       editable: false,
+      headerAlign: "center",
       align: "center",
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
@@ -213,7 +227,7 @@ const AssignVendor = () => {
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
       renderCell: (params) =>
-        edit ? (
+        editableRowId === params.id ? (
           <TextField
             value={params.value}
             variant="standard"
@@ -235,7 +249,7 @@ const AssignVendor = () => {
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
       renderCell: (params) =>
-        edit ? (
+        editableRowId === params.id ? (
           <TextField
             value={params.value}
             variant="standard"
@@ -257,7 +271,7 @@ const AssignVendor = () => {
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
       renderCell: (params) =>
-        edit ? (
+        editableRowId === params.id ? (
           <TextField
             variant="standard"
             value={params.value}
@@ -280,7 +294,7 @@ const AssignVendor = () => {
       headerAlign: "center",
 
       renderCell: (params) =>
-        edit ? (
+        editableRowId === params.id ? (
           <TextField
             variant="standard"
             value={params.value}
@@ -303,7 +317,7 @@ const AssignVendor = () => {
       headerAlign: "center",
 
       renderCell: (params) =>
-        edit ? (
+        editableRowId === params.id ? (
           <TextField
             variant="standard"
             value={params.value}
@@ -316,6 +330,9 @@ const AssignVendor = () => {
         ),
     },
   ];
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const content = (
     <Grid container spacing={2}>
@@ -344,42 +361,72 @@ const AssignVendor = () => {
           xs={12}
         >
           <Grid item display="flex" justifyContent={"flex-end"}>
-            <Button
-              variant="outlined"
-              color="error"
-              onClick={handleEdit}
-              className="client-button export-class"
-              startIcon={<EditIcon color="primary" fontSize="large" />}
-              disabled={selectedVendors.length === 0}
-            >
-              Edit
-            </Button>
+            {isMobile ? (
+              <IconButton
+                onClick={handleEdit}
+                disabled={selectedVendors.length === 0}
+                className="mobile-button primary-background"
+              >
+                <EditIcon color="primary" />
+              </IconButton>
+            ) : (
+              <Button
+                variant="outlined"
+                onClick={handleEdit}
+                className="client-button export-class"
+                startIcon={<EditIcon color="primary" fontSize="large" />}
+                disabled={selectedVendors.length === 0}
+              >
+                Edit
+              </Button>
+            )}
           </Grid>
           <Grid item display="flex" justifyContent={"flex-end"}>
-            <Button
-              variant="outlined"
-              color="error"
-              onClick={handleSave}
-              className="client-button add-class"
-              startIcon={
-                <DescriptionOutlinedIcon color="success" fontSize="large" />
-              }
-              disabled={selectedVendors.length === 0}
-            >
-              Save
-            </Button>
+            {isMobile ? (
+              <IconButton
+                onClick={handleSave}
+                disabled={selectedVendors.length === 0}
+                className="mobile-button success-background"
+              >
+                <DescriptionOutlinedIcon color="success" />
+              </IconButton>
+            ) : (
+              <Button
+                variant="outlined"
+                onClick={handleSave}
+                className="client-button add-class"
+                startIcon={
+                  <DescriptionOutlinedIcon color="success" fontSize="large" />
+                }
+                disabled={selectedVendors.length === 0}
+              >
+                Save
+              </Button>
+            )}
           </Grid>
           <Grid item display="flex" justifyContent={"flex-end"}>
-            <Button
-              variant="outlined"
-              color="error"
-              onClick={handleDelete}
-              className="client-button delete-class"
-              disabled={selectedRowIds.length === 0}
-              startIcon={<DeleteOutlinedIcon color="error" fontSize="large" />}
-            >
-              Delete
-            </Button>
+            {isMobile ? (
+              <IconButton
+                onClick={handleDelete}
+                disabled={selectedRowIds.length === 0}
+                className="mobile-button error-background"
+              >
+                <DeleteOutlinedIcon color="error" />
+              </IconButton>
+            ) : (
+              <Button
+                variant="outlined"
+                color="error"
+                onClick={handleDelete}
+                className="client-button delete-class"
+                disabled={selectedRowIds.length === 0}
+                startIcon={
+                  <DeleteOutlinedIcon color="error" fontSize="large" />
+                }
+              >
+                Delete
+              </Button>
+            )}
           </Grid>
         </Grid>
       </Grid>

@@ -39,6 +39,7 @@
   width: 97% !important;
   height: 100%;
   display: flex;
+  text-wrap: nowrap;
   align-items: center;
   padding-bottom: 1rem;
   margin-left: 3% !important;
@@ -152,7 +153,19 @@
 
 .mobile-button {
   cursor: pointer;
-  font-size: 2.5rem !important;
+  font-size: 2.8rem !important;
   border-radius: 50%;
   padding: 2%;
+}
+
+.success-background {
+  background-color: rgb(196, 248, 204) !important;
+}
+
+.primary-background {
+  background-color: rgb(174, 224, 247) !important;
+}
+
+.error-background {
+  background-color: rgb(250, 185, 185) !important;
 }

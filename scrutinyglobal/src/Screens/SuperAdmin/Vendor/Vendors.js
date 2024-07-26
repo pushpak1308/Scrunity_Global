@@ -1,4 +1,12 @@
-import { Button, Grid, Paper, Switch } from "@mui/material";
+import {
+  Button,
+  Grid,
+  IconButton,
+  Paper,
+  Switch,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setSelectedRows } from "../../../Store/Slice/rowSelectionSlice";
@@ -99,7 +107,7 @@ const Clients = () => {
       field: "altContactNumber",
       editable: false,
       headerName: "Alt. Contact Number",
-      width: 210,
+      width: 240,
       align: "center",
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
@@ -209,31 +217,6 @@ const Clients = () => {
     return userDataConverted;
   }
 
-  const rows = [
-    {
-      id: 1,
-      status: "Yes",
-      vendorName: "clientName",
-      email: "daniel@gmail.com",
-      contactNumber: "45365634",
-      altContactNumber: "123456789",
-      address: "street 20",
-      city: "delhi",
-      pincode: "520001",
-    },
-    {
-      id: 2,
-      status: "No",
-      vendorName: "clientName",
-      email: "daniel@gmail.com",
-      contactNumber: "45365634",
-      altContactNumber: "123456789",
-      address: "street 20",
-      city: "delhi",
-      pincode: "520001",
-    },
-  ];
-
   const handleRowClick = () => {
     navigate(`/vendor/${checkedRows[0].id}`);
   };
@@ -248,46 +231,72 @@ const Clients = () => {
   };
 
   // console.log("Selected Rows:", checkedRows);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const content = (
     <Grid container>
       <Grid
         item
         container
-        className="heading-grid2"
+        className={isMobile ? "heading-grid2-mobile" : "heading-grid2"}
         justifyContent="space-between"
         alignItems="end"
       >
         <Grid item>
-          <Paper elevation={0} className="screenHeading">
+          <Paper
+            elevation={0}
+            className={isMobile ? "screenHeading-mobile" : "screenHeading"}
+          >
             VENDORS LIST
           </Paper>
         </Grid>
         <Grid item container justifyContent="flex-end" spacing={2} md={7}>
           <Grid item>
-            <Button
-              variant="outlined"
-              color="error"
-              onClick={handleRowClick}
-              className="client-button export-class"
-              disabled={checkedRows.length === 0}
-              startIcon={
-                <DescriptionOutlinedIcon color="primary" size="large" />
-              }
-            >
-              View Details
-            </Button>
+            {isMobile ? (
+              <IconButton
+                onClick={handleRowClick}
+                disabled={checkedRows.length === 0}
+                className="mobile-button primary-background"
+              >
+                <DescriptionOutlinedIcon color="primary" />
+              </IconButton>
+            ) : (
+              <Button
+                variant="outlined"
+                color="error"
+                onClick={handleRowClick}
+                className="client-button export-class"
+                disabled={checkedRows.length === 0}
+                startIcon={
+                  <DescriptionOutlinedIcon color="primary" size="large" />
+                }
+              >
+                View Details
+              </Button>
+            )}
           </Grid>
           <Grid item>
-            <Button
-              variant="outlined"
-              color="error"
-              className="client-button delete-class"
-              disabled={checkedRows.length === 0}
-              startIcon={<DeleteOutlinedIcon color="error" fontSize="large" />}
-            >
-              Delete
-            </Button>
+            {isMobile ? (
+              <IconButton
+                disabled={checkedRows.length === 0}
+                className="mobile-button error-background"
+              >
+                <DeleteOutlinedIcon color="error" />
+              </IconButton>
+            ) : (
+              <Button
+                variant="outlined"
+                color="error"
+                className="client-button delete-class"
+                disabled={checkedRows.length === 0}
+                startIcon={
+                  <DeleteOutlinedIcon color="error" fontSize="large" />
+                }
+              >
+                Delete
+              </Button>
+            )}
           </Grid>
         </Grid>
       </Grid>
