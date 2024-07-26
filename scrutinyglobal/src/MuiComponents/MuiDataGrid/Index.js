@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import {
   DataGrid,
   gridPageCountSelector,
@@ -6,7 +6,7 @@ import {
   useGridApiContext,
   useGridSelector,
 } from "@mui/x-data-grid";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import "./Style.css";
@@ -23,7 +23,7 @@ function CustomPagination() {
       shape="rounded"
       page={page + 1}
       count={pageCount}
-      renderItem={(props2) => <PaginationItem {...props2} disableRipple />}
+      renderItem={(props) => <PaginationItem {...props} disableRipple />}
       onChange={(event, value) => apiRef.current.setPage(value - 1)}
     />
   );
@@ -36,14 +36,22 @@ const MuiDataGrid = ({
   checkboxSelection,
   rowSelectionModel,
   columnVisibilityModel,
-  disablePagination,
 }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const PAGE_SIZE = 5;
-  const [paginationModel, setPaginationModel] = React.useState({
-    pageSize: disablePagination ? rows.length : PAGE_SIZE,
+  const MOBILE_PAGE_SIZE = 10;
+  const [paginationModel, setPaginationModel] = useState({
+    pageSize: isMobile ? MOBILE_PAGE_SIZE : PAGE_SIZE,
     page: 0,
   });
-  console.log("disablePagination :>> ", disablePagination);
+
+  useEffect(() => {
+    setPaginationModel({
+      pageSize: isMobile ? MOBILE_PAGE_SIZE : PAGE_SIZE,
+      page: 0,
+    });
+  }, [isMobile]);
 
   return (
     <Grid container className="data-grid-container">
@@ -52,13 +60,12 @@ const MuiDataGrid = ({
         columns={columns}
         paginationModel={paginationModel}
         onPaginationModelChange={setPaginationModel}
-        pageSizeOptions={disablePagination ? [rows.length] : [PAGE_SIZE]}
+        pageSizeOptions={isMobile ? [MOBILE_PAGE_SIZE] : [PAGE_SIZE]}
         disableRowSelectionOnClick
         rowSelectionModel={rowSelectionModel}
         onRowSelectionModelChange={onRowSelectionModelChange}
         checkboxSelection={checkboxSelection}
         columnVisibilityModel={columnVisibilityModel}
-        pagination={!disablePagination}
         slots={{
           pagination: CustomPagination,
         }}

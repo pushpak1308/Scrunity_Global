@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Button, Divider, Grid, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Button,
+  Divider,
+  Grid,
+  Paper,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import InfoCard from "../../Components/InfoCard/Index";
 import "./Style.css";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
@@ -34,45 +41,6 @@ const Dashboard = () => {
     accountType: [],
     salary: [],
   };
-
-  const rows = [
-    {
-      id: 1,
-      role: "Vendor",
-      approval: "Yes",
-      name: "Daniel",
-      number: "123456789",
-      email: "daniel@gmail.com",
-      birthdate: "05-06-24",
-      address: "street 20",
-      country: "india",
-      state: "delhi",
-      city: "saket",
-      zipCode: "1234",
-      profession: "android developer",
-      ipAddress: "12.23.34.55",
-      accountType: "vendor",
-      salary: "500000",
-    },
-    {
-      id: 2,
-      role: "Vendor",
-      approval: "Yes",
-      name: "Daniel",
-      number: "123456789",
-      email: "daniel@gmail.com",
-      birthdate: "05-06-24",
-      address: "street 20",
-      country: "india",
-      state: "delhi",
-      city: "saket",
-      zipCode: "1234",
-      profession: "android developer",
-      ipAddress: "12.23.34.55",
-      accountType: "vendor",
-      salary: "500000",
-    },
-  ];
 
   useEffect(() => {
     getUserData();
@@ -172,7 +140,7 @@ const Dashboard = () => {
     {
       field: "id",
       headerName: "User id",
-      width: 120,
+      width: 150,
       align: "center",
       editable: false,
       headerAlign: "center",
@@ -198,7 +166,8 @@ const Dashboard = () => {
         ) : (
           <Button
             variant="outlined"
-            color="primary"
+            size="small"
+            color="success"
             onClick={() => handleApprove(params.row.id, params.row.accountType)}
           >
             Approve
@@ -212,7 +181,7 @@ const Dashboard = () => {
       align: "center",
       type: "text",
       // flex: 1.5,
-      width: 150,
+      width: 170,
       headerAlign: "center",
       editable: false,
       cellClassName: "dataGrid-cell",
@@ -249,17 +218,20 @@ const Dashboard = () => {
       width: 160,
       headerAlign: "center",
       align: "center",
-      editable: false,
+      editable: true,
+      type: "singleSelect",
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
+      valueOptions: ["Admin", "Client", "Vendor"],
       renderCell: (params) => {
-        // console.log("hi====", params.row);
+        const role = params.value || "Vendor";
+
         return (
-          <MuiDropDown
-            defaultValue="Vendor"
-            options={["Vendor", "Admin", "Client"]}
-            onChange={onChangeRole}
-          />
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Paper elevation={0} style={{ marginLeft: 8 }}>
+              {role}
+            </Paper>
+          </div>
         );
       },
     },
@@ -279,7 +251,6 @@ const Dashboard = () => {
       headerName: "Address",
       sortable: false,
       width: 180,
-      align: "center",
       editable: false,
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",

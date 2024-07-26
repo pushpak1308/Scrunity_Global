@@ -7,14 +7,14 @@ import {
   InputAdornment,
   Paper,
   IconButton,
-  Collapse,
-  Slide,
 } from "@mui/material";
+import logo from "../../logo_sg.png";
 import SearchIcon from "@mui/icons-material/Search";
-import MenuIcon from "@mui/icons-material/Menu";
+import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import { useTheme, useMediaQuery } from "@mui/material";
 import "./Style.css";
+import { Link } from "react-router-dom";
 
 const NavBar = ({ navbarHeading, handleDrawerToggle }) => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -30,37 +30,48 @@ const NavBar = ({ navbarHeading, handleDrawerToggle }) => {
     <>
       <AppBar position="static" className="adminNavbar">
         <Toolbar>
-          <Grid item>
-            <Paper elevation={0} className="navbarText-1">
-              {navbarHeading}
-            </Paper>
-            <Paper elevation={0} className="navbarText-2">
-              Super Admin
-            </Paper>
+          <Grid container alignItems="center">
+            {isMobile && (
+              <Grid item xs={4}>
+                <Link to="/dashboard">
+                  <img alt="SG logo" src={logo} className="navbarLogo" />
+                </Link>
+              </Grid>
+            )}
+            <Grid
+              item
+              xs={2}
+              container
+              alignItems="center"
+              justifyContent={"flex-start"}
+              direction={"column"}
+            >
+              <Paper
+                elevation={0}
+                className={isMobile ? "navbarText-1-mobile" : "navbarText-1"}
+              >
+                {navbarHeading}
+              </Paper>
+              <Paper
+                elevation={0}
+                className={isMobile ? "navbarText-2-mobile" : "navbarText-2"}
+              >
+                Super Admin
+              </Paper>
+            </Grid>
           </Grid>
 
           {isMobile ? (
-            <Grid
-              item
-              container
-              justifyContent="flex-end"
-              alignItems="center"
-              direction="row"
-            >
-              <Grid item>
-                <IconButton onClick={handleSearchToggle}>
-                  <SearchIcon />
-                </IconButton>
-              </Grid>
-              <Grid item>
-                <IconButton onClick={handleDrawerToggle}>
-                  <MenuIcon />
-                </IconButton>
-              </Grid>
+            <Grid container justifyContent="flex-end" alignItems="center">
+              <IconButton onClick={handleSearchToggle}>
+                <NotificationsNoneOutlinedIcon color="disabled" />
+              </IconButton>
+              <IconButton onClick={handleDrawerToggle}>
+                <GridViewOutlinedIcon />
+              </IconButton>
             </Grid>
           ) : (
             <Grid
-              item
               container
               justifyContent="flex-end"
               alignItems="center"
@@ -88,7 +99,7 @@ const NavBar = ({ navbarHeading, handleDrawerToggle }) => {
           )}
         </Toolbar>
       </AppBar>
-      {searchOpen && (
+      {/* {searchOpen && (
         <Slide in={searchOpen} container={containerRef.current}>
           <TextField
             className="search-input-mobile"
@@ -105,7 +116,7 @@ const NavBar = ({ navbarHeading, handleDrawerToggle }) => {
             }}
           />
         </Slide>
-      )}
+      )} */}
     </>
   );
 };
