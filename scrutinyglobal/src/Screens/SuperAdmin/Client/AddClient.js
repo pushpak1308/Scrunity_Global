@@ -8,7 +8,7 @@ import tickFrame from "../../../Images/ModalImages/tickFrame.png";
 import CrossFrame from "../../../Images/ModalImages/CrossFrame.png";
 import "./Style.css";
 import { useNavigate } from "react-router-dom";
-import SuccessErrorModal from "../../../Components/SuccesErrorModal/Index";
+import SuccessErrorModal from "../../../Components/CustomModals/SuccesErrorModal/Index";
 import { API_PREFIX } from "../../../config";
 
 const AddClient = () => {

@@ -5,6 +5,7 @@ import "./Style.css";
 
 export const MuiTextField = ({
   type,
+  name,
   value,
   onChange,
   className,
@@ -12,6 +13,8 @@ export const MuiTextField = ({
   defaultValue,
   label,
   required,
+  multiline,
+  disabled,
   rows,
 }) => {
   const isControlled = value !== undefined;
@@ -24,19 +27,20 @@ export const MuiTextField = ({
       </InputLabel>
 
       <TextField
-        name={value}
+        name={name}
         type={type}
         placeholder={placeholder ? placeholder : label}
-        variant="standard"
+        variant={multiline ? "outlined" : "standard"}
         value={isControlled ? value : undefined} // Controlled value
         defaultValue={!isControlled ? defaultValue : undefined} // Uncontrolled defaultValue
         onChange={onChange}
-        multiline={rows ? true : false}
+        multiline={!!rows}
         rows={rows}
         className={className ? className : "arimo-input-label"}
         size="small"
+        disabled={disabled}
         fullWidth
-        required
+        required={required}
         InputProps={{
           classes: {
             input: "centered-input",
@@ -45,6 +49,7 @@ export const MuiTextField = ({
         InputLabelProps={{
           className: "centered-placeholder",
         }}
+        {...(multiline && { maxRows: 5 })}
       />
     </>
   );

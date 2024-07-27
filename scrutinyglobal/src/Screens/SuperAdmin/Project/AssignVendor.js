@@ -15,7 +15,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import MuiMultiSelectDropdown from "../../../MuiComponents/MuiMultiSelectDropdown/Index";
 import MuiDataGrid from "../../../MuiComponents/MuiDataGrid/Index";
-import SuccessErrorModal from "../../../Components/SuccesErrorModal/Index";
+import SuccessErrorModal from "../../../Components/CustomModals/SuccesErrorModal/Index";
 import { useNavigate, useParams } from "react-router-dom";
 import { API_PREFIX } from "../../../config";
 

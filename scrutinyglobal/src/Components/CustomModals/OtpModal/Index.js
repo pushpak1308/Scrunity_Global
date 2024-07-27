@@ -1,6 +1,6 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import React from "react";
-import CustomModal from "../../MuiComponents/MuiModal/Index";
+import CustomModal from "../../../MuiComponents/MuiModal/Index";
 import OtpInput from "react-otp-input";
 import "./Style.css";
 

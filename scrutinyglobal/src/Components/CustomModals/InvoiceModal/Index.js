@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./../../logo_sg.png";
+import logo from "./../../../logo_sg.png";
 import { Grid, Modal, Stack, Typography } from "@mui/material";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import { IconButton } from "@mui/material";

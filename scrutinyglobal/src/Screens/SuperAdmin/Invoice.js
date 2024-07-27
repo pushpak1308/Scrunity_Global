@@ -5,7 +5,7 @@ import "./Style.css";
 import { MuiDropDown } from "../../MuiComponents/MuiDropDown/Index";
 import { MuiTextField } from "../../MuiComponents/MuiTextField/Index";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
-import InvoiceModal from "../../Components/InvoiceModal/Index";
+import InvoiceModal from "../../Components/CustomModals/InvoiceModal/Index";
 import Layout from "./Layout";
 import { API_PREFIX } from "../../config";
 

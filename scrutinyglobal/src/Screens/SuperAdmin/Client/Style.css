@@ -66,6 +66,11 @@
   width: 85vh;
 }
 
+.content-grid-project {
+  width: 85vh;
+  background: #f5f6f8;
+}
+
 .client-button {
   margin-bottom: 1.1rem !important;
   min-width: 3rem !important;

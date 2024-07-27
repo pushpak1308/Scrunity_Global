@@ -10,7 +10,7 @@ import "../Client/Style.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectAddVendorStep } from "../../../Store/Slice/stepSlice";
-import SuccessErrorModal from "../../../Components/SuccesErrorModal/Index";
+import SuccessErrorModal from "../../../Components/CustomModals/SuccesErrorModal/Index";
 import MuiMultiSelectDropdown from "../../../MuiComponents/MuiMultiSelectDropdown/Index";
 import { API_PREFIX } from "../../../config";
 

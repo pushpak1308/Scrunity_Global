@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, Grid, Modal, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import CustomContainedButton from "../../MuiComponents/MuiContainedButton/Index";
+import CustomContainedButton from "../../../MuiComponents/MuiContainedButton/Index";
 import "./Style.css";
 
 const SuccessErrorModal = ({
@@ -27,7 +27,7 @@ const SuccessErrorModal = ({
 
   return (
     <Modal open={show}>
-      <Grid container className="modal-container">
+      <Grid container className="modal-container-successError">
         <Grid item container sx={{ m: 1 }}>
           <Grid item xs={12} className="modal-close">
             <IconButton onClick={handleClose}>

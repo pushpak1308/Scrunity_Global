@@ -4,7 +4,7 @@ import "./Style.css";
 import AuthPage from "./AuthPage";
 import StepForm from "./StepForm";
 import CustomModal from "../../MuiComponents/MuiModal/Index";
-import OtpModal from "../../Components/OtpModal/Index";
+import OtpModal from "../../Components/CustomModals/OtpModal/Index";
 import { useDispatch } from "react-redux";
 import { setField } from "../../Store/Slice/userSlice";
 import { API_PREFIX } from "../../config";

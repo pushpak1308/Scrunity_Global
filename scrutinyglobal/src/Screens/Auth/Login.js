@@ -7,7 +7,7 @@ import WaitingModal from "../../Images/ModalImages/WaitingModal.png";
 import AuthPage from "./AuthPage";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
-import SuccessErrorModal from "../../Components/SuccesErrorModal/Index";
+import SuccessErrorModal from "../../Components/CustomModals/SuccesErrorModal/Index";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");

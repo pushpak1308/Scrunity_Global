@@ -1,0 +1,46 @@
+.add-project-modal-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  padding: 1rem;
+  transform: translate(-50%, -50%);
+  width: 85% !important;
+  background-color: #fff;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  background-image: url("../../../Images/Invoice/modalImage-faded.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 30%;
+}
+
+.add-project-modal-heading {
+  background: #31baf4;
+  color: #ffffff;
+  font-family: "Arimo";
+  font-size: 150%;
+  font-weight: 700;
+  line-height: 24.73px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 7px;
+  margin-bottom: 1rem !important;
+}
+
+.modal-button-save {
+  background: #28a745 !important;
+  font-family: "Arimo" !important;
+  font-size: 105% !important;
+  text-transform: none !important;
+  font-weight: 700 !important;
+  text-align: center;
+  width: 10%;
+  margin-top: 2rem !important;
+  margin-bottom: 1.5rem !important;
+  margin-left: 0.5rem !important;
+}
