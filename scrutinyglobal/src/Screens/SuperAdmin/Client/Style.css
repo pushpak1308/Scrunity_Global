@@ -53,6 +53,14 @@
   align-items: center;
   margin-top: 1% !important;
 }
+
+.form-grid-add-project {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1% !important;
+  /* background: #f5f6f8; */
+}
 .form-sub-grid {
   padding: 1.2rem;
   height: 100%;

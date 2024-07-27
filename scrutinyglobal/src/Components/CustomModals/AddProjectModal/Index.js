@@ -13,7 +13,7 @@ import {
 
 const AddProjectModal = ({
   open,
-  handleClose,
+  onClose,
   country,
   formData,
   onFormChange,
@@ -31,7 +31,7 @@ const AddProjectModal = ({
       <Grid container className="add-project-modal-container">
         <Grid item container>
           <Grid item xs={12} className="modal-close">
-            <IconButton onClick={handleClose}>
+            <IconButton onClick={onClose}>
               <CloseIcon fontSize="large" />
             </IconButton>
           </Grid>

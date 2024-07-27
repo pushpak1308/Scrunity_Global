@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Paper, useMediaQuery, useTheme, Button } from "@mui/material";
+import {
+  Grid,
+  Paper,
+  useMediaQuery,
+  useTheme,
+  Button,
+  Typography,
+} from "@mui/material";
 // import StepForm from "../../../Components/StepForm/Index";
 import { MuiTextField } from "../../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../../MuiComponents/MuiDropDown/Index";
@@ -8,6 +15,7 @@ import "../Client/Style.css";
 import tickFrame from "../../../Images/ModalImages/tickFrame.png";
 import CrossFrame from "../../../Images/ModalImages/CrossFrame.png";
 import "./Style.css";
+import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 // import { selectAddProjectStep } from "../../../Store/Slice/stepSlice";
@@ -238,18 +246,18 @@ const AddProject = () => {
             //   defaultValue={reduxData?.accountType || ""}
             onChange={onChangeAudienceType}
             placeholder="College Students"
-            options={["College Students", "audienceType 2", "audienceType 3"]}
-            label="Audience Type"
+            options={["B2B", "B2C", "Heathcare", "Tracker", "Others"]}
+            label="Project Type"
             className="forAddProject"
           />
         </Grid>
         <Grid item xs={12} md={5}>
-          <MuiDropDown
+          <MuiTextField
+            type="text"
             value={billingCurrency}
             //   defaultValue={reduxData?.accountType || ""}
             onChange={onChangeBillingCurrency}
             placeholder="USD"
-            options={["USD", "INR", "EURO"]}
             label="Billing Currency"
             className="forAddProject"
           />
@@ -287,9 +295,15 @@ const AddProject = () => {
               style={{ marginTop: "8px", cursor: "pointer" }}
               onClick={() => handleCountryClick(country)}
             >
-              <Paper elevation={0} style={{ padding: "8px" }}>
+              <Typography
+                component="div"
+                display="flex"
+                paddingTop={"1rem"}
+                alignItems={"center"}
+              >
+                <AddIcon />
                 {country}
-              </Paper>
+              </Typography>
             </Grid>
           ))}
         </Grid>
@@ -307,7 +321,7 @@ const AddProject = () => {
       <Grid item xs={12} style={{ marginTop: "16px" }}>
         <Button
           variant="contained"
-          color="primary"
+          className="modal-button-save"
           onClick={() =>
             handleSave({
               clientName,
@@ -326,6 +340,7 @@ const AddProject = () => {
             })
           }
         >
+          {" "}
           Save
         </Button>
       </Grid>
@@ -334,15 +349,16 @@ const AddProject = () => {
 
   const handleSave = (formData) => {
     // Save form data
-
+    console.log("Form data to be saved:", formData);
     setShowSuccessModal(!showSuccessModal);
-    console.log("Form Data:", formData);
-    console.log("Form countryFormData:", countryFormData);
   };
+  // console.log("Form countryFormData:", countryFormData);
 
+  const handleCloseAddProjectModal = () => {
+    setShowCountryModal(false);
+  };
   const handleClose = () => {
     setShowSuccessModal(!showSuccessModal);
-    setShowCountryModal(false);
   };
 
   const handleGoToProjectList = () => {
@@ -387,13 +403,14 @@ const AddProject = () => {
         container
         xs={12}
         md={10}
-        className="form-grid"
+        className="form-grid-add-project"
         justifyContent="center"
         alignItems="center"
       >
         <Grid item className="heading-grid">
           <Paper
             elevation={0}
+            background="#f5f6f8"
             className={isMobile ? "screenHeading-mobile" : "screenHeading"}
           >
             Add Project
@@ -409,7 +426,7 @@ const AddProject = () => {
               : "Project Specifications"}
           </Grid> */}
 
-          <Paper elevation={isMobile ? 0 : 2} className="form-sub-grid">
+          <Paper elevation={isMobile ? 0 : 6} className="form-sub-grid">
             {form}
           </Paper>
         </Grid>
@@ -438,7 +455,7 @@ const AddProject = () => {
         />
         <AddProjectModal
           open={showCountryModal}
-          onClose={handleClose}
+          onClose={handleCloseAddProjectModal}
           country={countryModalContent}
           formData={countryFormData}
           onFormChange={handleCountryFormChange}
