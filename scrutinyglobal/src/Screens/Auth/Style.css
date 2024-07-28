@@ -8,6 +8,16 @@
   padding: 3% !important;
 }
 
+.main-container-mobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(180deg, #0fd6ff 0%, #4050ef 100%);
+  box-shadow: 4px 10px 14.5px 0px #6fdbf529;
+  padding: 3% !important;
+}
+
 .container {
   border-radius: 10px;
   overflow: hidden;
@@ -115,6 +125,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-image: url("../../Images/AuthImages/auth-faded.png");
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: 55%;
 }
 
 .card-form {

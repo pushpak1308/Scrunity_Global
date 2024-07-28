@@ -28,7 +28,7 @@ const AuthPage = ({
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Grid className="main-container">
+    <Grid className={isMobile ? "main-container-mobile" : "main-container"}>
       <Grid item container className="container" md={9}>
         {!isMobile && (
           <Grid
@@ -77,7 +77,7 @@ const AuthPage = ({
               </Typography>
             </CardContent>
             <CardMedia component="img" image={logo} className="logo-image" />
-            <CardContent sx={{ mx: isMobile ? 5 : 13 }} className="card-form">
+            <CardContent sx={{ mx: isMobile ? 5 : 12 }} className="card-form">
               {form}
             </CardContent>
             <Grid container className="flex-and-center" sx={{ mb: 1 }}>
