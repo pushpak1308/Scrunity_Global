@@ -1,0 +1,29 @@
+.invoice-heading {
+  font-family: "Arimo";
+  font-size: 120%;
+  font-weight: 700;
+  line-height: 16.1px;
+}
+
+.invoice-subtext {
+  font-family: "Arimo";
+  font-size: 110%;
+  color: #838383;
+  font-weight: 400;
+  line-height: 11.5px;
+  text-align: left;
+}
+
+.invoice-subtext-label {
+  font-family: "Arimo";
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 13.8px;
+  text-align: right;
+  color: #000000;
+}
+
+.invoiceImage {
+  width: 40%;
+  /* height: 100%; */
+}

@@ -8,7 +8,6 @@ import Register from "./Screens/Auth/Register";
 import WaitingScreen from "./Screens/Auth/WaitingScreen";
 import AddClient from "./Screens/SuperAdmin/Client/AddClient";
 import Dashboard from "./Screens/SuperAdmin/Dashboard";
-import Invoice from "./Screens/SuperAdmin/Invoice";
 import Clients from "./Screens/SuperAdmin/Client/Clients";
 import ClientDetail from "./Screens/SuperAdmin/Client/ClientDetail";
 import AddProject from "./Screens/SuperAdmin/Project/AddProject";
@@ -20,6 +19,7 @@ import AddVendor from "./Screens/SuperAdmin/Vendor/AddVendor";
 import Vendors from "./Screens/SuperAdmin/Vendor/Vendors";
 import VendorDetail from "./Screens/SuperAdmin/Vendor/VendorDetail";
 import Profile from "./Screens/SuperAdmin/Profile";
+import Invoice from "./Screens/SuperAdmin/SalesModule/Invoice";
 
 const WithoutTokenRoutes = () => {
   return (

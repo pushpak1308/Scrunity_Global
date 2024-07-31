@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
@@ -26,8 +26,10 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   toggleDrawerClient,
   toggleDrawerVendor,
+  toggleDrawerSales,
   selectDrawerOpenVendor,
   selectDrawerOpenClient,
+  selectDrawerOpenSalesModule,
 } from "../../Store/Slice/drawerSlice";
 import "./Style.css";
 
@@ -36,6 +38,7 @@ const drawerWidth = 240;
 export default function MuiDrawer({ active, mobileOpen, handleDrawerToggle }) {
   const openClient = useSelector(selectDrawerOpenClient);
   const openVendor = useSelector(selectDrawerOpenVendor);
+  const openSalesModule = useSelector(selectDrawerOpenSalesModule);
   const dispatch = useDispatch();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -46,6 +49,10 @@ export default function MuiDrawer({ active, mobileOpen, handleDrawerToggle }) {
 
   const handleVendorClick = () => {
     dispatch(toggleDrawerVendor());
+  };
+
+  const handleSalesClick = () => {
+    dispatch(toggleDrawerSales());
   };
 
   const userDetails = {
@@ -172,16 +179,33 @@ export default function MuiDrawer({ active, mobileOpen, handleDrawerToggle }) {
             active={active === "VENDORS" || active === "VENDOR DETAILS"}
           />
         </CollapseButton>
-        <LinkButton
+        <CollapseButton
           text="Sales Module"
-          icon={
-            <PeopleAltOutlinedIcon
-              color={active === "SALES MODULE" ? "primary" : "action"}
-            />
-          }
-          link="invoice"
-          active={active === "SALES MODULE"}
-        />
+          icon={<FeedOutlinedIcon />}
+          open={openSalesModule}
+          handleClick={handleSalesClick}
+        >
+          <LinkButton
+            text="Invoice"
+            icon={
+              <AddIcon
+                color={active === "SALES MODULE" ? "primary" : "action"}
+              />
+            }
+            link="invoice"
+            active={active === "SALES MODULE"}
+          />
+          <LinkButton
+            text="PO"
+            icon={
+              <PeopleAltOutlinedIcon
+                color={active === "PO" ? "primary" : "action"}
+              />
+            }
+            link="po"
+            active={active === "PO"}
+          />
+        </CollapseButton>
       </List>
       <Divider />
       <List>
