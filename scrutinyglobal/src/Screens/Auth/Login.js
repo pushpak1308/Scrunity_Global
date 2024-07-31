@@ -8,10 +8,12 @@ import AuthPage from "./AuthPage";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 import SuccessErrorModal from "../../Components/CustomModals/SuccesErrorModal/Index";
+import Loading from "../../Components/Loading/Index";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [showWaitingModal, setShowWaitingModal] = useState(false);
   const [loginData, setLoginData] = useState({
     username: "",
@@ -34,6 +36,8 @@ const Login = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setIsLoading(true); // Show loader when the API call starts
+
     fetch("http://localhost:8080/login", {
       method: "POST",
       headers: {
@@ -43,12 +47,15 @@ const Login = (props) => {
       body: JSON.stringify(loginData),
     })
       .then(function (response) {
+        setIsLoading(false); // Hide loader when the API call completes
+
         if (response.status === 200) {
           navigate("/dashboard");
         }
         return response.json();
       })
       .catch((error) => {
+        setIsLoading(false);
         handleWaitingModal();
         console.error(error);
       });
@@ -123,14 +130,20 @@ const Login = (props) => {
   );
 
   return (
-    <AuthPage
-      form={form}
-      cardActionLinkText={" Sign up here"}
-      cardActionLinkTo={"register"}
-      cardActionText={"Are you new? "}
-      heading={"Login"}
-      additionalComponent={additionalComponent}
-    />
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <AuthPage
+          form={form}
+          cardActionLinkText={" Sign up here"}
+          cardActionLinkTo={"register"}
+          cardActionText={"Are you new? "}
+          heading={"Login"}
+          additionalComponent={additionalComponent}
+        />
+      )}
+    </>
   );
 };
 

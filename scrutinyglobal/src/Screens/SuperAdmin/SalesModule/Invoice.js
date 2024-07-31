@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Grid,
@@ -15,8 +15,51 @@ import invoiceImage from "../../../Images/Invoice/InvoiceImage.svg";
 import Layout from "../Layout";
 import EditableField from "../../../Components/EditTableField/Index";
 import "./Style.css";
+import { API_PREFIX } from "../../../config";
+import FormModal from "../../../Components/CustomModals/FormModal/Index";
 
 const Invoice = () => {
+  const [client, setClient] = useState("");
+  const [project, setProject] = useState("");
+  const [country, setCountry] = useState("");
+  const [currency, setCurrency] = useState("");
+  const [date, setDate] = useState("");
+  const [savedData, setSavedData] = useState(null);
+  const [responseData, setResponseData] = useState(false);
+  const [projectOptions, setProjectOptions] = useState([]);
+  const [clientOptions, setClientOptions] = useState([]);
+
+  const onChangeClient = (e) => {
+    const selectedClient = e.target.value;
+    setClient(selectedClient);
+
+    const clientData = responseData.find(
+      (client) =>
+        client.contact_name === selectedClient || client.name === selectedClient
+    );
+    if (clientData) {
+      setCountry(clientData.country);
+    }
+  };
+  const onChangeProject = (e) => setProject(e.target.value);
+  const onChangeCountry = (e) => setCountry(e.target.value);
+  const onChangeCurrency = (e) => setCurrency(e.target.value);
+  const onChangeDate = (e) => setDate(e.target.value);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = {
+      client,
+      project,
+      country,
+      currency,
+      date,
+    };
+    console.log("formData :>> ", formData);
+    setSavedData(formData);
+    setShowAddNewInvoiceModal(false);
+  };
+
   const headings = ["Description", "No of Surveys", "Cost/Survey", "Total"];
   const [rows, setRows] = useState([
     { description: "", noOfSurveys: "", costPerSurvey: "", total: "0" },
@@ -24,6 +67,7 @@ const Invoice = () => {
   ]);
   const [usdTotal, setUsdTotal] = useState(0);
   const [inrTotal, setInrTotal] = useState(0);
+  const [showAddNewInvoiceModal, setShowAddNewInvoiceModal] = useState(false);
 
   const handleChange = (index, key, value) => {
     const updatedRows = [...rows];
@@ -44,17 +88,58 @@ const Invoice = () => {
     setUsdTotal((inrTotal / 74.5).toFixed(2)); // Assuming 1 USD = 74.5 INR
   };
 
+  const handleClose = () => {
+    setShowAddNewInvoiceModal(false);
+  };
+
+  useEffect(() => {
+    getProjectData();
+  }, []);
+
+  function getProjectData() {
+    fetch(`${API_PREFIX}getProjectList`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        setResponseData(data);
+        const projectNames = data.map((project) => project.project_name);
+        const clientNames = data.map((client) => client.name);
+        setProjectOptions(projectNames);
+        setClientOptions(clientNames);
+        // console.log("response Data", data);
+      })
+      .catch(function (error) {
+        console.error("Error fetching data:", error);
+      });
+  }
+
   const content = (
     <Grid container direction="row" spacing={2} className="dashboard-container">
       <Grid item container md={6}>
         <Grid item>
-          <Button>Add New Invoice</Button>
+          <Button onClick={() => setShowAddNewInvoiceModal(true)}>
+            Add New Invoice
+          </Button>
         </Grid>
         <Grid item md={12}>
           <Paper elevation={2}>
-            <Grid item container>
+            <Grid
+              item
+              container
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
               <Grid item>
-                <Typography>Oops!! No Invoice Yet</Typography>
+                <Typography className="no-invoice-text">
+                  Oops!! No Invoice Yet
+                </Typography>
               </Grid>
               <Grid item>
                 <img
@@ -150,7 +235,6 @@ const Invoice = () => {
                                 e.target.value
                               )
                             }
-                            label="Description"
                           />
                         </TableCell>
                         <TableCell align="right">
@@ -163,7 +247,6 @@ const Invoice = () => {
                                 e.target.value
                               )
                             }
-                            label="No of Surveys"
                           />
                         </TableCell>
                         <TableCell align="right">
@@ -176,20 +259,19 @@ const Invoice = () => {
                                 e.target.value
                               )
                             }
-                            label="Cost/Survey"
                           />
                         </TableCell>
                         <TableCell align="right">{row.total}</TableCell>
                       </TableRow>
                     ))}
                     <TableRow>
-                      <TableCell colSpan={3} align="right">
+                      <TableCell colSpan={3} align="left">
                         Total (USD):
                       </TableCell>
                       <TableCell align="right">{usdTotal}</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell colSpan={3} align="right">
+                      <TableCell colSpan={3} align="left">
                         Total (INR):
                       </TableCell>
                       <TableCell align="right">{inrTotal}</TableCell>
@@ -235,6 +317,26 @@ const Invoice = () => {
           </Grid>
         </Grid>
       </Grid>
+
+      <FormModal
+        show={showAddNewInvoiceModal}
+        handleSubmit={handleSubmit}
+        handleClose={handleClose}
+        clientOptions={clientOptions}
+        projectOptions={projectOptions}
+        formData={{
+          client,
+          project,
+          country,
+          currency,
+          date,
+        }}
+        onChangeClient={onChangeClient}
+        onChangeProject={onChangeProject}
+        onChangeDate={onChangeDate}
+        onChangeCountry={onChangeCountry}
+        onChangeCurrency={onChangeCurrency}
+      />
     </Grid>
   );
 

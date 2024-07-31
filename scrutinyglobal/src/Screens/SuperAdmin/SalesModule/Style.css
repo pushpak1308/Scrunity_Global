@@ -24,6 +24,15 @@
 }
 
 .invoiceImage {
-  width: 40%;
-  /* height: 100%; */
+  width: 30%;
+  height: 50%;
+}
+
+.no-invoice-text {
+  font-family: "Arimo" !important;
+  font-size: 160% !important;
+  font-weight: 700 !important;
+  text-align: center;
+  color: #a9a9a9;
+  text-align: center;
 }

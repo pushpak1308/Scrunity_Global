@@ -449,7 +449,7 @@ const AssignVendor = () => {
           <Typography
             variant="h6"
             textAlign="center"
-            className="assignVendor-list-datagrid"
+            className="assignVendor-list-datagrid no-invoice-text"
           >
             No vendor selected yet.
           </Typography>
