@@ -1,31 +1,28 @@
 .invoice-heading {
-  font-family: "Arimo";
-  font-size: 120%;
-  font-weight: 700;
+  font-family: "Arimo" !important;
+  font-size: 100% !important;
+  font-weight: 700 !important;
   line-height: 16.1px;
 }
 
 .invoice-subtext {
   font-family: "Arimo";
-  font-size: 110%;
+  font-size: 70% !important;
   color: #838383;
   font-weight: 400;
-  line-height: 11.5px;
   text-align: left;
 }
 
 .invoice-subtext-label {
   font-family: "Arimo";
-  font-size: 12px;
+  font-size: 75% !important;
   font-weight: 400;
-  line-height: 13.8px;
   text-align: right;
   color: #000000;
 }
 
 .invoiceImage {
-  width: 30%;
-  height: 50%;
+  width: 20%;
 }
 
 .no-invoice-text {
@@ -35,4 +32,82 @@
   text-align: center;
   color: #a9a9a9;
   text-align: center;
+}
+
+.invoce-grid-2 {
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  background: #f5f6f8 !important;
+}
+
+.table-heading {
+  font-family: "Arimo" !important;
+  font-size: "100%" !important;
+  font-weight: 700 !important;
+  border-bottom: 1px solid #cacaca;
+  background: #e8e8e8;
+  padding: 1%;
+  color: black;
+}
+
+.table-editable-row {
+  padding: 1.2%;
+  font-family: "Arimo" !important;
+  font-size: "90%" !important;
+  font-weight: 400 !important;
+}
+
+.table-border {
+  border: 1px solid #cacaca;
+  border-radius: 5px;
+  margin-top: 2% !important;
+  margin-bottom: 2% !important;
+}
+
+.table2-heading {
+  font-family: "Arimo" !important;
+  font-size: 90% !important;
+  font-weight: 700 !important;
+  line-height: 13.8px;
+  border: 1px solid #cacaca;
+  padding: 2%;
+  margin-top: 2% !important;
+}
+
+.table-companyName {
+  font-family: "Arimo" !important;
+  font-size: 80% !important;
+  font-weight: 500 !important;
+  line-height: 11.5px;
+}
+
+.table2-data {
+  font-family: "Arimo" !important;
+  font-size: 75% !important;
+  font-weight: 400 !important;
+  line-height: 11.5px;
+}
+
+.bottomText-1 {
+  font-family: "Arimo" !important;
+  font-size: 80% !important;
+  font-weight: 400 !important;
+  text-align: left;
+  color: #9b9b9b;
+}
+
+.bottomText-2 {
+  font-family: "Arimo" !important;
+  font-size: 80% !important;
+  font-weight: 400 !important;
+}
+
+.table2-border {
+  border-bottom: 1px solid #cacaca;
+  border-right: 1px solid #cacaca;
+  border-left: 1px solid #cacaca;
+  padding: 4%;
+  margin-bottom: 3% !important;
 }

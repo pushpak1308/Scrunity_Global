@@ -1,14 +1,14 @@
 import { TextField } from "@mui/material";
 import React from "react";
 
-const EditableTableField = ({ value, onChange }) => {
+const EditableTableField = ({ value, onChange, type }) => {
   return (
     <TextField
       value={value}
       onChange={onChange}
       variant="standard"
       size="small"
-      type="number"
+      type={type ? type : "number"}
     />
   );
 };

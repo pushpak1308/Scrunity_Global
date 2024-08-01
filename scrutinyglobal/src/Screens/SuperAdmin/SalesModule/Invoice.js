@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Grid,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-} from "@mui/material";
+import { Button, Grid, Paper, Typography } from "@mui/material";
+import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import invoiceImage from "../../../Images/Invoice/InvoiceImage.svg";
 import Layout from "../Layout";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import AddIcon from "@mui/icons-material/Add";
 import EditableField from "../../../Components/EditTableField/Index";
 import "./Style.css";
 import { API_PREFIX } from "../../../config";
@@ -120,22 +113,43 @@ const Invoice = () => {
       });
   }
 
+  const handlePdfDownload = () => {
+    const input = document.getElementById("pdf-content");
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      // const pdf = new jsPDF();
+      // pdf.addImage(imgData, "PNG", 0, 0);
+      // pdf.save("Invoice.pdf");
+      const pdf = new jsPDF("p", "pt", "a4"); // 'p' for portrait, 'pt' for points unit, 'a4' for size
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save("Invoice.pdf");
+    });
+  };
+
   const content = (
     <Grid container direction="row" spacing={2} className="dashboard-container">
       <Grid item container md={6}>
-        <Grid item>
-          <Button onClick={() => setShowAddNewInvoiceModal(true)}>
-            Add New Invoice
-          </Button>
-        </Grid>
         <Grid item md={12}>
-          <Paper elevation={2}>
+          <Paper elevation={6} className="invoce-grid-2">
             <Grid
               item
               container
               alignItems={"center"}
               justifyContent={"center"}
             >
+              <Grid item md={12}>
+                <Button
+                  // color="#415ABE"
+                  variant="outlined"
+                  startIcon={<AddIcon />}
+                  onClick={() => setShowAddNewInvoiceModal(true)}
+                >
+                  Add New Invoice
+                </Button>
+              </Grid>
               <Grid item>
                 <Typography className="no-invoice-text">
                   Oops!! No Invoice Yet
@@ -152,172 +166,210 @@ const Invoice = () => {
           </Paper>
         </Grid>
       </Grid>
-      <Grid item container md={6}>
-        <Grid
-          item
-          container
-          md={12}
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          <Grid item>
-            <Button>Download as a PDF</Button>
-          </Grid>
-          <Grid item>
-            <Button>Save</Button>
-          </Grid>
-        </Grid>
-        <Grid item md={12}>
-          <Paper elevation={2}>
-            <Grid item container spacing={2}>
-              <Grid item md={6}>
-                <Typography textAlign="left" className="invoice-heading">
-                  Scrutiny Global
-                </Typography>
-                <Typography className="invoice-subtext" gutterBottom>
-                  +91-7678294335
-                </Typography>
-                <Typography className="invoice-subtext" gutterBottom>
-                  business@scrutinyglobal.com
-                </Typography>
-                <Typography className="invoice-subtext" gutterBottom>
-                  Second floor L-295, Mohan Garden, Uttam Nagar, New Delhi-
-                  110059. INDIA
-                </Typography>
-                <Typography className="invoice-subtext" gutterBottom>
-                  GSTIN - 071GJPK820IEIZF
-                </Typography>
-              </Grid>
-              <Grid item md={6}>
-                <Typography textAlign="right" className="invoice-heading">
-                  Invoice -001
-                </Typography>
-                <Grid item container>
-                  <Grid item>
-                    <Typography>Invoice Number :</Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography>001</Typography>
-                  </Grid>
+      {savedData && (
+        <Grid item container md={6}>
+          <Grid item md={12}>
+            <Paper elevation={6} className="invoce-grid-2">
+              <Grid
+                item
+                container
+                md={12}
+                justifyContent="space-between"
+                alignItems="center"
+                marginBottom={"4%"}
+              >
+                <Grid item>
+                  <Button
+                    variant="outlined"
+                    onClick={handlePdfDownload}
+                    startIcon={<DownloadOutlinedIcon />}
+                  >
+                    Download as a PDF
+                  </Button>
                 </Grid>
-                <Grid item container>
-                  <Grid item>Invoice Date :</Grid>
-                  <Grid item>12 / 06 /2024</Grid>
-                </Grid>
-                <Grid item container>
-                  <Grid item>Buyer’s PO Number :</Grid>
-                  <Grid item>Editable</Grid>
+                <Grid item>
+                  <Button variant="contained">Save</Button>
                 </Grid>
               </Grid>
-            </Grid>
-            <Grid item md={12}>
-              <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      {headings.map((heading, index) => (
-                        <TableCell key={index} align="right">
-                          {heading}
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {rows.map((row, rowIndex) => (
-                      <TableRow key={rowIndex}>
-                        <TableCell align="right">
-                          <EditableField
-                            value={row.description}
-                            onChange={(e) =>
-                              handleChange(
-                                rowIndex,
-                                "description",
-                                e.target.value
-                              )
-                            }
-                          />
-                        </TableCell>
-                        <TableCell align="right">
-                          <EditableField
-                            value={row.noOfSurveys}
-                            onChange={(e) =>
-                              handleChange(
-                                rowIndex,
-                                "noOfSurveys",
-                                e.target.value
-                              )
-                            }
-                          />
-                        </TableCell>
-                        <TableCell align="right">
-                          <EditableField
-                            value={row.costPerSurvey}
-                            onChange={(e) =>
-                              handleChange(
-                                rowIndex,
-                                "costPerSurvey",
-                                e.target.value
-                              )
-                            }
-                          />
-                        </TableCell>
-                        <TableCell align="right">{row.total}</TableCell>
-                      </TableRow>
+              <Paper elevation={5} id="pdf-content" padding={"3%"}>
+                <Grid item container spacing={2}>
+                  <Grid item md={6}>
+                    <Typography textAlign="left" className="invoice-heading">
+                      Scrutiny Global
+                    </Typography>
+                    <Typography className="invoice-subtext" gutterBottom>
+                      +91-7678294335
+                    </Typography>
+                    <Typography className="invoice-subtext" gutterBottom>
+                      business@scrutinyglobal.com
+                    </Typography>
+                    <Typography className="invoice-subtext" gutterBottom>
+                      Second floor L-295, Mohan Garden, Uttam Nagar, New Delhi-
+                      110059. INDIA
+                    </Typography>
+                    <Typography className="invoice-subtext" gutterBottom>
+                      GSTIN - 071GJPK820IEIZF
+                    </Typography>
+                  </Grid>
+                  <Grid item md={6}>
+                    <Typography textAlign="right" className="invoice-heading">
+                      Invoice -001
+                    </Typography>
+
+                    <Grid item container justifyContent="flex-end">
+                      <Grid item>
+                        <Typography className="invoice-subtext-label">
+                          Invoice Date :
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography className="invoice-subtext">
+                          {date}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item container className="table-border" md={12}>
+                  <Grid item container md={12}>
+                    {headings.map((heading, index) => (
+                      <Grid item md={3} key={index} className="table-heading">
+                        <Typography align="center">{heading}</Typography>
+                      </Grid>
                     ))}
-                    <TableRow>
-                      <TableCell colSpan={3} align="left">
-                        Total (USD):
-                      </TableCell>
-                      <TableCell align="right">{usdTotal}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell colSpan={3} align="left">
-                        Total (INR):
-                      </TableCell>
-                      <TableCell align="right">{inrTotal}</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Grid>
-          </Paper>
-        </Grid>
-        <Grid item container md={12}>
-          <Grid item md={6}>
-            <Typography>Project/Vendor details</Typography>
-            <Typography>Company Name</Typography>
-            <Typography>janesmith@xyzsupplies.com</Typography>
-            <Typography>456 Elm Street, Downtown, Chicago, IL 60601</Typography>
-            <Typography>8765432167</Typography>
-          </Grid>
-          <Grid item md={6}>
-            <Typography>Client Details</Typography>
-            <Typography>Company Name</Typography>
-            <Typography>janesmith@xyzsupplies.com</Typography>
-            <Typography>456 Elm Street, Downtown, Chicago, IL 60601</Typography>
-            <Typography>8765432167</Typography>
-          </Grid>
-        </Grid>
-        <Grid item>
-          <Typography>
-            SUPPLY MEANT FOR EXPORT OF SERVICE UNDER LETTER OF UNDERTAKING
-            WITHOUT PAYMENT OF INTEGRATED TAX
-          </Typography>
-          <Typography>
-            LUT (ARN no.) - ADD70456789765, dated 14/04/2024
-          </Typography>
-        </Grid>
+                  </Grid>
+                  {rows.map((row, rowIndex) => (
+                    <Grid item container key={rowIndex} md={12}>
+                      <Grid item md={3} className="table-editable-row ">
+                        <EditableField
+                          type="text"
+                          value={row.description}
+                          onChange={(e) =>
+                            handleChange(
+                              rowIndex,
+                              "description",
+                              e.target.value
+                            )
+                          }
+                        />
+                      </Grid>
+                      <Grid item md={3} className="table-editable-row ">
+                        <EditableField
+                          value={row.noOfSurveys}
+                          onChange={(e) =>
+                            handleChange(
+                              rowIndex,
+                              "noOfSurveys",
+                              e.target.value
+                            )
+                          }
+                        />
+                      </Grid>
+                      <Grid item md={3} className="table-editable-row ">
+                        <EditableField
+                          value={row.costPerSurvey}
+                          onChange={(e) =>
+                            handleChange(
+                              rowIndex,
+                              "costPerSurvey",
+                              e.target.value
+                            )
+                          }
+                        />
+                      </Grid>
+                      <Grid item md={3} className="table-editable-row ">
+                        <Typography align="right">{row.total}</Typography>
+                      </Grid>
+                    </Grid>
+                  ))}
+                  <Grid item container>
+                    <Grid item md={9}>
+                      <Typography className="table-editable-row">
+                        <b>Total</b> (USD):
+                      </Typography>
+                    </Grid>
+                    <Grid item md={3}>
+                      <Typography align="right" className="table-editable-row">
+                        {usdTotal}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid item container>
+                    <Grid item md={9}>
+                      <Typography className="table-editable-row">
+                        <b>Total</b> (INR):
+                      </Typography>
+                    </Grid>
+                    <Grid item md={3}>
+                      <Typography align="right" className="table-editable-row">
+                        {inrTotal}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item container md={12}>
+                  <Grid item md={6}>
+                    <Typography className="table2-heading">
+                      Project/Vendor details
+                    </Typography>
+                    <Grid item className="table2-border">
+                      <Typography className="table-companyName">
+                        {project}
+                      </Typography>
+                      <Typography className="table2-data">
+                        janesmith@xyzsupplies.com
+                      </Typography>
+                      <Typography className="table2-data">
+                        456 Elm Street, Downtown, Chicago, IL 60601
+                      </Typography>
+                      <Typography className="table2-data">
+                        8765432167
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid item md={6}>
+                    <Typography className="table2-heading">
+                      Client Details
+                    </Typography>
+                    <Grid item className="table2-border">
+                      <Typography className="table-companyName">
+                        {client}
+                      </Typography>
+                      <Typography className="table2-data">
+                        janesmith@xyzsupplies.com
+                      </Typography>
+                      <Typography className="table2-data">
+                        456 Elm Street, Downtown, Chicago, IL 60601
+                      </Typography>
+                      <Typography className="table2-data">
+                        8765432167
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item md={12}>
+                  <Typography className="bottomText-1">
+                    SUPPLY MEANT FOR EXPORT OF SERVICE UNDER LETTER OF
+                    UNDERTAKING WITHOUT PAYMENT OF INTEGRATED TAX
+                  </Typography>
+                  <Typography lassName="bottomText-1" md={12}>
+                    LUT (ARN no.) - ADD70456789765, dated 14/04/2024
+                  </Typography>
+                </Grid>
 
-        <Grid item container>
-          <Grid item>
-            <Typography>PRASHANT KUMAR (prop. )</Typography>
-          </Grid>
-          <Grid item>
-            <Typography>SIGNATURE HERE</Typography>
+                <Grid item container md={12}>
+                  <Grid item md={6}>
+                    <Typography>PRASHANT KUMAR (prop. )</Typography>
+                  </Grid>
+                  <Grid item md={6}>
+                    <Typography>SIGNATURE HERE</Typography>
+                  </Grid>
+                </Grid>
+              </Paper>
+            </Paper>
           </Grid>
         </Grid>
-      </Grid>
-
+      )}
       <FormModal
         show={showAddNewInvoiceModal}
         handleSubmit={handleSubmit}

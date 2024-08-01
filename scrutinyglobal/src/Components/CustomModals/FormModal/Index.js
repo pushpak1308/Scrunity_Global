@@ -78,7 +78,12 @@ const FormModal = ({
                   className="forAddClient"
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid
+                item
+                xs={12}
+                justifyContent={"center"}
+                alignItems={"center"}
+              >
                 <MuiContainedButton
                   type="submit"
                   buttonText="Generate Invoice"
