@@ -85,14 +85,14 @@ const Invoice = () => {
   };
 
   const handleSave = () => {
-    const description = rows[0].description;
+    const description = rows[0].description || rows[1].description;
     const newInvoice = {
       total: inrTotal,
       clientName: client,
       date,
       description,
     };
-    setSavedInvoices([...savedInvoices, newInvoice]);
+    setSavedInvoices([newInvoice, ...savedInvoices]);
     setSelectedInvoice(newInvoice);
   };
 
@@ -131,7 +131,6 @@ const Invoice = () => {
         const clientNames = data.map((client) => client.name);
         setProjectOptions(projectNames);
         setClientOptions(clientNames);
-        // console.log("response Data", data);
       })
       .catch(function (error) {
         console.error("Error fetching data:", error);
@@ -142,9 +141,6 @@ const Invoice = () => {
     const input = document.getElementById("pdf-content");
     html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
-      // const pdf = new jsPDF();
-      // pdf.addImage(imgData, "PNG", 0, 0);
-      // pdf.save("Invoice.pdf");
       const pdf = new jsPDF("p", "pt", "a4"); // 'p' for portrait, 'pt' for points unit, 'a4' for size
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
@@ -167,7 +163,6 @@ const Invoice = () => {
             >
               <Grid item md={12}>
                 <Button
-                  // color="#415ABE"
                   variant="outlined"
                   size="small"
                   startIcon={<AddIcon />}
@@ -232,7 +227,12 @@ const Invoice = () => {
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button size="small" variant="contained" onClick={handleSave}>
+                  <Button
+                    size="small"
+                    variant="contained"
+                    color="success"
+                    onClick={handleSave}
+                  >
                     Save
                   </Button>
                 </Grid>
@@ -287,7 +287,15 @@ const Invoice = () => {
                     ))}
                   </Grid>
                   {rows.map((row, rowIndex) => (
-                    <Grid item container key={rowIndex} spacing={2} md={12}>
+                    <Grid
+                      item
+                      container
+                      key={rowIndex}
+                      paddingLeft={1}
+                      paddingRight={1}
+                      spacing={2}
+                      md={12}
+                    >
                       <Grid item md={3}>
                         <EditableField
                           type="text"
@@ -326,7 +334,12 @@ const Invoice = () => {
                         />
                       </Grid>
                       <Grid item md={3}>
-                        <Typography align="right">{row.total}</Typography>
+                        <Typography
+                          align="right"
+                          className="table-editable-row"
+                        >
+                          {row.total}
+                        </Typography>
                       </Grid>
                     </Grid>
                   ))}
@@ -342,7 +355,13 @@ const Invoice = () => {
                       </Typography>
                     </Grid>
                   </Grid> */}
-                  <Grid item container>
+                  <Grid
+                    item
+                    container
+                    paddingLeft={1}
+                    paddingRight={1}
+                    className="total-border"
+                  >
                     <Grid item md={9}>
                       <Typography className="table-editable-row">
                         <b>Total</b> (INR):
