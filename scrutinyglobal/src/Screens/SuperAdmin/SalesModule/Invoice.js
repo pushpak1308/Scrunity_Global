@@ -10,6 +10,7 @@ import EditableField from "../../../Components/EditTableField/Index";
 import "./Style.css";
 import { API_PREFIX } from "../../../config";
 import FormModal from "../../../Components/CustomModals/FormModal/Index";
+import InvoiceCard from "../../../Components/InvoiceCard/Index";
 
 const Invoice = () => {
   const [client, setClient] = useState("");
@@ -22,6 +23,7 @@ const Invoice = () => {
   const [projectOptions, setProjectOptions] = useState([]);
   const [clientOptions, setClientOptions] = useState([]);
 
+  const [savedInvoices, setSavedInvoices] = useState([]);
   const onChangeClient = (e) => {
     const selectedClient = e.target.value;
     setClient(selectedClient);
@@ -39,7 +41,7 @@ const Invoice = () => {
   const onChangeCurrency = (e) => setCurrency(e.target.value);
   const onChangeDate = (e) => setDate(e.target.value);
 
-  const handleSubmit = (e) => {
+  const handleFormModalSubmit = (e) => {
     e.preventDefault();
     const formData = {
       client,
@@ -61,6 +63,7 @@ const Invoice = () => {
   const [usdTotal, setUsdTotal] = useState(0);
   const [inrTotal, setInrTotal] = useState(0);
   const [showAddNewInvoiceModal, setShowAddNewInvoiceModal] = useState(false);
+  const [selectedInvoice, setSelectedInvoice] = useState(null);
 
   const handleChange = (index, key, value) => {
     const updatedRows = [...rows];
@@ -80,6 +83,28 @@ const Invoice = () => {
     setInrTotal(inrTotal.toFixed(2));
     setUsdTotal((inrTotal / 74.5).toFixed(2)); // Assuming 1 USD = 74.5 INR
   };
+
+  const handleSave = () => {
+    const description = rows[0].description;
+    const newInvoice = {
+      total: inrTotal,
+      clientName: client,
+      date,
+      description,
+    };
+    setSavedInvoices([...savedInvoices, newInvoice]);
+    setSelectedInvoice(newInvoice);
+  };
+
+  const handleInvoiceSelect = (index) => {
+    setSelectedInvoice(savedInvoices[index]);
+  };
+
+  useEffect(() => {
+    if (savedInvoices.length > 0 && !selectedInvoice) {
+      setSelectedInvoice(savedInvoices[0]);
+    }
+  }, [savedInvoices]);
 
   const handleClose = () => {
     setShowAddNewInvoiceModal(false);
@@ -144,24 +169,42 @@ const Invoice = () => {
                 <Button
                   // color="#415ABE"
                   variant="outlined"
+                  size="small"
                   startIcon={<AddIcon />}
+                  className="invoice-button"
                   onClick={() => setShowAddNewInvoiceModal(true)}
                 >
                   Add New Invoice
                 </Button>
               </Grid>
-              <Grid item>
-                <Typography className="no-invoice-text">
-                  Oops!! No Invoice Yet
-                </Typography>
-              </Grid>
-              <Grid item>
-                <img
-                  src={invoiceImage}
-                  classNAme="invoiceImage"
-                  alt="No invoice yet!"
-                />
-              </Grid>
+              {savedInvoices.length > 0 ? (
+                savedInvoices.map((invoice, index) => (
+                  <InvoiceCard
+                    key={index}
+                    total={invoice.total}
+                    clientName={invoice.clientName}
+                    date={invoice.date}
+                    description={invoice.description}
+                    checked={selectedInvoice === invoice}
+                    onClick={() => handleInvoiceSelect(index)}
+                  />
+                ))
+              ) : (
+                <>
+                  <Grid item>
+                    <Typography className="no-invoice-text">
+                      Oops!! No Invoice Yet
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <img
+                      src={invoiceImage}
+                      classNAme="invoiceImage"
+                      alt="No invoice yet!"
+                    />
+                  </Grid>
+                </>
+              )}
             </Grid>
           </Paper>
         </Grid>
@@ -181,6 +224,7 @@ const Invoice = () => {
                 <Grid item>
                   <Button
                     variant="outlined"
+                    size="small"
                     onClick={handlePdfDownload}
                     startIcon={<DownloadOutlinedIcon />}
                   >
@@ -188,10 +232,12 @@ const Invoice = () => {
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button variant="contained">Save</Button>
+                  <Button size="small" variant="contained" onClick={handleSave}>
+                    Save
+                  </Button>
                 </Grid>
               </Grid>
-              <Paper elevation={5} id="pdf-content" padding={"3%"}>
+              <Paper elevation={5} id="pdf-content" className="download-grid">
                 <Grid item container spacing={2}>
                   <Grid item md={6}>
                     <Typography textAlign="left" className="invoice-heading">
@@ -233,14 +279,16 @@ const Invoice = () => {
                 <Grid item container className="table-border" md={12}>
                   <Grid item container md={12}>
                     {headings.map((heading, index) => (
-                      <Grid item md={3} key={index} className="table-heading">
-                        <Typography align="center">{heading}</Typography>
+                      <Grid item md={3} key={index}>
+                        <Typography align="center" className="table-heading">
+                          {heading}
+                        </Typography>
                       </Grid>
                     ))}
                   </Grid>
                   {rows.map((row, rowIndex) => (
-                    <Grid item container key={rowIndex} md={12}>
-                      <Grid item md={3} className="table-editable-row ">
+                    <Grid item container key={rowIndex} spacing={2} md={12}>
+                      <Grid item md={3}>
                         <EditableField
                           type="text"
                           value={row.description}
@@ -253,7 +301,7 @@ const Invoice = () => {
                           }
                         />
                       </Grid>
-                      <Grid item md={3} className="table-editable-row ">
+                      <Grid item md={3}>
                         <EditableField
                           value={row.noOfSurveys}
                           onChange={(e) =>
@@ -265,7 +313,7 @@ const Invoice = () => {
                           }
                         />
                       </Grid>
-                      <Grid item md={3} className="table-editable-row ">
+                      <Grid item md={3}>
                         <EditableField
                           value={row.costPerSurvey}
                           onChange={(e) =>
@@ -277,12 +325,12 @@ const Invoice = () => {
                           }
                         />
                       </Grid>
-                      <Grid item md={3} className="table-editable-row ">
+                      <Grid item md={3}>
                         <Typography align="right">{row.total}</Typography>
                       </Grid>
                     </Grid>
                   ))}
-                  <Grid item container>
+                  {/* <Grid item container>
                     <Grid item md={9}>
                       <Typography className="table-editable-row">
                         <b>Total</b> (USD):
@@ -293,7 +341,7 @@ const Invoice = () => {
                         {usdTotal}
                       </Typography>
                     </Grid>
-                  </Grid>
+                  </Grid> */}
                   <Grid item container>
                     <Grid item md={9}>
                       <Typography className="table-editable-row">
@@ -352,17 +400,21 @@ const Invoice = () => {
                     SUPPLY MEANT FOR EXPORT OF SERVICE UNDER LETTER OF
                     UNDERTAKING WITHOUT PAYMENT OF INTEGRATED TAX
                   </Typography>
-                  <Typography lassName="bottomText-1" md={12}>
-                    LUT (ARN no.) - ADD70456789765, dated 14/04/2024
+                  <Typography className="bottomText-1">
+                    LUT (ARN no.) - ADD70456789765, dated {date}
                   </Typography>
                 </Grid>
 
-                <Grid item container md={12}>
+                <Grid item container md={12} alignItems={"flex-end"}>
                   <Grid item md={6}>
-                    <Typography>PRASHANT KUMAR (prop. )</Typography>
+                    <Typography className="class-prashant">
+                      PRASHANT KUMAR (prop. )
+                    </Typography>
                   </Grid>
                   <Grid item md={6}>
-                    <Typography>SIGNATURE HERE</Typography>
+                    <Typography className="signature-space">
+                      SIGNATURE HERE
+                    </Typography>
                   </Grid>
                 </Grid>
               </Paper>
@@ -372,7 +424,7 @@ const Invoice = () => {
       )}
       <FormModal
         show={showAddNewInvoiceModal}
-        handleSubmit={handleSubmit}
+        handleSubmit={handleFormModalSubmit}
         handleClose={handleClose}
         clientOptions={clientOptions}
         projectOptions={projectOptions}

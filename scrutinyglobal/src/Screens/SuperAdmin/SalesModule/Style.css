@@ -22,7 +22,11 @@
 }
 
 .invoiceImage {
-  width: 20%;
+  width: 20% !important ;
+}
+
+.invoice-button {
+  color: #415abe;
 }
 
 .no-invoice-text {
@@ -44,24 +48,31 @@
 
 .table-heading {
   font-family: "Arimo" !important;
-  font-size: "100%" !important;
+  font-size: 85% !important;
   font-weight: 700 !important;
   border-bottom: 1px solid #cacaca;
   background: #e8e8e8;
-  padding: 1%;
+  padding: 2%;
   color: black;
 }
 
+.download-grid {
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
 .table-editable-row {
-  padding: 1.2%;
+  padding: 1%;
   font-family: "Arimo" !important;
-  font-size: "90%" !important;
+  font-size: "75%" !important;
   font-weight: 400 !important;
 }
 
 .table-border {
   border: 1px solid #cacaca;
   border-radius: 5px;
+  /* padding-left: 1%;
+  padding-right: 1%; */
   margin-top: 2% !important;
   margin-bottom: 2% !important;
 }
@@ -92,7 +103,7 @@
 
 .bottomText-1 {
   font-family: "Arimo" !important;
-  font-size: 80% !important;
+  font-size: 77% !important;
   font-weight: 400 !important;
   text-align: left;
   color: #9b9b9b;
@@ -100,7 +111,7 @@
 
 .bottomText-2 {
   font-family: "Arimo" !important;
-  font-size: 80% !important;
+  font-size: 77% !important;
   font-weight: 400 !important;
 }
 
@@ -110,4 +121,25 @@
   border-left: 1px solid #cacaca;
   padding: 4%;
   margin-bottom: 3% !important;
+}
+
+.class-prashant {
+  font-family: "Arimo" !important;
+  font-size: 75% !important;
+  font-weight: 700 !important;
+  line-height: 11.5px;
+  text-align: center;
+  color: black;
+}
+
+.signature-space {
+  font-family: "Arimo" !important;
+  font-size: 90% !important;
+  font-weight: 700 !important;
+  line-height: 20.7px;
+  text-align: center;
+  padding: 3rem;
+  margin-top: 1rem !important;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
 }

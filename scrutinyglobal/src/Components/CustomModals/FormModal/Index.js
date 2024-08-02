@@ -78,18 +78,14 @@ const FormModal = ({
                   className="forAddClient"
                 />
               </Grid>
-              <Grid
-                item
-                xs={12}
-                justifyContent={"center"}
-                alignItems={"center"}
-              >
-                <MuiContainedButton
-                  type="submit"
-                  buttonText="Generate Invoice"
-                  width={true}
-                  onClickFunction={handleSubmit}
-                />
+              <Grid container justifyContent="space-evenly" alignItems="center">
+                <Grid item>
+                  <MuiContainedButton
+                    type="submit"
+                    buttonText="Generate Invoice"
+                    onClickFunction={handleSubmit}
+                  />
+                </Grid>
               </Grid>
             </Grid>
           </form>

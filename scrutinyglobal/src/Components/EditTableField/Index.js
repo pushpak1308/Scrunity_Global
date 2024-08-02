@@ -5,6 +5,7 @@ const EditableTableField = ({ value, onChange, type }) => {
   return (
     <TextField
       value={value}
+      className="table-editable-row "
       onChange={onChange}
       variant="standard"
       size="small"
