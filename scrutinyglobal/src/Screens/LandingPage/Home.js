@@ -12,7 +12,7 @@ const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Grid container className="main-container-landing ">
+    <Grid container className="main-container-landing">
       <Grid
         item
         container
@@ -21,10 +21,15 @@ const Home = () => {
         alignItems="center"
         className={isMobile ? "home-sub-grid-mobile" : "home-sub-grid"}
       >
-        <Grid item md={6} xs={12} className="item-grid">
-          <Typography className="vollkorn-heading">SCRUTINY GLOBAL</Typography>
+        <Grid item md={6} xs={12} className="item-grid fade-in">
+          <Typography className="vollkorn-heading fade-in">
+            SCRUTINY GLOBAL
+          </Typography>
 
-          <Typography className="monsterrat-subheading-paragraph" gutterBottom>
+          <Typography
+            className="monsterrat-subheading-paragraph fade-in"
+            gutterBottom
+          >
             At Scrutiny Global, we go beyond being mere data suppliers – we are
             your dedicated partners, transforming accurate and relevant
             information into actionable truths that drive your success.
@@ -43,7 +48,7 @@ const Home = () => {
             />
           </Link>
         </Grid>
-        <Grid item md={6} xs={12} className="home-image">
+        <Grid item md={6} xs={12} className="home-image zoom-out">
           <img src={homeImage} alt="home Image" />
         </Grid>
       </Grid>
@@ -55,16 +60,16 @@ const Home = () => {
           justifyContent="space-evenly"
           className="iconCardGrid"
         >
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} className="fade-in">
             <CardComponentIcon title="2234" text="Happy Clients" />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} className="fade-in">
             <CardComponentIcon title="1000" text="Projects" />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} className="fade-in">
             <CardComponentIcon title="1454" text="Hours Of Support" />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} className="fade-in">
             <CardComponentIcon title="2345" text="Hardworkers" />
           </Grid>
         </Grid>

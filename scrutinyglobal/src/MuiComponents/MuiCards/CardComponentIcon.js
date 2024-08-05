@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Typography } from "@mui/material";
 import "./Style.css";
+import CountUp from "react-countup";
 
 const CardComponentIcon = ({ title, text }) => {
   return (
@@ -11,7 +12,9 @@ const CardComponentIcon = ({ title, text }) => {
       alignItems="center"
     >
       <Grid item>
-        <Typography className="iconCard-title">{title}</Typography>
+        <Typography className="iconCard-title">
+          <CountUp start={0} end={parseInt(title, 10)} duration={2} />
+        </Typography>
       </Grid>
       <Grid item>
         <Typography
