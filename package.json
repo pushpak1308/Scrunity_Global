@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "redux-persist": "^6.0.0"
+    "formik": "^2.4.6",
+    "redux-persist": "^6.0.0",
+    "uuid": "^10.0.0",
+    "yup": "^1.4.0"
   }
 }

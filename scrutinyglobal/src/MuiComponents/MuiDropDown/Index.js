@@ -10,6 +10,8 @@ export const MuiDropDown = ({
   defaultValue,
   className,
   required,
+  error = false,
+  helperText = "",
 }) => {
   const isControlled = value !== undefined;
   const name = value;
@@ -40,6 +42,8 @@ export const MuiDropDown = ({
             placeholder={label}
             variant="standard"
             size="small"
+            error={error}
+            helperText={helperText}
             className={className ? className : "arimo-input-label"}
             InputProps={{
               ...params.InputProps,

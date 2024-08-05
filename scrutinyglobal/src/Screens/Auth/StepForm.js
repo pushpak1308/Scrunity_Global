@@ -7,6 +7,8 @@ import CustomContainedButton from "../../MuiComponents/MuiContainedButton/Index"
 import { useSelector } from "react-redux";
 import { API_PREFIX } from "../../config";
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const StepForm = ({
   formStep,
   formData,
@@ -79,6 +81,8 @@ const StepForm = ({
     // return ["India","USA"];
   };
 
+  const isEmailValid = emailRegex.test(email);
+
   switch (formStep) {
     case 0:
       return (
@@ -144,6 +148,7 @@ const StepForm = ({
               onClickFunction={incrementFormStep}
               buttonText={"Next"}
               disabled={
+                !isEmailValid ||
                 confirmPassword !== password ||
                 password === "" ||
                 email === "" ||

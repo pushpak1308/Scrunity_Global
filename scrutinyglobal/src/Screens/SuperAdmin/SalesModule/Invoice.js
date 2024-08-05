@@ -11,6 +11,7 @@ import "./Style.css";
 import { API_PREFIX } from "../../../config";
 import FormModal from "../../../Components/CustomModals/FormModal/Index";
 import InvoiceCard from "../../../Components/InvoiceCard/Index";
+import { v4 as uuidv4 } from "uuid";
 
 const Invoice = () => {
   const [client, setClient] = useState("");
@@ -22,8 +23,14 @@ const Invoice = () => {
   const [responseData, setResponseData] = useState(false);
   const [projectOptions, setProjectOptions] = useState([]);
   const [clientOptions, setClientOptions] = useState([]);
+  const [usdTotal, setUsdTotal] = useState(0);
+  const [inrTotal, setInrTotal] = useState(0);
+  const [showAddNewInvoiceModal, setShowAddNewInvoiceModal] = useState(false);
+  // const [invoiceCounter, setInvoiceCounter] = useState(1); // Initialize invoice counter
 
   const [savedInvoices, setSavedInvoices] = useState([]);
+  const [selectedInvoice, setSelectedInvoice] = useState(null);
+
   const onChangeClient = (e) => {
     const selectedClient = e.target.value;
     setClient(selectedClient);
@@ -40,6 +47,11 @@ const Invoice = () => {
   const onChangeCountry = (e) => setCountry(e.target.value);
   const onChangeCurrency = (e) => setCurrency(e.target.value);
   const onChangeDate = (e) => setDate(e.target.value);
+  const headings = ["Description", "No of Surveys", "Cost/Survey", "Total"];
+  const [rows, setRows] = useState([
+    { description: "", noOfSurveys: "", costPerSurvey: "", total: "0" },
+    { description: "", noOfSurveys: "", costPerSurvey: "", total: "0" },
+  ]);
 
   const handleFormModalSubmit = (e) => {
     e.preventDefault();
@@ -50,20 +62,13 @@ const Invoice = () => {
       currency,
       date,
     };
-    console.log("formData :>> ", formData);
     setSavedData(formData);
     setShowAddNewInvoiceModal(false);
+    setRows([
+      { description: "", noOfSurveys: "", costPerSurvey: "", total: "0" },
+      { description: "", noOfSurveys: "", costPerSurvey: "", total: "0" },
+    ]);
   };
-
-  const headings = ["Description", "No of Surveys", "Cost/Survey", "Total"];
-  const [rows, setRows] = useState([
-    { description: "", noOfSurveys: "", costPerSurvey: "", total: "0" },
-    { description: "", noOfSurveys: "", costPerSurvey: "", total: "0" },
-  ]);
-  const [usdTotal, setUsdTotal] = useState(0);
-  const [inrTotal, setInrTotal] = useState(0);
-  const [showAddNewInvoiceModal, setShowAddNewInvoiceModal] = useState(false);
-  const [selectedInvoice, setSelectedInvoice] = useState(null);
 
   const handleChange = (index, key, value) => {
     const updatedRows = [...rows];
@@ -86,18 +91,49 @@ const Invoice = () => {
 
   const handleSave = () => {
     const description = rows[0].description || rows[1].description;
+    const invoiceNumber = uuidv4().slice(0, 3); // Generate a new UUID for the invoice
+
     const newInvoice = {
       total: inrTotal,
       clientName: client,
       date,
+      project,
+      rows,
+      country,
+      currency,
+      usdTotal,
+      inrTotal,
       description,
+      invoiceNumber, // Include the generated invoice number
     };
-    setSavedInvoices([newInvoice, ...savedInvoices]);
+
+    if (selectedInvoice) {
+      // Update existing invoice
+      const updatedInvoices = savedInvoices.map((invoice) =>
+        invoice.invoiceNumber === selectedInvoice.invoiceNumber
+          ? newInvoice
+          : invoice
+      );
+      setSavedInvoices(updatedInvoices);
+    } else {
+      // Add new invoice
+      setSavedInvoices([newInvoice, ...savedInvoices]);
+    }
     setSelectedInvoice(newInvoice);
   };
 
+  console.log("selectedInvoice :>> ", selectedInvoice);
   const handleInvoiceSelect = (index) => {
-    setSelectedInvoice(savedInvoices[index]);
+    const selectedInvoice = savedInvoices[index];
+    setSelectedInvoice(selectedInvoice);
+    setClient(selectedInvoice.clientName);
+    setDate(selectedInvoice.date);
+    setProject(selectedInvoice.project);
+    setRows(selectedInvoice.rows);
+    setCountry(selectedInvoice.country);
+    setCurrency(selectedInvoice.currency);
+    setUsdTotal(selectedInvoice.usdTotal);
+    setInrTotal(selectedInvoice.inrTotal);
   };
 
   useEffect(() => {
@@ -167,7 +203,28 @@ const Invoice = () => {
                   size="small"
                   startIcon={<AddIcon />}
                   className="invoice-button"
-                  onClick={() => setShowAddNewInvoiceModal(true)}
+                  onClick={() => {
+                    setShowAddNewInvoiceModal(true);
+                    setClient("");
+                    setProject("");
+                    setCountry("");
+                    setCurrency("");
+                    setDate("");
+                    setRows([
+                      {
+                        description: "",
+                        noOfSurveys: "",
+                        costPerSurvey: "",
+                        total: "0",
+                      },
+                      {
+                        description: "",
+                        noOfSurveys: "",
+                        costPerSurvey: "",
+                        total: "0",
+                      },
+                    ]);
+                  }}
                 >
                   Add New Invoice
                 </Button>
@@ -180,12 +237,20 @@ const Invoice = () => {
                     clientName={invoice.clientName}
                     date={invoice.date}
                     description={invoice.description}
-                    checked={selectedInvoice === invoice}
+                    invoiceNumber={invoice.invoiceNumber}
+                    checked={
+                      selectedInvoice?.invoiceNumber === invoice.invoiceNumber
+                    }
                     onClick={() => handleInvoiceSelect(index)}
                   />
                 ))
               ) : (
-                <>
+                <Grid
+                  item
+                  container
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                >
                   <Grid item>
                     <Typography className="no-invoice-text">
                       Oops!! No Invoice Yet
@@ -194,11 +259,11 @@ const Invoice = () => {
                   <Grid item>
                     <img
                       src={invoiceImage}
-                      classNAme="invoiceImage"
+                      className="invoiceImage"
                       alt="No invoice yet!"
                     />
                   </Grid>
-                </>
+                </Grid>
               )}
             </Grid>
           </Paper>
@@ -259,7 +324,8 @@ const Invoice = () => {
                   </Grid>
                   <Grid item md={6}>
                     <Typography textAlign="right" className="invoice-heading">
-                      Invoice -001
+                      Invoice -{" "}
+                      {selectedInvoice ? selectedInvoice.invoiceNumber : "NEW"}
                     </Typography>
 
                     <Grid item container justifyContent="flex-end">
@@ -381,7 +447,7 @@ const Invoice = () => {
                     </Typography>
                     <Grid item className="table2-border">
                       <Typography className="table-companyName">
-                        {project}
+                        {savedData.project}
                       </Typography>
                       <Typography className="table2-data">
                         janesmith@xyzsupplies.com
@@ -400,7 +466,7 @@ const Invoice = () => {
                     </Typography>
                     <Grid item className="table2-border">
                       <Typography className="table-companyName">
-                        {client}
+                        {savedData.client}
                       </Typography>
                       <Typography className="table2-data">
                         janesmith@xyzsupplies.com
@@ -420,7 +486,7 @@ const Invoice = () => {
                     UNDERTAKING WITHOUT PAYMENT OF INTEGRATED TAX
                   </Typography>
                   <Typography className="bottomText-1">
-                    LUT (ARN no.) - ADD70456789765, dated {date}
+                    LUT (ARN no.) - ADD70456789765, dated {savedData.date}
                   </Typography>
                 </Grid>
 

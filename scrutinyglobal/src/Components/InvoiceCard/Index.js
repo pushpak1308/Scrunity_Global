@@ -10,6 +10,7 @@ const InvoiceCard = ({
   description,
   checked,
   onClick,
+  invoiceNumber,
 }) => {
   return (
     <Grid
@@ -25,7 +26,7 @@ const InvoiceCard = ({
           </Grid>
           <Grid item>
             <Typography className="invoice-number" component="div">
-              INVOICE-001
+              INVOICE-00{invoiceNumber}
             </Typography>
           </Grid>
           <Grid item>

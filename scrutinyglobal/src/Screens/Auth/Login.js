@@ -10,6 +10,8 @@ import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 import SuccessErrorModal from "../../Components/CustomModals/SuccesErrorModal/Index";
 import Loading from "../../Components/Loading/Index";
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -23,20 +25,20 @@ const Login = (props) => {
   const navigate = useNavigate();
 
   const onChangeUsername = (event) => {
-    event.preventDefault();
-    setUsername(event.target.value);
-    setLoginData({ ...loginData, username: event.target.value });
+    const value = event.target.value;
+    setUsername(value);
+    setLoginData({ ...loginData, username: value });
   };
 
   const onChangePassword = (event) => {
-    event.preventDefault();
-    setPassword(event.target.value);
-    setLoginData({ ...loginData, password: event.target.value });
+    const value = event.target.value;
+    setPassword(value);
+    setLoginData({ ...loginData, password: value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setIsLoading(true); // Show loader when the API call starts
+    setIsLoading(true);
 
     fetch("http://localhost:8080/login", {
       method: "POST",
@@ -46,8 +48,8 @@ const Login = (props) => {
       },
       body: JSON.stringify(loginData),
     })
-      .then(function (response) {
-        setIsLoading(false); // Hide loader when the API call completes
+      .then((response) => {
+        setIsLoading(false);
 
         if (response.status === 200) {
           navigate("/dashboard");
@@ -73,13 +75,18 @@ const Login = (props) => {
     setShowWaitingModal(false);
   };
 
+  const isEmailValid = emailRegex.test(username);
+  const isFormValid = isEmailValid && password.trim() !== "";
+
   const form = (
-    <form>
+    <form onSubmit={handleSubmit}>
       <MuiTextField
         type="text"
         value={username}
         label="Email or Number"
         onChange={onChangeUsername}
+        error={!isEmailValid}
+        helperText={!isEmailValid ? "Invalid email address" : ""}
       />
 
       <MuiTextField
@@ -94,12 +101,14 @@ const Login = (props) => {
           forgot password?
         </Link>
       </FormHelperText>
+
       <Grid display="flex" justifyContent="center" alignItems="center">
         <MuiContainedButton
           type={"submit"}
           width={"40%"}
           buttonText={"Log In"}
           onClickFunction={handleSubmit}
+          disabled={!isFormValid}
         />
       </Grid>
 

@@ -15,6 +15,8 @@ export const MuiTextField = ({
   required,
   multiline,
   disabled,
+  error = false,
+  helperText = "",
   rows,
 }) => {
   const isControlled = value !== undefined;
@@ -40,6 +42,8 @@ export const MuiTextField = ({
         size="small"
         disabled={disabled}
         fullWidth
+        error={error}
+        helperText={helperText}
         required={required}
         InputProps={{
           classes: {
