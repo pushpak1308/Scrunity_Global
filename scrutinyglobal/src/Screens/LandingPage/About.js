@@ -20,12 +20,6 @@ import aboutImage6 from "./../../Images/LandingImages/AboutImages/aboutImage6.jp
 import CheckBoxWithText from "../../MuiComponents/MuiCards/CheckBoxWithText";
 import MuiTab from "../../MuiComponents/MuiTab/Index";
 import CheckIcon from "@mui/icons-material/Check";
-// import FairPricing from "../../Images/LandingImages/AboutImages/CardImage/fairPricing.png";
-// import accuracy from "../../Images/LandingImages/AboutImages/CardImage/accuracy.png";
-// import commitment from "../../Images/LandingImages/AboutImages/CardImage/commitment.png";
-// import comprehensiveSupport from "../../Images/LandingImages/AboutImages/CardImage/comprehensiveSupport.png";
-// import expertInsights from "../../Images/LandingImages/AboutImages/CardImage/expertInsights.png";
-// import tailoredSolution from "../../Images/LandingImages/AboutImages/CardImage/tailoredSolution.png";
 import "./Style.css";
 import WhyChooseUsCard from "../../Components/WhyChooseUsCard/Index";
 
@@ -279,7 +273,7 @@ const About = () => {
         justifyContent="center"
         className={!isMobile ? "aboutSection1" : "home-sub-grid-mobile"}
       >
-        <Grid item md={6} className="aboutSectionText1">
+        <Grid item md={6} className="aboutSectionText1 fade-in">
           <Typography className="about-section-heading1" gutterBottom>
             Something About Us
           </Typography>
@@ -318,7 +312,7 @@ const About = () => {
           /> */}
         </Grid>
         <Grid item md={6}>
-          <img src={aboutImage} alt="About" className="aboutImage1" />
+          <img src={aboutImage} alt="About" className="aboutImage1 zoom-out" />
         </Grid>
       </Grid>
       <Grid item>

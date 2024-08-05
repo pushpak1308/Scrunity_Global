@@ -310,10 +310,6 @@
   animation: fadeIn 1s ease-in-out;
 }
 
-.zoom-out {
-  animation: zoomOut 1s ease-in-out;
-}
-
 @keyframes zoomOut {
   from {
     transform: scale(1.2);
@@ -325,7 +321,10 @@
   }
 }
 
-/* Keyframes for card numbers */
+.zoom-out {
+  animation: zoomOut 1s ease-in-out;
+}
+
 @keyframes countUp {
   from {
     opacity: 0;
