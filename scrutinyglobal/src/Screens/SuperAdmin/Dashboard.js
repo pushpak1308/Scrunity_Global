@@ -83,7 +83,14 @@ const Dashboard = () => {
     data.map((element) => userData.approval.push(element.approval));
     data.map((element) => userData.email.push(element.email));
     data.map((element) => userData.profession.push(element.profession));
-    data.map((element) => userData.birthdate.push(element.dob));
+    data.map((element) => {
+      // userData.birthdate.push(element.dob)
+      const date = new Date(element.dob);
+      const day = String(date.getDate()).padStart(2, "0");
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const year = date.getFullYear();
+      userData.birthdate.push(`${day}/${month}/${year}`);
+    });
     data.map((element) => userData.ipAddress.push("undefined"));
     data.map((element) => userData.address.push(element.address));
     data.map((element) => userData.city.push(element.city));
@@ -139,7 +146,7 @@ const Dashboard = () => {
   const columns = [
     {
       field: "id",
-      headerName: "User id",
+      headerName: "S.No",
       width: 150,
       align: "center",
       editable: false,

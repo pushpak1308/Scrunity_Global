@@ -105,7 +105,6 @@ const Login = (props) => {
   };
 
   const handleGoToLogin = () => {
-    console.log("hi :>> ");
     setShowWaitingModal(false);
     // navigate("/login");
   };
