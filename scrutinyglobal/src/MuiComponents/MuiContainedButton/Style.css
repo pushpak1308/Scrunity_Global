@@ -60,6 +60,28 @@
   background: #25a442 !important;
 }
 
+.StepForm-next:disabled {
+  border-radius: 10px;
+  text-transform: none !important;
+
+  box-shadow: 4.55px 3.03px 4.4px 0px #1593aa38;
+  min-width: 100px !important;
+  /* border: 1px solid white; */
+  background: linear-gradient(
+    90deg,
+    rgba(134, 167, 173, 0.77) 0%,
+    rgba(176, 178, 208, 0.77) 100%
+  ) !important;
+}
+.StepForm-next:disabled .buttonText {
+  font-family: "Arimo";
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 23.67px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.826) !important;
+}
+
 .StepForm-previous {
   border-radius: 8px !important;
   text-transform: none !important;

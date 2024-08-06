@@ -147,6 +147,23 @@ const AddVendor = () => {
   const [vendorData, setVendorData] = useState([]);
   const [vendorUserName, setVendorUserName] = useState([]);
 
+  const isValidStep = (step) => {
+    switch (step) {
+      case 0:
+        return email && vendorName && contactNumber; // Add other required fields if any
+      case 1:
+        return address && contactNumber && selectedCountries.length > 0; // Add other required fields if any
+      case 2:
+        return successURL && terminateURL && quotafulURL; // Add other required fields if any
+      case 3:
+        return bankBranchAddress && accountNo; // Add other required fields if any
+      case 4:
+        return registrationNo && panNo; // Add other required fields if any
+      default:
+        return true;
+    }
+  };
+
   useEffect(() => {
     fetch(`${API_PREFIX}getUserList`, {
       method: "POST",
@@ -489,6 +506,7 @@ const AddVendor = () => {
             <StepForm
               steps={steps}
               onSave={handleSave}
+              isValidStep={isValidStep}
               formType={"add-vendor"}
             />
           </Paper>

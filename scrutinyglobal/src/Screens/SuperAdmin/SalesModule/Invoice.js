@@ -26,7 +26,6 @@ const Invoice = () => {
   const [usdTotal, setUsdTotal] = useState(0);
   const [inrTotal, setInrTotal] = useState(0);
   const [showAddNewInvoiceModal, setShowAddNewInvoiceModal] = useState(false);
-  // const [invoiceCounter, setInvoiceCounter] = useState(1); // Initialize invoice counter
 
   const [savedInvoices, setSavedInvoices] = useState([]);
   const [selectedInvoice, setSelectedInvoice] = useState(null);
@@ -91,8 +90,6 @@ const Invoice = () => {
 
   const handleSave = () => {
     const description = rows[0].description || rows[1].description;
-    const invoiceNumber = uuidv4().slice(0, 3); // Generate a new UUID for the invoice
-
     const newInvoice = {
       total: inrTotal,
       clientName: client,
@@ -104,9 +101,10 @@ const Invoice = () => {
       usdTotal,
       inrTotal,
       description,
-      invoiceNumber, // Include the generated invoice number
+      invoiceNumber: selectedInvoice
+        ? selectedInvoice.invoiceNumber
+        : uuidv4().slice(0, 3),
     };
-
     if (selectedInvoice) {
       // Update existing invoice
       const updatedInvoices = savedInvoices.map((invoice) =>
@@ -122,7 +120,6 @@ const Invoice = () => {
     setSelectedInvoice(newInvoice);
   };
 
-  console.log("selectedInvoice :>> ", selectedInvoice);
   const handleInvoiceSelect = (index) => {
     const selectedInvoice = savedInvoices[index];
     setSelectedInvoice(selectedInvoice);

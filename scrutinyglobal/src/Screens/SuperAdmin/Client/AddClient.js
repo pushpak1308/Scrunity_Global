@@ -229,6 +229,7 @@ const AddClient = () => {
       <Grid item xs={12}>
         <MuiDropDown
           value={status}
+          required={true}
           //   defaultValue={reduxData?.accountType || ""}
           onChange={onChangeStatus}
           options={["Active", "Inactive"]}
@@ -300,6 +301,19 @@ const AddClient = () => {
     setShowSuccessModal(true);
   };
 
+  const isValidStep = (step) => {
+    switch (step) {
+      case 0:
+        return clientName && contactName && contactNumber; // Add other required fields if any
+      case 1:
+        return email && websiteLink && status; // Add other required fields if any
+      case 2:
+        return address && country && industry; // Add other required fields if any
+      default:
+        return true;
+    }
+  };
+
   const handleClose = () => {
     setShowSuccessModal(false);
   };
@@ -335,6 +349,7 @@ const AddClient = () => {
             <StepForm
               steps={steps}
               onSave={handleSave}
+              isValidStep={isValidStep}
               formType={"add-client"}
             />
           </Paper>

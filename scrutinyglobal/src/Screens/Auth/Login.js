@@ -9,10 +9,14 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 import SuccessErrorModal from "../../Components/CustomModals/SuccesErrorModal/Index";
 import Loading from "../../Components/Loading/Index";
+import { useDispatch } from "react-redux";
+import { setLoginField } from "../../Store/Slice/loginSlice";
+import axios from "axios";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const Login = (props) => {
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -39,22 +43,28 @@ const Login = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setIsLoading(true);
-
-    fetch("http://localhost:8080/login", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(loginData),
-    })
+    axios
+      .post("http://localhost:8080/login", loginData)
       .then((response) => {
         setIsLoading(false);
-
         if (response.status === 200) {
+          let setRoles = response.data.roles.split(",");
+          dispatch(setLoginField({ field: "roles", value: setRoles }));
+          dispatch(
+            setLoginField({ field: "email", value: response.data.email })
+          );
+          dispatch(
+            setLoginField({ field: "name", value: response.data.userName })
+          );
+          dispatch(
+            setLoginField({ field: "token", value: response.data.token })
+          );
+          dispatch(
+            setLoginField({ field: "userid", value: response.data.user_id })
+          );
+          console.log(response.data);
           navigate("/dashboard");
         }
-        return response.json();
       })
       .catch((error) => {
         setIsLoading(false);
@@ -63,12 +73,41 @@ const Login = (props) => {
       });
   };
 
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   setIsLoading(true);
+
+  //   fetch("http://localhost:8080/login", {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(loginData),
+  //   })
+  //     .then((response) => {
+  //       setIsLoading(false);
+
+  //       if (response.status === 200) {
+  //         navigate("/dashboard");
+  //       }
+  //       return response.json();
+  //     })
+  //     .catch((error) => {
+  //       setIsLoading(false);
+  //       handleWaitingModal();
+  //       console.error(error);
+  //     });
+  // };
+
   const handleWaitingModal = () => {
     setShowWaitingModal(true);
   };
 
   const handleGoToLogin = () => {
-    navigate("/login");
+    console.log("hi :>> ");
+    setShowWaitingModal(false);
+    // navigate("/login");
   };
 
   const handleClose = () => {

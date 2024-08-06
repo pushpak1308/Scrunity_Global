@@ -41,6 +41,7 @@ const WithoutTokenRoutes = () => {
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/assignVendor/:id" element={<AssignVendor />} />
         <Route exact path="/invoice" element={<Invoice />} />
+        <Route exact path="/po" element={<Invoice />} />
         <Route exact path="/add-client" element={<AddClient />} />
         <Route exact path="/add-vendor" element={<AddVendor />} />
         <Route exact path="/client/:id" element={<ClientDetail />} />

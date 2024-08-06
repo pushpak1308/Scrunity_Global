@@ -14,7 +14,7 @@ export const MuiDropDown = ({
   helperText = "",
 }) => {
   const isControlled = value !== undefined;
-  const name = value;
+
   return (
     <>
       <InputLabel className={className ? className : "arimo-input-label"}>
@@ -22,7 +22,7 @@ export const MuiDropDown = ({
         {required && <span style={{ color: "red" }}> *</span>}
       </InputLabel>
       <Autocomplete
-        id={`${name}-autocomplete`}
+        id={`${label}-autocomplete`}
         size="small"
         value={isControlled ? value : null}
         defaultValue={!isControlled ? defaultValue : null}

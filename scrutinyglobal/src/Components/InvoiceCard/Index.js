@@ -26,7 +26,7 @@ const InvoiceCard = ({
           </Grid>
           <Grid item>
             <Typography className="invoice-number" component="div">
-              INVOICE-00{invoiceNumber}
+              INVOICE-{invoiceNumber}
             </Typography>
           </Grid>
           <Grid item>

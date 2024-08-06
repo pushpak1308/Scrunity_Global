@@ -11,7 +11,7 @@ import {
   selectAddProjectStep,
 } from "../../Store/Slice/stepSlice";
 
-const StepForm = ({ steps, onSave, formType }) => {
+const StepForm = ({ steps, onSave, formType, isValidStep }) => {
   const dispatch = useDispatch();
 
   const currentStep = useSelector((state) => {
@@ -58,11 +58,17 @@ const StepForm = ({ steps, onSave, formType }) => {
     }
   };
 
-  const handleNext = () => updateStep(1);
+  const handleNext = () => {
+    if (isValidStep(currentStep)) {
+      updateStep(1);
+    }
+  };
   const handlePrev = () => updateStep(-1);
   const handleSave = () => {
-    onSave(formData);
-    resetStep();
+    if (isValidStep(currentStep)) {
+      onSave(formData);
+      resetStep();
+    }
   };
 
   const isLastStep = currentStep === steps.length - 1;
@@ -96,6 +102,7 @@ const StepForm = ({ steps, onSave, formType }) => {
             onClickFunction={handleNext}
             buttonText={"Next"}
             className="StepForm-next"
+            disabled={!isValidStep(currentStep)}
           />
         ) : (
           <CustomContainedButton
@@ -103,6 +110,7 @@ const StepForm = ({ steps, onSave, formType }) => {
             onClickFunction={handleSave}
             buttonText={"Save"}
             className="StepForm-next"
+            disabled={!isValidStep(currentStep)}
           />
         )}
       </Grid>

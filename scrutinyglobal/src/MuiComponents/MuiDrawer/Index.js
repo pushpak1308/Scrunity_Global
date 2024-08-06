@@ -60,6 +60,7 @@ export default function MuiDrawer({ active, mobileOpen, handleDrawerToggle }) {
     email: "johndoe@example.com",
     avatar: dummy,
   };
+  const reduxData = useSelector((state) => state.loginDetails);
 
   const drawerContent = (
     <div>
@@ -85,127 +86,147 @@ export default function MuiDrawer({ active, mobileOpen, handleDrawerToggle }) {
       </Grid>
       <Toolbar />
       <List className="list-grid">
-        <LinkButton
-          text="Dashboard"
-          icon={
-            <GridViewOutlinedIcon
-              color={active === "DASHBOARD" ? "primary" : "action"}
-            />
-          }
-          link="dashboard"
-          active={active === "DASHBOARD"}
-        />
-        <CollapseButton
-          text="Client"
-          icon={<FeedOutlinedIcon />}
-          open={openClient}
-          handleClick={handleClientClick}
-        >
+        {(reduxData.roles.includes("dashboard") ||
+          reduxData.roles.includes("ALL")) && (
           <LinkButton
-            text="Add Client"
+            text="Dashboard"
             icon={
-              <AddIcon color={active === "ADD CLIENT" ? "primary" : "action"} />
-            }
-            link="add-client"
-            active={active === "ADD CLIENT"}
-          />
-          <LinkButton
-            text="Clients"
-            icon={
-              <PeopleAltOutlinedIcon
-                color={
-                  active === "CLIENTS" ||
-                  active === "CLIENT DETAILS" ||
-                  active === "ADD PROJECT"
-                    ? "primary"
-                    : "action"
-                }
+              <GridViewOutlinedIcon
+                color={active === "DASHBOARD" ? "primary" : "action"}
               />
             }
-            link="clients"
-            active={
-              active === "CLIENTS" ||
-              active === "CLIENT DETAILS" ||
-              active === "ADD PROJECT"
-            }
+            link="dashboard"
+            active={active === "DASHBOARD"}
           />
-        </CollapseButton>
-        <LinkButton
-          text="Projects"
-          icon={
-            <PeopleAltOutlinedIcon
-              color={
-                active === "PROJECT DETAILS" ||
-                active === "PROJECTS" ||
-                active === "ASSIGN VENDOR"
-                  ? "primary"
-                  : "action"
+        )}
+        {(reduxData.roles.includes("client") ||
+          reduxData.roles.includes("ALL")) && (
+          <CollapseButton
+            text="Client"
+            icon={<FeedOutlinedIcon />}
+            open={openClient}
+            handleClick={handleClientClick}
+          >
+            <LinkButton
+              text="Add Client"
+              icon={
+                <AddIcon
+                  color={active === "ADD CLIENT" ? "primary" : "action"}
+                />
+              }
+              link="add-client"
+              active={active === "ADD CLIENT"}
+            />
+            <LinkButton
+              text="Clients"
+              icon={
+                <PeopleAltOutlinedIcon
+                  color={
+                    active === "CLIENTS" ||
+                    active === "CLIENT DETAILS" ||
+                    active === "ADD PROJECT"
+                      ? "primary"
+                      : "action"
+                  }
+                />
+              }
+              link="clients"
+              active={
+                active === "CLIENTS" ||
+                active === "CLIENT DETAILS" ||
+                active === "ADD PROJECT"
               }
             />
-          }
-          link="projects"
-          active={
-            active === "PROJECTS" ||
-            active === "PROJECT DETAILS" ||
-            active === "ASSIGN VENDOR"
-          }
-        />
-        <CollapseButton
-          text="Vendors"
-          icon={<PeopleAltOutlinedIcon />}
-          open={openVendor}
-          handleClick={handleVendorClick}
-        >
+          </CollapseButton>
+        )}
+        {(reduxData.roles.includes("project") ||
+          reduxData.roles.includes("ALL")) && (
           <LinkButton
-            text="Add Vendor"
-            icon={
-              <AddIcon color={active === "ADD VENDOR" ? "primary" : "action"} />
-            }
-            link="add-vendor"
-            active={active === "ADD VENDOR"}
-          />
-          <LinkButton
-            text="Vendors"
+            text="Projects"
             icon={
               <PeopleAltOutlinedIcon
                 color={
-                  active === "VENDORS" || active === "VENDOR DETAILS"
+                  active === "PROJECT DETAILS" ||
+                  active === "PROJECTS" ||
+                  active === "ASSIGN VENDOR"
                     ? "primary"
                     : "action"
                 }
               />
             }
-            link="vendors"
-            active={active === "VENDORS" || active === "VENDOR DETAILS"}
-          />
-        </CollapseButton>
-        <CollapseButton
-          text="Sales Module"
-          icon={<FeedOutlinedIcon />}
-          open={openSalesModule}
-          handleClick={handleSalesClick}
-        >
-          <LinkButton
-            text="Invoice"
-            icon={
-              <AddIcon
-                color={active === "SALES MODULE" ? "primary" : "action"}
-              />
+            link="projects"
+            active={
+              active === "PROJECTS" ||
+              active === "PROJECT DETAILS" ||
+              active === "ASSIGN VENDOR"
             }
-            link="invoice"
-            active={active === "SALES MODULE"}
           />
-          <LinkButton
-            text="PO"
-            icon={
-              <PeopleAltOutlinedIcon
-                color={active === "PO" ? "primary" : "action"}
-              />
-            }
-            link="po"
-            active={active === "PO"}
-          />
-        </CollapseButton>
+        )}
+        {(reduxData.roles.includes("vendor") ||
+          reduxData.roles.includes("ALL")) && (
+          <CollapseButton
+            text="Vendors"
+            icon={<PeopleAltOutlinedIcon />}
+            open={openVendor}
+            handleClick={handleVendorClick}
+          >
+            <LinkButton
+              text="Add Vendor"
+              icon={
+                <AddIcon
+                  color={active === "ADD VENDOR" ? "primary" : "action"}
+                />
+              }
+              link="add-vendor"
+              active={active === "ADD VENDOR"}
+            />
+            <LinkButton
+              text="Vendors"
+              icon={
+                <PeopleAltOutlinedIcon
+                  color={
+                    active === "VENDORS" || active === "VENDOR DETAILS"
+                      ? "primary"
+                      : "action"
+                  }
+                />
+              }
+              link="vendors"
+              active={active === "VENDORS" || active === "VENDOR DETAILS"}
+            />
+          </CollapseButton>
+        )}
+        {(reduxData.roles.includes("sales_module") ||
+          reduxData.roles.includes("ALL")) && (
+          <CollapseButton
+            // <LinkButton
+            text="Sales Module"
+            icon={<FeedOutlinedIcon />}
+            open={openSalesModule}
+            handleClick={handleSalesClick}
+          >
+            <LinkButton
+              text="Invoice"
+              icon={
+                <AddIcon
+                  color={active === "SALES MODULE" ? "primary" : "action"}
+                />
+              }
+              link="invoice"
+              active={active === "SALES MODULE"}
+            />
+            <LinkButton
+              text="PO"
+              icon={
+                <PeopleAltOutlinedIcon
+                  color={active === "PO" ? "primary" : "action"}
+                />
+              }
+              link="po"
+              active={active === "PO"}
+            />
+          </CollapseButton>
+        )}
       </List>
       <Divider />
       <List>

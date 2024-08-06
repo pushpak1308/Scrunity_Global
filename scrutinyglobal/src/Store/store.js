@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./Slice/userSlice";
+import loginDataReducer from "./Slice/loginSlice";
 import drawerReducer from "./Slice/drawerSlice";
 import stepReducer from "./Slice/stepSlice";
 import rowSelectionReducer from "./Slice/rowSelectionSlice";
@@ -10,6 +11,7 @@ const persistedState = loadState();
 export const store = configureStore({
   reducer: {
     user: userReducer,
+    loginDetails: loginDataReducer,
     drawer: drawerReducer,
     step: stepReducer,
     rowSelection: rowSelectionReducer,
