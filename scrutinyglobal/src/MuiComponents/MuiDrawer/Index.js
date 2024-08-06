@@ -61,7 +61,7 @@ export default function MuiDrawer({ active, mobileOpen, handleDrawerToggle }) {
     avatar: dummy,
   };
   const reduxData = useSelector((state) => state.loginDetails);
-
+  console.log("reduxData :>> ", reduxData);
   const drawerContent = (
     <div>
       <Grid item container className="userDetails">
@@ -76,10 +76,10 @@ export default function MuiDrawer({ active, mobileOpen, handleDrawerToggle }) {
           </Grid>
           <Grid item>
             <Typography component="div" className="userDetails-text">
-              {userDetails.name}
+              {reduxData.name}
             </Typography>
             <Typography variant="body2" className="userDetails-text">
-              {userDetails.email}
+              {reduxData.email}
             </Typography>
           </Grid>
         </Grid>
