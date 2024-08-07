@@ -39,6 +39,23 @@ const AddVendor = () => {
   const [status, setStatus] = useState("");
   const [userId, setUserId] = useState("");
 
+  const isValidStep = (step) => {
+    switch (step) {
+      case 0:
+        return email && vendorName && contactNumber;
+      case 1:
+        return address && contactNumber && selectedCountries.length > 0;
+      case 2:
+        return successURL && terminateURL && quotafulURL;
+      case 3:
+        return bankBranchAddress && accountNo;
+      case 4:
+        return registrationNo && panNo;
+      default:
+        return true;
+    }
+  };
+
   const vendorFormData = {
     userId: userId,
     accountType: "vendor",
@@ -146,23 +163,6 @@ const AddVendor = () => {
 
   const [vendorData, setVendorData] = useState([]);
   const [vendorUserName, setVendorUserName] = useState([]);
-
-  const isValidStep = (step) => {
-    switch (step) {
-      case 0:
-        return email && vendorName && contactNumber; // Add other required fields if any
-      case 1:
-        return address && contactNumber && selectedCountries.length > 0; // Add other required fields if any
-      case 2:
-        return successURL && terminateURL && quotafulURL; // Add other required fields if any
-      case 3:
-        return bankBranchAddress && accountNo; // Add other required fields if any
-      case 4:
-        return registrationNo && panNo; // Add other required fields if any
-      default:
-        return true;
-    }
-  };
 
   useEffect(() => {
     fetch(`${API_PREFIX}getUserList`, {
@@ -519,7 +519,7 @@ const AddVendor = () => {
           imageSrc={tickFrame}
           clientName={vendorName}
           isSuccess={true}
-          text={"has been saved. You can view the details on Clients screen."}
+          text={"has been saved. You can view the details on Vendors screen."}
           buttonPrimaryText="Ok"
           handleModalButtonClick={handleGoToVendors}
         />

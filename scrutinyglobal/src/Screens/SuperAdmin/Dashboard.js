@@ -187,7 +187,7 @@ const Dashboard = () => {
   const columns = [
     {
       field: "id",
-      headerName: "S.No",
+      headerName: "User Roles",
       width: 150,
       align: "center",
       editable: false,

@@ -13,6 +13,7 @@ import {
 
 const StepForm = ({ steps, onSave, formType, isValidStep }) => {
   const dispatch = useDispatch();
+  const [error, setError] = useState("");
 
   const currentStep = useSelector((state) => {
     switch (formType) {
@@ -60,13 +61,21 @@ const StepForm = ({ steps, onSave, formType, isValidStep }) => {
 
   const handleNext = () => {
     if (isValidStep(currentStep)) {
+      setError("");
       updateStep(1);
+    } else {
+      setError("Please fill all required fields.");
     }
   };
+
   const handlePrev = () => updateStep(-1);
   const handleSave = () => {
-    onSave(formData);
-    resetStep();
+    if (isValidStep(currentStep)) {
+      onSave(formData);
+      resetStep();
+    } else {
+      setError("Please fill all required fields.");
+    }
   };
 
   const isLastStep = currentStep === steps.length - 1;
@@ -78,6 +87,11 @@ const StepForm = ({ steps, onSave, formType, isValidStep }) => {
           {FieldComponent}
         </Grid>
       ))}
+      {error && (
+        <Grid item xs={12}>
+          <div style={{ color: "red" }}>{error}</div>
+        </Grid>
+      )}
       <Grid
         item
         xs={12}
@@ -100,7 +114,6 @@ const StepForm = ({ steps, onSave, formType, isValidStep }) => {
             onClickFunction={handleNext}
             buttonText={"Next"}
             className="StepForm-next"
-            disabled={!isValidStep(currentStep)}
           />
         ) : (
           <CustomContainedButton
@@ -108,7 +121,6 @@ const StepForm = ({ steps, onSave, formType, isValidStep }) => {
             onClickFunction={handleSave}
             buttonText={"Save"}
             className="StepForm-next"
-            disabled={isValidStep(currentStep)}
           />
         )}
       </Grid>
