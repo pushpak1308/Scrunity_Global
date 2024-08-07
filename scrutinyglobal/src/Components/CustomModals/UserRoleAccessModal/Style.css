@@ -1,0 +1,33 @@
+.user-role-access-heading {
+  font-family: "Arimo" !important;
+  font-size: 140% !important;
+  font-weight: 700 !important;
+  color: #31baf4;
+  padding: 4%;
+}
+
+.userName {
+  font-family: "Arimo" !important;
+  font-size: 120% !important;
+  font-weight: 700 !important;
+  color: #000000;
+}
+
+.userName-value {
+  font-family: "Arimo" !important;
+  font-size: 115% !important;
+  font-weight: 400 !important;
+  color: #000000;
+}
+
+.role-assigned {
+  font-family: "Arimo" !important;
+  font-size: 95% !important;
+  font-weight: 400;
+  color: #737373;
+}
+
+.modal-padding {
+  padding-left: 5%;
+  padding-right: 5%;
+}

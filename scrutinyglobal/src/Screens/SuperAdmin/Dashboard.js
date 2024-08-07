@@ -157,7 +157,7 @@ const Dashboard = () => {
     setSelectedUser(user);
     setUserRoles((prevRoles) => ({
       ...prevRoles,
-      [user.id]: user.role, // Initialize roles from user data
+      [user.id]: user.role || {}, // Initialize roles from user data
     }));
     setShowAssignModal(true);
   };
