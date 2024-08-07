@@ -6,25 +6,64 @@ import { MuiTextField } from "../../MuiComponents/MuiTextField/Index";
 import AuthPage from "./AuthPage";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const ForgotPassword = (props) => {
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
   const [isItEmail, setIsItEmail] = useState(true);
+  const [errors, setErrors] = useState({});
 
   const navigate = useNavigate();
 
   const onChangeEmail = (event) => {
-    event.preventDefault();
     setEmail(event.target.value);
+    validateEmail(event.target.value);
   };
 
   const onChangeNumber = (event) => {
-    event.preventDefault();
     setNumber(event.target.value);
+    validateNumber(event.target.value);
+  };
+
+  const validateEmail = (email) => {
+    if (!emailRegex.test(email)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Invalid email address",
+      }));
+    } else {
+      setErrors((prevErrors) => ({ ...prevErrors, email: "" }));
+    }
+  };
+
+  const validateNumber = (number) => {
+    if (number.trim() === "") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        number: "Number is required",
+      }));
+    } else {
+      setErrors((prevErrors) => ({ ...prevErrors, number: "" }));
+    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const validationErrors = {};
+    if (isItEmail) {
+      if (!emailRegex.test(email)) {
+        validationErrors.email = "Invalid email address";
+      }
+    } else {
+      if (number.trim() === "") {
+        validationErrors.number = "Number is required";
+      }
+    }
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
     navigate("/resetPassword");
   };
 
@@ -37,6 +76,8 @@ const ForgotPassword = (props) => {
           value={email}
           label="Email"
           onChange={onChangeEmail}
+          error={!!errors.email}
+          helperText={errors.email || ""}
         />
       ) : (
         <MuiTextField
@@ -45,6 +86,8 @@ const ForgotPassword = (props) => {
           value={number}
           label="Number"
           onChange={onChangeNumber}
+          error={!!errors.number}
+          helperText={errors.number || ""}
         />
       )}
 

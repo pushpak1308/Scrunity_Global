@@ -7,26 +7,48 @@ import AuthPage from "./AuthPage";
 import MuiModal from "../../MuiComponents/MuiModal/Index";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 
+const MIN_PASSWORD_LENGTH = 6;
+
 const ResetPassword = ({}) => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [errors, setErrors] = useState({});
   const [show, setShow] = useState(false);
-
   const navigate = useNavigate();
 
   const onChangeNewPassword = (event) => {
-    event.preventDefault();
-    setNewPassword(event.target.value);
+    const value = event.target.value;
+    setNewPassword(value);
+    validatePassword(value, confirmPassword);
   };
 
   const onChangeConfirmPassword = (event) => {
-    event.preventDefault();
-    setConfirmPassword(event.target.value);
+    const value = event.target.value;
+    setConfirmPassword(value);
+    validatePassword(newPassword, value);
+  };
+
+  const validatePassword = (newPassword, confirmPassword) => {
+    const newErrors = {};
+    if (newPassword.length < MIN_PASSWORD_LENGTH) {
+      newErrors.newPassword = `Password must be at least ${MIN_PASSWORD_LENGTH} characters long`;
+    }
+    if (newPassword !== confirmPassword) {
+      newErrors.confirmPassword = "Passwords do not match";
+    }
+    return newErrors;
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const validationErrors = validatePassword(newPassword, confirmPassword);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    // Simulate password reset and show the success modal
     setShow(true);
+    setErrors({});
   };
 
   const handleClose = () => {
@@ -41,6 +63,8 @@ const ResetPassword = ({}) => {
         value={newPassword}
         label="New Password"
         onChange={onChangeNewPassword}
+        error={!!errors.newPassword}
+        helperText={errors.newPassword || ""}
       />
 
       <MuiTextField
@@ -49,6 +73,8 @@ const ResetPassword = ({}) => {
         value={confirmPassword}
         label="Confirm Password"
         onChange={onChangeConfirmPassword}
+        error={!!errors.confirmPassword}
+        helperText={errors.confirmPassword || ""}
       />
 
       <Box display="flex" justifyContent="center" alignItems="center">

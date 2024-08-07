@@ -146,7 +146,7 @@ const AddClient = () => {
       <Grid item xs={12}>
         <MuiDropDown
           required={true}
-          value={clientData.name}
+          value={clientName}
           defaultValue={clientName || ""}
           onChange={onChangeClientName}
           options={clientUserName}
