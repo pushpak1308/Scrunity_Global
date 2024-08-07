@@ -10,19 +10,22 @@ import {
 import InfoCard from "../../Components/InfoCard/Index";
 import "./Style.css";
 import MuiContainedButton from "../../MuiComponents/MuiContainedButton/Index";
-import { MuiDropDown } from "../../MuiComponents/MuiDropDown/Index";
-import "./Style.css";
 import Group from "../../Images/Dashboard/Group.png";
 import Vector from "../../Images/Dashboard/Vector.png";
 import Layout from "./Layout";
 import MuiDataGrid from "../../MuiComponents/MuiDataGrid/Index";
 import { API_PREFIX } from "../../config";
 import InfoCardMobile from "../../MobileComponent/InfoCardMobile/Index";
+import UserRoleAccess from "../../Components/CustomModals/UserRoleAccessModal/Index";
 
 const Dashboard = () => {
-  const [approved, setApproved] = useState(false);
+  const [approved, setApproved] = useState({});
   const [responseData, setResponseData] = useState([]);
   const [userDataNew, setUserDataNew] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [userRoles, setUserRoles] = useState({});
+  const [showAssignModal, setShowAssignModal] = useState(false);
+
   let userData = {
     id: [],
     role: [],
@@ -126,6 +129,7 @@ const Dashboard = () => {
       securityTerminateURL: "",
       description: "",
     };
+
     fetch(`${API_PREFIX}setroletouser`, {
       method: "PUT",
       headers: {
@@ -133,14 +137,52 @@ const Dashboard = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(approvedData),
-    }).then(function (response) {
-      return response.json();
-    });
-    // console.log("user is approved123");
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Approval response:", data);
+        // You may want to update the state or re-fetch data here
+      })
+      .catch((error) => {
+        console.error("Error approving user:", error);
+      });
 
-    // console.log("approvedData :>> ", approvedData);
+    setApproved((prev) => ({
+      ...prev,
+      [id]: !prev[id], // Toggle approval status
+    }));
+  };
 
-    // console.log("user is approved");
+  const handleOpenModal = (user) => {
+    setSelectedUser(user);
+    setUserRoles((prevRoles) => ({
+      ...prevRoles,
+      [user.id]: user.role, // Initialize roles from user data
+    }));
+    setShowAssignModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowAssignModal(false);
+    setSelectedUser(null);
+  };
+  const handleCheckboxChange = (role) => {
+    setUserRoles((prevRoles) => ({
+      ...prevRoles,
+      [selectedUser.id]: {
+        ...prevRoles[selectedUser.id],
+        [role]: !prevRoles[selectedUser.id][role],
+      },
+    }));
+  };
+
+  const handleAssign = () => {
+    const updatedRoles = userRoles[selectedUser.id];
+
+    // backend if needed
+    console.log(selectedUser.id, updatedRoles);
+
+    handleCloseModal();
   };
 
   const columns = [
@@ -153,6 +195,15 @@ const Dashboard = () => {
       headerAlign: "center",
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
+      renderCell: (params) => (
+        <Button
+          color="warning"
+          variant="outlined"
+          onClick={() => handleOpenModal(params.row)}
+        >
+          Assign
+        </Button>
+      ),
     },
     {
       field: "approval",
@@ -164,20 +215,15 @@ const Dashboard = () => {
       cellClassName: "dataGrid-cell",
       headerClassName: "dataGrid-header",
       renderCell: (params) => {
-        return approved ? (
-          <MuiContainedButton
-            buttonText={"Approved"}
-            onClick={() => handleApprove(params.row.id, params.row.accountType)}
-            type={"button"}
-          />
-        ) : (
+        const isApproved = approved[params.row.id]; // Check if the row is approved
+        return (
           <Button
-            variant="outlined"
+            variant={isApproved ? "contained" : "outlined"}
+            color={isApproved ? "success" : "success"}
             size="small"
-            color="success"
-            onClick={() => handleApprove(params.row.id, params.row.accountType)}
+            onClick={() => handleApprove(params.row.id)}
           >
-            Approve
+            {isApproved ? "Approved" : "Approve"}
           </Button>
         );
       },
@@ -423,6 +469,14 @@ const Dashboard = () => {
           disablePagination={isMobile}
         />
       </Grid>
+      <UserRoleAccess
+        show={showAssignModal}
+        handleClose={handleCloseModal}
+        selectedUser={selectedUser}
+        userRoles={userRoles[selectedUser?.id] || {}}
+        handleCheckboxChange={handleCheckboxChange}
+        handleAssign={handleAssign}
+      />
     </Grid>
   );
 

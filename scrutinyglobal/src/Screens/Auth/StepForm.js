@@ -4,10 +4,42 @@ import { MuiTextField } from "../../MuiComponents/MuiTextField/Index";
 import { MuiDropDown } from "../../MuiComponents/MuiDropDown/Index";
 import CustomContainedButton from "../../MuiComponents/MuiContainedButton/Index";
 // import axios from "axios";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import { useSelector } from "react-redux";
 import { API_PREFIX } from "../../config";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const validationSchemas = [
+  Yup.object({
+    name: Yup.string().required("Organization Name is required"),
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    password: Yup.string().required("Password is required"),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .required("Confirm Password is required"),
+  }),
+  Yup.object({
+    accountType: Yup.string().required("Account Type is required"),
+    number: Yup.string().required("Number is required"),
+    birthdate: Yup.date().required("Birth Date is required"),
+  }),
+  Yup.object({
+    address: Yup.string().required("Address is required"),
+    city: Yup.string().required("City is required"),
+    state: Yup.string().required("State/Province is required"),
+    zipcode: Yup.string().required("Zip Code is required"),
+    country: Yup.string().required("Country is required"),
+  }),
+  Yup.object({
+    profession: Yup.string().required("Profession is required"),
+    experience: Yup.string().required("Experience is required"),
+    monthlySalary: Yup.string().required("Monthly Salary is required"),
+  }),
+];
 
 const StepForm = ({
   formStep,
@@ -53,6 +85,8 @@ const StepForm = ({
   } = onChangeHandlers;
 
   const reduxData = useSelector((state) => state.user);
+
+  const currentValidationSchema = validationSchemas[formStep];
 
   const [countriesData, setCountriesData] = useState([""]);
   useEffect(() => {
