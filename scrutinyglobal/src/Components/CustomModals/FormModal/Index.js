@@ -8,6 +8,7 @@ import MuiContainedButton from "../../../MuiComponents/MuiContainedButton/Index"
 
 const FormModal = ({
   show,
+  vendor,
   handleClose,
   handleSubmit,
   clientOptions,
@@ -46,7 +47,7 @@ const FormModal = ({
                   value={formData.client}
                   onChange={onChangeClient}
                   options={clientOptions}
-                  label="Client"
+                  label={vendor ? "Vendor" : "Client"}
                   className="forAddClient"
                 />
               </Grid>

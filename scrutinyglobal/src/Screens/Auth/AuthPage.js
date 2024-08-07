@@ -45,7 +45,7 @@ const AuthPage = ({
                   Hello! Welcome to{" "}
                 </Typography>
                 <Typography className="vollkorn-scrutiny">
-                  Srutiny Global
+                  Scrutiny Global
                 </Typography>
               </Grid>
             </Grid>

@@ -20,6 +20,7 @@ import Vendors from "./Screens/SuperAdmin/Vendor/Vendors";
 import VendorDetail from "./Screens/SuperAdmin/Vendor/VendorDetail";
 import Profile from "./Screens/SuperAdmin/Profile";
 import Invoice from "./Screens/SuperAdmin/SalesModule/Invoice";
+import POScreen from "./Screens/SuperAdmin/SalesModule/POScreen";
 
 const WithoutTokenRoutes = () => {
   return (
@@ -41,7 +42,7 @@ const WithoutTokenRoutes = () => {
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/assignVendor/:id" element={<AssignVendor />} />
         <Route exact path="/invoice" element={<Invoice />} />
-        <Route exact path="/po" element={<Invoice />} />
+        <Route exact path="/po" element={<POScreen />} />
         <Route exact path="/add-client" element={<AddClient />} />
         <Route exact path="/add-vendor" element={<AddVendor />} />
         <Route exact path="/client/:id" element={<ClientDetail />} />

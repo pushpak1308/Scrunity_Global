@@ -468,6 +468,14 @@ const Dashboard = () => {
           disablePagination={isMobile}
         />
       </Grid>
+      <Grid item className="dashboard-list-datagrid">
+        <MuiDataGrid
+          rows={userDataNew}
+          columns={columns}
+          getRowId={(row) => row.id}
+          disablePagination={isMobile}
+        />
+      </Grid>
       <UserRoleAccess
         show={showAssignModal}
         handleClose={handleCloseModal}

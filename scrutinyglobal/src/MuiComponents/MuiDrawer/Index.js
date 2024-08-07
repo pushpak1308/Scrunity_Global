@@ -219,11 +219,11 @@ export default function MuiDrawer({ active, mobileOpen, handleDrawerToggle }) {
               text="PO"
               icon={
                 <PeopleAltOutlinedIcon
-                  color={active === "PO" ? "primary" : "action"}
+                  color={active === "SALES MODULE-PO" ? "primary" : "action"}
                 />
               }
               link="po"
-              active={active === "PO"}
+              active={active === "SALES MODULE-PO"}
             />
           </CollapseButton>
         )}
