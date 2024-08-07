@@ -17,6 +17,7 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const Login = (props) => {
   const dispatch = useDispatch();
+  const [waitingModalHeading, setWaitingModalHeading] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -26,22 +27,40 @@ const Login = (props) => {
     password: "",
   });
 
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   const onChangeUsername = (event) => {
     const value = event.target.value;
     setUsername(value);
     setLoginData({ ...loginData, username: value });
+    // Reset username error when user starts typing
+    setErrors((prevErrors) => ({ ...prevErrors, username: "" }));
   };
 
   const onChangePassword = (event) => {
     const value = event.target.value;
     setPassword(value);
     setLoginData({ ...loginData, password: value });
+    // Reset password error when user starts typing
+    setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!emailRegex.test(username))
+      newErrors.username = "Invalid email address";
+    if (password.trim() === "") newErrors.password = "Password is required";
+    return newErrors;
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
     setIsLoading(true);
     axios
       .post("http://localhost:8080/login", loginData)
@@ -70,6 +89,7 @@ const Login = (props) => {
         setIsLoading(false);
         handleWaitingModal();
         console.error(error);
+        setWaitingModalHeading(error.response.data.errorMessage);
       });
   };
 
@@ -106,15 +126,11 @@ const Login = (props) => {
 
   const handleGoToLogin = () => {
     setShowWaitingModal(false);
-    // navigate("/login");
   };
 
   const handleClose = () => {
     setShowWaitingModal(false);
   };
-
-  const isEmailValid = emailRegex.test(username);
-  const isFormValid = isEmailValid && password.trim() !== "";
 
   const form = (
     <form onSubmit={handleSubmit}>
@@ -123,8 +139,8 @@ const Login = (props) => {
         value={username}
         label="Email or Number"
         onChange={onChangeUsername}
-        error={!isEmailValid}
-        helperText={!isEmailValid ? "Invalid email address" : ""}
+        error={!!errors.username}
+        helperText={errors.username || ""}
       />
 
       <MuiTextField
@@ -132,6 +148,8 @@ const Login = (props) => {
         value={password}
         label="Password"
         onChange={onChangePassword}
+        error={!!errors.password}
+        helperText={errors.password || ""}
       />
 
       <FormHelperText className="arimo-input-label helperText">
@@ -146,7 +164,6 @@ const Login = (props) => {
           width={"40%"}
           buttonText={"Log In"}
           onClickFunction={handleSubmit}
-          disabled={!isFormValid}
         />
       </Grid>
 
@@ -161,16 +178,29 @@ const Login = (props) => {
     </form>
   );
 
+  const getModalContent = () => {
+    if (waitingModalHeading === "Bad credentials") {
+      return {
+        heading: "Oops !! Bad credentials",
+        clientName: "The",
+        text: "email or password you entered is incorrect. Please check your credentials and try again.",
+      };
+    }
+    return {
+      heading: "Oops !! Waiting Approval.",
+      clientName: "Your",
+      text: "approval request has not been accepted yet. Once you are approved, try logging in again. Thanks for waiting.",
+    };
+  };
+
   const additionalComponent = (
     <SuccessErrorModal
       show={showWaitingModal}
       handleClose={handleClose}
       imageSrc={WaitingModal}
-      heading={"Oops !! Waiting Approval."}
-      clientName={"Your"}
-      text={
-        " approval request has not been accepted yet. Once you are approved try logging in again. Thanks for waiting."
-      }
+      heading={getModalContent().heading}
+      clientName={getModalContent().clientName}
+      text={getModalContent().text}
       buttonSecondaryText="Ok"
       handleModalButtonClick={handleGoToLogin}
     />
