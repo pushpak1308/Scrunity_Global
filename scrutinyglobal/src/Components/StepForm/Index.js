@@ -65,10 +65,8 @@ const StepForm = ({ steps, onSave, formType, isValidStep }) => {
   };
   const handlePrev = () => updateStep(-1);
   const handleSave = () => {
-    if (isValidStep(currentStep)) {
-      onSave(formData);
-      resetStep();
-    }
+    onSave(formData);
+    resetStep();
   };
 
   const isLastStep = currentStep === steps.length - 1;
@@ -110,7 +108,7 @@ const StepForm = ({ steps, onSave, formType, isValidStep }) => {
             onClickFunction={handleSave}
             buttonText={"Save"}
             className="StepForm-next"
-            disabled={!isValidStep(currentStep)}
+            disabled={isValidStep(currentStep)}
           />
         )}
       </Grid>

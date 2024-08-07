@@ -11,36 +11,6 @@ import { API_PREFIX } from "../../config";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const validationSchemas = [
-  Yup.object({
-    name: Yup.string().required("Organization Name is required"),
-    email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
-    password: Yup.string().required("Password is required"),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Passwords must match")
-      .required("Confirm Password is required"),
-  }),
-  Yup.object({
-    accountType: Yup.string().required("Account Type is required"),
-    number: Yup.string().required("Number is required"),
-    birthdate: Yup.date().required("Birth Date is required"),
-  }),
-  Yup.object({
-    address: Yup.string().required("Address is required"),
-    city: Yup.string().required("City is required"),
-    state: Yup.string().required("State/Province is required"),
-    zipcode: Yup.string().required("Zip Code is required"),
-    country: Yup.string().required("Country is required"),
-  }),
-  Yup.object({
-    profession: Yup.string().required("Profession is required"),
-    experience: Yup.string().required("Experience is required"),
-    monthlySalary: Yup.string().required("Monthly Salary is required"),
-  }),
-];
-
 const StepForm = ({
   formStep,
   formData,
@@ -85,8 +55,85 @@ const StepForm = ({
   } = onChangeHandlers;
 
   const reduxData = useSelector((state) => state.user);
+  const [errors, setErrors] = useState({});
 
-  const currentValidationSchema = validationSchemas[formStep];
+  // Validation for Step 1
+  const validateStep1 = () => {
+    const newErrors = {};
+    if (name?.trim() === "") newErrors.name = "This field is required";
+    if (!emailRegex.test(email)) newErrors.email = "Invalid email address";
+    if (password?.trim() === "" || password !== confirmPassword)
+      newErrors.password = "Passwords do not match";
+    return newErrors;
+  };
+  // Validation for Step 2
+  const validateStep2 = () => {
+    const newErrors = {};
+    if (accountType?.trim() === "")
+      newErrors.accountType = "This field is required";
+    if (number?.trim() === "") newErrors.number = "This field is required";
+    if (birthdate?.trim() === "")
+      newErrors.birthdate = "This field is required";
+    return newErrors;
+  };
+
+  // Validation for Step 3
+  const validateStep3 = () => {
+    const newErrors = {};
+    if (address?.trim() === "") newErrors.address = "This field is required";
+    if (city?.trim() === "") newErrors.city = "This field is required";
+    if (state?.trim() === "") newErrors.state = "This field is required";
+    if (zipcode?.trim() === "") newErrors.zipcode = "This field is required";
+    if (country?.trim() === "") newErrors.country = "This field is required";
+    return newErrors;
+  };
+
+  // Validation for Step 4
+  const validateStep4 = () => {
+    const newErrors = {};
+    if (profession?.trim() === "")
+      newErrors.profession = "This field is required";
+    if (experience?.trim() === "")
+      newErrors.experience = "This field is required";
+    if (monthlySalary?.trim() === "")
+      newErrors.monthlySalary = "This field is required";
+    return newErrors;
+  };
+
+  const handleNext = () => {
+    let validationErrors = {};
+    switch (formStep) {
+      case 0:
+        validationErrors = validateStep1();
+        break;
+      case 1:
+        validationErrors = validateStep2();
+        break;
+      case 2:
+        validationErrors = validateStep3();
+        break;
+      case 3:
+        validationErrors = validateStep4();
+        break;
+      default:
+        break;
+    }
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+    } else {
+      if (formStep === 3) {
+        onClick();
+      } else {
+        incrementFormStep();
+      }
+      setErrors({});
+    }
+  };
+
+  const handlePrevious = () => {
+    decrementFormStep();
+    setErrors({});
+  };
 
   const [countriesData, setCountriesData] = useState([""]);
   useEffect(() => {
@@ -115,8 +162,6 @@ const StepForm = ({
     // return ["India","USA"];
   };
 
-  const isEmailValid = emailRegex.test(email);
-
   switch (formStep) {
     case 0:
       return (
@@ -130,6 +175,8 @@ const StepForm = ({
               label="Organization Name"
               onChange={onChangeName}
               className="forRegister"
+              error={!!errors.name}
+              helperText={errors.name || ""}
             />
           </Grid>
 
@@ -142,6 +189,8 @@ const StepForm = ({
               label="Email"
               onChange={onChangeEmail}
               className="forRegister"
+              error={!!errors.email}
+              helperText={errors.email || ""}
             />
           </Grid>
           <Grid item xs={12}>
@@ -154,6 +203,8 @@ const StepForm = ({
                   label="Password"
                   defaultValue={reduxData?.password || ""}
                   onChange={onChangePassword}
+                  error={!!errors.password}
+                  helperText={errors.password || ""}
                   className="forRegister"
                 />
               </Grid>
@@ -166,6 +217,8 @@ const StepForm = ({
                   defaultValue={reduxData?.confirmPassword || ""}
                   onChange={onChangeConfirmPassword}
                   className="forRegister"
+                  error={!!errors.password}
+                  helperText={errors.password || ""}
                 />
               </Grid>
             </Grid>
@@ -179,15 +232,8 @@ const StepForm = ({
           >
             <CustomContainedButton
               type="button"
-              onClickFunction={incrementFormStep}
+              onClickFunction={handleNext}
               buttonText={"Next"}
-              disabled={
-                !isEmailValid ||
-                confirmPassword !== password ||
-                password === "" ||
-                email === "" ||
-                name === ""
-              }
             />
           </Grid>
         </Grid>
@@ -201,6 +247,8 @@ const StepForm = ({
               required={true}
               defaultValue={reduxData?.accountType || ""}
               onChange={onChangeAccountType}
+              error={!!errors.accountType}
+              helperText={errors.accountType || ""}
               options={["Client", "Admin", "Vendor"]}
               label="Account Type"
               className="forRegister"
@@ -214,6 +262,8 @@ const StepForm = ({
               required={true}
               defaultValue={reduxData?.number || ""}
               label="Number"
+              error={!!errors.number}
+              helperText={errors.number || ""}
               onChange={onChangeNumber}
               className="forRegister"
             />
@@ -224,6 +274,8 @@ const StepForm = ({
               required={true}
               value={birthdate}
               label="Birth Date"
+              error={!!errors.birthdate}
+              helperText={errors.birthdate || ""}
               defaultValue={reduxData?.dob || ""}
               onChange={onChangeBirthdate}
               className="forRegister"
@@ -239,14 +291,13 @@ const StepForm = ({
           >
             <CustomContainedButton
               type="button"
-              onClickFunction={decrementFormStep}
+              onClickFunction={handlePrevious}
               buttonText={"Previous"}
             />
             <CustomContainedButton
               type="button"
-              onClickFunction={incrementFormStep}
+              onClickFunction={handleNext}
               buttonText={"Next"}
-              disabled={accountType === "" || number === "" || birthdate === ""}
             />
           </Grid>
         </Grid>
@@ -260,6 +311,8 @@ const StepForm = ({
               required={true}
               value={address}
               label="Address"
+              error={!!errors.address}
+              helperText={errors.address || ""}
               defaultValue={reduxData?.address || ""}
               onChange={onChangeAddress}
               className="forRegister"
@@ -273,6 +326,8 @@ const StepForm = ({
                   required={true}
                   value={city}
                   label="City"
+                  error={!!errors.city}
+                  helperText={errors.city || ""}
                   defaultValue={reduxData?.city || ""}
                   onChange={onChangeCity}
                   className="forRegister"
@@ -287,6 +342,8 @@ const StepForm = ({
                   defaultValue={reduxData?.state || ""}
                   onChange={onChangeState}
                   className="forRegister"
+                  error={!!errors.state}
+                  helperText={errors.state || ""}
                 />
               </Grid>
             </Grid>
@@ -302,6 +359,8 @@ const StepForm = ({
                   defaultValue={reduxData?.zipcode || ""}
                   onChange={onChangeZipcode}
                   className="forRegister"
+                  error={!!errors.zipcode}
+                  helperText={errors.zipcode || ""}
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -310,9 +369,11 @@ const StepForm = ({
                   required={true}
                   onChange={onChangeCountry}
                   defaultValue={reduxData?.country || ""}
-                  options={countryOptions()} // Example options
+                  options={countryOptions()}
                   label="Country"
                   className="forRegister"
+                  error={!!errors.country}
+                  helperText={errors.country || ""}
                 />
               </Grid>
             </Grid>
@@ -327,20 +388,13 @@ const StepForm = ({
           >
             <CustomContainedButton
               type="button"
-              onClickFunction={decrementFormStep}
+              onClickFunction={handlePrevious}
               buttonText={"Previous"}
             />
             <CustomContainedButton
               type="button"
-              onClickFunction={incrementFormStep}
+              onClickFunction={handleNext}
               buttonText={"Next"}
-              disabled={
-                country === "" ||
-                zipcode === "" ||
-                state === "" ||
-                city === "" ||
-                address === ""
-              }
             />
           </Grid>
         </Grid>
@@ -358,6 +412,8 @@ const StepForm = ({
               placeholder={"Ex: Software Developer"}
               label="Profession"
               type="text"
+              error={!!errors.profession}
+              helperText={errors.profession || ""}
               className="forRegister"
             />
           </Grid>
@@ -366,6 +422,8 @@ const StepForm = ({
             <MuiTextField
               value={experience}
               required={true}
+              error={!!errors.experience}
+              helperText={errors.experience || ""}
               defaultValue={reduxData?.experience || ""}
               onChange={onChangeExperience}
               type="text"
@@ -381,6 +439,8 @@ const StepForm = ({
               value={monthlySalary}
               label="Monthly Salary"
               placeholder={"50,000"}
+              error={!!errors.monthlySalary}
+              helperText={errors.monthlySalary || ""}
               defaultValue={reduxData?.salary || ""}
               onChange={onChangeMonthlySalary}
               className="forRegister"
@@ -395,16 +455,13 @@ const StepForm = ({
           >
             <CustomContainedButton
               type="button"
-              onClickFunction={decrementFormStep}
+              onClickFunction={handlePrevious}
               buttonText={"Previous"}
             />
             <CustomContainedButton
               type="button"
-              onClickFunction={onClick}
+              onClickFunction={handleNext}
               buttonText={"Save"}
-              disabled={
-                profession === "" || experience === "" || monthlySalary === ""
-              }
             />
           </Grid>
         </Grid>

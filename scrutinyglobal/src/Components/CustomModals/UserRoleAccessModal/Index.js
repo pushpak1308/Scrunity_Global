@@ -19,7 +19,7 @@ const UserRoleAccess = ({
     <Modal open={show}>
       <Grid container className="modal-container-successError">
         <Grid item container>
-          <Grid item xs={12} className="modal-close">
+          <Grid item xs={12} className="modal-close" margin={"1%"}>
             <IconButton onClick={handleClose}>
               <CloseIcon fontSize="large" />
             </IconButton>

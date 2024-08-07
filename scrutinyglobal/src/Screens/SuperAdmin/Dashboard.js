@@ -57,8 +57,7 @@ const Dashboard = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: "jainpushpak326@gmail.com",
-        password: "12345",
+        aprove: true,
       }),
     })
       .then(function (response) {

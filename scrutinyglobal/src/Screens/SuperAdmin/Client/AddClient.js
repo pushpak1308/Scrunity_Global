@@ -308,7 +308,7 @@ const AddClient = () => {
       case 1:
         return email && websiteLink && status; // Add other required fields if any
       case 2:
-        return address && country && industry; // Add other required fields if any
+        return address && country && industry;
       default:
         return true;
     }
