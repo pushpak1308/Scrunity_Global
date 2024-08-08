@@ -38,7 +38,7 @@ const InvoiceCard = ({
           <img src={editIcon} alt="editIcon" />
         </Grid>
       </Grid>
-      <Grid item container>
+      <Grid item container alignItems={"center"}>
         <Grid item md={3}>
           <Typography className="invoice-text-key">Amount:</Typography>
         </Grid>
@@ -46,7 +46,7 @@ const InvoiceCard = ({
           <Typography className="invoice-text-value-total">{total}</Typography>
         </Grid>
       </Grid>
-      <Grid item container>
+      <Grid item container alignItems={"center"}>
         <Grid item md={3}>
           <Typography className="invoice-text-key">Client:</Typography>
         </Grid>
@@ -54,7 +54,7 @@ const InvoiceCard = ({
           <Typography className="invoice-text-value">{clientName}</Typography>
         </Grid>
       </Grid>
-      <Grid item container>
+      <Grid item container alignItems={"center"}>
         <Grid item md={3}>
           <Typography className="invoice-text-key">Date:</Typography>
         </Grid>
@@ -62,7 +62,7 @@ const InvoiceCard = ({
           <Typography className="invoice-text-value">{date}</Typography>
         </Grid>
       </Grid>
-      <Grid item container>
+      <Grid item container alignItems={"center"}>
         <Grid item md={3}>
           <Typography className="invoice-text-key">Description:</Typography>
         </Grid>

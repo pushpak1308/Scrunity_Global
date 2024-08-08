@@ -5,6 +5,13 @@
   line-height: 16.1px;
 }
 
+.invoice-heading-mobile {
+  font-family: "Arimo" !important;
+  font-size: 90% !important;
+  font-weight: 700 !important;
+  line-height: 16.1px;
+}
+
 .invoice-subtext {
   font-family: "Arimo";
   font-size: 70% !important;
@@ -13,9 +20,25 @@
   text-align: left;
 }
 
+.invoice-subtext-mobile {
+  font-family: "Arimo";
+  font-size: 60% !important;
+  color: #838383;
+  font-weight: 400;
+  text-align: left;
+}
+
 .invoice-subtext-label {
   font-family: "Arimo";
   font-size: 75% !important;
+  font-weight: 400;
+  text-align: right;
+  color: #000000;
+}
+
+.invoice-subtext-label-mobile {
+  font-family: "Arimo";
+  font-size: 65% !important;
   font-weight: 400;
   text-align: right;
   color: #000000;
@@ -56,6 +79,16 @@
   color: black;
 }
 
+.table-heading-mobile {
+  font-family: "Arimo" !important;
+  font-size: 55% !important;
+  font-weight: 700 !important;
+  border-bottom: 1px solid #cacaca;
+  background: #e8e8e8;
+  padding: 1%;
+  color: black;
+}
+
 .download-grid {
   padding: 1.5rem;
   margin-top: 1rem;
@@ -65,6 +98,13 @@
   padding: 2%;
   font-family: "Arimo" !important;
   font-size: 80% !important;
+  font-weight: 400 !important;
+}
+
+.table-editable-row-mobile {
+  padding: 2%;
+  font-family: "Arimo" !important;
+  font-size: 50% !important;
   font-weight: 400 !important;
 }
 
@@ -86,10 +126,26 @@
   padding: 2%;
   margin-top: 2% !important;
 }
+.table2-heading-mobile {
+  font-family: "Arimo" !important;
+  font-size: 70% !important;
+  font-weight: 700 !important;
+  line-height: 13.8px;
+  border: 1px solid #cacaca;
+  padding: 2%;
+  margin-top: 2% !important;
+}
 
 .table-companyName {
   font-family: "Arimo" !important;
   font-size: 80% !important;
+  font-weight: 500 !important;
+  line-height: 11.5px;
+}
+
+.table-companyName-mobile {
+  font-family: "Arimo" !important;
+  font-size: 60% !important;
   font-weight: 500 !important;
   line-height: 11.5px;
 }
@@ -101,9 +157,24 @@
   line-height: 11.5px;
 }
 
+.table2-data-mobile {
+  font-family: "Arimo" !important;
+  font-size: 55% !important;
+  font-weight: 400 !important;
+  line-height: 11.5px;
+}
+
 .bottomText-1 {
   font-family: "Arimo" !important;
   font-size: 77% !important;
+  font-weight: 400 !important;
+  text-align: left;
+  color: #9b9b9b;
+}
+
+.bottomText-1-mobile {
+  font-family: "Arimo" !important;
+  font-size: 57% !important;
   font-weight: 400 !important;
   text-align: left;
   color: #9b9b9b;
@@ -118,6 +189,12 @@
 .bottomText-2 {
   font-family: "Arimo" !important;
   font-size: 77% !important;
+  font-weight: 400 !important;
+}
+
+.bottomText-2-mobile {
+  font-family: "Arimo" !important;
+  font-size: 57% !important;
   font-weight: 400 !important;
 }
 
@@ -138,9 +215,30 @@
   color: black;
 }
 
+.class-prashant-mobile {
+  font-family: "Arimo" !important;
+  font-size: 55% !important;
+  font-weight: 700 !important;
+  line-height: 11.5px;
+  text-align: center;
+  color: black;
+}
+
 .signature-space {
   font-family: "Arimo" !important;
   font-size: 90% !important;
+  font-weight: 700 !important;
+  line-height: 20.7px;
+  text-align: center;
+  padding: 3rem;
+  margin-top: 1rem !important;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+}
+
+.signature-space-mobile {
+  font-family: "Arimo" !important;
+  font-size: 70% !important;
   font-weight: 700 !important;
   line-height: 20.7px;
   text-align: center;

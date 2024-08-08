@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Button, Grid, Paper, Typography } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Paper,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import invoiceImage from "../../../Images/Invoice/InvoiceImage.svg";
 import Layout from "../Layout";
@@ -209,6 +216,9 @@ const Invoice = () => {
     setShowPreviewModal(true);
   };
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   const content = (
     <Grid container direction="row" spacing={2} className="dashboard-container">
       <Grid item container md={6}>
@@ -292,7 +302,7 @@ const Invoice = () => {
           </Paper>
         </Grid>
       </Grid>
-      {savedData && (
+      {!savedData && (
         <Grid item container md={6}>
           <Grid item md={12}>
             <Paper elevation={6} className="invoce-grid-2">
@@ -338,38 +348,80 @@ const Invoice = () => {
               <Paper elevation={5} id="pdf-content" className="download-grid">
                 <Grid item container spacing={2}>
                   <Grid item md={6} xs={6}>
-                    <Typography textAlign="left" className="invoice-heading">
+                    <Typography
+                      textAlign="left"
+                      className={
+                        isMobile ? "invoice-heading-mobile" : "invoice-heading"
+                      }
+                    >
                       Scrutiny Global
                     </Typography>
-                    <Typography className="invoice-subtext" gutterBottom>
+                    <Typography
+                      className={
+                        isMobile ? "invoice-subtext-mobile" : "invoice-subtext"
+                      }
+                      gutterBottom
+                    >
                       +91-7678294335
                     </Typography>
-                    <Typography className="invoice-subtext" gutterBottom>
+                    <Typography
+                      className={
+                        isMobile ? "invoice-subtext-mobile" : "invoice-subtext"
+                      }
+                      gutterBottom
+                    >
                       business@scrutinyglobal.com
                     </Typography>
-                    <Typography className="invoice-subtext" gutterBottom>
+                    <Typography
+                      className={
+                        isMobile ? "invoice-subtext-mobile" : "invoice-subtext"
+                      }
+                      gutterBottom
+                    >
                       Second floor L-295, Mohan Garden, Uttam Nagar, New Delhi-
                       110059. INDIA
                     </Typography>
-                    <Typography className="invoice-subtext" gutterBottom>
+                    <Typography
+                      className={
+                        isMobile ? "invoice-subtext-mobile" : "invoice-subtext"
+                      }
+                      gutterBottom
+                    >
                       GSTIN - 071GJPK820IEIZF
                     </Typography>
                   </Grid>
                   <Grid item md={6} xs={6}>
-                    <Typography textAlign="right" className="invoice-heading">
+                    <Typography
+                      textAlign="right"
+                      className={
+                        isMobile ? "invoice-heading-mobile" : "invoice-heading"
+                      }
+                    >
                       Invoice -{" "}
                       {selectedInvoice ? selectedInvoice.invoiceNumber : "NEW"}
                     </Typography>
 
                     <Grid item container justifyContent="flex-end">
                       <Grid item>
-                        <Typography className="invoice-subtext-label">
+                        <Typography
+                          className={
+                            isMobile
+                              ? "invoice-subtext-label-mobile"
+                              : "invoice-subtext-label"
+                          }
+                        >
                           Invoice Date :
                         </Typography>
                       </Grid>
                       <Grid item>
-                        <Typography className="invoice-subtext">
-                          {date}
+                        <Typography
+                          className={
+                            isMobile
+                              ? "invoice-subtext-mobile"
+                              : "invoice-subtext"
+                          }
+                        >
+                          {date ? date : "20/04/2024"}
                         </Typography>
                       </Grid>
                     </Grid>
@@ -378,8 +430,13 @@ const Invoice = () => {
                 <Grid item container className="table-border" md={12}>
                   <Grid item container md={12}>
                     {headings.map((heading, index) => (
-                      <Grid item md={3} key={index}>
-                        <Typography align="center" className="table-heading">
+                      <Grid item md={3} xs={3} key={index}>
+                        <Typography
+                          align="center"
+                          className={
+                            isMobile ? "table-heading-mobile" : "table-heading"
+                          }
+                        >
                           {heading}
                         </Typography>
                       </Grid>
@@ -435,7 +492,11 @@ const Invoice = () => {
                       <Grid item md={3} xs={3}>
                         <Typography
                           align="right"
-                          className="table-editable-row"
+                          className={
+                            isMobile
+                              ? "table-editable-row-mobile"
+                              : "table-editable-row"
+                          }
                         >
                           {row.total}
                         </Typography>
@@ -462,12 +523,25 @@ const Invoice = () => {
                     className="total-border"
                   >
                     <Grid item md={9} xs={9}>
-                      <Typography className="table-editable-row">
+                      <Typography
+                        className={
+                          isMobile
+                            ? "table-editable-row-mobile"
+                            : "table-editable-row"
+                        }
+                      >
                         <b>Total</b> (INR):
                       </Typography>
                     </Grid>
                     <Grid item md={3} xs={3}>
-                      <Typography align="right" className="table-editable-row">
+                      <Typography
+                        align="right"
+                        className={
+                          isMobile
+                            ? "table-editable-row-mobile"
+                            : "table-editable-row"
+                        }
+                      >
                         {inrTotal}
                       </Typography>
                     </Grid>
@@ -475,62 +549,122 @@ const Invoice = () => {
                 </Grid>
                 <Grid item container md={12}>
                   <Grid item md={6} xs={6}>
-                    <Typography className="table2-heading">
+                    <Typography
+                      className={
+                        isMobile ? "table2-heading-mobile" : "table2-heading"
+                      }
+                    >
                       Project/Vendor details
                     </Typography>
                     <Grid item className="table2-border">
-                      <Typography className="table-companyName">
-                        {savedData.project}
+                      <Typography
+                        className={
+                          isMobile
+                            ? "table-companyName-mobile"
+                            : "table-companyName"
+                        }
+                      >
+                        {savedData?.project}
                       </Typography>
-                      <Typography className="table2-data">
+                      <Typography
+                        className={
+                          isMobile ? "table2-data-mobile" : "table2-data"
+                        }
+                      >
                         janesmith@xyzsupplies.com
                       </Typography>
-                      <Typography className="table2-data">
+                      <Typography
+                        className={
+                          isMobile ? "table2-data-mobile" : "table2-data"
+                        }
+                      >
                         456 Elm Street, Downtown, Chicago, IL 60601
                       </Typography>
-                      <Typography className="table2-data">
+                      <Typography
+                        className={
+                          isMobile ? "table2-data-mobile" : "table2-data"
+                        }
+                      >
                         8765432167
                       </Typography>
                     </Grid>
                   </Grid>
                   <Grid item md={6} xs={6}>
-                    <Typography className="table2-heading">
+                    <Typography
+                      className={
+                        isMobile ? "table2-heading-mobile" : "table2-heading"
+                      }
+                    >
                       Client Details
                     </Typography>
                     <Grid item className="table2-border">
-                      <Typography className="table-companyName">
-                        {savedData.client}
+                      <Typography
+                        className={
+                          isMobile
+                            ? "table-companyName-mobile"
+                            : "table-companyName"
+                        }
+                      >
+                        {savedData?.client}
                       </Typography>
-                      <Typography className="table2-data">
+                      <Typography
+                        className={
+                          isMobile ? "table2-data-mobile" : "table2-data"
+                        }
+                      >
                         janesmith@xyzsupplies.com
                       </Typography>
-                      <Typography className="table2-data">
+                      <Typography
+                        className={
+                          isMobile ? "table2-data-mobile" : "table2-data"
+                        }
+                      >
                         456 Elm Street, Downtown, Chicago, IL 60601
                       </Typography>
-                      <Typography className="table2-data">
+                      <Typography
+                        className={
+                          isMobile ? "table2-data-mobile" : "table2-data"
+                        }
+                      >
                         8765432167
                       </Typography>
                     </Grid>
                   </Grid>
                 </Grid>
                 <Grid item md={12}>
-                  <Typography className="bottomText-1">
+                  <Typography
+                    className={
+                      isMobile ? "bottomText-1-mobile" : "bottomText-1"
+                    }
+                  >
                     SUPPLY MEANT FOR EXPORT OF SERVICE UNDER LETTER OF
                     UNDERTAKING WITHOUT PAYMENT OF INTEGRATED TAX
                   </Typography>
-                  <Typography className="bottomText-1">
-                    LUT (ARN no.) - ADD70456789765, dated {savedData.date}
+                  <Typography
+                    className={
+                      isMobile ? "bottomText-1-mobile" : "bottomText-1"
+                    }
+                  >
+                    LUT (ARN no.) - ADD70456789765, dated {savedData?.date}
                   </Typography>
                 </Grid>
 
                 <Grid item container md={12} alignItems={"flex-end"}>
                   <Grid item md={6} xs={6}>
-                    <Typography className="class-prashant">
+                    <Typography
+                      className={
+                        isMobile ? "class-prashant-mobile" : "class-prashant"
+                      }
+                    >
                       PRASHANT KUMAR (prop. )
                     </Typography>
                   </Grid>
                   <Grid item md={6} xs={6}>
-                    <Typography className="signature-space">
+                    <Typography
+                      className={
+                        isMobile ? "signature-space-mobile" : "signature-space"
+                      }
+                    >
                       SIGNATURE HERE
                     </Typography>
                   </Grid>

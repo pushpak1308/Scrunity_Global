@@ -5,3 +5,11 @@
   font-weight: 400 !important;
   text-wrap: wrap;
 }
+
+.table-editable-row-mobile {
+  padding: 2%;
+  font-family: "Arimo" !important;
+  font-size: 50% !important;
+  font-weight: 400 !important;
+  text-wrap: wrap;
+}
