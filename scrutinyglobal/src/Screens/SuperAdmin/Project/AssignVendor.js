@@ -23,16 +23,15 @@ const AssignVendor = () => {
   const projectId = useParams();
   const [selectedVendors, setSelectedVendors] = useState([]);
   const [selectedRowIds, setSelectedRowIds] = useState([]);
-  const [editableRowId, setEditableRowId] = useState(null);
+  const [editableRowIds, setEditableRowIds] = useState([]);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [edit, setEdit] = useState(false);
+  const [editMode, setEditMode] = useState(false);
   const [vendorId, setVendorId] = useState(0);
   const [vendorName, setVendorName] = useState("");
   const [successURL, setSuccessURL] = useState("");
   const [terminateURL, setTerminateURL] = useState("");
   const [quotaFullURL, setQuotafulURL] = useState("");
   const [costPerSurvey, setCostPerSurvey] = useState("");
-  // const [projectId, setProjectId] = useState("");
   const [responseData, setResponseData] = useState([]);
   const [userDataNew, setUserDataNew] = useState([]);
   const navigate = useNavigate();
@@ -74,6 +73,7 @@ const AssignVendor = () => {
   useEffect(() => {
     setUserDataNew(convertData(responseData));
   }, [responseData]);
+
   function convertData(data) {
     // console.log(data);
     data.map((element) => vendorGridData.id.push(element.user_id));
@@ -101,8 +101,6 @@ const AssignVendor = () => {
     return userDataConverted;
   }
 
-  console.log("testing outside", userDataNew);
-
   const handleVendorChange = (event) => {
     const {
       target: { value },
@@ -113,10 +111,10 @@ const AssignVendor = () => {
     const updatedSelectedVendors = selectedVendorNames.map((vendorName) =>
       userDataNew.find((vendor) => vendor.vendorName === vendorName)
     );
-    // const selectedVendorList = userDataNew.map((vendor) => vendor.vendorName === value);
 
     setSelectedVendors(updatedSelectedVendors);
     setSelectedRowIds([]);
+    setEditMode(false);
     console.log("testing selectedVendors", selectedVendors);
   };
 
@@ -127,11 +125,9 @@ const AssignVendor = () => {
       )
     );
   };
-  const handleEdit = (rowId) => {
-    if (editableRowId === rowId) {
-      setEditableRowId(null); // If the row is already editable, toggle it off
-    } else {
-      setEditableRowId(rowId); // Set the current row as editable
+  const handleEdit = () => {
+    if (editableRowIds.length > 0) {
+      setEditMode(!editMode);
     }
   };
 
@@ -141,6 +137,7 @@ const AssignVendor = () => {
     );
     setSelectedVendors(remainingVendors);
     setSelectedRowIds([]);
+    setEditMode(false);
   };
 
   const handleSave = () => {
@@ -221,13 +218,13 @@ const AssignVendor = () => {
       field: "successURL",
       headerName: "Success URL",
       width: 190,
-      editable: false,
+      editable: editMode,
       align: "left",
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
       renderCell: (params) =>
-        editableRowId === params.id ? (
+        editMode && editableRowIds.includes(params.id) ? (
           <TextField
             value={params.value}
             variant="standard"
@@ -244,12 +241,12 @@ const AssignVendor = () => {
       headerName: "Quotafull URL",
       width: 190,
       align: "left",
-      editable: false,
+      editable: editMode,
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
       renderCell: (params) =>
-        editableRowId === params.id ? (
+        editMode && editableRowIds.includes(params.id) ? (
           <TextField
             value={params.value}
             variant="standard"
@@ -266,12 +263,12 @@ const AssignVendor = () => {
       headerName: "Terminate URL",
       width: 190,
       align: "left",
-      editable: false,
+      editable: editMode,
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
       renderCell: (params) =>
-        editableRowId === params.id ? (
+        editMode && editableRowIds.includes(params.id) ? (
           <TextField
             variant="standard"
             value={params.value}
@@ -288,13 +285,13 @@ const AssignVendor = () => {
       headerName: "Cost/Survey",
       width: 170,
       align: "center",
-      editable: false,
+      editable: editMode,
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
 
       renderCell: (params) =>
-        editableRowId === params.id ? (
+        editMode && editableRowIds.includes(params.id) ? (
           <TextField
             variant="standard"
             value={params.value}
@@ -311,13 +308,13 @@ const AssignVendor = () => {
       headerName: "Target Surveys",
       width: 190,
       align: "center",
-      editable: false,
+      editable: editMode,
       headerClassName: "dataGrid-header",
       cellClassName: "dataGrid-cell",
       headerAlign: "center",
 
       renderCell: (params) =>
-        editableRowId === params.id ? (
+        editMode && editableRowIds.includes(params.id) ? (
           <TextField
             variant="standard"
             value={params.value}
@@ -364,7 +361,7 @@ const AssignVendor = () => {
             {isMobile ? (
               <IconButton
                 onClick={handleEdit}
-                disabled={selectedVendors.length === 0}
+                disabled={selectedRowIds.length === 0}
                 className="mobile-button primary-background"
               >
                 <EditIcon color="primary" />
@@ -375,7 +372,7 @@ const AssignVendor = () => {
                 onClick={handleEdit}
                 className="client-button export-class"
                 startIcon={<EditIcon color="primary" fontSize="large" />}
-                disabled={selectedVendors.length === 0}
+                disabled={selectedRowIds.length === 0}
               >
                 Edit
               </Button>
@@ -440,6 +437,8 @@ const AssignVendor = () => {
               checkboxSelection
               onRowSelectionModelChange={(newSelection) => {
                 setSelectedRowIds(newSelection);
+                // setEditMode(newSelection.length > 0);
+                setEditableRowIds(newSelection); // Keep track of selected rows for editing
               }}
             />
           </Grid>
