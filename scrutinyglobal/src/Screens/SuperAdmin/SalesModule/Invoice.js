@@ -8,10 +8,12 @@ import jsPDF from "jspdf";
 import AddIcon from "@mui/icons-material/Add";
 import EditableField from "../../../Components/EditTableField/Index";
 import "./Style.css";
+import PreviewOutlinedIcon from "@mui/icons-material/RemoveRedEye";
 import { API_PREFIX } from "../../../config";
 import FormModal from "../../../Components/CustomModals/FormModal/Index";
 import InvoiceCard from "../../../Components/InvoiceCard/Index";
 import { v4 as uuidv4 } from "uuid";
+import PdfPreviewModal from "../../../Components/CustomModals/PreviewModal/PreviewModal";
 
 const Invoice = () => {
   const [client, setClient] = useState("");
@@ -26,7 +28,8 @@ const Invoice = () => {
   const [usdTotal, setUsdTotal] = useState(0);
   const [inrTotal, setInrTotal] = useState(0);
   const [showAddNewInvoiceModal, setShowAddNewInvoiceModal] = useState(false);
-
+  const [showPreviewModal, setShowPreviewModal] = useState(false);
+  const [pdfData, setPdfData] = useState("");
   const [savedInvoices, setSavedInvoices] = useState([]);
   const [selectedInvoice, setSelectedInvoice] = useState(null);
 
@@ -183,6 +186,29 @@ const Invoice = () => {
     });
   };
 
+  const generatePdfData = () => {
+    return new Promise((resolve) => {
+      const input = document.getElementById("pdf-content");
+      html2canvas(input).then((canvas) => {
+        const imgData = canvas.toDataURL("image/png");
+        const pdf = new jsPDF("p", "pt", "a4");
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+        const pdfOutput = pdf.output("datauristring");
+        resolve(pdfOutput);
+      });
+    });
+  };
+
+  const handlePdfPreview = async () => {
+    const previewData = await generatePdfData();
+    console.log("Preview Data:", previewData);
+    setPdfData(previewData);
+    setShowPreviewModal(true);
+  };
+
   const content = (
     <Grid container direction="row" spacing={2} className="dashboard-container">
       <Grid item container md={6}>
@@ -288,6 +314,16 @@ const Invoice = () => {
                     Download as a PDF
                   </Button>
                 </Grid>
+                {/* <Grid item>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    onClick={handlePdfPreview}
+                    startIcon={<PreviewOutlinedIcon />} // Preview button
+                  >
+                    Preview PDF
+                  </Button>
+                </Grid> */}
                 <Grid item>
                   <Button
                     size="small"
@@ -301,7 +337,7 @@ const Invoice = () => {
               </Grid>
               <Paper elevation={5} id="pdf-content" className="download-grid">
                 <Grid item container spacing={2}>
-                  <Grid item md={6}>
+                  <Grid item md={6} xs={6}>
                     <Typography textAlign="left" className="invoice-heading">
                       Scrutiny Global
                     </Typography>
@@ -319,7 +355,7 @@ const Invoice = () => {
                       GSTIN - 071GJPK820IEIZF
                     </Typography>
                   </Grid>
-                  <Grid item md={6}>
+                  <Grid item md={6} xs={6}>
                     <Typography textAlign="right" className="invoice-heading">
                       Invoice -{" "}
                       {selectedInvoice ? selectedInvoice.invoiceNumber : "NEW"}
@@ -359,7 +395,7 @@ const Invoice = () => {
                       spacing={2}
                       md={12}
                     >
-                      <Grid item md={3}>
+                      <Grid item md={3} xs={3}>
                         <EditableField
                           type="text"
                           value={row.description}
@@ -372,7 +408,7 @@ const Invoice = () => {
                           }
                         />
                       </Grid>
-                      <Grid item md={3}>
+                      <Grid item md={3} xs={3}>
                         <EditableField
                           value={row.noOfSurveys}
                           onChange={(e) =>
@@ -384,7 +420,7 @@ const Invoice = () => {
                           }
                         />
                       </Grid>
-                      <Grid item md={3}>
+                      <Grid item md={3} xs={3}>
                         <EditableField
                           value={row.costPerSurvey}
                           onChange={(e) =>
@@ -396,7 +432,7 @@ const Invoice = () => {
                           }
                         />
                       </Grid>
-                      <Grid item md={3}>
+                      <Grid item md={3} xs={3}>
                         <Typography
                           align="right"
                           className="table-editable-row"
@@ -425,12 +461,12 @@ const Invoice = () => {
                     paddingRight={1}
                     className="total-border"
                   >
-                    <Grid item md={9}>
+                    <Grid item md={9} xs={9}>
                       <Typography className="table-editable-row">
                         <b>Total</b> (INR):
                       </Typography>
                     </Grid>
-                    <Grid item md={3}>
+                    <Grid item md={3} xs={3}>
                       <Typography align="right" className="table-editable-row">
                         {inrTotal}
                       </Typography>
@@ -438,7 +474,7 @@ const Invoice = () => {
                   </Grid>
                 </Grid>
                 <Grid item container md={12}>
-                  <Grid item md={6}>
+                  <Grid item md={6} xs={6}>
                     <Typography className="table2-heading">
                       Project/Vendor details
                     </Typography>
@@ -457,7 +493,7 @@ const Invoice = () => {
                       </Typography>
                     </Grid>
                   </Grid>
-                  <Grid item md={6}>
+                  <Grid item md={6} xs={6}>
                     <Typography className="table2-heading">
                       Client Details
                     </Typography>
@@ -488,12 +524,12 @@ const Invoice = () => {
                 </Grid>
 
                 <Grid item container md={12} alignItems={"flex-end"}>
-                  <Grid item md={6}>
+                  <Grid item md={6} xs={6}>
                     <Typography className="class-prashant">
                       PRASHANT KUMAR (prop. )
                     </Typography>
                   </Grid>
-                  <Grid item md={6}>
+                  <Grid item md={6} xs={6}>
                     <Typography className="signature-space">
                       SIGNATURE HERE
                     </Typography>
@@ -504,6 +540,11 @@ const Invoice = () => {
           </Grid>
         </Grid>
       )}
+      {/* <PdfPreviewModal
+        open={showPreviewModal}
+        onClose={() => setShowPreviewModal(false)}
+        pdfData={pdfData}
+      /> */}
       <FormModal
         show={showAddNewInvoiceModal}
         handleSubmit={handleFormModalSubmit}

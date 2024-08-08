@@ -3,10 +3,6 @@
   margin: 0.5rem;
 }
 
-.userDetails {
-  /* margin-left: 2% !important; */
-}
-
 .userDetails-text {
   font-size: 80% !important;
   padding-left: 2%;
@@ -31,10 +27,6 @@
   font-size: 96% !important;
   font-weight: 400 !important;
   text-decoration: none !important;
-}
-
-.list-grid {
-  /* padding-top: 1.5%; */
 }
 
 .logout {
