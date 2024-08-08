@@ -282,7 +282,7 @@ export default function MuiDrawer({ active, mobileOpen, handleDrawerToggle }) {
             display: { xs: "none", sm: "block" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
-              width: "18%",
+              width: "17%",
             },
           }}
           open

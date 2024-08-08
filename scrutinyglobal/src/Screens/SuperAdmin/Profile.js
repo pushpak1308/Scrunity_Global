@@ -1,4 +1,11 @@
-import { Grid, Paper, Typography, IconButton } from "@mui/material";
+import {
+  Grid,
+  Paper,
+  Typography,
+  IconButton,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import React, { useState } from "react";
 import Layout from "./Layout";
 import "../SuperAdmin/Client/Style.css";
@@ -38,6 +45,8 @@ const Profile = () => {
       [name]: value,
     }));
   };
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleSave = () => {
     setEditMode(false);
@@ -63,11 +72,13 @@ const Profile = () => {
           container
           md={5}
           xs={12}
-          //   justifyContent="center"
-          //   alignItems="center"
+          justifyContent={isMobile ? "center" : ""}
+          alignItems={isMobile ? "center" : ""}
           direction="column"
         >
-          <Paper className="profile-card-1">
+          <Paper
+            className={isMobile ? "profile-card-1-mobile" : "profile-card-1"}
+          >
             <Grid
               item
               container
